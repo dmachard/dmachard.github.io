@@ -1,4 +1,4 @@
-# dmachard's Gists follow up
+# dmachard's gists follow up
 
 - 2021-09-08  **[go-dnscollector: installation guide](https://gist.github.com/dmachard/413ee77099046c2b1779737909e1b017)** *#dnstap*
 
