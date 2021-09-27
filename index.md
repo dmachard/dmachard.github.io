@@ -6,6 +6,8 @@ September 2021
 
 - 2021-09-08  **[DnsCollector/dnstap: installation guide from binary](https://gist.github.com/dmachard/413ee77099046c2b1779737909e1b017){:target="_blank" rel="noopener"}**
 
+- 2021-09-08  **[PowerDNS/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel](https://gist.github.com/dmachard/09867e2a458e9a135b01f4d449d3c412){:target="_blank" rel="noopener"}**
+
 - 2021-09-08 **[PowerDNS/dnsdist: how to configure TLS for the API using stunnel](https://gist.github.com/dmachard/9c252e91ea842fa8b730e30bcba080ae){:target="_blank" rel="noopener"}**
 
 May 2021
