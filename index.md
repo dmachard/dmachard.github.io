@@ -12,7 +12,7 @@ September 2021
 
 May 2021
 
-- 2021-05-22 **[PowerDNS/auth: how to manage DNS records with dynamic updates and terraform](https://gist.github.com/dmachard/9bc2d9a23938adafbca0a160f4bb51f3){:target="_blank" rel="noopener"}**
+- 2021-05-22 **[PowerDNS/auth: how to manage DNS records with dynamic updates and terraform](https://gist.github.com/dmachard/a695a3eda851a59a1aa2c05f6b44b634){:target="_blank" rel="noopener"}**
 
 - 2021-05-22 **[PowerDNS/auth: how to manage LUA records with terraform](https://gist.github.com/dmachard/a695a3eda851a59a1aa2c05f6b44b634){:target="_blank" rel="noopener"}**
 
