@@ -2,7 +2,9 @@
 
 September 2021
 
-- 2021-09-27  **[Crédit Agricole: présentation d'un client python pour les particuliers](https://gist.github.com/dmachard/8f3b3244434439f7a4ab5898f9716766){:target="_blank" rel="noopener"}**
+- 2021-09-28  **[PowerDns/dnsdist: how to send all your DNS queries (udp/tcp) to a pool of public resolvers](https://gist.github.com/dmachard/6dcddd7ada20b60e92c8c691ed1c7914){:target="_blank" rel="noopener"}**
+
+- 2021-09-27  **[Crédit Agricole: présentation d'un client python pour les particuliers](https://gist.github.com/dmachard/8f3b3244434439f7a4ab5898f9716766){:target="_blank" rel="noopener"}**- 2021-09-27  **[Crédit Agricole: présentation d'un client python pour les particuliers](https://gist.github.com/dmachard/8f3b3244434439f7a4ab5898f9716766){:target="_blank" rel="noopener"}**
 
 - 2021-09-08  **[DnsCollector/dnstap: installation guide from binary](https://gist.github.com/dmachard/413ee77099046c2b1779737909e1b017){:target="_blank" rel="noopener"}**
 
