@@ -1,5 +1,9 @@
 # dmachard's gists follow up
 
+October 2021
+
+- 2021-10-01  **[PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file](https://gist.github.com/dmachard/6950d291b4724e959090d374b27d5905){:target="_blank" rel="noopener"}**
+
 September 2021
 
 - 2021-09-28  **[PowerDns/dnsdist: how to send all your DNS queries to a pool of public resolvers](https://gist.github.com/dmachard/6dcddd7ada20b60e92c8c691ed1c7914){:target="_blank" rel="noopener"}**
