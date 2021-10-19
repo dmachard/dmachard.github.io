@@ -1,1 +1,5 @@
-
+.archive .archive-item-date {
+    width: 4em;
+    text-align: right;
+    color: #a9a9b3;
+}
