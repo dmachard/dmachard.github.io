@@ -1,4 +1,12 @@
-.group-title {
+
+.page {
+    position: relative;
+    max-width: 800px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.archive .group-title {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
 }
