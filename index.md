@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="styles.css">
 
-<div class="archive">
+<div class="page archive">
 <h3 class="group-title">October 2021</h3>
   <article class="archive-item">
     <a href="https://gist.github.com/dmachard/6950d291b4724e959090d374b27d5905" target="_blank" class="archive-item-link">PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file</a>
