@@ -1,5 +1,20 @@
 # dmachard's gists follow up
 
+<link rel="stylesheet" href="styles.css">
+
+<h3 class="group-title">2020</h3>
+<article class="archive-item">
+  <a href="/2020/12/2021-12-28-sunburst-defend/" class="archive-item-link">Basic guidelines that would've prevented SUNBURST</a>
+  <span class="archive-item-date">12-28</span>
+</article>
+
+<h3 class="group-title">2018</h3>
+<article class="archive-item">
+<a href="/2018/12/2018-12-13-hide-in-plain-sight/" class="archive-item-link">Hide in Plain Sight: Protocol Multiplexers</a>
+<span class="archive-item-date">12-13</span>
+</article>
+
+
 October 2021
 
 - 2021-10-01  **[PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file](https://gist.github.com/dmachard/6950d291b4724e959090d374b27d5905){:target="_blank" rel="noopener"}**
