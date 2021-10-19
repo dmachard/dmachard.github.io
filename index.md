@@ -1,7 +1,5 @@
 # dmachard's gists follow up
 
-<link rel="stylesheet" href="styles.css">
-
 <div class="page archive">
 <h3 class="group-title">October 2021</h3>
   <article class="archive-item">
