@@ -3,7 +3,7 @@
 <div class="page archive">
 <h3 class="group-title">October 2021</h3>
   <article class="archive-item">
-    <a href="https://gist.github.com/dmachard/592fbe46f8e8f0996e148824c62f17d0" target="_blank" class="archive-item-link">Squid docker image with custom configuration</a>
+    <a href="https://gist.github.com/dmachard/592fbe46f8e8f0996e148824c62f17d0" target="_blank" class="archive-item-link">Run a squid proxy in container mode with custom configuration</a>
     <span class="archive-item-date">20-01</span>
   </article>
 
