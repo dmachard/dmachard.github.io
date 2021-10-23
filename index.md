@@ -3,7 +3,7 @@
 <div class="page archive">
 <h3 class="group-title">October 2021</h3>
   <article class="archive-item">
-    <a href="https://gist.github.com/dmachard/88ff4e8345d9d14d6d032a13f0be39a2" target="_blank" class="archive-item-link">Initial ansible setup server</a>
+    <a href="https://gist.github.com/dmachard/88ff4e8345d9d14d6d032a13f0be39a2" target="_blank" class="archive-item-link">Initial Ansible setup server</a>
     <span class="archive-item-date">23-01</span>
   </article>
   
