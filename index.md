@@ -3,6 +3,11 @@
 <div class="page archive">
 <h3 class="group-title">October 2021</h3>
   <article class="archive-item">
+    <a href="https://gist.github.com/dmachard/88ff4e8345d9d14d6d032a13f0be39a2" target="_blank" class="archive-item-link">Prepare your ansible server</a>
+    <span class="archive-item-date">23-01</span>
+  </article>
+  
+  <article class="archive-item">
     <a href="https://gist.github.com/dmachard/be47284e0bf2175c8eed1de9d9bc5b77" target="_blank" class="archive-item-link">Install Ansible 4.7 on AlmaLinux 8.4 with pip</a>
     <span class="archive-item-date">20-01</span>
   </article>
