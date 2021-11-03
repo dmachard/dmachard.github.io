@@ -1,0 +1,61 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "My technical gists"
+theme = "anatole"
+enableRobotsTXT = true
+summarylength = 10
+paginate = 5
+
+[menu]
+  [[menu.main]]
+  name = "Home"
+  identifier = "home"
+  weight = 100
+  url = "/"
+
+  [[menu.main]]
+  name = "Archive"
+  identifier = "posts"
+  weight = 150
+  url = "/posts"
+
+  [[menu.main]]
+  name = "Tags"
+  identifier = "tags"
+  weight = 150
+  url = "/tags"
+
+
+[params]
+    mainSections = ["posts"]
+    description = "The technical gists of Denis Machard"
+    contentratio = 0.75
+    author = "Denis MACHARD"
+    profilePicture = "profile.png"
+    readMore = true
+    doNotLoadAnimations = true
+
+[[params.socialIcons]]
+icon = "fas fa-rss"
+title = "e-mail"
+url = "https://dmachard.github.io/index.xml"
+
+[[params.socialIcons]]
+icon = "fab fa-github"
+title = "GitHub"
+url = "https://github.com/dmachard/"
+
+[[params.socialIcons]]
+icon = "fab fa-twitter"
+title = "Twitter"
+url = "https://twitter.com/denis_machard"
+
+[[params.socialIcons]]
+icon = "fab fa-linkedin"
+title = "Linkedin"
+url = "https://www.linkedin.com/in/dmachard/"
+
+[[params.socialIcons]]
+icon = "fas fa-envelope"
+title = "e-mail"
+url = "mailto:d.machard@gmail.com"
