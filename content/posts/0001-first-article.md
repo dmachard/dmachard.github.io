@@ -6,3 +6,4 @@ tags: ["ntp", 'logs']
 ---
 
 Hello world.
+Bonjour.
