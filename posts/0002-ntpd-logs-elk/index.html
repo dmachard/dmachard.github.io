@@ -1,0 +1,455 @@
+<!doctype html><html dir=ltr lang=en data-theme><head>
+<title>
+Denis MACHARD
+|
+Dnstap: How to enable it on main dns servers
+</title>
+<meta charset=utf-8><meta name=generator content="Hugo 0.89.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="
+      The technical gists of Denis Machard
+
+
+    ">
+<link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css>
+<link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous>
+<link rel="shortcut icon" href=/favicon.ico type=image/x-icon>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=canonical href=/posts/0002-ntpd-logs-elk/>
+<script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Dnstap: How to enable it on main dns servers">
+<meta name=twitter:description content="In this post, I will show how to extract some ntp statitics.">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Dnstap: How to enable it on main dns servers","headline":"Dnstap: How to enable it on main dns servers","alternativeHeadline":"","description":"
+      
+        In this post, I will show how to extract some ntp statitics.
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0002-ntpd-logs-elk\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-05-23T00:00:00.00Z","datePublished":"2020-05-23T00:00:00.00Z","dateModified":"2020-05-23T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0002-ntpd-logs-elk\/","wordCount":"705","genre":[],"keywords":["ntp","logs"]}</script>
+</head>
+<body>
+<header><div class="page-top
+.">
+<a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+<nav>
+<ul class=nav__list id=navMenu>
+<div class=nav__links>
+<li>
+<a href=/ title>Home</a>
+</li>
+<li>
+<a href=/posts title>Archive</a>
+</li>
+<li>
+<a href=/tags title>Tags</a>
+</li>
+</div>
+<ul>
+<li>
+<a class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</ul>
+</nav>
+</div>
+</header>
+<div class=wrapper>
+<aside><div class="sidebar
+.">
+<div class=sidebar__content>
+<div class=logo-title>
+<div class=title>
+<img src=/profile.png alt="profile picture">
+<h3 title><a href=/></a></h3>
+<div class=description>
+<p>The technical gists of Denis Machard</p>
+</div>
+</div>
+</div>
+<ul class=social-links>
+<li>
+<a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail>
+<i class="fas fa-rss fa-2x" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a href=https://github.com/dmachard/ rel=me aria-label=GitHub>
+<i class="fab fa-github fa-2x" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a href=https://twitter.com/denis_machard rel=me aria-label=Twitter>
+<i class="fab fa-twitter fa-2x" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin>
+<i class="fab fa-linkedin fa-2x" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail>
+<i class="fas fa-envelope fa-2x" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div><footer class="footer footer--sidebar">
+<div class=by_farbox>
+<ul class=footer__list>
+<li class=footer__item>
+&copy;
+Denis MACHARD
+2021
+</li>
+</ul>
+</div>
+</footer>
+<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></div>
+</aside>
+<main>
+<div class=autopagerize_page_element>
+<div class=content>
+<div class="post
+.">
+<div class=post-content>
+<div class=post-title>
+<h1>Dnstap: How to enable it on main dns servers</h1>
+</div><p>In this post, I will show how to extract some ntp statitics.</p>
+<h2 id=table-of-contents>Table of contents</h2>
+<ul>
+<li><a href=#activate-ntpd-logs>Activate ntpd logs</a>
+<ul>
+<li><a href=#peerstats-documentation>peerstats documentation</a></li>
+<li><a href=#sysstats-documentation>sysstats documentation</a></li>
+</ul>
+</li>
+<li><a href=#counting-ntp-clients>Counting NTP clients</a></li>
+<li><a href=#expected-logs>Expected logs</a></li>
+<li><a href=#export-logs-to-elk>Export Logs to ELK</a>
+<ul>
+<li><a href=#deploy-filebeat>Deploy Filebeat</a></li>
+<li><a href=#configure-logstash>Configure Logstash</a></li>
+</ul>
+</li>
+<li><a href=#examples-of-dashboard-on-kibana>Examples of dashboard on Kibana</a></li>
+</ul>
+<h2 id=activate-ntpd-logs>Activate ntpd logs</h2>
+<p>Update the ntpd configuration</p>
+<pre><code>  vim /etc/ntp.conf
+  statsdir /var/log/ntpstats/
+  statistics peerstats sysstats
+  filegen peerstats file peerstats.log type day enable
+  filegen sysstats file sysstats.log type none enable
+</code></pre>
+<p>Restart the daemon</p>
+<pre><code>  systemctl restart ntpd
+</code></pre>
+<h3 id=peerstats-documentation>peerstats documentation</h3>
+<p>Record peer statistics.
+An event occurs upon an update from either another NTP server</p>
+<table>
+<thead>
+<tr>
+<th>Units</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MJD</td>
+<td>date</td>
+</tr>
+<tr>
+<td>s</td>
+<td>time past midnight</td>
+</tr>
+<tr>
+<td>IP</td>
+<td>source address</td>
+</tr>
+<tr>
+<td>hex</td>
+<td>status word</td>
+</tr>
+<tr>
+<td>s</td>
+<td>clock offset</td>
+</tr>
+<tr>
+<td>s</td>
+<td>roundtrip delay</td>
+</tr>
+<tr>
+<td>s</td>
+<td>dispersion</td>
+</tr>
+<tr>
+<td>s</td>
+<td>jitter</td>
+</tr>
+</tbody>
+</table>
+<pre><code>tailf /var/log/ntpstats/peerstats
+58927 1293.735 91.224.149.41 941a -0.031646296 0.047783430 0.019218732 0.002787419
+58927 1315.710 129.250.35.250 945a -0.033762728 0.027946319 0.019098537 0.001580388
+58927 1848.736 193.141.27.6 941a -0.034690903 0.054624853 0.015236537 0.001218647
+58927 2006.714 92.222.117.115 961a -0.033217220 0.031581741 0.015059831 0.001349028
+</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>delay</td>
+<td>Shows the round trip time (RTT) of your computer communicating with the remote server.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Using root mean squares, and shows how far off your clock is from the reported time the server gave you. It can be positive or negative.</td>
+</tr>
+<tr>
+<td>jitter</td>
+<td>Showing the root mean squared deviation of your offsets.</td>
+</tr>
+</tbody>
+</table>
+<h3 id=sysstats-documentation>sysstats documentation</h3>
+<p>Each hour one line is appended to the sysstats file set in the following format</p>
+<table>
+<thead>
+<tr>
+<th>Units</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MJD</td>
+<td>date</td>
+</tr>
+<tr>
+<td>s</td>
+<td>time past midnight</td>
+</tr>
+<tr>
+<td>s</td>
+<td>time since reset</td>
+</tr>
+<tr>
+<td></td>
+<td>packets received</td>
+</tr>
+<tr>
+<td></td>
+<td>packets generated</td>
+</tr>
+<tr>
+<td></td>
+<td>current versions</td>
+</tr>
+<tr>
+<td></td>
+<td>old version</td>
+</tr>
+<tr>
+<td></td>
+<td>access denied</td>
+</tr>
+<tr>
+<td></td>
+<td>bad length or format</td>
+</tr>
+<tr>
+<td></td>
+<td>bad authentication</td>
+</tr>
+<tr>
+<td></td>
+<td>declined</td>
+</tr>
+<tr>
+<td></td>
+<td>rate exceeded</td>
+</tr>
+<tr>
+<td></td>
+<td>kiss-o'-death packets sent</td>
+</tr>
+</tbody>
+</table>
+<pre><code> tailf /var/log/ntpstats/sysstats
+ 58927 52035.251 3599 225 205 225 0 0 0 0 0 0 0
+ 58927 55635.257 3600 88 88 88 0 0 0 0 0 0 0
+ 58927 59235.313 3600 49 49 49 0 0 0 0 0 0 0
+</code></pre>
+<h2 id=counting-ntp-clients>Counting NTP clients</h2>
+<p>The ntpd does not give you how many clients it serves.</p>
+<p>Install iptables</p>
+<pre><code>yum remove firewalld &amp;&amp; yum install iptables-services
+systemctl enable iptables.service
+</code></pre>
+<p>Add the rule to log UDP port 123 traffic</p>
+<pre><code>/sbin/iptables -A INPUT -p udp --dport 123 -j LOG --log-prefix='[NTP] ' --log-level debug
+/usr/libexec/iptables/iptables.init save
+</code></pre>
+<p>Update rsyslog to log NTP traffic in specific file</p>
+<pre><code>touch /etc/rsyslog.d/00-iptables.conf
+vim /etc/rsyslog.d/00-iptables.conf
+:msg,contains,&quot;[NTP] &quot; /var/log/ntpstats/iptables.log
+</code></pre>
+<p>Restart rsyslog</p>
+<pre><code>service rsyslog restart
+</code></pre>
+<p>Example of log</p>
+<pre><code># tailf /var/log/ntpstats/iptables.log
+Mar 19 06:56:10 localhost kernel: [NTP] IN=enp0s3 OUT= MAC=08:00:27:96:57:49:a0:40:a0:8d:29:95:08:00 \
+SRC=185.242.56.3 DST=10.0.0.33 LEN=76 TOS=0x00 PREC=0x00 TTL=44 ID=56768 \
+DF PROTO=UDP SPT=123 DPT=123 LEN=56
+</code></pre>
+<h2 id=expected-logs>Expected logs</h2>
+<pre><code>  [root@localhost ntpstats]# ll
+  total 740
+  -rw-------. 1 root root 669741 Mar 22 08:42 iptables.log
+  -rw-r--r--. 2 ntp  ntp    3549 Mar 22 07:14 peerstats.log
+  -rw-r--r--. 1 ntp  ntp   32829 Mar 21 00:58 peerstats.log.20200320
+  -rw-r--r--. 1 ntp  ntp   16910 Mar 22 00:59 peerstats.log.20200321
+  -rw-r--r--. 2 ntp  ntp    3549 Mar 22 07:14 peerstats.log.20200322
+  -rw-r--r--. 2 ntp  ntp     347 Mar 22 08:35 sysstats.log
+  -rw-r--r--. 1 ntp  ntp     980 Mar 21 00:46 sysstats.log.20200320
+  -rw-r--r--. 1 ntp  ntp    1041 Mar 22 00:35 sysstats.log.20200321
+  -rw-r--r--. 2 ntp  ntp     347 Mar 22 08:35 sysstats.log.20200322
+</code></pre>
+<h2 id=export-logs-to-elk>Export Logs to ELK</h2>
+<h3 id=deploy-filebeat>Deploy Filebeat</h3>
+<p>Install filebeat, follow this procedure</p>
+<p>Configure filebeat</p>
+<pre><code>vim /etc/filebeat/filebeat.yml
+
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/ntpstats/iptables.log
+  fields:
+    logtype: iptables
+
+- type: log
+  enabled: true
+  paths:
+    - /var/log/ntpstats/peerstats.log
+  fields:
+    logtype: peerstats
+
+- type: log
+  enabled: true
+  paths:
+    - /var/log/ntpstats/sysstats.log
+  fields:
+    logtype: sysstats
+	
+output.logstash:
+	hosts: [&quot;&lt;ip_logstash&gt;:5044&quot;]
+</code></pre>
+<p>Start filebeat</p>
+<pre><code>systemctl start filebeat
+</code></pre>
+<h3 id=configure-logstash>Configure Logstash</h3>
+<pre><code>touch /etc/logstash/conf.d/00-beats.conf
+vim /etc/logstash/conf.d/00-beats.conf
+
+input {
+  beats {
+    port =&gt; 5044
+  }
+}
+
+filter {
+  if( [fields][logtype] == &quot;iptables&quot;){
+    dissect {
+      mapping =&gt; { &quot;message&quot; =&gt; &quot;%{} %{} %{} %{} kernel: [NTP] IN=%{} OUT=%{} MAC=%{} SRC=%{ntp_clientip} %{}&quot; }
+    }
+    if([ntp_clientip] == &quot;&lt;ip1_ntp_peer&quot;) {
+	drop {}
+    }
+  }
+ if( [fields][logtype] == &quot;peerstats&quot;){
+    dissect {
+      mapping =&gt; { &quot;message&quot; =&gt; &quot;%{datemjd} %{timepast_midnight} %{src_addr} %{status_word} %{clock_offset} %{roundtrip_delay} %{dispersion} %{rms_jitter}&quot; }
+    }
+   mutate {
+	convert =&gt; {
+	  &quot;clock_offset&quot; =&gt; &quot;float&quot;
+	  &quot;roundtrip_delay&quot; =&gt; &quot;float&quot;
+	  &quot;dispersion&quot; =&gt; &quot;float&quot;
+	  &quot;rms_jitter&quot; =&gt; &quot;float&quot;
+       }
+    }
+  }
+
+ if( [fields][logtype] == &quot;sysstats&quot;){
+    dissect {
+      mapping =&gt; { &quot;message&quot; =&gt; &quot;%{date_mjd} %{timepast_midnight} %{timesince_reset} %{pkts_received} %{pkts_generated} %{pkts_ntpv4} %{pkts_ntpv3} %{pkts_denied} %{pkts_bad} %{bad_auth} %{declined} %{rate_exceeded} %{pkts_kiss}&quot; }
+    }
+     mutate {
+	convert =&gt; {
+	    &quot;pkts_received&quot; =&gt; &quot;integer&quot;
+	    &quot;pkts_generated&quot; =&gt; &quot;integer&quot;
+	    &quot;pkts_ntpv4&quot; =&gt; &quot;integer&quot;
+	    &quot;pkts_ntpv3&quot; =&gt; &quot;integer&quot;
+	    &quot;pkts_denied&quot; =&gt; &quot;integer&quot;
+	    &quot;pkts_bad&quot; =&gt; &quot;integer&quot;
+	    &quot;bad_auth&quot; =&gt; &quot;integer&quot;
+	    &quot;declined&quot; =&gt; &quot;integer&quot;
+	    &quot;rate_exceeded&quot; =&gt; &quot;integer&quot;
+	    &quot;pkts_kiss&quot; =&gt; &quot;integer&quot;
+	}
+    }
+  }
+}
+
+output {
+  elasticsearch {
+    hosts =&gt; [&quot;http://localhost:9200&quot;]
+    index =&gt; &quot;%{[@metadata][beat]}-%{[@metadata][version]}&quot;
+  }
+}
+</code></pre>
+</div>
+<div class=post-footer>
+<div class=info>
+<span class=separator><a class=tag href=/tags/ntp/>ntp</a><a class=tag href=/tags/logs/>logs</a></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div><footer class="footer footer--base">
+<div class=by_farbox>
+<ul class=footer__list>
+<li class=footer__item>
+&copy;
+Denis MACHARD
+2021
+</li>
+</ul>
+</div>
+</footer>
+<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></body>
+</html>
