@@ -230,3 +230,9 @@ Start filebeat
 	    index => "%{[@metadata][beat]}-%{[@metadata][version]}"
 	  }
 	}
+
+## Examples of dashboard on Kibana
+
+![ELK dashboard image](/static/images/0002/ntp-elk-dashboard.png)
+
+![ELK dashboard image](/static/images/0002/ntp-elk-dashboard-offset.png)

@@ -31,7 +31,7 @@ paginate = 5
     description = "The technical gists of Denis Machard"
     contentratio = 0.75
     author = "Denis MACHARD"
-    profilePicture = "profile.png"
+    profilePicture = "images/profile.png"
     readMore = true
     doNotLoadAnimations = true
 
