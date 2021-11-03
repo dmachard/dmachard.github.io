@@ -5,7 +5,7 @@ draft: false
 tags: ["ntp", 'logs']
 ---
 
-In this post, I will show how to extract some ntp statitics.
+In this post, I will look at ntpd server  to extract some ntp statitics.
 
 ## Table of contents
 * [Activate ntpd logs](#activate-ntpd-logs)
