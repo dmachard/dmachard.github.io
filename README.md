@@ -1,5 +1,7 @@
 # My technical gists
 
+Blog: https://dmachard.github.io/
+
 ## Install
 
 Install hugo framework
@@ -18,4 +20,4 @@ Install the theme
 
 ## Deploy in Github pages
 
-Follow the [guide](https://gohugo.io/hosting-and-deployment/hosting-on-github/].
+Follow the [guide](https://gohugo.io/hosting-and-deployment/hosting-on-github/).
