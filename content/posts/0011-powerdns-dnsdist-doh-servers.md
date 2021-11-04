@@ -11,7 +11,7 @@ The goal of this tutorial is to send all your local DNS queries (udp/tcp) to a p
 
 Before to start, install some useful python tools to prepare the configuration
 
-```
+```bash
 pip install dnsdist_console j2cli
 ```
 
@@ -37,7 +37,7 @@ export DNSDIST_CONSOLE_KEY=$(python3 -c "from dnsdist_console import Key;print(K
 
 Use the j2 command to generate the custom configuration
 
-```
+```bash
 echo $DNSDIST_POOL | j2 --format=json dnsdist-doh.j2 > dnsdist-doh.lua
 ```
 
@@ -63,7 +63,7 @@ CONTAINER ID   IMAGE                   COMMAND                  CREATED         
 
 ## Test DNS resolution
 
-```
+```bash
 # dig @::1 www.google.fr +tcp +short
 216.58.215.35
 
@@ -73,7 +73,7 @@ CONTAINER ID   IMAGE                   COMMAND                  CREATED         
 
 ## Jinja configuration template
 
-```
+```bash
 ---------------------------------------------------
 -- Administration
 ---------------------------------------------------
