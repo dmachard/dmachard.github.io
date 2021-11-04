@@ -39,7 +39,7 @@ make && make install
 
 Update the configuration file `/etc/named.conf` to activate the dnstap feature:
 
-```
+```bash
 options {
     dnstap { client; auth; resolver; forwarder; };
     dnstap-output unix "/var/run/named/dnstap.sock";
@@ -60,7 +60,7 @@ If you have some troubles take a look to [selinux](https://gitlab.isc.org/isc-pr
 
 Not supported on Bind! You can apply the following workaround with the `socat` or `stunnel` command.
 
-```
+```bash
 while true; do socat unix-listen:/var/run/dnsdist/dnstap.sock tcp4-connect:<ip_dnstap_receiver>:<port_dnstap_receiver>,forever,interval=10, fork; sleep 1; done
 ```
 
@@ -77,7 +77,7 @@ Dnstap messages supported:
 
 Update the configuration file to activate the dnstap feature:
 
-```
+```bash
 vim /etc/pdns-recursor/recursor.conf
 lua-config-file=/etc/pdns-recursor/recursor.lua
 
@@ -96,7 +96,7 @@ su - pdns-recursor -s /bin/bash -c "dnstap_receiver -u "/var/run/pdns-recursor/d
 Update the configuration file to activate the dnstap feature with tcp mode 
 and execute the dnstap receiver in listening tcp socket mode:
 
-```
+```bash
 vim /etc/pdns-recursor/recursor.conf
 lua-config-file=/etc/pdns-recursor/recursor.lua
 
@@ -125,7 +125,7 @@ chown dnsdist.dnsdist /var/run/dnsdist/
 
 Update the configuration file `/etc/dnsdist/dnsdist.conf` to activate the dnstap feature:
 
-```
+```bash
 fsul = newFrameStreamUnixLogger("/var/run/dnsdist/dnstap.sock")
 addAction(AllRule(), DnstapLogAction("dnsdist", fsul))
 addResponseAction(AllRule(), DnstapLogResponseAction("dnsdist", fsul))
