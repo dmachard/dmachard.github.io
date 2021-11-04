@@ -1,0 +1,200 @@
+<!doctype html><html dir=ltr lang=en data-theme><head>
+<title>
+Denis MACHARD
+|
+PowerDNS/dnsdist: installation guide on CentOS 7
+</title>
+<meta charset=utf-8><meta name=generator content="Hugo 0.89.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="
+      My technical gists
+
+
+    ">
+<link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css>
+<link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous>
+<link rel="shortcut icon" href=/favicon.ico type=image/x-icon>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=canonical href=/posts/0020-powerdns-dnsdist-installation/>
+<script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="PowerDNS/dnsdist: installation guide on CentOS 7">
+<meta name=twitter:description content="Installation Activate EPEL repo
+yum install -y epel-release Install dependencies">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"PowerDNS\/dnsdist: installation guide on CentOS 7","headline":"PowerDNS\/dnsdist: installation guide on CentOS 7","alternativeHeadline":"","description":"
+      
+        Installation Activate EPEL repo\nyum install -y epel-release Install dependencies
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0020-powerdns-dnsdist-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-06-21T00:00:00.00Z","datePublished":"2020-06-21T00:00:00.00Z","dateModified":"2020-06-21T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0020-powerdns-dnsdist-installation\/","wordCount":"143","genre":[],"keywords":["dns","powerdns","dnsdist"]}</script>
+</head>
+<body>
+<header><div class="page-top
+.">
+<a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+<nav>
+<ul class=nav__list id=navMenu>
+<div class=nav__links>
+<li>
+<a href=/ title>Home</a>
+</li>
+<li>
+<a href=/posts title>Archive</a>
+</li>
+<li>
+<a href=/tags title>Tags</a>
+</li>
+</div>
+<ul>
+<li>
+<a class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</ul>
+</nav>
+</div>
+</header>
+<div class=wrapper>
+<aside><div class="sidebar
+.">
+<div class=sidebar__content>
+<div class=logo-title>
+<div class=title>
+<img src=/images/profile.png alt="profile picture">
+<h3 title><a href=/></a></h3>
+<div class=description>
+<p>My technical gists</p>
+</div>
+</div>
+</div>
+<ul class=social-links>
+<li>
+<a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail>
+<i class="fas fa-rss fa-2x" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a href=https://github.com/dmachard/ rel=me aria-label=GitHub>
+<i class="fab fa-github fa-2x" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a href=https://twitter.com/denis_machard rel=me aria-label=Twitter>
+<i class="fab fa-twitter fa-2x" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin>
+<i class="fab fa-linkedin fa-2x" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail>
+<i class="fas fa-envelope fa-2x" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div><footer class="footer footer--sidebar">
+<div class=by_farbox>
+<ul class=footer__list>
+<li class=footer__item>
+&copy;
+Denis MACHARD
+2021
+</li>
+</ul>
+</div>
+</footer>
+<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></div>
+</aside>
+<main>
+<div class=autopagerize_page_element>
+<div class=content>
+<div class="post
+.">
+<div class=post-content>
+<div class=post-title>
+<h1>PowerDNS/dnsdist: installation guide on CentOS 7</h1>
+</div><h2 id=installation>Installation</h2>
+<p>Activate EPEL repo</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>yum install -y epel-release
+</code></pre></div><p>Install dependencies</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>yum install re2 net-snmp.x86_64 lmdb.x86_64 fstrm.x86_64
+yum install protobuf.x86_64 tinycdb.x86_64 libsodium.x86_64 luajit.x86_64 openssl
+yum install gnutls tinycdb
+</code></pre></div><p>Download from the last version available <a href=https://repo.powerdns.com/centos/x86_64/7/>https://repo.powerdns.com/centos/x86_64/7/</a></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>rpm -ivh dnsdist-1.4.0-1pdns.el7.rpm
+</code></pre></div><h2 id=configuration>Configuration</h2>
+<p>vim /etc/dnsdist/dnsdist.conf</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lua data-lang=lua><span style=color:#75715e>-- bind on ip any</span>
+setLocal(<span style=color:#e6db74>&#39;0.0.0.0:53&#39;</span>)
+
+<span style=color:#75715e>-- allow all IP access</span>
+setACL({<span style=color:#e6db74>&#39;0.0.0.0/0&#39;</span>})
+
+<span style=color:#75715e>-- start the web server on port 8080</span>
+webserver(<span style=color:#e6db74>&#34;0.0.0.0:8080&#34;</span>, <span style=color:#e6db74>&#34;key&#34;</span>)
+
+<span style=color:#75715e>-- disable security feature polling</span>
+setSecurityPollSuffix(<span style=color:#e6db74>&#39;&#39;</span>)
+
+<span style=color:#75715e>-- log incoming request</span>
+addAction(AllRule(), LogAction(<span style=color:#e6db74>&#34;/var/log/dnsdist.log&#34;</span>, <span style=color:#66d9ef>false</span>, <span style=color:#66d9ef>true</span>, <span style=color:#66d9ef>false</span>, <span style=color:#66d9ef>true</span>, <span style=color:#66d9ef>true</span>))
+
+<span style=color:#75715e>-- dns auth list</span>
+newServer({address<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;10.0.0.140&#34;</span>, pool<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;pihole&#34;</span>})
+
+<span style=color:#75715e>-- accept only dns request</span>
+addAction(NotRule(OpcodeRule(DNSOpcode.Update)), RCodeAction(DNSRCode.REFUSED))
+
+<span style=color:#75715e>-- accept dns request from specific ip or subnest</span>
+addAction(NotRule(makeRule(<span style=color:#e6db74>&#34;10.0.0.97/32&#34;</span>)), RCodeAction(DNSRCode.REFUSED))
+
+<span style=color:#75715e>-- forward dns request to the autoritative DNS according the zone</span>
+addAction(AndRule({QTypeRule(DNSQType.SOA),QNameRule(<span style=color:#e6db74>&#39;www.google.fr&#39;</span>)}), PoolAction(<span style=color:#e6db74>&#34;pihole&#34;</span>))
+
+<span style=color:#75715e>-- otherwise all DNS requests</span>
+addAction(AllRule(), RCodeAction(DNSRCode.REFUSED))
+</code></pre></div><h2 id=start>Start</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>systemctl enable dnsdist.service
+systemctl start dnsdist.service
+systemctl status dnsdist.service
+</code></pre></div><h2 id=firewalld-configuration>firewalld configuration</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>firewall-cmd --permanent --add-port<span style=color:#f92672>=</span>53/udp
+firewall-cmd --permanent --add-port<span style=color:#f92672>=</span>53/tcp
+firewall-cmd --reload
+</code></pre></div></div>
+<div class=post-footer>
+<div class=info>
+<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div><footer class="footer footer--base">
+<div class=by_farbox>
+<ul class=footer__list>
+<li class=footer__item>
+&copy;
+Denis MACHARD
+2021
+</li>
+</ul>
+</div>
+</footer>
+<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></body>
+</html>

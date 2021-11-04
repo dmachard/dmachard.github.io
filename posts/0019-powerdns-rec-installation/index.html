@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-My technical gists
+Recursor PowerDNS installation on CentOS
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,14 +17,22 @@ My technical gists
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/>
-<link rel=alternate type=application/rss+xml href=/index.xml title="My technical gists">
+<link rel=canonical href=/posts/0019-powerdns-rec-installation/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="My technical gists">
-<meta name=twitter:description content="My technical gists">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"My technical gists","url":"http:\/\/example.org\/","description":"My technical gists","thumbnailUrl":"http:\/\/example.org\/","license":""}</script>
+<meta name=twitter:title content="Recursor PowerDNS installation on CentOS">
+<meta name=twitter:description content="PowerDNS recursor servers installation on CentOS.
+Installation wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm yum -y install epel-release yum --enablerepo=epel install luajit libsodium yum --enablerepo=epel install jq curl -o /etc/yum.">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Recursor PowerDNS installation on CentOS","headline":"Recursor PowerDNS installation on CentOS","alternativeHeadline":"","description":"
+      
+        PowerDNS recursor servers installation on CentOS.\nInstallation wget https:\/\/dl.fedoraproject.org\/pub\/epel\/epel-release-latest-7.noarch.rpm yum -y install epel-release yum --enablerepo=epel install luajit libsodium yum --enablerepo=epel install jq curl -o \/etc\/yum.
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0019-powerdns-rec-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-06-21T00:00:00.00Z","datePublished":"2020-06-21T00:00:00.00Z","dateModified":"2020-06-21T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0019-powerdns-rec-installation\/","wordCount":"58","genre":[],"keywords":["dns","powerdns","recursor"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -38,7 +46,7 @@ My technical gists
 <ul class=nav__list id=navMenu>
 <div class=nav__links>
 <li>
-<a class=current href=/ title>Home</a>
+<a href=/ title>Home</a>
 </li>
 <li>
 <a href=/posts title>Archive</a>
@@ -116,147 +124,38 @@ Denis MACHARD
 <div class=content>
 <div class="post
 .">
-<div class="post-title post-content">
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0014-initial-setup-ansible/>Initial Ansible setup server</a></h3>
-</div>
 <div class=post-content>
-<div class=p_part>
-<p>
-This tutorial explains how to make the initial setup of ansible.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, Oct 23, 2021
-</span>
-<span class=separator><a class=tag href=/tags/ansible/>ansible</a><a class=tag href=/tags/system/>system</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
 <div class=post-title>
-<h3><a href=/posts/0013-ansible-almalinux-installation/>How to install Ansible 4.7 on AlmaLinux 8.4 with pip</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-This post will details how to install ansible on AlmaLinux 8.
-</p>
-</div>
-</div>
+<h1>Recursor PowerDNS installation on CentOS</h1>
+</div><p>PowerDNS recursor servers installation on CentOS.</p>
+<h2 id=installation>Installation</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum -y install epel-release
+yum --enablerepo<span style=color:#f92672>=</span>epel install luajit libsodium
+yum --enablerepo<span style=color:#f92672>=</span>epel install jq
+
+curl -o /etc/yum.repos.d/powerdns-rec-43.repo https://repo.powerdns.com/repo-files/centos-rec-43.repo
+yum install pdns-recursor pdns-tools
+</code></pre></div><h2 id=recursor-server-configuration>Recursor server configuration</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/etc/pdns-recursor/recursor.conf
+
+local-address<span style=color:#f92672>=</span>0.0.0.0
+local-port<span style=color:#f92672>=</span><span style=color:#ae81ff>53</span>
+security-poll-suffix<span style=color:#f92672>=</span>
+forward-zones<span style=color:#f92672>=</span>home.local<span style=color:#f92672>=</span>127.0.0.1:5300
+forward-zones-recurse<span style=color:#f92672>=</span>.<span style=color:#f92672>=</span>10.0.0.140:53
+</code></pre></div><h2 id=start-servers>Start servers</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>systemctl enable pdns-recursor.service
+systemctl start pdns-recursor.service
+</code></pre></div><h2 id=manage-configuration-with-rec_control-command>Manage configuration with rec_control command</h2>
+<h2 id=cache-purge-entries>Cache purge entries</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>rec_control wipe-cache test1.home.local
+</code></pre></div></div>
 <div class=post-footer>
-<div class=meta>
 <div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Wed, Oct 20, 2021
-</span>
-<span class=separator><a class=tag href=/tags/ansible/>ansible</a><a class=tag href=/tags/almalinux/>almalinux</a><a class=tag href=/tags/installation/>installation</a></span>
+<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/recursor/>recursor</a></span>
 </div>
 </div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0011-powerdns-dnsdist-doh-servers/>PowerDns/dnsdist: route incoming UDP/TCP DNS queries to a pool of DoH servers</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-The goal of this tutorial is to send all your local DNS queries (udp/tcp) to a pool of DoH public resolvers with dnsdist load balancer.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Wed, Oct 20, 2021
-</span>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/doh/>doh</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0012-squid-run-docker/>Run a squid proxy in container mode with custom configuration</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-This tutorial explained how to deploy the following Squid 5 docker image and how to configure-it with a custom configuration (basic auth user).
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Wed, Oct 20, 2021
-</span>
-<span class=separator><a class=tag href=/tags/squid/>squid</a><a class=tag href=/tags/proxy/>proxy</a><a class=tag href=/tags/docker/>docker</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0010-powerdns-dnsdist-docker/>PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-The dnsdist product is available in the official dockerhub registry of PowerDNS.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Fri, Oct 1, 2021
-</span>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/docker/>docker</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class=pagination>
-<ul class=pagination>
-<li class=page-item>
-<span class="page-link current">1</span>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/2/>2</a>
-</li>
-<span class="page-link dots">&mldr;</span>
-<li class=page-item>
-<a class=page-link href=/page/4/>4</a>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/2/>
-<i class="fa fa-angle-right" aria-label=下一页></i>
-</a>
-</li>
-</ul>
 </div>
 </div>
 </div>
