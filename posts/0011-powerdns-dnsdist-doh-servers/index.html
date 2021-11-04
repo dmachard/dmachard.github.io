@@ -162,70 +162,70 @@ CONTAINER ID   IMAGE                   COMMAND                  CREATED         
 <span style=color:#75715e># dig @127.0.0.1 www.google.fr +short</span>
 216.58.215.35
 </code></pre></div><h2 id=jinja-configuration-template>Jinja configuration template</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>---------------------------------------------------
--- Administration
----------------------------------------------------
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lua data-lang=lua><span style=color:#75715e>---------------------------------------------------</span>
+<span style=color:#75715e>-- Administration</span>
+<span style=color:#75715e>---------------------------------------------------</span>
 
--- cli
-setKey<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_CONSOLE_KEY<span style=color:#e6db74>&#34;) }}&#34;</span><span style=color:#f92672>)</span>
-controlSocket<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;127.0.0.1:5199&#34;</span><span style=color:#f92672>)</span>
-addConsoleACL<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;127.0.0.1/8, ::1/128&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#75715e>-- cli</span>
+setKey(<span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_CONSOLE_KEY<span style=color:#e6db74>&#34;) }}&#34;</span>)
+controlSocket(<span style=color:#e6db74>&#34;127.0.0.1:5199&#34;</span>)
+addConsoleACL(<span style=color:#e6db74>&#34;127.0.0.1/8, ::1/128&#34;</span>)
 
--- api
-webserver<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;0.0.0.0:8083&#34;</span><span style=color:#f92672>)</span>
-setWebserverConfig<span style=color:#f92672>({</span>
+<span style=color:#75715e>-- api</span>
+webserver(<span style=color:#e6db74>&#34;0.0.0.0:8083&#34;</span>)
+setWebserverConfig({
   apiKey <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_API_KEY<span style=color:#e6db74>&#34;) }}&#34;</span>,
   password <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_WEB_KEY<span style=color:#e6db74>&#34;) }}&#34;</span>,
   acl <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;192.168.0.0/16&#34;</span>,
-<span style=color:#f92672>})</span>
+})
 
----------------------------------------------------
--- Dns services
----------------------------------------------------
+<span style=color:#75715e>---------------------------------------------------</span>
+<span style=color:#75715e>-- Dns services</span>
+<span style=color:#75715e>---------------------------------------------------</span>
 
--- udp/tcp dns listening
-setLocal<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;0.0.0.0:53&#34;</span>, <span style=color:#f92672>{})</span>
+<span style=color:#75715e>-- udp/tcp dns listening</span>
+setLocal(<span style=color:#e6db74>&#34;0.0.0.0:53&#34;</span>, {})
 
--- dns caching
-pc <span style=color:#f92672>=</span> newPacketCache<span style=color:#f92672>(</span>10000, <span style=color:#f92672>{})</span>
+<span style=color:#75715e>-- dns caching</span>
+pc <span style=color:#f92672>=</span> newPacketCache(<span style=color:#ae81ff>10000</span>, {})
 
----------------------------------------------------
--- Pools
----------------------------------------------------
+<span style=color:#75715e>---------------------------------------------------</span>
+<span style=color:#75715e>-- Pools</span>
+<span style=color:#75715e>---------------------------------------------------</span>
 
 pool_resolv <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;resolvers&#34;</span>
 caStore <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;/etc/dnsdist/conf.d/tls-ca-bundle.pem&#34;</span>
 
--- members definitions
-<span style=color:#f92672>{</span>% <span style=color:#66d9ef>for</span> res in resolv %<span style=color:#f92672>}</span>
-newServer<span style=color:#f92672>({</span>
+<span style=color:#75715e>-- members definitions</span>
+{<span style=color:#f92672>%</span> <span style=color:#66d9ef>for</span> res <span style=color:#66d9ef>in</span> resolv <span style=color:#f92672>%</span>}
+newServer({
   address <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ res[&#34;</span>addr<span style=color:#e6db74>&#34;] }}&#34;</span>,
   tls <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;openssl&#34;</span>,
   dohPath <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;/dns-query&#34;</span>,
   caStore <span style=color:#f92672>=</span> caStore,
   subjectName <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ res[&#34;</span>name<span style=color:#e6db74>&#34;] }}&#34;</span>,
-  validateCertificates <span style=color:#f92672>=</span> false,
+  validateCertificates <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span>,
   pool <span style=color:#f92672>=</span> pool_resolv,
-<span style=color:#f92672>})</span>
+})
 
-<span style=color:#f92672>{</span>% endfor %<span style=color:#f92672>}</span>
+{<span style=color:#f92672>%</span> endfor <span style=color:#f92672>%</span>}
 
--- set the load balacing policy to use
-setPoolServerPolicy<span style=color:#f92672>(</span>roundrobin, pool_resolv<span style=color:#f92672>)</span>
+<span style=color:#75715e>-- set the load balacing policy to use</span>
+setPoolServerPolicy(roundrobin, pool_resolv)
 
--- enable cache
-getPool<span style=color:#f92672>(</span>pool_resolv<span style=color:#f92672>)</span>:setCache<span style=color:#f92672>(</span>pc<span style=color:#f92672>)</span>
+<span style=color:#75715e>-- enable cache</span>
+getPool(pool_resolv):setCache(pc)
 
 
----------------------------------------------------
--- Rules
----------------------------------------------------
+<span style=color:#75715e>---------------------------------------------------</span>
+<span style=color:#75715e>-- Rules</span>
+<span style=color:#75715e>---------------------------------------------------</span>
 
--- matches all incoming traffic and send-it to the pool of resolvers
-addAction<span style=color:#f92672>(</span>
-  AllRule<span style=color:#f92672>()</span>,
-  PoolAction<span style=color:#f92672>(</span>pool_resolv<span style=color:#f92672>)</span>
-<span style=color:#f92672>)</span>
+<span style=color:#75715e>-- matches all incoming traffic and send-it to the pool of resolvers</span>
+addAction(
+  AllRule(),
+  PoolAction(pool_resolv)
+)
 </code></pre></div></div>
 <div class=post-footer>
 <div class=info>

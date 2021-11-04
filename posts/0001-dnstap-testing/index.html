@@ -212,12 +212,12 @@ addCacheHitResponseAction(AllRule(), DnstapLogResponseAction(&quot;dnsdist&quot;
 </code></pre></div><h2 id=tcp-stream-2>TCP stream</h2>
 <p>Update the configuration file <code>/etc/dnsdist/dnsdist.conf</code> to activate the dnstap feature
 with tcp stream and execute the dnstap receiver in listening tcp socket mode:</p>
-<pre tabindex=0><code>fsul = newFrameStreamTcpLogger(&quot;127.0.0.1:8888&quot;)
-addAction(AllRule(), DnstapLogAction(&quot;dnsdist&quot;, fsul))
-addResponseAction(AllRule(), DnstapLogResponseAction(&quot;dnsdist&quot;, fsul))
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>fsul <span style=color:#f92672>=</span> newFrameStreamTcpLogger<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;127.0.0.1:8888&#34;</span><span style=color:#f92672>)</span>
+addAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
+addResponseAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogResponseAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
 -- Cache Hits
-addCacheHitResponseAction(AllRule(), DnstapLogResponseAction(&quot;dnsdist&quot;, fsul))
-</code></pre><h1 id=nlnetlabs---nsd>NLnetLabs - nsd</h1>
+addCacheHitResponseAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogResponseAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
+</code></pre></div><h1 id=nlnetlabs---nsd>NLnetLabs - nsd</h1>
 <p><img src=https://img.shields.io/badge/4.3.2-tested-green alt="nsd 4.3.2"></p>
 <p>Dnstap messages supported:</p>
 <ul>
@@ -302,19 +302,19 @@ with tls mode and execute the dnstap receiver in listening tcp/tls socket mode:<
 </ul>
 <h2 id=unix-socket-5>Unix socket</h2>
 <p>corefile example</p>
-<pre tabindex=0><code>.:53 {
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>.:53 <span style=color:#f92672>{</span>
     dnstap /tmp/dnstap.sock full
     forward . 8.8.8.8:53
-}
-</code></pre><p>Then execute CoreDNS with your corefile</p>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>Then execute CoreDNS with your corefile</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash> ./coredns -conf corefile
 </code></pre></div><h2 id=tcp-stream-4>TCP stream</h2>
 <p>corefile example</p>
-<pre tabindex=0><code>.:53 {
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>.:53 <span style=color:#f92672>{</span>
         dnstap tcp://10.0.0.51:6000 full
         forward . 8.8.8.8:53
-}
-</code></pre><p>Then execute CoreDNS with your corefile</p>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>Then execute CoreDNS with your corefile</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash> ./coredns -conf corefile
 </code></pre></div></div>
 <div class=post-footer>

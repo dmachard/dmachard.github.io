@@ -129,21 +129,21 @@ Denis MACHARD
 </div><p>This post details how to install the <a href=https://github.com/dmachard/go-dnscollector>go-dnscollector</a> tool with systemd.</p>
 <h1 id=install-go-dnscollector-from-binary>Install go-dnscollector from binary</h1>
 <p>Create some folders and user</p>
-<pre tabindex=0><code>adduser -M dnscollector
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>adduser -M dnscollector
 
 mkdir /etc/dnscollector/
 mkdir /var/run/dnscollector/
-</code></pre><p>Download the latest release from github</p>
-<pre tabindex=0><code>wget https://github.com/dmachard/go-dnscollector/releases/download/v0.5.0/go-dnscollector_v0.5.0_linux_amd64.tar.gz
+</code></pre></div><p>Download the latest release from github</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>wget https://github.com/dmachard/go-dnscollector/releases/download/v0.5.0/go-dnscollector_v0.5.0_linux_amd64.tar.gz
 tar xvf go-dnscollector_v0.5.0_linux_amd64.tar.gz
 mv go-dnscollector /usr/bin/
 mv config.yml /etc/dnscollector/config.yml.default
-</code></pre><h1 id=create-a-certificate>Create a certificate</h1>
+</code></pre></div><h1 id=create-a-certificate>Create a certificate</h1>
 <p>In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.</p>
-<pre tabindex=0><code>cd /etc/dnscollector/
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cd /etc/dnscollector/
 openssl req -x509 -nodes -newkey rsa:2048 -keyout dnscollector.key -out dnscollector.crt
-</code></pre><h1 id=configure-go-dnscollector>Configure go-dnscollector</h1>
-<pre tabindex=0><code>touch /etc/dnscollector/config.yml
+</code></pre></div><h1 id=configure-go-dnscollector>Configure go-dnscollector</h1>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>touch /etc/dnscollector/config.yml
 
 vim config.yml
 trace:
@@ -153,44 +153,44 @@ collectors:
   dnstap:
     enable: true
     listen-ip: 0.0.0.0
-    listen-port: 6000
+    listen-port: <span style=color:#ae81ff>6000</span>
     tls-support: true
-    cert-file: &quot;/etc/dnscollector/dnscollector.crt&quot;
-    key-file: &quot;/etc/dnscollector/dnscollector.key&quot;
+    cert-file: <span style=color:#e6db74>&#34;/etc/dnscollector/dnscollector.crt&#34;</span>
+    key-file: <span style=color:#e6db74>&#34;/etc/dnscollector/dnscollector.key&#34;</span>
 
 loggers:
   logfile:
     enable: true
-    file-path:  &quot;/var/run/dnscollector/dnstap.log&quot;
-    max-size: 100
-    max-files: 10
+    file-path:  <span style=color:#e6db74>&#34;/var/run/dnscollector/dnstap.log&#34;</span>
+    max-size: <span style=color:#ae81ff>100</span>
+    max-files: <span style=color:#ae81ff>10</span>
     mode: text
-</code></pre><h1 id=enable--start-stunnel>Enable & Start stunnel</h1>
+</code></pre></div><h1 id=enable--start-stunnel>Enable & Start stunnel</h1>
 <p>Configure your systemd service</p>
-<pre tabindex=0><code>vim /usr/lib/systemd/system/dnscollector.service
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /usr/lib/systemd/system/dnscollector.service
 
-[Unit]
-Description=Go DnsCollector
-Documentation=https://github.com/dmachard/go-dnscollector
-Wants=network-online.target
-After=network-online.target
+<span style=color:#f92672>[</span>Unit<span style=color:#f92672>]</span>
+Description<span style=color:#f92672>=</span>Go DnsCollector
+Documentation<span style=color:#f92672>=</span>https://github.com/dmachard/go-dnscollector
+Wants<span style=color:#f92672>=</span>network-online.target
+After<span style=color:#f92672>=</span>network-online.target
 
-[Service]
-User=dnscollector
-Group=dnscollector
-ExecStart=/usr/bin/go-dnscollector --config /etc/dnscollector/config.yml
-ExecStop=/usr/bin/pkill go-dnscollector
-Type=simple
+<span style=color:#f92672>[</span>Service<span style=color:#f92672>]</span>
+User<span style=color:#f92672>=</span>dnscollector
+Group<span style=color:#f92672>=</span>dnscollector
+ExecStart<span style=color:#f92672>=</span>/usr/bin/go-dnscollector --config /etc/dnscollector/config.yml
+ExecStop<span style=color:#f92672>=</span>/usr/bin/pkill go-dnscollector
+Type<span style=color:#f92672>=</span>simple
 
-[Install]
-WantedBy=multi-user.target
-</code></pre><p>Chown</p>
-<pre tabindex=0><code>chown dnscollector:dnscollector -R /etc/dnscollector/
+<span style=color:#f92672>[</span>Install<span style=color:#f92672>]</span>
+WantedBy<span style=color:#f92672>=</span>multi-user.target
+</code></pre></div><p>Chown</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>chown dnscollector:dnscollector -R /etc/dnscollector/
 chown -R dnscollector:dnscollector /var/run/dnscollector/
-</code></pre><p>Enable and start the go-dnscollector service.</p>
-<pre tabindex=0><code>systemctl enable --now dnscollector
+</code></pre></div><p>Enable and start the go-dnscollector service.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>systemctl enable --now dnscollector
 systemctl restart dnscollector
-</code></pre></div>
+</code></pre></div></div>
 <div class=post-footer>
 <div class=info>
 <span class=separator><a class=tag href=/tags/dnstap/>dnstap</a><a class=tag href=/tags/installation/>installation</a></span>

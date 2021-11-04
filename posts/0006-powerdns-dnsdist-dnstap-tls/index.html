@@ -131,43 +131,43 @@ Denis MACHARD
 Also we will use the same user/group that dnsdist for stunnel.
 Any feedbacks will be appreciated to improve this tutorial.</p>
 <h2 id=install-stunnel>Install stunnel</h2>
-<pre tabindex=0><code>yum install stunnel
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>yum install stunnel
 mkdir /var/run/stunnel
 chown dnsdist:dnsdist /var/run/stunnel
-</code></pre><h2 id=configure--stunnel>Configure stunnel</h2>
+</code></pre></div><h2 id=configure--stunnel>Configure stunnel</h2>
 <p>Replace the key &lt;your_dnstap_collector> by your <a href=https://github.com/dmachard/go-dnscollector>dnstap collector</a> address.
 This is example is done with dnstap unix socket but you can use tcp socket too.</p>
-<pre tabindex=0><code>vim /etc/stunnel/stunnel.conf
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /etc/stunnel/stunnel.conf
 
-chroot = /var/run/stunnel
-setuid = dnsdist
-setgid = dnsdist
-pid = /stunnel.pid
-socket = r:TCP_NODELAY=1
+chroot <span style=color:#f92672>=</span> /var/run/stunnel
+setuid <span style=color:#f92672>=</span> dnsdist
+setgid <span style=color:#f92672>=</span> dnsdist
+pid <span style=color:#f92672>=</span> /stunnel.pid
+socket <span style=color:#f92672>=</span> r:TCP_NODELAY<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
 
-[dnsdist-dnstaptls]
-client=yes
-accept=/var/run/stunnel/dnstap.sock
-connect=&lt;your_dnstap_collector&gt;:6000
-</code></pre><h2 id=enable--start-stunnel>Enable & Start stunnel</h2>
+<span style=color:#f92672>[</span>dnsdist-dnstaptls<span style=color:#f92672>]</span>
+client<span style=color:#f92672>=</span>yes
+accept<span style=color:#f92672>=</span>/var/run/stunnel/dnstap.sock
+connect<span style=color:#f92672>=</span>&lt;your_dnstap_collector&gt;:6000
+</code></pre></div><h2 id=enable--start-stunnel>Enable & Start stunnel</h2>
 <p>Configure your systemd service. All files in /var/run/ are deleted in stop action.</p>
-<pre tabindex=0><code>vim /usr/lib/systemd/system/stunnel.service
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /usr/lib/systemd/system/stunnel.service
 
-[Unit]
-Description=TLS tunnel for network daemons
-After=dnsdist.target
+<span style=color:#f92672>[</span>Unit<span style=color:#f92672>]</span>
+Description<span style=color:#f92672>=</span>TLS tunnel <span style=color:#66d9ef>for</span> network daemons
+After<span style=color:#f92672>=</span>dnsdist.target
 
-[Service]
-ExecStart=/usr/bin/stunnel /etc/stunnel/stunnel.conf
-ExecStop=/usr/bin/pkill stunnel
-ExecStop=-/usr/bin/find /var/run/stunnel -mindepth 1 -delete
-Type=forking
+<span style=color:#f92672>[</span>Service<span style=color:#f92672>]</span>
+ExecStart<span style=color:#f92672>=</span>/usr/bin/stunnel /etc/stunnel/stunnel.conf
+ExecStop<span style=color:#f92672>=</span>/usr/bin/pkill stunnel
+ExecStop<span style=color:#f92672>=</span>-/usr/bin/find /var/run/stunnel -mindepth <span style=color:#ae81ff>1</span> -delete
+Type<span style=color:#f92672>=</span>forking
 
-[Install]
-WantedBy=multi-user.target
-</code></pre><p>Enable and start the stunnel service.</p>
-<pre tabindex=0><code>systemctl enable --now stunnel
-</code></pre></div>
+<span style=color:#f92672>[</span>Install<span style=color:#f92672>]</span>
+WantedBy<span style=color:#f92672>=</span>multi-user.target
+</code></pre></div><p>Enable and start the stunnel service.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>systemctl enable --now stunnel
+</code></pre></div></div>
 <div class=post-footer>
 <div class=info>
 <span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/dnstap/>dnstap</a><a class=tag href=/tags/tls/>tls</a></span>

@@ -129,11 +129,11 @@ Denis MACHARD
 </div><p>This post details how to manage DNS records with dynamic updates and <a href=https://registry.terraform.io/providers/hashicorp/dns/latest/docs>terraform</a> with your authoritative server.</p>
 <h2 id=requirements>Requirements</h2>
 <p>Enable DNS update to your pdns.conf</p>
-<pre tabindex=0><code>dnsupdate=yes
-</code></pre><p>Create a Tsig key and set metadata to your zone to authorize DNSUPDATE and AXFR with TSIG authentication.</p>
-<pre tabindex=0><code>TSIG-ALLOW-DNSUPDATE
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>dnsupdate<span style=color:#f92672>=</span>yes
+</code></pre></div><p>Create a Tsig key and set metadata to your zone to authorize DNSUPDATE and AXFR with TSIG authentication.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>TSIG-ALLOW-DNSUPDATE
 TSIG-ALLOW-AXFR
-</code></pre><h2 id=provider-configuration>Provider configuration</h2>
+</code></pre></div><h2 id=provider-configuration>Provider configuration</h2>
 <ol>
 <li>
 <p>Create a main.tf file</p>
@@ -142,26 +142,26 @@ TSIG-ALLOW-AXFR
 <p>Install the provider &ldquo;dns&rdquo; then, run <code>terraform init</code>.</p>
 </li>
 </ol>
-<pre tabindex=0><code>terraform {
-  required_providers {
-    dns = {
-      source = &quot;hashicorp/dns&quot;
-      version = &quot;3.1.0&quot;
-    }
-  }
-}
-</code></pre><ol start=3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>terraform <span style=color:#f92672>{</span>
+  required_providers <span style=color:#f92672>{</span>
+    dns <span style=color:#f92672>=</span> <span style=color:#f92672>{</span>
+      source <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;hashicorp/dns&#34;</span>
+      version <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;3.1.0&#34;</span>
+    <span style=color:#f92672>}</span>
+  <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><ol start=3>
 <li>Configure your provider with address of the DNS server to send updates to and TSIG authentication parameters</li>
 </ol>
-<pre tabindex=0><code>provider &quot;dns&quot; {
-  update {
-    server        = &quot;192.168.0.1&quot;
-    key_name      = &quot;example.com.&quot;
-    key_algorithm = &quot;hmac-md5&quot;
-    key_secret    = &quot;3VwZXJzZWNyZXQ=&quot;
-  }
-}
-</code></pre><h2 id=create-dns-record>Create DNS record</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>provider <span style=color:#e6db74>&#34;dns&#34;</span> <span style=color:#f92672>{</span>
+  update <span style=color:#f92672>{</span>
+    server        <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;192.168.0.1&#34;</span>
+    key_name      <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;example.com.&#34;</span>
+    key_algorithm <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;hmac-md5&#34;</span>
+    key_secret    <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;3VwZXJzZWNyZXQ=&#34;</span>
+  <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><h2 id=create-dns-record>Create DNS record</h2>
 <p>The following records can be managed from the provider terraform:</p>
 <ul>
 <li>A</li>
@@ -174,17 +174,17 @@ TSIG-ALLOW-AXFR
 <li>MX</li>
 </ul>
 <p>Example for A record:</p>
-<pre tabindex=0><code>resource &quot;dns_a_record_set&quot; &quot;www&quot; {
-  zone = &quot;example.com.&quot;
-  name = &quot;www&quot;
-  addresses = [
-    &quot;192.168.0.1&quot;,
-    &quot;192.168.0.2&quot;,
-    &quot;192.168.0.3&quot;,
-  ]
-  ttl = 300
-}
-</code></pre><p>Run <code>terraform destroy</code> to delete it.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>resource <span style=color:#e6db74>&#34;dns_a_record_set&#34;</span> <span style=color:#e6db74>&#34;www&#34;</span> <span style=color:#f92672>{</span>
+  zone <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;example.com.&#34;</span>
+  name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;www&#34;</span>
+  addresses <span style=color:#f92672>=</span> <span style=color:#f92672>[</span>
+    <span style=color:#e6db74>&#34;192.168.0.1&#34;</span>,
+    <span style=color:#e6db74>&#34;192.168.0.2&#34;</span>,
+    <span style=color:#e6db74>&#34;192.168.0.3&#34;</span>,
+  <span style=color:#f92672>]</span>
+  ttl <span style=color:#f92672>=</span> <span style=color:#ae81ff>300</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>Run <code>terraform destroy</code> to delete it.</p>
 </div>
 <div class=post-footer>
 <div class=info>

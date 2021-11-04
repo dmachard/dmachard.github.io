@@ -130,54 +130,54 @@ Denis MACHARD
 <p>This tutorial assumes you have a working PowerDNS dnsdist server installed on a Centos/AlmaLinux with webserver api. Also we will use the same user/group that dnsdist for stunnel.
 Any feedbacks will be appreciated to improve this tutorial.</p>
 <h2 id=install-stunnel>Install stunnel</h2>
-<pre tabindex=0><code>yum install stunnel
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>yum install stunnel
 mkdir /var/run/stunnel
 chown dnsdist:dnsdist /var/run/stunnel
-</code></pre><h2 id=create-a-certificate>Create a certificate</h2>
+</code></pre></div><h2 id=create-a-certificate>Create a certificate</h2>
 <p>In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.</p>
-<pre tabindex=0><code>cd /etc/stunnel/
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cd /etc/stunnel/
 openssl req -x509 -nodes -newkey rsa:2048 -keyout stunnel.key -out stunnel.crt
 
-</code></pre><h2 id=configure--stunnel>Configure stunnel</h2>
+</code></pre></div><h2 id=configure--stunnel>Configure stunnel</h2>
 <p>Replace the key &lt;your_dnstap_collector> by your <a href=https://github.com/dmachard/go-dnscollector>dnstap collector</a> address.</p>
-<pre tabindex=0><code>vim /etc/stunnel/stunnel.conf
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /etc/stunnel/stunnel.conf
 
-chroot = /var/run/stunnel
-setuid = dnsdist
-setgid = dnsdist
-pid = /stunnel.pid
-socket = l:TCP_NODELAY=1
-socket = r:TCP_NODELAY=1
+chroot <span style=color:#f92672>=</span> /var/run/stunnel
+setuid <span style=color:#f92672>=</span> dnsdist
+setgid <span style=color:#f92672>=</span> dnsdist
+pid <span style=color:#f92672>=</span> /stunnel.pid
+socket <span style=color:#f92672>=</span> l:TCP_NODELAY<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+socket <span style=color:#f92672>=</span> r:TCP_NODELAY<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
 
-ciphers=EECDH+AESGCM:EDH+AESGCM
-sslVersion = TLSv1.2
-options = NO_SSLv2
-options = NO_SSLv3
+ciphers<span style=color:#f92672>=</span>EECDH+AESGCM:EDH+AESGCM
+sslVersion <span style=color:#f92672>=</span> TLSv1.2
+options <span style=color:#f92672>=</span> NO_SSLv2
+options <span style=color:#f92672>=</span> NO_SSLv3
 
-[dnsdist-webapi]
-accept=443
-connect=127.0.0.1:8080
-cert = /etc/stunnel/stunnel.crt
-key = /etc/stunnel/stunnel.key
-</code></pre><h2 id=enable--start-stunnel>Enable & Start stunnel</h2>
+<span style=color:#f92672>[</span>dnsdist-webapi<span style=color:#f92672>]</span>
+accept<span style=color:#f92672>=</span><span style=color:#ae81ff>443</span>
+connect<span style=color:#f92672>=</span>127.0.0.1:8080
+cert <span style=color:#f92672>=</span> /etc/stunnel/stunnel.crt
+key <span style=color:#f92672>=</span> /etc/stunnel/stunnel.key
+</code></pre></div><h2 id=enable--start-stunnel>Enable & Start stunnel</h2>
 <p>Configure your systemd service</p>
-<pre tabindex=0><code>vim /usr/lib/systemd/system/stunnel.service
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /usr/lib/systemd/system/stunnel.service
 
-[Unit]
-Description=TLS tunnel for network daemons
-After=dnsdist.target
+<span style=color:#f92672>[</span>Unit<span style=color:#f92672>]</span>
+Description<span style=color:#f92672>=</span>TLS tunnel <span style=color:#66d9ef>for</span> network daemons
+After<span style=color:#f92672>=</span>dnsdist.target
 
-[Service]
-ExecStart=/usr/bin/stunnel /etc/stunnel/stunnel.conf
-ExecStop=/usr/bin/pkill stunnel
-Type=forking
+<span style=color:#f92672>[</span>Service<span style=color:#f92672>]</span>
+ExecStart<span style=color:#f92672>=</span>/usr/bin/stunnel /etc/stunnel/stunnel.conf
+ExecStop<span style=color:#f92672>=</span>/usr/bin/pkill stunnel
+Type<span style=color:#f92672>=</span>forking
 
-[Install]
-WantedBy=multi-user.target
-</code></pre><p>Enable and start the stunnel service.</p>
-<pre tabindex=0><code>systemctl enable --now stunnel
+<span style=color:#f92672>[</span>Install<span style=color:#f92672>]</span>
+WantedBy<span style=color:#f92672>=</span>multi-user.target
+</code></pre></div><p>Enable and start the stunnel service.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>systemctl enable --now stunnel
 systemctl restart stunnel
-</code></pre></div>
+</code></pre></div></div>
 <div class=post-footer>
 <div class=info>
 <span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/api/>api</a><a class=tag href=/tags/tls/>tls</a></span>

@@ -130,8 +130,8 @@ Denis MACHARD
 This post details how to execute <a href=https://dnsdist.org/>dnsdist</a> in <strong>docker container</strong>, <strong>custom configuration file</strong> and <strong>environnement variables</strong>. We assume you have a containers environnement already available.</p>
 <h2 id=custom-configuration>Custom configuration</h2>
 <p>Before to start, install some useful python tools to prepare the configuration</p>
-<pre tabindex=0><code>pip install dnsdist_console j2cli
-</code></pre><p>Now, we will create the configuration from the jinja template <em>dnsdist.lua</em> provided below.
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>pip install dnsdist_console j2cli
+</code></pre></div><p>Now, we will create the configuration from the jinja template <em>dnsdist.lua</em> provided below.
 To do that, you need to export some environment variables.</p>
 <p>The following variables need to be exported:</p>
 <ul>
@@ -146,8 +146,8 @@ To do that, you need to export some environment variables.</p>
 </span><span style=color:#ae81ff></span>export DNSDIST_API_KEY<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>python3 -c <span style=color:#e6db74>&#34;import secrets; print(secrets.token_urlsafe(16))&#34;</span><span style=color:#66d9ef>)</span> <span style=color:#ae81ff>\
 </span><span style=color:#ae81ff></span>export DNSDIST_WEB_KEY<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>python3 -c <span style=color:#e6db74>&#34;import secrets; print(secrets.token_urlsafe(16))&#34;</span><span style=color:#66d9ef>)</span>
 </code></pre></div><p>Finally use the j2 command to generate the custom configuration</p>
-<pre tabindex=0><code>echo $DNSDIST_RESOLVERS | j2 --format=json dnsdist.j2 &gt; dnsdist.lua
-</code></pre><p>The configuration template is just provided for example, your can updated-it according to your needs.
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>echo $DNSDIST_RESOLVERS | j2 --format<span style=color:#f92672>=</span>json dnsdist.j2 &gt; dnsdist.lua
+</code></pre></div><p>The configuration template is just provided for example, your can updated-it according to your needs.
 This config can be used to send all your local DNS queries to a pool of public resolvers.</p>
 <h2 id=deploy-dnsdist-container>Deploy dnsdist container</h2>
 <p>Deploy the dnsdist image with the custom configuration</p>
@@ -176,71 +176,71 @@ All
 <span style=color:#75715e>#   Name                             Matches Rule                                                     Action</span>
 <span style=color:#ae81ff>0</span>                                          <span style=color:#ae81ff>0</span> All                                                      to pool resolvers
 </code></pre></div><h2 id=test-dns-resolution>Test DNS resolution</h2>
-<pre tabindex=0><code># dig @::1 www.google.fr +tcp +short
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># dig @::1 www.google.fr +tcp +short</span>
 216.58.215.35
 
-# dig @127.0.0.1 www.google.fr +tcp +short
+<span style=color:#75715e># dig @127.0.0.1 www.google.fr +tcp +short</span>
 216.58.215.35
-</code></pre><h2 id=jinja-configurationg-template>Jinja configurationg template</h2>
-<pre tabindex=0><code>---------------------------------------------------
--- Administration
----------------------------------------------------
+</code></pre></div><h2 id=jinja-configurationg-template>Jinja configurationg template</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lua data-lang=lua><span style=color:#75715e>---------------------------------------------------</span>
+<span style=color:#75715e>-- Administration</span>
+<span style=color:#75715e>---------------------------------------------------</span>
 
--- cli
-setKey(&quot;{{ env(&quot;DNSDIST_CONSOLE_KEY&quot;) }}&quot;)
-controlSocket(&quot;127.0.0.1:5199&quot;)
-addConsoleACL(&quot;127.0.0.1/8, ::1/128&quot;)
+<span style=color:#75715e>-- cli</span>
+setKey(<span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_CONSOLE_KEY<span style=color:#e6db74>&#34;) }}&#34;</span>)
+controlSocket(<span style=color:#e6db74>&#34;127.0.0.1:5199&#34;</span>)
+addConsoleACL(<span style=color:#e6db74>&#34;127.0.0.1/8, ::1/128&#34;</span>)
 
--- api
-webserver(&quot;0.0.0.0:8083&quot;)
+<span style=color:#75715e>-- api</span>
+webserver(<span style=color:#e6db74>&#34;0.0.0.0:8083&#34;</span>)
 setWebserverConfig({
-  apiKey = &quot;{{ env(&quot;DNSDIST_API_KEY&quot;) }}&quot;,
-  password = &quot;{{ env(&quot;DNSDIST_WEB_KEY&quot;) }}&quot;,
-  acl = &quot;192.168.0.0/16&quot;,
+  apiKey <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_API_KEY<span style=color:#e6db74>&#34;) }}&#34;</span>,
+  password <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_WEB_KEY<span style=color:#e6db74>&#34;) }}&#34;</span>,
+  acl <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;192.168.0.0/16&#34;</span>,
 })
 
----------------------------------------------------
--- Dns services
----------------------------------------------------
+<span style=color:#75715e>---------------------------------------------------</span>
+<span style=color:#75715e>-- Dns services</span>
+<span style=color:#75715e>---------------------------------------------------</span>
 
--- udp/tcp dns listening
-setLocal(&quot;0.0.0.0:53&quot;, {})
+<span style=color:#75715e>-- udp/tcp dns listening</span>
+setLocal(<span style=color:#e6db74>&#34;0.0.0.0:53&#34;</span>, {})
 
--- dns caching
-pc = newPacketCache(10000, {})
+<span style=color:#75715e>-- dns caching</span>
+pc <span style=color:#f92672>=</span> newPacketCache(<span style=color:#ae81ff>10000</span>, {})
 
----------------------------------------------------
--- Pools
----------------------------------------------------
+<span style=color:#75715e>---------------------------------------------------</span>
+<span style=color:#75715e>-- Pools</span>
+<span style=color:#75715e>---------------------------------------------------</span>
 
-pool_resolv = &quot;resolvers&quot;
+pool_resolv <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;resolvers&#34;</span>
 
--- members definitions
-{% for res in resolvers -%}
+<span style=color:#75715e>-- members definitions</span>
+{<span style=color:#f92672>%</span> <span style=color:#66d9ef>for</span> res <span style=color:#66d9ef>in</span> resolvers <span style=color:#f92672>-%</span>}
 newServer({
-  address = &quot;{{ res }}&quot;,
-  pool = pool_resolv,
+  address <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ res }}&#34;</span>,
+  pool <span style=color:#f92672>=</span> pool_resolv,
 })
 
-{% endfor -%}
+{<span style=color:#f92672>%</span> endfor <span style=color:#f92672>-%</span>}
 
--- set the load balacing policy to use
+<span style=color:#75715e>-- set the load balacing policy to use</span>
 setPoolServerPolicy(roundrobin, pool_resolv)
 
--- enable cache
+<span style=color:#75715e>-- enable cache</span>
 getPool(pool_resolv):setCache(pc)
 
 
----------------------------------------------------
--- Rules
----------------------------------------------------
+<span style=color:#75715e>---------------------------------------------------</span>
+<span style=color:#75715e>-- Rules</span>
+<span style=color:#75715e>---------------------------------------------------</span>
 
--- matches all incoming traffic and send-it to the pool of resolvers
+<span style=color:#75715e>-- matches all incoming traffic and send-it to the pool of resolvers</span>
 addAction(
   AllRule(),
   PoolAction(pool_resolv)
 )
-</code></pre></div>
+</code></pre></div></div>
 <div class=post-footer>
 <div class=info>
 <span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/docker/>docker</a></span>
