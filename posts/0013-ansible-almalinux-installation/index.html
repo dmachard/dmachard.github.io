@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-dnsdist
+How to install Ansible 4.7 on AlmaLinux 8.4 with pip
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,13 +17,21 @@ dnsdist
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/tags/dnsdist/>
-<link rel=alternate type=application/rss+xml href=/tags/dnsdist/index.xml title="My technical gists">
+<link rel=canonical href=/posts/0013-ansible-almalinux-installation/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="dnsdist">
-<meta name=twitter:description content="My technical gists">
+<meta name=twitter:title content="How to install Ansible 4.7 on AlmaLinux 8.4 with pip">
+<meta name=twitter:description content="This post will details how to install ansible on AlmaLinux 8.">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"How to install Ansible 4.7 on AlmaLinux 8.4 with pip","headline":"How to install Ansible 4.7 on AlmaLinux 8.4 with pip","alternativeHeadline":"","description":"
+      
+        This post will details how to install ansible on AlmaLinux 8.
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0013-ansible-almalinux-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-20T00:00:00.00Z","datePublished":"2021-10-20T00:00:00.00Z","dateModified":"2021-10-20T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0013-ansible-almalinux-installation\/","wordCount":"107","genre":[],"keywords":["ansible","almalinux","installation"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -113,71 +121,42 @@ Denis MACHARD
 <main>
 <div class=autopagerize_page_element>
 <div class=content>
-<div class="archive
+<div class="post
 .">
-<ul class=list-with-title>
-<div class=listing-title>2021</div>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0011-powerdns-dnsdist-doh-servers/ title="PowerDns/dnsdist: route incoming UDP/TCP DNS queries to a pool of DoH servers">PowerDns/dnsdist: route incoming UDP/TCP DNS queries to a pool of DoH servers</a>
-<div class=post-time>
-<span class=date>
-Oct 20
-</span>
+<div class=post-content>
+<div class=post-title>
+<h1>How to install Ansible 4.7 on AlmaLinux 8.4 with pip</h1>
+</div><p>This post will details how to install ansible on AlmaLinux 8.4.</p>
+<p>Tested with the following version:</p>
+<p>Ansible 4.7.0
+AlmaLinux 8.4
+Python 3.9</p>
+<h2 id=install-python-39>Install python 3.9</h2>
+<pre tabindex=0><code>dnf install epel-release -y
+dnf install python39 sshpass
+</code></pre><h2 id=install-ansible>Install Ansible</h2>
+<p>Install some python dependencies</p>
+<pre tabindex=0><code>pip3 install --upgrade pip
+</code></pre><p>Finally install Ansible</p>
+<pre tabindex=0><code>python3 -m pip install ansible
+</code></pre><p>Checking version</p>
+<pre tabindex=0><code># ansible --version
+ansible [core 2.11.6] 
+  config file = None
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python3.9/site-packages/ansible
+  ansible collection location = /root/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/local/bin/ansible
+  python version = 3.9.2 (default, May 20 2021, 18:04:00) [GCC 8.4.1 20200928 (Red Hat 8.4.1-1)]
+  jinja version = 3.0.2
+  libyaml = True
+
+</code></pre></div>
+<div class=post-footer>
+<div class=info>
+<span class=separator><a class=tag href=/tags/ansible/>ansible</a><a class=tag href=/tags/almalinux/>almalinux</a><a class=tag href=/tags/installation/>installation</a></span>
 </div>
 </div>
-</div>
-</ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0010-powerdns-dnsdist-docker/ title="PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file">PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file</a>
-<div class=post-time>
-<span class=date>
-Oct 1
-</span>
-</div>
-</div>
-</div>
-</ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0009-powerdns-dnsdist-pool-resolvers/ title="PowerDns/dnsdist: how to send all your DNS queries to a pool of public resolvers">PowerDns/dnsdist: how to send all your DNS queries to a pool of public resolvers</a>
-<div class=post-time>
-<span class=date>
-Sep 28
-</span>
-</div>
-</div>
-</div>
-</ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0005-powerdns-dnsdist-api-tls/ title="PowerDNS/dnsdist: how to configure TLS for the API using stunnel">PowerDNS/dnsdist: how to configure TLS for the API using stunnel</a>
-<div class=post-time>
-<span class=date>
-Sep 8
-</span>
-</div>
-</div>
-</div>
-</ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0006-powerdns-dnsdist-dnstap-tls/ title="PowerDNS/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel">PowerDNS/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel</a>
-<div class=post-time>
-<span class=date>
-Sep 8
-</span>
-</div>
-</div>
-</div>
-</ul>
-</ul>
 </div>
 </div>
 </div>
