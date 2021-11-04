@@ -28,7 +28,7 @@ paginate = 5
 
 [params]
     mainSections = ["posts"]
-    description = "The technical gists of Denis Machard"
+    description = "My technical gists"
     contentratio = 0.75
     author = "Denis MACHARD"
     profilePicture = "images/profile.png"
