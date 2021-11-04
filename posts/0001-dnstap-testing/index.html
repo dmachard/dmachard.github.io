@@ -153,19 +153,19 @@ This dnstap feature has been tested with success with the following dns servers:
 make <span style=color:#f92672>&amp;&amp;</span> make install
 </code></pre></div><h4 id=unix-socket>Unix socket</h4>
 <p>Update the configuration file <code>/etc/named.conf</code> to activate the dnstap feature:</p>
-<pre tabindex=0><code>options {
-    dnstap { client; auth; resolver; forwarder; };
-    dnstap-output unix &quot;/var/run/named/dnstap.sock&quot;;
-    dnstap-identity &quot;dns-bind&quot;;
-    dnstap-version &quot;bind&quot;;
-}
-</code></pre><p>Execute the dnstap receiver with <code>named</code> user:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>options <span style=color:#f92672>{</span>
+    dnstap <span style=color:#f92672>{</span> client; auth; resolver; forwarder; <span style=color:#f92672>}</span>;
+    dnstap-output unix <span style=color:#e6db74>&#34;/var/run/named/dnstap.sock&#34;</span>;
+    dnstap-identity <span style=color:#e6db74>&#34;dns-bind&#34;</span>;
+    dnstap-version <span style=color:#e6db74>&#34;bind&#34;</span>;
+<span style=color:#f92672>}</span>
+</code></pre></div><p>Execute the dnstap receiver with <code>named</code> user:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>su - named -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/var/run/named/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
 </code></pre></div><p>If you have some troubles take a look to <a href=https://gitlab.isc.org/isc-projects/bind9/-/issues/2356#note_185516>selinux</a></p>
 <h4 id=tcp-stream>TCP stream</h4>
 <p>Not supported on Bind! You can apply the following workaround with the <code>socat</code> or <code>stunnel</code> command.</p>
-<pre tabindex=0><code>while true; do socat unix-listen:/var/run/dnsdist/dnstap.sock tcp4-connect:&lt;ip_dnstap_receiver&gt;:&lt;port_dnstap_receiver&gt;,forever,interval=10, fork; sleep 1; done
-</code></pre><h1 id=powerdns---pdns-recursor>PowerDNS - pdns-recursor</h1>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#66d9ef>while</span> true; <span style=color:#66d9ef>do</span> socat unix-listen:/var/run/dnsdist/dnstap.sock tcp4-connect:&lt;ip_dnstap_receiver&gt;:&lt;port_dnstap_receiver&gt;,forever,interval<span style=color:#f92672>=</span>10, fork; sleep 1; <span style=color:#66d9ef>done</span>
+</code></pre></div><h1 id=powerdns---pdns-recursor>PowerDNS - pdns-recursor</h1>
 <p><img src=https://img.shields.io/badge/4.3.4-tested-green alt="pdns-recursor 4.3.4"> <img src=https://img.shields.io/badge/4.4.0-tested-green alt="pdns-recursor 4.4.0"></p>
 <p>Dnstap messages supported:</p>
 <ul>
@@ -174,22 +174,22 @@ make <span style=color:#f92672>&amp;&amp;</span> make install
 </ul>
 <h4 id=unix-socket-1>Unix socket</h4>
 <p>Update the configuration file to activate the dnstap feature:</p>
-<pre tabindex=0><code>vim /etc/pdns-recursor/recursor.conf
-lua-config-file=/etc/pdns-recursor/recursor.lua
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /etc/pdns-recursor/recursor.conf
+lua-config-file<span style=color:#f92672>=</span>/etc/pdns-recursor/recursor.lua
 
 vim /etc/pdns-recursor/recursor.lua
-dnstapFrameStreamServer(&quot;/var/run/pdns-recursor/dnstap.sock&quot;)
-</code></pre><p>Execute the dnstap receiver with <code>pdns-recursor</code> user:</p>
+dnstapFrameStreamServer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/var/run/pdns-recursor/dnstap.sock&#34;</span><span style=color:#f92672>)</span>
+</code></pre></div><p>Execute the dnstap receiver with <code>pdns-recursor</code> user:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>su - pdns-recursor -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/var/run/pdns-recursor/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
 </code></pre></div><h2 id=tcp-stream-1>TCP stream</h2>
 <p>Update the configuration file to activate the dnstap feature with tcp mode
 and execute the dnstap receiver in listening tcp socket mode:</p>
-<pre tabindex=0><code>vim /etc/pdns-recursor/recursor.conf
-lua-config-file=/etc/pdns-recursor/recursor.lua
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /etc/pdns-recursor/recursor.conf
+lua-config-file<span style=color:#f92672>=</span>/etc/pdns-recursor/recursor.lua
 
 vim /etc/pdns-recursor/recursor.lua
-dnstapFrameStreamServer(&quot;10.0.0.100:6000&quot;)
-</code></pre><p>Note: TCP stream are only supported with a recent version of libfstrm.</p>
+dnstapFrameStreamServer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;10.0.0.100:6000&#34;</span><span style=color:#f92672>)</span>
+</code></pre></div><p>Note: TCP stream are only supported with a recent version of libfstrm.</p>
 <h1 id=powerdns---dnsdist>PowerDNS - dnsdist</h1>
 <p><img src=https://img.shields.io/badge/1.6-tested-green alt="dnsdist 1.6"> <img src=https://img.shields.io/badge/1.5-tested-green alt="dnsdist 1.5"> <img src=https://img.shields.io/badge/1.4.0-tested-green alt="dnsdist 1.4"></p>
 <p>Dnstap messages supported:</p>
@@ -202,12 +202,12 @@ dnstapFrameStreamServer(&quot;10.0.0.100:6000&quot;)
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mkdir -p /var/run/dnsdist/
 chown dnsdist.dnsdist /var/run/dnsdist/
 </code></pre></div><p>Update the configuration file <code>/etc/dnsdist/dnsdist.conf</code> to activate the dnstap feature:</p>
-<pre tabindex=0><code>fsul = newFrameStreamUnixLogger(&quot;/var/run/dnsdist/dnstap.sock&quot;)
-addAction(AllRule(), DnstapLogAction(&quot;dnsdist&quot;, fsul))
-addResponseAction(AllRule(), DnstapLogResponseAction(&quot;dnsdist&quot;, fsul))
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>fsul <span style=color:#f92672>=</span> newFrameStreamUnixLogger<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/var/run/dnsdist/dnstap.sock&#34;</span><span style=color:#f92672>)</span>
+addAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
+addResponseAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogResponseAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
 -- Cache Hits
-addCacheHitResponseAction(AllRule(), DnstapLogResponseAction(&quot;dnsdist&quot;, fsul))
-</code></pre><p>Execute the dnstap receiver with <code>dnsdist</code> user:</p>
+addCacheHitResponseAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogResponseAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
+</code></pre></div><p>Execute the dnstap receiver with <code>dnsdist</code> user:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>su - dnsdist -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/var/run/dnsdist/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
 </code></pre></div><h2 id=tcp-stream-2>TCP stream</h2>
 <p>Update the configuration file <code>/etc/dnsdist/dnsdist.conf</code> to activate the dnstap feature
