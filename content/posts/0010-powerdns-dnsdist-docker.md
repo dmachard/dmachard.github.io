@@ -12,7 +12,7 @@ This post details how to execute [dnsdist](https://dnsdist.org/) in **docker con
 
 Before to start, install some useful python tools to prepare the configuration
 
-```
+```bash
 pip install dnsdist_console j2cli
 ```
 
@@ -36,7 +36,7 @@ export DNSDIST_WEB_KEY=$(python3 -c "import secrets; print(secrets.token_urlsafe
 
 Finally use the j2 command to generate the custom configuration
 
-```
+```bash
 echo $DNSDIST_RESOLVERS | j2 --format=json dnsdist.j2 > dnsdist.lua
 ```
 
@@ -85,7 +85,7 @@ All
 
 ## Test DNS resolution
 
-```
+```bash
 # dig @::1 www.google.fr +tcp +short
 216.58.215.35
 
@@ -95,7 +95,7 @@ All
 
 ## Jinja configurationg template
 
-```
+```lua
 ---------------------------------------------------
 -- Administration
 ---------------------------------------------------

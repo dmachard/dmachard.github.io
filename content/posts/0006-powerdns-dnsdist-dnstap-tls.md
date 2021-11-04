@@ -13,7 +13,7 @@ Any feedbacks will be appreciated to improve this tutorial.
 
 ## Install stunnel
 
-```
+```bash
 yum install stunnel
 mkdir /var/run/stunnel
 chown dnsdist:dnsdist /var/run/stunnel
@@ -24,7 +24,7 @@ chown dnsdist:dnsdist /var/run/stunnel
 Replace the key <your_dnstap_collector> by your [dnstap collector](https://github.com/dmachard/go-dnscollector) address.
 This is example is done with dnstap unix socket but you can use tcp socket too.
 
-```
+```bash
 vim /etc/stunnel/stunnel.conf
 
 chroot = /var/run/stunnel
@@ -43,7 +43,7 @@ connect=<your_dnstap_collector>:6000
 
 Configure your systemd service. All files in /var/run/ are deleted in stop action.
 
-```
+```bash
 vim /usr/lib/systemd/system/stunnel.service
 
 [Unit]
@@ -62,7 +62,7 @@ WantedBy=multi-user.target
 
 Enable and start the stunnel service.
 
-```
+```bash
 systemctl enable --now stunnel
 ```
 

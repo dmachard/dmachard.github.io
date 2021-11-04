@@ -73,7 +73,7 @@ CONTAINER ID   IMAGE                   COMMAND                  CREATED         
 
 ## Jinja configuration template
 
-```bash
+```lua
 ---------------------------------------------------
 -- Administration
 ---------------------------------------------------

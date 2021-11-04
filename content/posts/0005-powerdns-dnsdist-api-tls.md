@@ -12,7 +12,7 @@ Any feedbacks will be appreciated to improve this tutorial.
 
 ## Install stunnel
 
-```
+```bash
 yum install stunnel
 mkdir /var/run/stunnel
 chown dnsdist:dnsdist /var/run/stunnel
@@ -21,7 +21,7 @@ chown dnsdist:dnsdist /var/run/stunnel
 
 In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.
 
-```
+```bash
 cd /etc/stunnel/
 openssl req -x509 -nodes -newkey rsa:2048 -keyout stunnel.key -out stunnel.crt
 
@@ -30,7 +30,7 @@ openssl req -x509 -nodes -newkey rsa:2048 -keyout stunnel.key -out stunnel.crt
 
 Replace the key <your_dnstap_collector> by your [dnstap collector](https://github.com/dmachard/go-dnscollector) address.
 
-```
+```bash
 vim /etc/stunnel/stunnel.conf
 
 chroot = /var/run/stunnel
@@ -55,7 +55,8 @@ key = /etc/stunnel/stunnel.key
 ## Enable & Start stunnel
 
 Configure your systemd service
-```
+
+```bash
 vim /usr/lib/systemd/system/stunnel.service
 
 [Unit]
@@ -73,7 +74,7 @@ WantedBy=multi-user.target
 
 Enable and start the stunnel service.
 
-```
+```bash
 systemctl enable --now stunnel
 systemctl restart stunnel
 ```

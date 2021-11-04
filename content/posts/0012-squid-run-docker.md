@@ -10,7 +10,7 @@ and how to configure-it with a custom configuration (basic auth user).
 
 ## Setup user/password store
 
-```
+```bash
 yum install httpd-tools
 
 mkdir squid && cd squid
@@ -23,7 +23,7 @@ Replace [USERNAME] with your username. You will be prompted for entering the pas
 
 Download the squid configuration bellow on your host. Run the container.
 
-```
+```bash
 docker run --name squid -d -p 3128:3128/tcp -v $PWD/squid.conf:/opt/squid/etc/squid.conf -v $PWD/passwords:/opt/squid/etc/passwords dmachard/squid:latest
 ```
 
@@ -31,13 +31,13 @@ docker run --name squid -d -p 3128:3128/tcp -v $PWD/squid.conf:/opt/squid/etc/sq
 
 You can run the curl on your host to test-it.
 
-```
+```bash
 curl -x http://admin:password@127.0.0.1:3128/ https://www.example.com
 ```
 
 ## Basic configuration
 
-```
+```bash
 acl Safe_ports port 443
 http_access deny CONNECT !Safe_ports
 

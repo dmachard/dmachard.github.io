@@ -17,7 +17,7 @@ Il permet de:
 Le module python `creditagricole-particuliers` disponible sur pypi
 
 
-```python
+```bash
 pip install creditagricole-particuliers
 ```
 

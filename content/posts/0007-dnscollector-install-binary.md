@@ -11,7 +11,7 @@ This post details how to install the [go-dnscollector](https://github.com/dmacha
 
 Create some folders and user
 
-```
+```bash
 adduser -M dnscollector
 
 mkdir /etc/dnscollector/
@@ -20,7 +20,7 @@ mkdir /var/run/dnscollector/
 
 Download the latest release from github 
 
-```
+```bash
 wget https://github.com/dmachard/go-dnscollector/releases/download/v0.5.0/go-dnscollector_v0.5.0_linux_amd64.tar.gz
 tar xvf go-dnscollector_v0.5.0_linux_amd64.tar.gz
 mv go-dnscollector /usr/bin/
@@ -31,14 +31,14 @@ mv config.yml /etc/dnscollector/config.yml.default
 
 In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.
 
-```
+```bash
 cd /etc/dnscollector/
 openssl req -x509 -nodes -newkey rsa:2048 -keyout dnscollector.key -out dnscollector.crt
 ```
 
 # Configure go-dnscollector
 
-```
+```bash
 touch /etc/dnscollector/config.yml
 
 vim config.yml
@@ -67,7 +67,8 @@ loggers:
 # Enable & Start stunnel
 
 Configure your systemd service
-```
+
+```bash
 vim /usr/lib/systemd/system/dnscollector.service
 
 [Unit]
@@ -89,14 +90,14 @@ WantedBy=multi-user.target
 
 Chown
 
-```
+```bash
 chown dnscollector:dnscollector -R /etc/dnscollector/
 chown -R dnscollector:dnscollector /var/run/dnscollector/
 ```
 
 Enable and start the go-dnscollector service.
 
-```
+```bash
 systemctl enable --now dnscollector
 systemctl restart dnscollector
 ```

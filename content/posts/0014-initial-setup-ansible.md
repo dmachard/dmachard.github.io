@@ -11,27 +11,27 @@ On this tutorial we assume you have at least python installed on all servers to 
 
 Create a specific automation user for your ansible srever 
 
-```
-# adduser automation
-# passwd automation
-# echo  -e 'automation\tALL=(ALL)\tNOPASSWD:\tALL' > /etc/sudoers.d/automation
+```bash
+adduser automation
+passwd automation
+echo  -e 'automation\tALL=(ALL)\tNOPASSWD:\tALL' > /etc/sudoers.d/automation
 ```
 
 Connect with-it
 
-```
-# su - automation
+```bash
+su - automation
 ```
 
 Create key pair
 
-```
-$ ssh-keygen -o -b 4096
+```bash
+ssh-keygen -o -b 4096
 ```
 
 Describe your inventory.
 
-```
+```bash
 vim inventory.ini 
 [group1]
 server01
@@ -43,7 +43,7 @@ Create default ansible configuration and define the python path.
 
 touch ansible.cfg
 
-```
+```bash
 [defaults]
 interpreter_python=/usr/bin/python3
 ```
@@ -55,7 +55,7 @@ Run the *playbook_deploy_ansible_user.yml* playblook to configure:
 
 Run-it with the root account of each server, after that the connection to the server can be done with the automation user.
 
-```
+```bash
 $ ansible-playbook -i inventory.ini setup-ansible/playbook.yml --ask-pass -u root
 SSH password: 
 
@@ -104,7 +104,7 @@ server03    : ok=7    changed=5    unreachable=0    failed=0    skipped=0    res
 
 Finally run the ansible command with ping module
 
-```
+```bash
 $ ansible all -i inventory.ini -m ping
 server01 | SUCCESS => {
     "changed": false,

@@ -11,13 +11,13 @@ This post details how to manage DNS records with dynamic updates and [terraform]
 
 Enable DNS update to your pdns.conf
 
-```
+```bash
 dnsupdate=yes
 ```
 
 Create a Tsig key and set metadata to your zone to authorize DNSUPDATE and AXFR with TSIG authentication.
 
-```
+```bash
 TSIG-ALLOW-DNSUPDATE
 TSIG-ALLOW-AXFR
 ```
@@ -28,7 +28,7 @@ TSIG-ALLOW-AXFR
 
 2. Install the provider "dns" then, run `terraform init`. 
 
-```
+```bash
 terraform {
   required_providers {
     dns = {
@@ -41,7 +41,7 @@ terraform {
 
 3. Configure your provider with address of the DNS server to send updates to and TSIG authentication parameters
 
-```
+```bash
 provider "dns" {
   update {
     server        = "192.168.0.1"
@@ -67,7 +67,7 @@ The following records can be managed from the provider terraform:
 
 Example for A record:
 
-```
+```bash
 resource "dns_a_record_set" "www" {
   zone = "example.com."
   name = "www"

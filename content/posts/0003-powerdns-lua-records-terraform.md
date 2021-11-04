@@ -11,14 +11,14 @@ This post details how to manage LUA records with dynamic updates and [terraform]
 
 Enable LUA records and DNS update to your pdns.conf
 
-```
+```bash
 enable-lua-records=yes
 dnsupdate=yes
 ```
 
 Create a Tsig key and set metadata to your zone to authorize DNSUPDATE and AXFR with TSIG authentication.
 
-```
+```bash
 TSIG-ALLOW-DNSUPDATE
 TSIG-ALLOW-AXFR
 ```
@@ -31,7 +31,7 @@ The documentation of the provider *powerdns-gslb* is available in the terraform 
 
 2. Install the provider "powerdns-glsb" then, run `terraform init`. 
 
-```
+```bash
 terraform {
   required_providers {
     powerdns-gslb = {
@@ -43,7 +43,8 @@ terraform {
 ```
 
 3. Configure your provider with address of the DNS server to send updates to and TSIG authentication parameters
-```
+
+```bash
 provider "powerdns-gslb" {
     server        = "10.0.0.210"
     key_name      = "test."
@@ -56,7 +57,7 @@ provider "powerdns-gslb" {
 
 Create the source `powerdns-gslb_lua` then, run `terraform apply`. 
 
-```
+```bash
 resource "powerdns-gslb_lua" "svc1" {
   zone = "home.internal."
   name = "test_lua"
@@ -74,7 +75,7 @@ You can removed the record by running `terraform destroy`.
 
 Some resources are available for ifurlup, ifportup, pickrandom and wpickrandom
 
-```
+```bash
 resource "powerdns-gslb_pickrandom" "foo" {
   zone = "home.internal."
   name = "test_pickrandom"

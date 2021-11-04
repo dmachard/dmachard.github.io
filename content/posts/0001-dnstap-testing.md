@@ -144,7 +144,7 @@ su - dnsdist -s /bin/bash -c "dnstap_receiver -u "/var/run/dnsdist/dnstap.sock""
 Update the configuration file `/etc/dnsdist/dnsdist.conf` to activate the dnstap feature
 with tcp stream and execute the dnstap receiver in listening tcp socket mode:
 
-```
+```bash
 fsul = newFrameStreamTcpLogger("127.0.0.1:8888")
 addAction(AllRule(), DnstapLogAction("dnsdist", fsul))
 addResponseAction(AllRule(), DnstapLogResponseAction("dnsdist", fsul))
@@ -279,7 +279,7 @@ Dnstap messages supported:
 
 corefile example
 
-```
+```bash
 .:53 {
     dnstap /tmp/dnstap.sock full
     forward . 8.8.8.8:53
@@ -296,7 +296,7 @@ Then execute CoreDNS with your corefile
 
 corefile example
 
-```
+```bash
 .:53 {
         dnstap tcp://10.0.0.51:6000 full
         forward . 8.8.8.8:53

@@ -15,7 +15,7 @@ Python 3.9
 
 ## Install python 3.9
 
-```
+```bash
 dnf install epel-release -y
 dnf install python39 sshpass
 ```
@@ -24,19 +24,19 @@ dnf install python39 sshpass
 
 Install some python dependencies
 
-```
+```bash
 pip3 install --upgrade pip
 ```
 
 Finally install Ansible
 
-```
+```bash
 python3 -m pip install ansible
 ```
 
 Checking version
 
-```
+```bash
 # ansible --version
 ansible [core 2.11.6] 
   config file = None
