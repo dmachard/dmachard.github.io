@@ -1,11 +1,12 @@
 ---
-title: "PowerDNS/auth: how to manage DNS records with dynamic updates and terraform"
+title: "PowerDNS/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel"
 date: 2021-09-08T00:00:00+01:00
 draft: false
 tags: ["dns", 'powerdns', 'dnsdist', 'dnstap', 'tls']
 ---
 
-This post will detail how to wrap your outgoing DnsDIST/dnstap stream with TLS using **stunnel**.
+This post will detail how to wrap your outgoing dnstap stream with TLS using **stunnel**.
+
 This tutorial assumes you have a working PowerDNS dnsdist server installed on a Centos/AlmaLinux with dnstap enabled. 
 Also we will use the same user/group that dnsdist for stunnel. 
 Any feedbacks will be appreciated to improve this tutorial.

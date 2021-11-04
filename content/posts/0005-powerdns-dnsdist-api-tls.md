@@ -1,11 +1,12 @@
 ---
-title: "PowerDNS/auth: how to manage DNS records with dynamic updates and terraform"
+title: "PowerDNS/dnsdist: how to configure TLS for the API using stunnel"
 date: 2021-09-08T00:00:00+01:00
 draft: false
 tags: ["dns", 'powerdns', 'dnsdist', 'api', 'tls']
 ---
 
 This post will detail how to wrap your DnsDIST webserver/API and dnstap stream with TLS using **stunnel**.
+
 This tutorial assumes you have a working PowerDNS dnsdist server installed on a Centos/AlmaLinux with webserver api. Also we will use the same user/group that dnsdist for stunnel. 
 Any feedbacks will be appreciated to improve this tutorial.
 
