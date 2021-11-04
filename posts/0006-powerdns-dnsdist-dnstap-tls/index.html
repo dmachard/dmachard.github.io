@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-My technical gists
+PowerDNS/auth: how to manage DNS records with dynamic updates and terraform
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,14 +17,21 @@ My technical gists
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/>
-<link rel=alternate type=application/rss+xml href=/index.xml title="My technical gists">
+<link rel=canonical href=/posts/0006-powerdns-dnsdist-dnstap-tls/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="My technical gists">
-<meta name=twitter:description content="My technical gists">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"My technical gists","url":"http:\/\/example.org\/","description":"My technical gists","thumbnailUrl":"http:\/\/example.org\/","license":""}</script>
+<meta name=twitter:title content="PowerDNS/auth: how to manage DNS records with dynamic updates and terraform">
+<meta name=twitter:description content="This post will detail how to wrap your outgoing DnsDIST/dnstap stream with TLS using stunnel.">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"PowerDNS\/auth: how to manage DNS records with dynamic updates and terraform","headline":"PowerDNS\/auth: how to manage DNS records with dynamic updates and terraform","alternativeHeadline":"","description":"
+      
+        This post will detail how to wrap your outgoing DnsDIST\/dnstap stream with TLS using stunnel.
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0006-powerdns-dnsdist-dnstap-tls\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-09-08T00:00:00.00Z","datePublished":"2021-09-08T00:00:00.00Z","dateModified":"2021-09-08T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0006-powerdns-dnsdist-dnstap-tls\/","wordCount":"159","genre":[],"keywords":["dns","powerdns","dnsdist","dnstap","tls"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -38,7 +45,7 @@ My technical gists
 <ul class=nav__list id=navMenu>
 <div class=nav__links>
 <li>
-<a class=current href=/ title>Home</a>
+<a href=/ title>Home</a>
 </li>
 <li>
 <a href=/posts title>Archive</a>
@@ -116,143 +123,56 @@ Denis MACHARD
 <div class=content>
 <div class="post
 .">
-<div class="post-title post-content">
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0005-powerdns-dnsdist-api-tls/>PowerDNS/auth: how to manage DNS records with dynamic updates and terraform</a></h3>
-</div>
 <div class=post-content>
-<div class=p_part>
-<p>
-This post will detail how to wrap your DnsDIST webserver/API and dnstap stream with TLS using stunnel.
-</p>
-<a href=/posts/0005-powerdns-dnsdist-api-tls/ class=read_more>Read more</a></div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Wed, Sep 8, 2021
-</span>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/api/>api</a><a class=tag href=/tags/tls/>tls</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
 <div class=post-title>
-<h3><a href=/posts/0006-powerdns-dnsdist-dnstap-tls/>PowerDNS/auth: how to manage DNS records with dynamic updates and terraform</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-This post will detail how to wrap your outgoing DnsDIST/dnstap stream with TLS using stunnel.
-</p>
-<a href=/posts/0006-powerdns-dnsdist-dnstap-tls/ class=read_more>Read more</a></div>
-</div>
+<h1>PowerDNS/auth: how to manage DNS records with dynamic updates and terraform</h1>
+</div><p>This post will detail how to wrap your outgoing DnsDIST/dnstap stream with TLS using <strong>stunnel</strong>.
+This tutorial assumes you have a working PowerDNS dnsdist server installed on a Centos/AlmaLinux with dnstap enabled.
+Also we will use the same user/group that dnsdist for stunnel.
+Any feedbacks will be appreciated to improve this tutorial.</p>
+<h2 id=install-stunnel>Install stunnel</h2>
+<pre tabindex=0><code>yum install stunnel
+mkdir /var/run/stunnel
+chown dnsdist:dnsdist /var/run/stunnel
+</code></pre><h2 id=configure--stunnel>Configure stunnel</h2>
+<p>Replace the key &lt;your_dnstap_collector> by your <a href=https://github.com/dmachard/go-dnscollector>dnstap collector</a> address.
+This is example is done with dnstap unix socket but you can use tcp socket too.</p>
+<pre tabindex=0><code>vim /etc/stunnel/stunnel.conf
+
+chroot = /var/run/stunnel
+setuid = dnsdist
+setgid = dnsdist
+pid = /stunnel.pid
+socket = r:TCP_NODELAY=1
+
+[dnsdist-dnstaptls]
+client=yes
+accept=/var/run/stunnel/dnstap.sock
+connect=&lt;your_dnstap_collector&gt;:6000
+</code></pre><h2 id=enable--start-stunnel>Enable & Start stunnel</h2>
+<p>Configure your systemd service. All files in /var/run/ are deleted in stop action.</p>
+<pre tabindex=0><code>vim /usr/lib/systemd/system/stunnel.service
+
+[Unit]
+Description=TLS tunnel for network daemons
+After=dnsdist.target
+
+[Service]
+ExecStart=/usr/bin/stunnel /etc/stunnel/stunnel.conf
+ExecStop=/usr/bin/pkill stunnel
+ExecStop=-/usr/bin/find /var/run/stunnel -mindepth 1 -delete
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
+</code></pre><p>Enable and start the stunnel service.</p>
+<pre tabindex=0><code>systemctl enable --now stunnel
+</code></pre></div>
 <div class=post-footer>
-<div class=meta>
 <div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Wed, Sep 8, 2021
-</span>
 <span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/dnstap/>dnstap</a><a class=tag href=/tags/tls/>tls</a></span>
 </div>
 </div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0004-powerdns-dns-records-terraform/>PowerDNS/auth: how to manage DNS records with dynamic updates and terraform</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-PowerDNS - How to use Terraform with DNS update This post details how to manage DNS records with dynamic updates and terraform with your authoritative server.
-</p>
-<a href=/posts/0004-powerdns-dns-records-terraform/ class=read_more>Read more</a></div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, May 22, 2021
-</span>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/terraform/>terraform</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0003-powerdns-lua-records-terraform/>PowerDNS/auth: how to manage LUA records with terraform</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-This post details how to manage LUA records with dynamic updates and terraform with your authoritative server.
-</p>
-<a href=/posts/0003-powerdns-lua-records-terraform/ class=read_more>Read more</a></div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, May 22, 2021
-</span>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/terraform/>terraform</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0002-ntpd-logs-elk/>Ntpd: How to get statistics usage with ELK</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-In this post, I will look at ntpd server to extract some ntp statitics.
-</p>
-<a href=/posts/0002-ntpd-logs-elk/ class=read_more>Read more</a></div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, Jun 20, 2020
-</span>
-<span class=separator><a class=tag href=/tags/ntp/>ntp</a><a class=tag href=/tags/logs/>logs</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class=pagination>
-<ul class=pagination>
-<li class=page-item>
-<span class="page-link current">1</span>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/2/>2</a>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/2/>
-<i class="fa fa-angle-right" aria-label=下一页></i>
-</a>
-</li>
-</ul>
 </div>
 </div>
 </div>
