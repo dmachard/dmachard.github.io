@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-PowerDNS/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel
+DnsCollector/dnstap: installation guide from binary
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,21 +17,21 @@ PowerDNS/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/posts/0006-powerdns-dnsdist-dnstap-tls/>
+<link rel=canonical href=/posts/0007-dnscollector-install-binary/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="PowerDNS/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel">
-<meta name=twitter:description content="This post will detail how to wrap your outgoing dnstap stream with TLS using stunnel.">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"PowerDNS\/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel","headline":"PowerDNS\/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel","alternativeHeadline":"","description":"
+<meta name=twitter:title content="DnsCollector/dnstap: installation guide from binary">
+<meta name=twitter:description content="This post details how to install the go-dnscollector tool with systemd.">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"DnsCollector\/dnstap: installation guide from binary","headline":"DnsCollector\/dnstap: installation guide from binary","alternativeHeadline":"","description":"
       
-        This post will detail how to wrap your outgoing dnstap stream with TLS using stunnel.
+        This post details how to install the go-dnscollector tool with systemd.
 
 
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0006-powerdns-dnsdist-dnstap-tls\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-09-08T00:00:00.00Z","datePublished":"2021-09-08T00:00:00.00Z","dateModified":"2021-09-08T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0006-powerdns-dnsdist-dnstap-tls\/","wordCount":"159","genre":[],"keywords":["dns","powerdns","dnsdist","dnstap","tls"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0007-dnscollector-install-binary\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-09-08T00:00:00.00Z","datePublished":"2021-09-08T00:00:00.00Z","dateModified":"2021-09-08T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0007-dnscollector-install-binary\/","wordCount":"162","genre":[],"keywords":["dnstap","installation"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -125,52 +125,75 @@ Denis MACHARD
 .">
 <div class=post-content>
 <div class=post-title>
-<h1>PowerDNS/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel</h1>
-</div><p>This post will detail how to wrap your outgoing dnstap stream with TLS using <strong>stunnel</strong>.</p>
-<p>This tutorial assumes you have a working PowerDNS dnsdist server installed on a Centos/AlmaLinux with dnstap enabled.
-Also we will use the same user/group that dnsdist for stunnel.
-Any feedbacks will be appreciated to improve this tutorial.</p>
-<h2 id=install-stunnel>Install stunnel</h2>
-<pre tabindex=0><code>yum install stunnel
-mkdir /var/run/stunnel
-chown dnsdist:dnsdist /var/run/stunnel
-</code></pre><h2 id=configure--stunnel>Configure stunnel</h2>
-<p>Replace the key &lt;your_dnstap_collector> by your <a href=https://github.com/dmachard/go-dnscollector>dnstap collector</a> address.
-This is example is done with dnstap unix socket but you can use tcp socket too.</p>
-<pre tabindex=0><code>vim /etc/stunnel/stunnel.conf
+<h1>DnsCollector/dnstap: installation guide from binary</h1>
+</div><p>This post details how to install the <a href=https://github.com/dmachard/go-dnscollector>go-dnscollector</a> tool with systemd.</p>
+<h1 id=install-go-dnscollector-from-binary>Install go-dnscollector from binary</h1>
+<p>Create some folders and user</p>
+<pre tabindex=0><code>adduser -M dnscollector
 
-chroot = /var/run/stunnel
-setuid = dnsdist
-setgid = dnsdist
-pid = /stunnel.pid
-socket = r:TCP_NODELAY=1
+mkdir /etc/dnscollector/
+mkdir /var/run/dnscollector/
+</code></pre><p>Download the latest release from github</p>
+<pre tabindex=0><code>wget https://github.com/dmachard/go-dnscollector/releases/download/v0.5.0/go-dnscollector_v0.5.0_linux_amd64.tar.gz
+tar xvf go-dnscollector_v0.5.0_linux_amd64.tar.gz
+mv go-dnscollector /usr/bin/
+mv config.yml /etc/dnscollector/config.yml.default
+</code></pre><h1 id=create-a-certificate>Create a certificate</h1>
+<p>In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.</p>
+<pre tabindex=0><code>cd /etc/dnscollector/
+openssl req -x509 -nodes -newkey rsa:2048 -keyout dnscollector.key -out dnscollector.crt
+</code></pre><h1 id=configure-go-dnscollector>Configure go-dnscollector</h1>
+<pre tabindex=0><code>touch /etc/dnscollector/config.yml
 
-[dnsdist-dnstaptls]
-client=yes
-accept=/var/run/stunnel/dnstap.sock
-connect=&lt;your_dnstap_collector&gt;:6000
-</code></pre><h2 id=enable--start-stunnel>Enable & Start stunnel</h2>
-<p>Configure your systemd service. All files in /var/run/ are deleted in stop action.</p>
-<pre tabindex=0><code>vim /usr/lib/systemd/system/stunnel.service
+vim config.yml
+trace:
+  verbose: true
+
+collectors:
+  dnstap:
+    enable: true
+    listen-ip: 0.0.0.0
+    listen-port: 6000
+    tls-support: true
+    cert-file: &quot;/etc/dnscollector/dnscollector.crt&quot;
+    key-file: &quot;/etc/dnscollector/dnscollector.key&quot;
+
+loggers:
+  logfile:
+    enable: true
+    file-path:  &quot;/var/run/dnscollector/dnstap.log&quot;
+    max-size: 100
+    max-files: 10
+    mode: text
+</code></pre><h1 id=enable--start-stunnel>Enable & Start stunnel</h1>
+<p>Configure your systemd service</p>
+<pre tabindex=0><code>vim /usr/lib/systemd/system/dnscollector.service
 
 [Unit]
-Description=TLS tunnel for network daemons
-After=dnsdist.target
+Description=Go DnsCollector
+Documentation=https://github.com/dmachard/go-dnscollector
+Wants=network-online.target
+After=network-online.target
 
 [Service]
-ExecStart=/usr/bin/stunnel /etc/stunnel/stunnel.conf
-ExecStop=/usr/bin/pkill stunnel
-ExecStop=-/usr/bin/find /var/run/stunnel -mindepth 1 -delete
-Type=forking
+User=dnscollector
+Group=dnscollector
+ExecStart=/usr/bin/go-dnscollector --config /etc/dnscollector/config.yml
+ExecStop=/usr/bin/pkill go-dnscollector
+Type=simple
 
 [Install]
 WantedBy=multi-user.target
-</code></pre><p>Enable and start the stunnel service.</p>
-<pre tabindex=0><code>systemctl enable --now stunnel
+</code></pre><p>Chown</p>
+<pre tabindex=0><code>chown dnscollector:dnscollector -R /etc/dnscollector/
+chown -R dnscollector:dnscollector /var/run/dnscollector/
+</code></pre><p>Enable and start the go-dnscollector service.</p>
+<pre tabindex=0><code>systemctl enable --now dnscollector
+systemctl restart dnscollector
 </code></pre></div>
 <div class=post-footer>
 <div class=info>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/dnstap/>dnstap</a><a class=tag href=/tags/tls/>tls</a></span>
+<span class=separator><a class=tag href=/tags/dnstap/>dnstap</a><a class=tag href=/tags/installation/>installation</a></span>
 </div>
 </div>
 </div>

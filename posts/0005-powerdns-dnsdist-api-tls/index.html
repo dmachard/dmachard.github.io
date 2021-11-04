@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-PowerDNS/auth: how to manage DNS records with dynamic updates and terraform
+PowerDNS/dnsdist: how to configure TLS for the API using stunnel
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -21,9 +21,9 @@ PowerDNS/auth: how to manage DNS records with dynamic updates and terraform
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="PowerDNS/auth: how to manage DNS records with dynamic updates and terraform">
+<meta name=twitter:title content="PowerDNS/dnsdist: how to configure TLS for the API using stunnel">
 <meta name=twitter:description content="This post will detail how to wrap your DnsDIST webserver/API and dnstap stream with TLS using stunnel.">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"PowerDNS\/auth: how to manage DNS records with dynamic updates and terraform","headline":"PowerDNS\/auth: how to manage DNS records with dynamic updates and terraform","alternativeHeadline":"","description":"
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"PowerDNS\/dnsdist: how to configure TLS for the API using stunnel","headline":"PowerDNS\/dnsdist: how to configure TLS for the API using stunnel","alternativeHeadline":"","description":"
       
         This post will detail how to wrap your DnsDIST webserver\/API and dnstap stream with TLS using stunnel.
 
@@ -125,9 +125,9 @@ Denis MACHARD
 .">
 <div class=post-content>
 <div class=post-title>
-<h1>PowerDNS/auth: how to manage DNS records with dynamic updates and terraform</h1>
-</div><p>This post will detail how to wrap your DnsDIST webserver/API and dnstap stream with TLS using <strong>stunnel</strong>.
-This tutorial assumes you have a working PowerDNS dnsdist server installed on a Centos/AlmaLinux with webserver api. Also we will use the same user/group that dnsdist for stunnel.
+<h1>PowerDNS/dnsdist: how to configure TLS for the API using stunnel</h1>
+</div><p>This post will detail how to wrap your DnsDIST webserver/API and dnstap stream with TLS using <strong>stunnel</strong>.</p>
+<p>This tutorial assumes you have a working PowerDNS dnsdist server installed on a Centos/AlmaLinux with webserver api. Also we will use the same user/group that dnsdist for stunnel.
 Any feedbacks will be appreciated to improve this tutorial.</p>
 <h2 id=install-stunnel>Install stunnel</h2>
 <pre tabindex=0><code>yum install stunnel
