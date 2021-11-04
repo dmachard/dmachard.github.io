@@ -1,5 +1,5 @@
 ---
-title: "PowerDns/dnsdist: route incoming UDP/TCP DNS queries to a pool of DoH servers"
+title: "Run a squid proxy in container mode with custom configuration"
 date: 2021-10-20T00:00:00+01:00
 draft: false
 tags: ['squid', 'proxy', 'docker']
