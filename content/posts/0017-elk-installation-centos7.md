@@ -2,7 +2,7 @@
 title: "ELK installation on CentOS 7"
 date: 2020-06-21T00:00:00+01:00
 draft: false
-tags: ['vm']
+tags: ['elk', 'logs']
 ---
 
 This post details how to install ELK (ElasticSearch, Logstash, Kibana and also Filebeat) on CentOS7.

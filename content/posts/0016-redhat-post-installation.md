@@ -2,7 +2,7 @@
 title: "RedHat Family 8.x post installation"
 date: 2020-06-21T00:00:00+01:00
 draft: false
-tags: ['vm']
+tags: ['system', 'redhat']
 ---
 
 Post installation tunning for RedHat system family.
