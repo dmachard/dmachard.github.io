@@ -32,7 +32,7 @@ paginate = 5
     contentratio = 0.75
     author = "Denis MACHARD"
     profilePicture = "images/profile.png"
-    readMore = true
+    readMore = false
     doNotLoadAnimations = true
 
 [[params.socialIcons]]
