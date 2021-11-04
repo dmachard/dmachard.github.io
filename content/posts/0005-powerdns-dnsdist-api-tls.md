@@ -1,0 +1,79 @@
+---
+title: "PowerDNS/auth: how to manage DNS records with dynamic updates and terraform"
+date: 2021-09-08T00:00:00+01:00
+draft: false
+tags: ["dns", 'powerdns', 'dnsdist', 'api', 'tls']
+---
+
+This post will detail how to wrap your DnsDIST webserver/API and dnstap stream with TLS using **stunnel**.
+This tutorial assumes you have a working PowerDNS dnsdist server installed on a Centos/AlmaLinux with webserver api. Also we will use the same user/group that dnsdist for stunnel. 
+Any feedbacks will be appreciated to improve this tutorial.
+
+## Install stunnel
+
+```
+yum install stunnel
+mkdir /var/run/stunnel
+chown dnsdist:dnsdist /var/run/stunnel
+```
+## Create a certificate
+
+In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.
+
+```
+cd /etc/stunnel/
+openssl req -x509 -nodes -newkey rsa:2048 -keyout stunnel.key -out stunnel.crt
+
+```
+## Configure  stunnel
+
+Replace the key <your_dnstap_collector> by your [dnstap collector](https://github.com/dmachard/go-dnscollector) address.
+
+```
+vim /etc/stunnel/stunnel.conf
+
+chroot = /var/run/stunnel
+setuid = dnsdist
+setgid = dnsdist
+pid = /stunnel.pid
+socket = l:TCP_NODELAY=1
+socket = r:TCP_NODELAY=1
+
+ciphers=EECDH+AESGCM:EDH+AESGCM
+sslVersion = TLSv1.2
+options = NO_SSLv2
+options = NO_SSLv3
+
+[dnsdist-webapi]
+accept=443
+connect=127.0.0.1:8080
+cert = /etc/stunnel/stunnel.crt
+key = /etc/stunnel/stunnel.key
+```
+
+## Enable & Start stunnel
+
+Configure your systemd service
+```
+vim /usr/lib/systemd/system/stunnel.service
+
+[Unit]
+Description=TLS tunnel for network daemons
+After=dnsdist.target
+
+[Service]
+ExecStart=/usr/bin/stunnel /etc/stunnel/stunnel.conf
+ExecStop=/usr/bin/pkill stunnel
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Enable and start the stunnel service.
+
+```
+systemctl enable --now stunnel
+systemctl restart stunnel
+```
+

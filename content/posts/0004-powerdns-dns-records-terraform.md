@@ -4,6 +4,7 @@ date: 2021-05-22T00:00:00+01:00
 draft: false
 tags: ["dns", 'powerdns', 'terraform']
 ---
+
 # PowerDNS - How to use Terraform with DNS update
 
 This post details how to manage DNS records with dynamic updates and [terraform](https://registry.terraform.io/providers/hashicorp/dns/latest/docs) with your authoritative server.
