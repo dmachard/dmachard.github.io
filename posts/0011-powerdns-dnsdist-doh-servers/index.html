@@ -129,8 +129,8 @@ Denis MACHARD
 </div><p>The goal of this tutorial is to send all your local DNS queries (udp/tcp) to a pool of DoH public resolvers with <a href=https://dnsdist.org/>dnsdist</a> load balancer. A dns cache is also enabled to optimize the traffic. We also assume you have a docker environement to follow this tutorial.</p>
 <h2 id=prepare-configuration>Prepare configuration</h2>
 <p>Before to start, install some useful python tools to prepare the configuration</p>
-<pre tabindex=0><code>pip install dnsdist_console j2cli
-</code></pre><p>Now, we will create the configuration from the jinja template <em>dnsdist-doh.j2</em> provided below.
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>pip install dnsdist_console j2cli
+</code></pre></div><p>Now, we will create the configuration from the jinja template <em>dnsdist-doh.j2</em> provided below.
 Download the template on your host before to continue.</p>
 <p>The following variables need to be exported:</p>
 <ul>
@@ -144,8 +144,8 @@ Download the template on your host before to continue.</p>
 </span><span style=color:#ae81ff></span>export DNSDIST_WEB_KEY<span style=color:#f92672>=</span>$DNSDIST_API_KEY <span style=color:#ae81ff>\
 </span><span style=color:#ae81ff></span>export DNSDIST_CONSOLE_KEY<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>python3 -c <span style=color:#e6db74>&#34;from dnsdist_console import Key;print(Key().generate())&#34;</span><span style=color:#66d9ef>)</span>
 </code></pre></div><p>Use the j2 command to generate the custom configuration</p>
-<pre tabindex=0><code>echo $DNSDIST_POOL | j2 --format=json dnsdist-doh.j2 &gt; dnsdist-doh.lua
-</code></pre><p>The configuration template is just provided for example, your can updated-it according to your needs.
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>echo $DNSDIST_POOL | j2 --format<span style=color:#f92672>=</span>json dnsdist-doh.j2 &gt; dnsdist-doh.lua
+</code></pre></div><p>The configuration template is just provided for example, your can updated-it according to your needs.
 This config can be used to send all your local DNS queries to a pool of public resolvers.</p>
 <h2 id=deploy-dnsdist-container>Deploy dnsdist container</h2>
 <p>Deploy the dnsdist image with the custom DoH configuration</p>
@@ -156,65 +156,65 @@ This config can be used to send all your local DNS queries to a pool of public r
 CONTAINER ID   IMAGE                   COMMAND                  CREATED         STATUS         PORTS                                                                      NAMES
 8ff7d92ddd1d   powerdns/dnsdist-17:1.7.0-alpha2     <span style=color:#e6db74>&#34;/usr/bin/tini -- /u…&#34;</span>   <span style=color:#ae81ff>2</span> seconds ago   Up <span style=color:#ae81ff>2</span> seconds   0.0.0.0:53-&gt;53/tcp, 0.0.0.0:8083-&gt;8083/tcp, 0.0.0.0:53-&gt;53/udp, 5199/tcp   dnsdist
 </code></pre></div><h2 id=test-dns-resolution>Test DNS resolution</h2>
-<pre tabindex=0><code># dig @::1 www.google.fr +tcp +short
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># dig @::1 www.google.fr +tcp +short</span>
 216.58.215.35
 
-# dig @127.0.0.1 www.google.fr +short
+<span style=color:#75715e># dig @127.0.0.1 www.google.fr +short</span>
 216.58.215.35
-</code></pre><h2 id=jinja-configuration-template>Jinja configuration template</h2>
-<pre tabindex=0><code>---------------------------------------------------
+</code></pre></div><h2 id=jinja-configuration-template>Jinja configuration template</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>---------------------------------------------------
 -- Administration
 ---------------------------------------------------
 
 -- cli
-setKey(&quot;{{ env(&quot;DNSDIST_CONSOLE_KEY&quot;) }}&quot;)
-controlSocket(&quot;127.0.0.1:5199&quot;)
-addConsoleACL(&quot;127.0.0.1/8, ::1/128&quot;)
+setKey<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_CONSOLE_KEY<span style=color:#e6db74>&#34;) }}&#34;</span><span style=color:#f92672>)</span>
+controlSocket<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;127.0.0.1:5199&#34;</span><span style=color:#f92672>)</span>
+addConsoleACL<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;127.0.0.1/8, ::1/128&#34;</span><span style=color:#f92672>)</span>
 
 -- api
-webserver(&quot;0.0.0.0:8083&quot;)
-setWebserverConfig({
-  apiKey = &quot;{{ env(&quot;DNSDIST_API_KEY&quot;) }}&quot;,
-  password = &quot;{{ env(&quot;DNSDIST_WEB_KEY&quot;) }}&quot;,
-  acl = &quot;192.168.0.0/16&quot;,
-})
+webserver<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;0.0.0.0:8083&#34;</span><span style=color:#f92672>)</span>
+setWebserverConfig<span style=color:#f92672>({</span>
+  apiKey <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_API_KEY<span style=color:#e6db74>&#34;) }}&#34;</span>,
+  password <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_WEB_KEY<span style=color:#e6db74>&#34;) }}&#34;</span>,
+  acl <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;192.168.0.0/16&#34;</span>,
+<span style=color:#f92672>})</span>
 
 ---------------------------------------------------
 -- Dns services
 ---------------------------------------------------
 
 -- udp/tcp dns listening
-setLocal(&quot;0.0.0.0:53&quot;, {})
+setLocal<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;0.0.0.0:53&#34;</span>, <span style=color:#f92672>{})</span>
 
 -- dns caching
-pc = newPacketCache(10000, {})
+pc <span style=color:#f92672>=</span> newPacketCache<span style=color:#f92672>(</span>10000, <span style=color:#f92672>{})</span>
 
 ---------------------------------------------------
 -- Pools
 ---------------------------------------------------
 
-pool_resolv = &quot;resolvers&quot;
-caStore = &quot;/etc/dnsdist/conf.d/tls-ca-bundle.pem&quot;
+pool_resolv <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;resolvers&#34;</span>
+caStore <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;/etc/dnsdist/conf.d/tls-ca-bundle.pem&#34;</span>
 
 -- members definitions
-{% for res in resolv %}
-newServer({
-  address = &quot;{{ res[&quot;addr&quot;] }}&quot;,
-  tls = &quot;openssl&quot;,
-  dohPath = &quot;/dns-query&quot;,
-  caStore = caStore,
-  subjectName = &quot;{{ res[&quot;name&quot;] }}&quot;,
-  validateCertificates = false,
-  pool = pool_resolv,
-})
+<span style=color:#f92672>{</span>% <span style=color:#66d9ef>for</span> res in resolv %<span style=color:#f92672>}</span>
+newServer<span style=color:#f92672>({</span>
+  address <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ res[&#34;</span>addr<span style=color:#e6db74>&#34;] }}&#34;</span>,
+  tls <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;openssl&#34;</span>,
+  dohPath <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;/dns-query&#34;</span>,
+  caStore <span style=color:#f92672>=</span> caStore,
+  subjectName <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ res[&#34;</span>name<span style=color:#e6db74>&#34;] }}&#34;</span>,
+  validateCertificates <span style=color:#f92672>=</span> false,
+  pool <span style=color:#f92672>=</span> pool_resolv,
+<span style=color:#f92672>})</span>
 
-{% endfor %}
+<span style=color:#f92672>{</span>% endfor %<span style=color:#f92672>}</span>
 
 -- set the load balacing policy to use
-setPoolServerPolicy(roundrobin, pool_resolv)
+setPoolServerPolicy<span style=color:#f92672>(</span>roundrobin, pool_resolv<span style=color:#f92672>)</span>
 
 -- enable cache
-getPool(pool_resolv):setCache(pc)
+getPool<span style=color:#f92672>(</span>pool_resolv<span style=color:#f92672>)</span>:setCache<span style=color:#f92672>(</span>pc<span style=color:#f92672>)</span>
 
 
 ---------------------------------------------------
@@ -222,11 +222,11 @@ getPool(pool_resolv):setCache(pc)
 ---------------------------------------------------
 
 -- matches all incoming traffic and send-it to the pool of resolvers
-addAction(
-  AllRule(),
-  PoolAction(pool_resolv)
-)
-</code></pre></div>
+addAction<span style=color:#f92672>(</span>
+  AllRule<span style=color:#f92672>()</span>,
+  PoolAction<span style=color:#f92672>(</span>pool_resolv<span style=color:#f92672>)</span>
+<span style=color:#f92672>)</span>
+</code></pre></div></div>
 <div class=post-footer>
 <div class=info>
 <span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/doh/>doh</a></span>
