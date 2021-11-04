@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-Posts
+PowerDNS/auth: how to manage DNS records with dynamic updates and terraform
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,13 +17,21 @@ Posts
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/posts/>
-<link rel=alternate type=application/rss+xml href=/posts/index.xml title="My technical gists">
+<link rel=canonical href=/posts/0004-powerdns-dns-records-terraform/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="Posts">
-<meta name=twitter:description content="My technical gists">
+<meta name=twitter:title content="PowerDNS/auth: how to manage DNS records with dynamic updates and terraform">
+<meta name=twitter:description content="PowerDNS - How to use Terraform with DNS update This post details how to manage DNS records with dynamic updates and terraform with your authoritative server.">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"PowerDNS\/auth: how to manage DNS records with dynamic updates and terraform","headline":"PowerDNS\/auth: how to manage DNS records with dynamic updates and terraform","alternativeHeadline":"","description":"
+      
+        PowerDNS - How to use Terraform with DNS update This post details how to manage DNS records with dynamic updates and terraform with your authoritative server.
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0004-powerdns-dns-records-terraform\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-05-22T00:00:00.00Z","datePublished":"2021-05-22T00:00:00.00Z","dateModified":"2021-05-22T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0004-powerdns-dns-records-terraform\/","wordCount":"172","genre":[],"keywords":["dns","powerdns","terraform"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -113,60 +121,77 @@ Denis MACHARD
 <main>
 <div class=autopagerize_page_element>
 <div class=content>
-<div class="archive
+<div class="post
 .">
-<ul class=list-with-title>
-<div class=listing-title>2021</div>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0003-powerdns-lua-records-terraform/ title="PowerDNS/auth: how to manage LUA records with terraform">PowerDNS/auth: how to manage LUA records with terraform</a>
-<div class=post-time>
-<span class=date>
-May 22
-</span>
-</div>
-</div>
-</div>
+<div class=post-content>
+<div class=post-title>
+<h1>PowerDNS/auth: how to manage DNS records with dynamic updates and terraform</h1>
+</div><h1 id=powerdns---how-to-use-terraform-with-dns-update>PowerDNS - How to use Terraform with DNS update</h1>
+<p>This post details how to manage DNS records with dynamic updates and <a href=https://registry.terraform.io/providers/hashicorp/dns/latest/docs>terraform</a> with your authoritative server.</p>
+<h2 id=requirements>Requirements</h2>
+<p>Enable DNS update to your pdns.conf</p>
+<pre tabindex=0><code>dnsupdate=yes
+</code></pre><p>Create a Tsig key and set metadata to your zone to authorize DNSUPDATE and AXFR with TSIG authentication.</p>
+<pre tabindex=0><code>TSIG-ALLOW-DNSUPDATE
+TSIG-ALLOW-AXFR
+</code></pre><h2 id=provider-configuration>Provider configuration</h2>
+<ol>
+<li>
+<p>Create a main.tf file</p>
+</li>
+<li>
+<p>Install the provider &ldquo;dns&rdquo; then, run <code>terraform init</code>.</p>
+</li>
+</ol>
+<pre tabindex=0><code>terraform {
+  required_providers {
+    dns = {
+      source = &quot;hashicorp/dns&quot;
+      version = &quot;3.1.0&quot;
+    }
+  }
+}
+</code></pre><ol start=3>
+<li>Configure your provider with address of the DNS server to send updates to and TSIG authentication parameters</li>
+</ol>
+<pre tabindex=0><code>provider &quot;dns&quot; {
+  update {
+    server        = &quot;192.168.0.1&quot;
+    key_name      = &quot;example.com.&quot;
+    key_algorithm = &quot;hmac-md5&quot;
+    key_secret    = &quot;3VwZXJzZWNyZXQ=&quot;
+  }
+}
+</code></pre><h2 id=create-dns-record>Create DNS record</h2>
+<p>The following records can be managed from the provider terraform:</p>
+<ul>
+<li>A</li>
+<li>AAAA</li>
+<li>CNAME</li>
+<li>TXT</li>
+<li>PTR</li>
+<li>SRV</li>
+<li>NS</li>
+<li>MX</li>
 </ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0004-powerdns-dns-records-terraform/ title="PowerDNS/auth: how to manage DNS records with dynamic updates and terraform">PowerDNS/auth: how to manage DNS records with dynamic updates and terraform</a>
-<div class=post-time>
-<span class=date>
-May 22
-</span>
+<p>Example for A record:</p>
+<pre tabindex=0><code>resource &quot;dns_a_record_set&quot; &quot;www&quot; {
+  zone = &quot;example.com.&quot;
+  name = &quot;www&quot;
+  addresses = [
+    &quot;192.168.0.1&quot;,
+    &quot;192.168.0.2&quot;,
+    &quot;192.168.0.3&quot;,
+  ]
+  ttl = 300
+}
+</code></pre><p>Run <code>terraform destroy</code> to delete it.</p>
+</div>
+<div class=post-footer>
+<div class=info>
+<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/terraform/>terraform</a></span>
 </div>
 </div>
-</div>
-</ul>
-<div class=listing-title>2020</div>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0002-ntpd-logs-elk/ title="Ntpd: How to get statistics usage with ELK">Ntpd: How to get statistics usage with ELK</a>
-<div class=post-time>
-<span class=date>
-Jun 20
-</span>
-</div>
-</div>
-</div>
-</ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0001-dnstap-testing/ title="Dnstap: How to enable it on main dns servers">Dnstap: How to enable it on main dns servers</a>
-<div class=post-time>
-<span class=date>
-May 23
-</span>
-</div>
-</div>
-</div>
-</ul>
-</ul>
 </div>
 </div>
 </div>
