@@ -32,7 +32,7 @@ Configuration cat /var/prometheus/prometheus.">
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0028-prometheus-install-guide\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-12-20T00:00:00.00Z","datePublished":"2020-12-20T00:00:00.00Z","dateModified":"2020-12-20T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0028-prometheus-install-guide\/","wordCount":"50","genre":[],"keywords":["docker","prometheus"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0028-prometheus-install-guide\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-12-20T00:00:00.00Z","datePublished":"2020-12-20T00:00:00.00Z","dateModified":"2020-12-20T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0028-prometheus-install-guide\/","wordCount":"52","genre":[],"keywords":["docker","prometheus"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -129,25 +129,21 @@ Denis MACHARD
 <h1>Prometheus installation guide</h1>
 </div><p>This post details how to run <a href=https://prometheus.io/>prometheus</a> container</p>
 <h1 id=configuration>Configuration</h1>
-<p>cat /var/prometheus/prometheus.yml
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cat /var/prometheus/prometheus.yml 
 global:
-scrape_interval: 5s
-evaluation_interval: 5s</p>
-<p>scrape_configs:</p>
-<ul>
-<li>job_name: &lsquo;dnstap_receiver&rsquo;
-basic_auth:
-username: admin
-password: changeme
-static_configs:
-<ul>
-<li>targets: [&lsquo;10.0.0.249:8082&rsquo;]</li>
-</ul>
-</li>
-</ul>
-<h1 id=start-prometheus>Start prometheus</h1>
-<p>docker run -u root -d -p 9090:9090 -v /var/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml &ndash;restart=always &ndash;name promserver01 prom/prometheus</p>
-<h1 id=test>Test</h1>
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: <span style=color:#e6db74>&#39;dnstap_receiver&#39;</span>
+    basic_auth:
+      username: admin
+      password: changeme
+    static_configs:
+      - targets: <span style=color:#f92672>[</span><span style=color:#e6db74>&#39;10.0.0.249:8082&#39;</span><span style=color:#f92672>]</span>
+</code></pre></div><h1 id=start-prometheus>Start prometheus</h1>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker run -u root -d -p 9090:9090 -v /var/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml --restart<span style=color:#f92672>=</span>always --name promserver01 prom/prometheus
+</code></pre></div><h1 id=test>Test</h1>
 <p>The web interface is available at http://yourip:9090</p>
 </div>
 <div class=post-footer>
