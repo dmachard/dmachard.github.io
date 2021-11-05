@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-My technical gists
+Connexion SSH par certificat
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,14 +17,21 @@ My technical gists
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/>
-<link rel=alternate type=application/rss+xml href=/index.xml title="My technical gists">
+<link rel=canonical href=/posts/0026-ssh-certificate/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="My technical gists">
-<meta name=twitter:description content="My technical gists">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"My technical gists","url":"http:\/\/example.org\/","description":"My technical gists","thumbnailUrl":"http:\/\/example.org\/","license":""}</script>
+<meta name=twitter:title content="Connexion SSH par certificat">
+<meta name=twitter:description content="Ce poste détaille comment se connecter sur un système distant par certificat.">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Connexion SSH par certificat","headline":"Connexion SSH par certificat","alternativeHeadline":"","description":"
+      
+        Ce poste détaille comment se connecter sur un système distant par certificat.
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0026-ssh-certificate\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2018","dateCreated":"2018-10-17T00:00:00.00Z","datePublished":"2018-10-17T00:00:00.00Z","dateModified":"2018-10-17T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0026-ssh-certificate\/","wordCount":"167","genre":[],"keywords":["certificat","ssh"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -38,7 +45,7 @@ My technical gists
 <ul class=nav__list id=navMenu>
 <div class=nav__links>
 <li>
-<a class=current href=/ title>Home</a>
+<a href=/ title>Home</a>
 </li>
 <li>
 <a href=/posts title>Archive</a>
@@ -116,156 +123,43 @@ Denis MACHARD
 <div class=content>
 <div class="post
 .">
-<div class="post-title post-content">
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0016-redhat-post-installation/>RedHat Family 8.x post installation</a></h3>
-</div>
 <div class=post-content>
-<div class=p_part>
-<p>
-Post installation tunning for RedHat system family.
-Table of contents keyboard hostname configuration date, time and timezone minimal network configuration install minimal tools keyboard localectl set-keymap fr To confirm your permanent keymap settings execute the localectl command without any arguments
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sun, Jun 21, 2020
-</span>
-<span class=separator><a class=tag href=/tags/system/>system</a><a class=tag href=/tags/redhat/>redhat</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
 <div class=post-title>
-<h3><a href=/posts/0002-ntpd-logs-elk/>Ntpd: How to get statistics usage with ELK</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-In this post, I will look at ntpd server to extract some ntp statitics.
-</p>
-</div>
-</div>
+<h1>Connexion SSH par certificat</h1>
+</div><p>Ce poste détaille comment se connecter sur un système distant par certificat.</p>
+<h1 id=génération-clé>Génération clé</h1>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># ssh-keygen -t rsa</span>
+Generating public/private rsa key pair.
+Enter file in which to save the key <span style=color:#f92672>(</span>/root/.ssh/id_rsa<span style=color:#f92672>)</span>:
+Created directory <span style=color:#e6db74>&#39;/root/.ssh&#39;</span>.
+Enter passphrase <span style=color:#f92672>(</span>empty <span style=color:#66d9ef>for</span> no passphrase<span style=color:#f92672>)</span>:
+Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+c7:da:800:22:9e:a1:1f root@automation
+The key<span style=color:#960050;background-color:#1e0010>&#39;</span>s randomart image is:
++--<span style=color:#f92672>[</span> RSA 2048<span style=color:#f92672>]</span>----+
+|                 |
+|     ...  ..o .  |
++-----------------+
+</code></pre></div><h1 id=copier-la-clé-publique>Copier la clé publique</h1>
+<p>Copier la clé publique sur le système distant</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># ssh-copy-id root@192.168.1.235</span>
+The authenticity of host <span style=color:#e6db74>&#39;192.168.1.235 (192.168.1.235)&#39;</span> can<span style=color:#e6db74>&#39;t be established.
+</span><span style=color:#e6db74>ECDSA key fingerprint is 7c:23:c6:ba:25.
+</span><span style=color:#e6db74>Are you sure you want to continue connecting (yes/no)? yes
+</span><span style=color:#e6db74>/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+</span><span style=color:#e6db74>/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+</span><span style=color:#e6db74>root@192.168.1.235&#39;</span>s password:
+
+Number of key<span style=color:#f92672>(</span>s<span style=color:#f92672>)</span> added: <span style=color:#ae81ff>1</span>
+</code></pre></div></div>
 <div class=post-footer>
-<div class=meta>
 <div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, Jun 20, 2020
-</span>
-<span class=separator><a class=tag href=/tags/ntp/>ntp</a><a class=tag href=/tags/logs/>logs</a></span>
+<span class=separator><a class=tag href=/tags/certificat/>certificat</a><a class=tag href=/tags/ssh/>ssh</a></span>
 </div>
 </div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0001-dnstap-testing/>Dnstap: How to enable it on main dns servers</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-This post details how to enable the dnstap feature in main open source dns servers.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, May 23, 2020
-</span>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/logs/>logs</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0025-docker-container-debug-startup/>Docker: debug sur container ne démarrant pas</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-Quelques commandes pour debugger un container qui ne démarre pas
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Thu, Jul 18, 2019
-</span>
-<span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/debug/>debug</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0024-guacamole-docker-installation/>Guide installation de guacamole en mode container</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-Guide d&rsquo;installation de guacamole en mode container avec une base de donnée PostgreSQL.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Tue, Jan 29, 2019
-</span>
-<span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/guacamole/>guacamole</a><a class=tag href=/tags/installation/>installation</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class=pagination>
-<ul class=pagination>
-<li class=page-item>
-<a class=page-link href=/page/4/>
-<i class="fa fa-angle-left" aria-label=上一页></i>
-</a>
-</li>
-<li class=page-item>
-<a class=page-link href=/>1</a>
-</li>
-<span class="page-link dots">&mldr;</span>
-<li class=page-item>
-<a class=page-link href=/page/4/>4</a>
-</li>
-<li class=page-item>
-<span class="page-link current">5</span>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/6/>6</a>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/6/>
-<i class="fa fa-angle-right" aria-label=下一页></i>
-</a>
-</li>
-</ul>
 </div>
 </div>
 </div>
