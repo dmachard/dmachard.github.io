@@ -7,10 +7,6 @@ tags: ['docker', 'debug']
 
 Quelques commandes pour debugger un container qui ne démarre pas
 
-# Sommaire
-
-* [How to](#how-to)
-
 # How to
 
 **Comment obtenir un shell dans un container?**
