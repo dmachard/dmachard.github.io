@@ -31,7 +31,7 @@ How to install Ansible 4.7 on AlmaLinux 8.4 with pip
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0013-ansible-almalinux-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-20T00:00:00.00Z","datePublished":"2021-10-20T00:00:00.00Z","dateModified":"2021-10-20T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0013-ansible-almalinux-installation\/","wordCount":"107","genre":[],"keywords":["ansible","almalinux","installation"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0013-ansible-almalinux-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-20T00:00:00.00Z","datePublished":"2021-10-20T00:00:00.00Z","dateModified":"2021-10-20T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0013-ansible-almalinux-installation\/","wordCount":"108","genre":[],"keywords":["ansible","almalinux","installation"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -127,14 +127,17 @@ Denis MACHARD
 <div class=post-title>
 <h1>How to install Ansible 4.7 on AlmaLinux 8.4 with pip</h1>
 </div><p>This post will details how to install ansible on AlmaLinux 8.4.</p>
-<p>Tested with the following version:</p>
-<p>Ansible 4.7.0
-AlmaLinux 8.4
-Python 3.9</p>
-<h2 id=install-python-39>Install python 3.9</h2>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#install-python>Install Python</a></li>
+<li><a href=#install-ansible>Install Ansible</a></li>
+</ul>
+<h2 id=install-python>Install Python</h2>
+<p>Install Python 3.9</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>dnf install epel-release -y
 dnf install python39 sshpass
 </code></pre></div><h2 id=install-ansible>Install Ansible</h2>
+<p>Install Ansible 4.7.0</p>
 <p>Install some python dependencies</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>pip3 install --upgrade pip
 </code></pre></div><p>Finally install Ansible</p>

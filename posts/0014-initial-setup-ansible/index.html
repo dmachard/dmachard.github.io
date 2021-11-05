@@ -31,7 +31,7 @@ Initial Ansible setup server
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0014-initial-setup-ansible\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-23T00:00:00.00Z","datePublished":"2021-10-23T00:00:00.00Z","dateModified":"2021-10-23T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0014-initial-setup-ansible\/","wordCount":"307","genre":[],"keywords":["ansible","system"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0014-initial-setup-ansible\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-23T00:00:00.00Z","datePublished":"2021-10-23T00:00:00.00Z","dateModified":"2021-10-23T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0014-initial-setup-ansible\/","wordCount":"324","genre":[],"keywords":["ansible","system"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -127,6 +127,13 @@ Denis MACHARD
 <div class=post-title>
 <h1>Initial Ansible setup server</h1>
 </div><p>This tutorial explains how to make the initial setup of ansible.</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#initial-setup>Initial setup</a></li>
+<li><a href=#run-the-playbook>Run the playbook</a></li>
+<li><a href=#sanity-check>Sanity check</a></li>
+</ul>
+<h1 id=initial-setup>Initial setup</h1>
 <p>On this tutorial we assume you have at least python installed on all servers to manage and all your servers are available with a hostname in your dns and a root ssh access.</p>
 <p>Create a specific automation user for your ansible srever</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>adduser automation
@@ -146,7 +153,8 @@ server03
 <p>touch ansible.cfg</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#f92672>[</span>defaults<span style=color:#f92672>]</span>
 interpreter_python<span style=color:#f92672>=</span>/usr/bin/python3
-</code></pre></div><p>Run the <em>playbook_deploy_ansible_user.yml</em> playblook to configure:</p>
+</code></pre></div><h1 id=run-the-playbook>Run the playbook</h1>
+<p>Run the <em>playbook_deploy_ansible_user.yml</em> playblook to configure:</p>
 <ul>
 <li>a specific user for ansible to run</li>
 <li>disable root ssh access</li>
@@ -197,7 +205,8 @@ PLAY RECAP *********************************************************************
 server01    : ok<span style=color:#f92672>=</span><span style=color:#ae81ff>7</span>    changed<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>    unreachable<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>    failed<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>    skipped<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>    rescued<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>    ignored<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>   
 server02    : ok<span style=color:#f92672>=</span><span style=color:#ae81ff>7</span>    changed<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>    unreachable<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>    failed<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>    skipped<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>    rescued<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>    ignored<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>   
 server03    : ok<span style=color:#f92672>=</span><span style=color:#ae81ff>7</span>    changed<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>    unreachable<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>    failed<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>    skipped<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>    rescued<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>    ignored<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>   
-</code></pre></div><p>Finally run the ansible command with ping module</p>
+</code></pre></div><h2 id=sanity-check>Sanity check</h2>
+<p>Finally run the ansible command with ping module</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ansible all -i inventory.ini -m ping
 server01 | SUCCESS <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>{</span>
     <span style=color:#e6db74>&#34;changed&#34;</span>: false,

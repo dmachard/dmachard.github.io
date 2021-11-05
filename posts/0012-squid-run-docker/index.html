@@ -31,7 +31,7 @@ Run a squid proxy in container mode with custom configuration
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0012-squid-run-docker\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-20T00:00:00.00Z","datePublished":"2021-10-20T00:00:00.00Z","dateModified":"2021-10-20T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0012-squid-run-docker\/","wordCount":"141","genre":[],"keywords":["squid","proxy","docker"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0012-squid-run-docker\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-20T00:00:00.00Z","datePublished":"2021-10-20T00:00:00.00Z","dateModified":"2021-10-20T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0012-squid-run-docker\/","wordCount":"154","genre":[],"keywords":["squid","proxy","docker"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -128,6 +128,13 @@ Denis MACHARD
 <h1>Run a squid proxy in container mode with custom configuration</h1>
 </div><p>This tutorial explained how to deploy the following <a href=https://github.com/dmachard/squid-docker>Squid 5</a> docker image
 and how to configure-it with a custom configuration (basic auth user).</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#setup-user-password-store>Setup user/password store</a></li>
+<li><a href=#deploy-the-squid-container>Deploy the Squid container</a></li>
+<li><a href=#test>Test</a></li>
+<li><a href=#basic-configuration>Basic configuration</a></li>
+</ul>
 <h2 id=setup-userpassword-store>Setup user/password store</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>yum install httpd-tools
 
