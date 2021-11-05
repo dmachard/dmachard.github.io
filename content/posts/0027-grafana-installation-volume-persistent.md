@@ -24,7 +24,7 @@ docker volume create grafana-storage
 # Start grafana
 
 ```bash
-docker run  -d -p 80:3000 --name=grafana -v grafana-storage:/var/lib/grafana grafana/grafana
+docker run  -d -p 80:3000 --name=grafana --restart=always -v grafana-storage:/var/lib/grafana grafana/grafana
 ```
 
 # Test
