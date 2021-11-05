@@ -29,7 +29,7 @@ docker run  -d -p 80:3000 --name=grafana -v grafana-storage:/var/lib/grafana gra
 
 # Test
 
-http://<ip>:80/
+http://yourip:80/
 
 Default account:
 - login: admin
