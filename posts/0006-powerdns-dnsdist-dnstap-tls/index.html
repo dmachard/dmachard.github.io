@@ -31,7 +31,7 @@ PowerDNS/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0006-powerdns-dnsdist-dnstap-tls\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-09-08T00:00:00.00Z","datePublished":"2021-09-08T00:00:00.00Z","dateModified":"2021-09-08T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0006-powerdns-dnsdist-dnstap-tls\/","wordCount":"159","genre":[],"keywords":["dns","powerdns","dnsdist","dnstap","tls"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0006-powerdns-dnsdist-dnstap-tls\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-09-08T00:00:00.00Z","datePublished":"2021-09-08T00:00:00.00Z","dateModified":"2021-09-08T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0006-powerdns-dnsdist-dnstap-tls\/","wordCount":"170","genre":[],"keywords":["dns","powerdns","dnsdist","dnstap","tls"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -127,14 +127,24 @@ Denis MACHARD
 <div class=post-title>
 <h1>PowerDNS/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel</h1>
 </div><p>This post will detail how to wrap your outgoing dnstap stream with TLS using <strong>stunnel</strong>.</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#installation>Installation</a></li>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#systemd>Systemd</a></li>
+</ul>
+<h2 id=introduction>Introduction</h2>
 <p>This tutorial assumes you have a working PowerDNS dnsdist server installed on a Centos/AlmaLinux with dnstap enabled.
 Also we will use the same user/group that dnsdist for stunnel.
 Any feedbacks will be appreciated to improve this tutorial.</p>
-<h2 id=install-stunnel>Install stunnel</h2>
+<h2 id=installation>Installation</h2>
+<p>Install stunnel</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>yum install stunnel
 mkdir /var/run/stunnel
 chown dnsdist:dnsdist /var/run/stunnel
-</code></pre></div><h2 id=configure--stunnel>Configure stunnel</h2>
+</code></pre></div><h2 id=configuration>Configuration</h2>
+<p>Configure stunnel</p>
 <p>Replace the key &lt;your_dnstap_collector> by your <a href=https://github.com/dmachard/go-dnscollector>dnstap collector</a> address.
 This is example is done with dnstap unix socket but you can use tcp socket too.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /etc/stunnel/stunnel.conf
@@ -149,8 +159,8 @@ socket <span style=color:#f92672>=</span> r:TCP_NODELAY<span style=color:#f92672
 client<span style=color:#f92672>=</span>yes
 accept<span style=color:#f92672>=</span>/var/run/stunnel/dnstap.sock
 connect<span style=color:#f92672>=</span>&lt;your_dnstap_collector&gt;:6000
-</code></pre></div><h2 id=enable--start-stunnel>Enable & Start stunnel</h2>
-<p>Configure your systemd service. All files in /var/run/ are deleted in stop action.</p>
+</code></pre></div><h2 id=systemd>Systemd</h2>
+<p>Enable & Start stunnel. Configure your systemd service. All files in /var/run/ are deleted in stop action.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /usr/lib/systemd/system/stunnel.service
 
 <span style=color:#f92672>[</span>Unit<span style=color:#f92672>]</span>

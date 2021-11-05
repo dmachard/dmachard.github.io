@@ -22,17 +22,16 @@ PowerDNS/dnsdist: installation guide on CentOS 7
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="PowerDNS/dnsdist: installation guide on CentOS 7">
-<meta name=twitter:description content="Installation Activate EPEL repo
-yum install -y epel-release Install dependencies">
+<meta name=twitter:description content="Table of contents  Installation Configuration Start Firewalld configuration  Installation Activate EPEL repo">
 <script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"PowerDNS\/dnsdist: installation guide on CentOS 7","headline":"PowerDNS\/dnsdist: installation guide on CentOS 7","alternativeHeadline":"","description":"
       
-        Installation Activate EPEL repo\nyum install -y epel-release Install dependencies
+        Table of contents  Installation Configuration Start Firewalld configuration  Installation Activate EPEL repo
 
 
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0020-powerdns-dnsdist-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-06-21T00:00:00.00Z","datePublished":"2020-06-21T00:00:00.00Z","dateModified":"2020-06-21T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0020-powerdns-dnsdist-installation\/","wordCount":"143","genre":[],"keywords":["dns","powerdns","dnsdist"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0020-powerdns-dnsdist-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-06-21T00:00:00.00Z","datePublished":"2020-06-21T00:00:00.00Z","dateModified":"2020-06-21T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0020-powerdns-dnsdist-installation\/","wordCount":"151","genre":[],"keywords":["dns","powerdns","dnsdist"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -127,7 +126,14 @@ Denis MACHARD
 <div class=post-content>
 <div class=post-title>
 <h1>PowerDNS/dnsdist: installation guide on CentOS 7</h1>
-</div><h2 id=installation>Installation</h2>
+</div><h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#Installation>Installation</a></li>
+<li><a href=#Configuration>Configuration</a></li>
+<li><a href=#start>Start</a></li>
+<li><a href=#firewalld-configuration>Firewalld configuration</a></li>
+</ul>
+<h2 id=installation>Installation</h2>
 <p>Activate EPEL repo</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>yum install -y epel-release
 </code></pre></div><p>Install dependencies</p>

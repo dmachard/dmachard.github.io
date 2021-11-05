@@ -31,7 +31,7 @@ Authoritary PowerDNS installation on CentOS
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0018-powerdns-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-06-21T00:00:00.00Z","datePublished":"2020-06-21T00:00:00.00Z","dateModified":"2020-06-21T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0018-powerdns-installation\/","wordCount":"502","genre":[],"keywords":["dns","powerdns","authoritary"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0018-powerdns-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-06-21T00:00:00.00Z","datePublished":"2020-06-21T00:00:00.00Z","dateModified":"2020-06-21T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0018-powerdns-installation\/","wordCount":"522","genre":[],"keywords":["dns","powerdns","authoritary"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -127,6 +127,17 @@ Denis MACHARD
 <div class=post-title>
 <h1>Authoritary PowerDNS installation on CentOS</h1>
 </div><p>PowerDNS authoritary servers installation on *<em>CentOS 7</em> with <strong>sqlite</strong> database</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#Installation>Installation</a></li>
+<li><a href=#Configuration>Configuration</a></li>
+<li><a href=#start-server>Start server</a></li>
+<li><a href=#manage-configuration>Manage configuration</a></li>
+<li><a href=#cache-purge-entries>Cache purge entries</a></li>
+<li><a href=#dns-update-rfc2136>DNS-UPDATE (RFC2136)</a></li>
+<li><a href=#gslb-feature>GSLB feature</a></li>
+<li><a href=#play-with-rest-api>Play with REST API</a></li>
+</ul>
 <h2 id=installation>Installation</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum -y install epel-release
@@ -146,7 +157,7 @@ sqlite3 /var/db/pdns/pdns.db
 .quit
 
 chown -R pdns:pdns /var/db/pdns
-</code></pre></div><h2 id=authoritary-server-configuration>Authoritary server configuration</h2>
+</code></pre></div><h2 id=configuration>Configuration</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /etc/pdns/pdns.conf
 
 version-string<span style=color:#f92672>=</span>anonymous
@@ -180,10 +191,11 @@ loglevel<span style=color:#f92672>=</span><span style=color:#ae81ff>4</span>
 
 security-poll-suffix<span style=color:#f92672>=</span>
 allow-dnsupdate-from<span style=color:#f92672>=</span>
-</code></pre></div><h2 id=start-servers>Start servers</h2>
+</code></pre></div><h2 id=start-server>Start server</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>systemctl enable pdns.service
 systemctl start pdns.service
-</code></pre></div><h2 id=manage-configuration-with-pdnsutil-command>Manage configuration with pdnsutil command</h2>
+</code></pre></div><h2 id=manage-configuration>Manage configuration</h2>
+<p>Manage configuration with pdnsutil command</p>
 <ul>
 <li>Add a new zone</li>
 </ul>

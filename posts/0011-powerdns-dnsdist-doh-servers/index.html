@@ -31,7 +31,7 @@ PowerDns/dnsdist: route incoming UDP/TCP DNS queries to a pool of DoH servers
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0011-powerdns-dnsdist-doh-servers\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-20T00:00:00.00Z","datePublished":"2021-10-20T00:00:00.00Z","dateModified":"2021-10-20T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0011-powerdns-dnsdist-doh-servers\/","wordCount":"401","genre":[],"keywords":["dns","powerdns","dnsdist","doh"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0011-powerdns-dnsdist-doh-servers\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-20T00:00:00.00Z","datePublished":"2021-10-20T00:00:00.00Z","dateModified":"2021-10-20T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0011-powerdns-dnsdist-doh-servers\/","wordCount":"415","genre":[],"keywords":["dns","powerdns","dnsdist","doh"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -127,6 +127,13 @@ Denis MACHARD
 <div class=post-title>
 <h1>PowerDns/dnsdist: route incoming UDP/TCP DNS queries to a pool of DoH servers</h1>
 </div><p>The goal of this tutorial is to send all your local DNS queries (udp/tcp) to a pool of DoH public resolvers with <a href=https://dnsdist.org/>dnsdist</a> load balancer. A dns cache is also enabled to optimize the traffic. We also assume you have a docker environement to follow this tutorial.</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#prepare-configuration>Prepare configuration</a></li>
+<li><a href=#deploy-dnsdist-container>Deploy dnsdist container</a></li>
+<li><a href=#test-dns-resolution>Test DNS resolution</a></li>
+<li><a href=#jinja-configuration-template>Jinja configuration template</a></li>
+</ul>
 <h2 id=prepare-configuration>Prepare configuration</h2>
 <p>Before to start, install some useful python tools to prepare the configuration</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>pip install dnsdist_console j2cli

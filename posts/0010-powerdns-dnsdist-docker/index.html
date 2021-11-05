@@ -31,7 +31,7 @@ PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configura
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0010-powerdns-dnsdist-docker\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-01T00:00:00.00Z","datePublished":"2021-10-01T00:00:00.00Z","dateModified":"2021-10-01T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0010-powerdns-dnsdist-docker\/","wordCount":"460","genre":[],"keywords":["dns","powerdns","dnsdist","docker"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0010-powerdns-dnsdist-docker\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-01T00:00:00.00Z","datePublished":"2021-10-01T00:00:00.00Z","dateModified":"2021-10-01T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0010-powerdns-dnsdist-docker\/","wordCount":"478","genre":[],"keywords":["dns","powerdns","dnsdist","docker"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -128,6 +128,14 @@ Denis MACHARD
 <h1>PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file</h1>
 </div><p>The dnsdist product is available in the official <a href=https://hub.docker.com/u/powerdns>dockerhub registry</a> of PowerDNS.
 This post details how to execute <a href=https://dnsdist.org/>dnsdist</a> in <strong>docker container</strong>, <strong>custom configuration file</strong> and <strong>environnement variables</strong>. We assume you have a containers environnement already available.</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#custom-configuration>Custom configuration</a></li>
+<li><a href=#deploy-dnsdist-container>Deploy dnsdist container</a></li>
+<li><a href=#connect-to-the-console>Connect to the console</a></li>
+<li><a href=#test-dns-resolution>Test DNS resolution</a></li>
+<li><a href=#jinja-configurationg-template>Jinja configurationg template</a></li>
+</ul>
 <h2 id=custom-configuration>Custom configuration</h2>
 <p>Before to start, install some useful python tools to prepare the configuration</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>pip install dnsdist_console j2cli

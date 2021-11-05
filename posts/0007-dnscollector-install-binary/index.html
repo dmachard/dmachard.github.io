@@ -31,7 +31,7 @@ DnsCollector/dnstap: installation guide from binary
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0007-dnscollector-install-binary\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-09-08T00:00:00.00Z","datePublished":"2021-09-08T00:00:00.00Z","dateModified":"2021-09-08T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0007-dnscollector-install-binary\/","wordCount":"162","genre":[],"keywords":["dnstap","installation"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0007-dnscollector-install-binary\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-09-08T00:00:00.00Z","datePublished":"2021-09-08T00:00:00.00Z","dateModified":"2021-09-08T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0007-dnscollector-install-binary\/","wordCount":"173","genre":[],"keywords":["dnstap","installation"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -127,7 +127,15 @@ Denis MACHARD
 <div class=post-title>
 <h1>DnsCollector/dnstap: installation guide from binary</h1>
 </div><p>This post details how to install the <a href=https://github.com/dmachard/go-dnscollector>go-dnscollector</a> tool with systemd.</p>
-<h1 id=install-go-dnscollector-from-binary>Install go-dnscollector from binary</h1>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#installation>Installation</a></li>
+<li><a href=#certificate>Certificate</a></li>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#start>Start</a></li>
+</ul>
+<h1 id=installation>Installation</h1>
+<p>Install go-dnscollector from binary</p>
 <p>Create some folders and user</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>adduser -M dnscollector
 
@@ -138,11 +146,12 @@ mkdir /var/run/dnscollector/
 tar xvf go-dnscollector_v0.5.0_linux_amd64.tar.gz
 mv go-dnscollector /usr/bin/
 mv config.yml /etc/dnscollector/config.yml.default
-</code></pre></div><h1 id=create-a-certificate>Create a certificate</h1>
-<p>In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.</p>
+</code></pre></div><h1 id=certificate>Certificate</h1>
+<p>Create a certificate. In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cd /etc/dnscollector/
 openssl req -x509 -nodes -newkey rsa:2048 -keyout dnscollector.key -out dnscollector.crt
-</code></pre></div><h1 id=configure-go-dnscollector>Configure go-dnscollector</h1>
+</code></pre></div><h1 id=configuration>Configuration</h1>
+<p>Configure go-dnscollector</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>touch /etc/dnscollector/config.yml
 
 vim config.yml
@@ -165,8 +174,8 @@ loggers:
     max-size: <span style=color:#ae81ff>100</span>
     max-files: <span style=color:#ae81ff>10</span>
     mode: text
-</code></pre></div><h1 id=enable--start-stunnel>Enable & Start stunnel</h1>
-<p>Configure your systemd service</p>
+</code></pre></div><h1 id=start>Start</h1>
+<p>Enable & Start stunnel. Configure your systemd service</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /usr/lib/systemd/system/dnscollector.service
 
 <span style=color:#f92672>[</span>Unit<span style=color:#f92672>]</span>

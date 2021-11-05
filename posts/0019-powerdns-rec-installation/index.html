@@ -23,16 +23,16 @@ Recursor PowerDNS installation on CentOS
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Recursor PowerDNS installation on CentOS">
 <meta name=twitter:description content="PowerDNS recursor servers installation on CentOS.
-Installation wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm yum -y install epel-release yum --enablerepo=epel install luajit libsodium yum --enablerepo=epel install jq curl -o /etc/yum.">
+Table of contents  Installation Configuration Start server Cache purge entries  Installation wget https://dl.">
 <script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Recursor PowerDNS installation on CentOS","headline":"Recursor PowerDNS installation on CentOS","alternativeHeadline":"","description":"
       
-        PowerDNS recursor servers installation on CentOS.\nInstallation wget https:\/\/dl.fedoraproject.org\/pub\/epel\/epel-release-latest-7.noarch.rpm yum -y install epel-release yum --enablerepo=epel install luajit libsodium yum --enablerepo=epel install jq curl -o \/etc\/yum.
+        PowerDNS recursor servers installation on CentOS.\nTable of contents  Installation Configuration Start server Cache purge entries  Installation wget https:\/\/dl.
 
 
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0019-powerdns-rec-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-06-21T00:00:00.00Z","datePublished":"2020-06-21T00:00:00.00Z","dateModified":"2020-06-21T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0019-powerdns-rec-installation\/","wordCount":"58","genre":[],"keywords":["dns","powerdns","recursor"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0019-powerdns-rec-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-06-21T00:00:00.00Z","datePublished":"2020-06-21T00:00:00.00Z","dateModified":"2020-06-21T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0019-powerdns-rec-installation\/","wordCount":"64","genre":[],"keywords":["dns","powerdns","recursor"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -128,6 +128,13 @@ Denis MACHARD
 <div class=post-title>
 <h1>Recursor PowerDNS installation on CentOS</h1>
 </div><p>PowerDNS recursor servers installation on CentOS.</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#Installation>Installation</a></li>
+<li><a href=#Configuration>Configuration</a></li>
+<li><a href=#start-server>Start server</a></li>
+<li><a href=#cache-purge-entries>Cache purge entries</a></li>
+</ul>
 <h2 id=installation>Installation</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum -y install epel-release
@@ -136,7 +143,8 @@ yum --enablerepo<span style=color:#f92672>=</span>epel install jq
 
 curl -o /etc/yum.repos.d/powerdns-rec-43.repo https://repo.powerdns.com/repo-files/centos-rec-43.repo
 yum install pdns-recursor pdns-tools
-</code></pre></div><h2 id=recursor-server-configuration>Recursor server configuration</h2>
+</code></pre></div><h2 id=configuration>Configuration</h2>
+<p>Recursor server configuration</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/etc/pdns-recursor/recursor.conf
 
 local-address<span style=color:#f92672>=</span>0.0.0.0
@@ -144,11 +152,10 @@ local-port<span style=color:#f92672>=</span><span style=color:#ae81ff>53</span>
 security-poll-suffix<span style=color:#f92672>=</span>
 forward-zones<span style=color:#f92672>=</span>home.local<span style=color:#f92672>=</span>127.0.0.1:5300
 forward-zones-recurse<span style=color:#f92672>=</span>.<span style=color:#f92672>=</span>10.0.0.140:53
-</code></pre></div><h2 id=start-servers>Start servers</h2>
+</code></pre></div><h2 id=start-server>Start server</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>systemctl enable pdns-recursor.service
 systemctl start pdns-recursor.service
-</code></pre></div><h2 id=manage-configuration-with-rec_control-command>Manage configuration with rec_control command</h2>
-<h2 id=cache-purge-entries>Cache purge entries</h2>
+</code></pre></div><h2 id=cache-purge-entries>Cache purge entries</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>rec_control wipe-cache test1.home.local
 </code></pre></div></div>
 <div class=post-footer>
