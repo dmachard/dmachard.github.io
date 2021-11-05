@@ -8,6 +8,14 @@ tags: ['dns', 'powerdns', 'dnsdist', 'docker']
 The dnsdist product is available in the official [dockerhub registry](https://hub.docker.com/u/powerdns) of PowerDNS.
 This post details how to execute [dnsdist](https://dnsdist.org/) in **docker container**, **custom configuration file** and **environnement variables**. We assume you have a containers environnement already available.
 
+# Table of contents
+
+* [Custom configuration](#custom-configuration)
+* [Deploy dnsdist container](#deploy-dnsdist-container)
+* [Connect to the console](#connect-to-the-console)
+* [Test DNS resolution](#test-dns-resolution)
+* [Jinja configurationg template](#jinja-configurationg-template)
+
 ## Custom configuration
 
 Before to start, install some useful python tools to prepare the configuration

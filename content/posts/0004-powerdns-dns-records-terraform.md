@@ -7,6 +7,12 @@ tags: ["dns", 'powerdns', 'terraform']
 
 This post details how to manage DNS records with dynamic updates and [terraform](https://registry.terraform.io/providers/hashicorp/dns/latest/docs) with your authoritative server.
 
+# Table of contents
+
+* [Requirements](#requirements)
+* [Provider configuration](#provider-configuration)
+* [Create DNS record](#create-dns-record)
+
 ## Requirements
 
 Enable DNS update to your pdns.conf

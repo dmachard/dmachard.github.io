@@ -7,6 +7,17 @@ tags: ['dns', 'powerdns', 'authoritary']
 
 PowerDNS authoritary servers installation on **CentOS 7* with **sqlite** database
 
+# Table of contents
+
+* [Installation](#Installation)
+* [Configuration](#Configuration)
+* [Start server](#start-server)
+* [Manage configuration](#manage-configuration)
+* [Cache purge entries](#cache-purge-entries)
+* [DNS-UPDATE (RFC2136)](#dns-update-rfc2136)
+* [GSLB feature](#gslb-feature)
+* [Play with REST API](#play-with-rest-api)
+
 ## Installation
 
 ```bash
@@ -30,7 +41,7 @@ sqlite3 /var/db/pdns/pdns.db
 chown -R pdns:pdns /var/db/pdns
 ```
 
-## Authoritary server configuration
+## Configuration
 
 ```bash
 vim /etc/pdns/pdns.conf
@@ -68,14 +79,16 @@ security-poll-suffix=
 allow-dnsupdate-from=
 ```
 
-## Start servers
+## Start server
 
 ```bash
 systemctl enable pdns.service
 systemctl start pdns.service
 ```
 
-## Manage configuration with pdnsutil command
+## Manage configuration
+
+Manage configuration with pdnsutil command
 
 - Add a new zone
 

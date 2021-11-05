@@ -7,6 +7,13 @@ tags: ['dns', 'powerdns', 'dnsdist', 'doh']
 
 The goal of this tutorial is to send all your local DNS queries (udp/tcp) to a pool of DoH public resolvers with [dnsdist](https://dnsdist.org/) load balancer. A dns cache is also enabled to optimize the traffic. We also assume you have a docker environement to follow this tutorial.
 
+# Table of contents
+
+* [Prepare configuration](#prepare-configuration)
+* [Deploy dnsdist container](#deploy-dnsdist-container)
+* [Test DNS resolution](#test-dns-resolution)
+* [Jinja configuration template](#jinja-configuration-template)
+
 ## Prepare configuration
 
 Before to start, install some useful python tools to prepare the configuration

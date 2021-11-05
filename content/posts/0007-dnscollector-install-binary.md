@@ -7,7 +7,16 @@ tags: ['dnstap', 'installation']
 
 This post details how to install the [go-dnscollector](https://github.com/dmachard/go-dnscollector) tool with systemd.
 
-# Install go-dnscollector from binary
+# Table of contents
+
+* [Installation](#installation)
+* [Certificate](#certificate)
+* [Configuration](#configuration)
+* [Start](#start)
+
+# Installation
+
+Install go-dnscollector from binary
 
 Create some folders and user
 
@@ -27,16 +36,18 @@ mv go-dnscollector /usr/bin/
 mv config.yml /etc/dnscollector/config.yml.default
 ```
 
-# Create a certificate
+# Certificate
 
-In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.
+Create a certificate. In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.
 
 ```bash
 cd /etc/dnscollector/
 openssl req -x509 -nodes -newkey rsa:2048 -keyout dnscollector.key -out dnscollector.crt
 ```
 
-# Configure go-dnscollector
+# Configuration
+
+Configure go-dnscollector
 
 ```bash
 touch /etc/dnscollector/config.yml
@@ -64,9 +75,9 @@ loggers:
 ```
 
 
-# Enable & Start stunnel
+# Start
 
-Configure your systemd service
+Enable & Start stunnel. Configure your systemd service
 
 ```bash
 vim /usr/lib/systemd/system/dnscollector.service

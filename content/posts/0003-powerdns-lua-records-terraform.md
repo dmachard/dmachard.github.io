@@ -7,6 +7,13 @@ tags: ["dns", 'powerdns', 'terraform']
 
 This post details how to manage LUA records with dynamic updates and [terraform](https://registry.terraform.io/providers/dmachard/powerdns-gslb/latest/docs) with your authoritative server.
 
+# Table of contents
+
+* [Requirements](#requirements)
+* [Provider configuration](#provider-configuration)
+* [Create custom LUA record](#create-custom-lua-record)
+* [Create pre-configured record](#create-pre-configured-record)
+
 ## Requirements
 
 Enable LUA records and DNS update to your pdns.conf

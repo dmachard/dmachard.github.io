@@ -7,11 +7,22 @@ tags: ["dns", 'powerdns', 'dnsdist', 'dnstap', 'tls']
 
 This post will detail how to wrap your outgoing dnstap stream with TLS using **stunnel**.
 
+# Table of contents
+
+* [Introduction](#introduction)
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [Systemd](#systemd)
+
+## Introduction
+
 This tutorial assumes you have a working PowerDNS dnsdist server installed on a Centos/AlmaLinux with dnstap enabled. 
 Also we will use the same user/group that dnsdist for stunnel. 
 Any feedbacks will be appreciated to improve this tutorial.
 
-## Install stunnel
+## Installation
+
+Install stunnel
 
 ```bash
 yum install stunnel
@@ -19,7 +30,9 @@ mkdir /var/run/stunnel
 chown dnsdist:dnsdist /var/run/stunnel
 ```
 
-## Configure  stunnel
+## Configuration
+
+Configure  stunnel
 
 Replace the key <your_dnstap_collector> by your [dnstap collector](https://github.com/dmachard/go-dnscollector) address.
 This is example is done with dnstap unix socket but you can use tcp socket too.
@@ -39,9 +52,9 @@ accept=/var/run/stunnel/dnstap.sock
 connect=<your_dnstap_collector>:6000
 ```
 
-## Enable & Start stunnel
+## Systemd
 
-Configure your systemd service. All files in /var/run/ are deleted in stop action.
+Enable & Start stunnel. Configure your systemd service. All files in /var/run/ are deleted in stop action.
 
 ```bash
 vim /usr/lib/systemd/system/stunnel.service

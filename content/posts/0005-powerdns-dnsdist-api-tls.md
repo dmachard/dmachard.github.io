@@ -7,26 +7,36 @@ tags: ["dns", 'powerdns', 'dnsdist', 'api', 'tls']
 
 This post will detail how to wrap your DnsDIST webserver/API and dnstap stream with TLS using **stunnel**.
 
+# Table of contents
+
+* [Purpose](#purpose)
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [Systemd](#systemd)
+
+## Purpose
+
 This tutorial assumes you have a working PowerDNS dnsdist server installed on a Centos/AlmaLinux with webserver api. Also we will use the same user/group that dnsdist for stunnel. 
 Any feedbacks will be appreciated to improve this tutorial.
 
-## Install stunnel
+## Installation
+
+Install stunnel
 
 ```bash
 yum install stunnel
 mkdir /var/run/stunnel
 chown dnsdist:dnsdist /var/run/stunnel
 ```
-## Create a certificate
+## Configuration
 
-In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.
+Create a certificate. In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.
 
 ```bash
 cd /etc/stunnel/
 openssl req -x509 -nodes -newkey rsa:2048 -keyout stunnel.key -out stunnel.crt
 
 ```
-## Configure  stunnel
 
 Replace the key <your_dnstap_collector> by your [dnstap collector](https://github.com/dmachard/go-dnscollector) address.
 
@@ -52,9 +62,9 @@ cert = /etc/stunnel/stunnel.crt
 key = /etc/stunnel/stunnel.key
 ```
 
-## Enable & Start stunnel
+## Systemd
 
-Configure your systemd service
+Enable & Start stunnel and configure your systemd service
 
 ```bash
 vim /usr/lib/systemd/system/stunnel.service

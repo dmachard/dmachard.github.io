@@ -5,6 +5,13 @@ draft: false
 tags: ['dns', 'powerdns', 'dnsdist']
 ---
 
+# Table of contents
+
+* [Installation](#Installation)
+* [Configuration](#Configuration)
+* [Start](#start)
+* [Firewalld configuration](#firewalld-configuration)
+
 ## Installation
 
 Activate EPEL repo

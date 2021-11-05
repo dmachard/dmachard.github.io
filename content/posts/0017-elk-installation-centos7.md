@@ -7,6 +7,13 @@ tags: ['elk', 'logs']
 
 This post details how to install ELK (ElasticSearch, Logstash, Kibana and also Filebeat) on CentOS7.
 
+# Table of contents
+
+* [ElastiscSearch](#elasticsearch)
+* [Logstash](#logstash)
+* [Kibana](#kibana)
+* [Filebeat](#filebeat)
+
 # ElasticSearch
 
 ## Installation

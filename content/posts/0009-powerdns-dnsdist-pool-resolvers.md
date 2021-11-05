@@ -6,10 +6,17 @@ tags: ['dns', 'powerdns', 'dnsdist']
 ---
 
 In this very basic example, the goal is to send all your local DNS queries (udp/tcp) to a pool of public resolvers (without encryption).
+
+# Table of contents
+
+* [Basic configuration](#basic-configuration)
+
+# Basic configuration
+
 [dnsdist](https://dnsdist.org/) is configured to make a load balancing (round robin) between all public resolvers configured.
 A dns cache is enabled to optimize the traffic. We assume you have dnsdist 1.6 minimum installed on your machine.
 
-Configuation: /etc/dnsdist/dnsdist.conf
+Configuration: /etc/dnsdist/dnsdist.conf
 
 ```lua
 ---------------------------------------------------

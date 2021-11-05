@@ -7,6 +7,13 @@ tags: ['dns', 'powerdns', 'recursor']
 
 PowerDNS recursor servers installation on CentOS.
 
+# Table of contents
+
+* [Installation](#Installation)
+* [Configuration](#Configuration)
+* [Start server](#start-server)
+* [Cache purge entries](#cache-purge-entries)
+
 ## Installation
 
 ```bash
@@ -19,7 +26,9 @@ curl -o /etc/yum.repos.d/powerdns-rec-43.repo https://repo.powerdns.com/repo-fil
 yum install pdns-recursor pdns-tools
 ```
 
-## Recursor server configuration
+## Configuration
+
+Recursor server configuration
 
 ```bash
 /etc/pdns-recursor/recursor.conf
@@ -31,14 +40,12 @@ forward-zones=home.local=127.0.0.1:5300
 forward-zones-recurse=.=10.0.0.140:53
 ```
 
-## Start servers
+## Start server
 
 ```bash
 systemctl enable pdns-recursor.service
 systemctl start pdns-recursor.service
 ```
-
-## Manage configuration with rec_control command
 
 ## Cache purge entries 
 
