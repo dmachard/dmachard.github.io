@@ -5,7 +5,7 @@ draft: false
 tags: ['certificat', 'ssh']
 ---
 
-Ce poste détaille comment se connecter sur un système distant par certificat.
+Cet article détaille comment se connecter sur un système distant par certificat.
 
 # Génération clé
 
