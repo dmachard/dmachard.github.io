@@ -6,6 +6,31 @@ tags: ["dns", 'logs']
 ---
 
 This post details how to enable the dnstap feature in main open source dns servers.
+
+# Table of contents
+
+* [ISC bind](#isc-bind)
+	* [Build with dnstap support](#build-with-dnstap-support)
+    * [Unix socket](#unix-socket)
+    * [TCP stream](#tcp-stream)
+* [PowerDNS - pdns-recursor](#powerdns-pdns-recursor)
+    * [Unix socket](#unix-socket)
+    * [TCP stream](#tcp-stream)
+* [PowerDNS - dnsdist](#powerdns-dnsdist)
+    * [Unix socket](#unix-socket)
+    * [TCP stream](#tcp-stream)
+* [NLnetLabs - nsd](#nlnetlabs-nsd)
+    * [Build with dnstap support](#build-with-dnstap-support)
+    * [Unix socket](#unix-socket)
+* [NLnetLabs - unbound](#nlnetlabs-unbound)
+	* [Build with dnstap support](#build-with-dnstap-support)
+    * [Unix socket](#unix-socket)
+    * [TCP stream](#tcp-socket)
+    * [TLS stream](#tls-stream)
+* [CoreDNS](#coredns)
+    * [Unix socket](#unix-socket)
+    * [TCP stream](#tcp-stream)
+
 This dnstap feature has been tested with success with the following dns servers:
 - ISC - bind
 - PowerDNS - pdns-recursor
