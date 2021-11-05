@@ -218,12 +218,13 @@ Sat, May 22, 2021
 <div class="post
 .">
 <div class=post-title>
-<h3><a href=/posts/0018-powerdns-installation/>Authoritary PowerDNS installation on CentOS</a></h3>
+<h3><a href=/posts/0029-freshrss-install-guide/>Freshrss installation guide in container mode</a></h3>
 </div>
 <div class=post-content>
 <div class=p_part>
 <p>
-PowerDNS authoritary servers installation on *CentOS 7 with sqlite database
+This post details how to run freshrss container
+Create volumes docker volume create freshrss-data docker volume create freshrss-extensions Start freshrss docker run -d --restart unless-stopped --log-opt max-size=10m -v freshrss-data:/var/www/FreshRSS/data -v freshrss-extensions:/var/www/FreshRSS/extensions -e 'CRON_MIN=4,34' -e TZ=Europe/Paris -p 8080:80 --name freshrss freshrss/freshrss
 </p>
 </div>
 </div>
@@ -232,9 +233,9 @@ PowerDNS authoritary servers installation on *CentOS 7 with sqlite database
 <div class=info>
 <em class="fas fa-calendar-day"></em>
 <span class=date>
-Sun, Jun 21, 2020
+Wed, Mar 10, 2021
 </span>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/authoritary/>authoritary</a></span>
+<span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/freshrss/>freshrss</a></span>
 </div>
 </div>
 </div>

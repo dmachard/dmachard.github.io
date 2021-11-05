@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-My technical gists
+Prometheus installation guide
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,14 +17,22 @@ My technical gists
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/>
-<link rel=alternate type=application/rss+xml href=/index.xml title="My technical gists">
+<link rel=canonical href=/posts/0028-prometheus-install-guide/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="My technical gists">
-<meta name=twitter:description content="My technical gists">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"My technical gists","url":"http:\/\/example.org\/","description":"My technical gists","thumbnailUrl":"http:\/\/example.org\/","license":""}</script>
+<meta name=twitter:title content="Prometheus installation guide">
+<meta name=twitter:description content="This post details how to run prometheus container
+Configuration cat /var/prometheus/prometheus.">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Prometheus installation guide","headline":"Prometheus installation guide","alternativeHeadline":"","description":"
+      
+        This post details how to run prometheus container\nConfiguration cat \/var\/prometheus\/prometheus.
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0028-prometheus-install-guide\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-12-20T00:00:00.00Z","datePublished":"2020-12-20T00:00:00.00Z","dateModified":"2020-12-20T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0028-prometheus-install-guide\/","wordCount":"50","genre":[],"keywords":["docker","prometheus"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -38,7 +46,7 @@ My technical gists
 <ul class=nav__list id=navMenu>
 <div class=nav__links>
 <li>
-<a class=current href=/ title>Home</a>
+<a href=/ title>Home</a>
 </li>
 <li>
 <a href=/posts title>Archive</a>
@@ -116,157 +124,37 @@ Denis MACHARD
 <div class=content>
 <div class="post
 .">
-<div class="post-title post-content">
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0019-powerdns-rec-installation/>Recursor PowerDNS installation on CentOS</a></h3>
-</div>
 <div class=post-content>
-<div class=p_part>
-<p>
-PowerDNS recursor servers installation on CentOS.
-Table of contents Installation Configuration Start server Cache purge entries Installation wget https://dl.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sun, Jun 21, 2020
-</span>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/recursor/>recursor</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
 <div class=post-title>
-<h3><a href=/posts/0016-redhat-post-installation/>RedHat Family 8.x post installation</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-Post installation tunning for RedHat system family.
-Table of contents keyboard hostname configuration date, time and timezone minimal network configuration install minimal tools keyboard localectl set-keymap fr To confirm your permanent keymap settings execute the localectl command without any arguments
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sun, Jun 21, 2020
-</span>
-<span class=separator><a class=tag href=/tags/system/>system</a><a class=tag href=/tags/redhat/>redhat</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0002-ntpd-logs-elk/>Ntpd: How to get statistics usage with ELK</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-In this post, I will look at ntpd server to extract some ntp statitics.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, Jun 20, 2020
-</span>
-<span class=separator><a class=tag href=/tags/ntp/>ntp</a><a class=tag href=/tags/logs/>logs</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0001-dnstap-testing/>Dnstap: How to enable it on main dns servers</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-This post details how to enable the dnstap feature in main open source dns servers.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, May 23, 2020
-</span>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/logs/>logs</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0025-docker-container-debug-startup/>Docker: debug sur container ne démarrant pas</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-Quelques commandes pour debugger un container qui ne démarre pas
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Thu, Jul 18, 2019
-</span>
-<span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/debug/>debug</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class=pagination>
-<ul class=pagination>
-<li class=page-item>
-<a class=page-link href=/page/4/>
-<i class="fa fa-angle-left" aria-label=上一页></i>
-</a>
-</li>
-<li class=page-item>
-<a class=page-link href=/>1</a>
-</li>
-<span class="page-link dots">&mldr;</span>
-<li class=page-item>
-<a class=page-link href=/page/4/>4</a>
-</li>
-<li class=page-item>
-<span class="page-link current">5</span>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/6/>6</a>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/6/>
-<i class="fa fa-angle-right" aria-label=下一页></i>
-</a>
+<h1>Prometheus installation guide</h1>
+</div><p>This post details how to run <a href=https://prometheus.io/>prometheus</a> container</p>
+<h1 id=configuration>Configuration</h1>
+<p>cat /var/prometheus/prometheus.yml
+global:
+scrape_interval: 5s
+evaluation_interval: 5s</p>
+<p>scrape_configs:</p>
+<ul>
+<li>job_name: &lsquo;dnstap_receiver&rsquo;
+basic_auth:
+username: admin
+password: changeme
+static_configs:
+<ul>
+<li>targets: [&lsquo;10.0.0.249:8082&rsquo;]</li>
+</ul>
 </li>
 </ul>
+<h1 id=start-prometheus>Start prometheus</h1>
+<p>docker run -u root -d -p 9090:9090 -v /var/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml &ndash;restart=always &ndash;name promserver01 prom/prometheus</p>
+<h1 id=test>Test</h1>
+<p>The web interface is available at http://yourip:9090</p>
+</div>
+<div class=post-footer>
+<div class=info>
+<span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/prometheus/>prometheus</a></span>
+</div>
+</div>
 </div>
 </div>
 </div>
