@@ -7,7 +7,7 @@ tags: ['python', 'client']
 
 Le [client Python](https://github.com/dmachard/creditagricole-particuliers) est à destination des particuliers souhaitant récupérer ses opérations bancaires stockées par le Crédit Agricole.
 
-# Table of contents
+# Sommaire
 
 * [Introduction](#introduction)
 * [Installation](#installation)

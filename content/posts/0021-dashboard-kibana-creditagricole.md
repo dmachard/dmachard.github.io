@@ -7,11 +7,11 @@ tags: ['dashbaord', 'banque', 'kibana']
 
 Procédure de mise en oeuvre d'un dashboard Kibana permettant de suivre les opérations bancaires du crédit agricole.
 
-# Table of contents
+# Sommaire
 
-* [Configuration](#configuration)
+* [ConfGuideiguration](#guide)
 
-## Configuration
+## Guide
 
 Déployer le fichier de configuration `00-creditagricole.conf` logstash dans /etc/logstash/conf.d/
 
