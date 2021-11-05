@@ -31,7 +31,7 @@ Dnstap: How to enable it on main dns servers
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0001-dnstap-testing\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-05-23T00:00:00.00Z","datePublished":"2020-05-23T00:00:00.00Z","dateModified":"2020-05-23T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0001-dnstap-testing\/","wordCount":"642","genre":[],"keywords":["dns","logs"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0001-dnstap-testing\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-05-23T00:00:00.00Z","datePublished":"2020-05-23T00:00:00.00Z","dateModified":"2020-05-23T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0001-dnstap-testing\/","wordCount":"696","genre":[],"keywords":["dns","logs"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -126,8 +126,50 @@ Denis MACHARD
 <div class=post-content>
 <div class=post-title>
 <h1>Dnstap: How to enable it on main dns servers</h1>
-</div><p>This post details how to enable the dnstap feature in main open source dns servers.
-This dnstap feature has been tested with success with the following dns servers:</p>
+</div><p>This post details how to enable the dnstap feature in main open source dns servers.</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#isc-bind>ISC bind</a>
+<ul>
+<li><a href=#build-with-dnstap-support>Build with dnstap support</a></li>
+<li><a href=#unix-socket>Unix socket</a></li>
+<li><a href=#tcp-stream>TCP stream</a></li>
+</ul>
+</li>
+<li><a href=#powerdns-pdns-recursor>PowerDNS - pdns-recursor</a>
+<ul>
+<li><a href=#unix-socket>Unix socket</a></li>
+<li><a href=#tcp-stream>TCP stream</a></li>
+</ul>
+</li>
+<li><a href=#powerdns-dnsdist>PowerDNS - dnsdist</a>
+<ul>
+<li><a href=#unix-socket>Unix socket</a></li>
+<li><a href=#tcp-stream>TCP stream</a></li>
+</ul>
+</li>
+<li><a href=#nlnetlabs-nsd>NLnetLabs - nsd</a>
+<ul>
+<li><a href=#build-with-dnstap-support>Build with dnstap support</a></li>
+<li><a href=#unix-socket>Unix socket</a></li>
+</ul>
+</li>
+<li><a href=#nlnetlabs-unbound>NLnetLabs - unbound</a>
+<ul>
+<li><a href=#build-with-dnstap-support>Build with dnstap support</a></li>
+<li><a href=#unix-socket>Unix socket</a></li>
+<li><a href=#tcp-socket>TCP stream</a></li>
+<li><a href=#tls-stream>TLS stream</a></li>
+</ul>
+</li>
+<li><a href=#coredns>CoreDNS</a>
+<ul>
+<li><a href=#unix-socket>Unix socket</a></li>
+<li><a href=#tcp-stream>TCP stream</a></li>
+</ul>
+</li>
+</ul>
+<p>This dnstap feature has been tested with success with the following dns servers:</p>
 <ul>
 <li>ISC - bind</li>
 <li>PowerDNS - pdns-recursor</li>
