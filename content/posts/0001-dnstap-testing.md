@@ -9,6 +9,7 @@ This post details how to enable the dnstap feature in main open source dns serve
 
 # Table of contents
 
+* [Introduction](#introduction)
 * [ISC bind](#isc-bind)
 	* [Build with dnstap support](#build-with-dnstap-support)
     * [Unix socket](#unix-socket)
@@ -31,7 +32,9 @@ This post details how to enable the dnstap feature in main open source dns serve
     * [Unix socket](#unix-socket)
     * [TCP stream](#tcp-stream)
 
-This dnstap feature has been tested with success with the following dns servers:
+## Introduction
+
+This [dnstap](https://dnstap.info/) feature has been tested with success with the following dns servers:
 - ISC - bind
 - PowerDNS - pdns-recursor
 - PowerDNS - dnsdist

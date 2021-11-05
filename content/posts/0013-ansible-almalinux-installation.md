@@ -7,13 +7,14 @@ tags: ['ansible', 'almalinux', 'installation']
 
 This post will details how to install ansible on AlmaLinux 8.4.
 
-Tested with the following version:
+# Table of contents
 
-Ansible 4.7.0
-AlmaLinux 8.4
-Python 3.9
+* [Install Python](#install-python)
+* [Install Ansible](#install-ansible)
 
-## Install python 3.9
+## Install Python
+
+Install Python 3.9
 
 ```bash
 dnf install epel-release -y
@@ -21,6 +22,8 @@ dnf install python39 sshpass
 ```
 
 ## Install Ansible
+
+Install Ansible 4.7.0
 
 Install some python dependencies
 

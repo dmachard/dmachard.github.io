@@ -7,6 +7,14 @@ tags: ['system', 'redhat']
 
 Post installation tunning for RedHat system family.
 
+# Table of contents
+
+* [keyboard](#keyboard)
+* [hostname configuration](#hostname-configuration)
+* [date, time and timezone](#date-time-and-timezone)
+* [minimal network configuration](#minimal-network-configuration)
+* [install minimal tools](#install-minimals-tools)
+
 ## keyboard
 
 ```bash

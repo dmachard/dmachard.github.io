@@ -7,6 +7,12 @@ tags: ['vm', 'windows']
 
 This post details how to start automatically a VM on boot.
 
+# Table of contents
+
+* [Guide](#guide)
+
+## Guide
+
 Create a shortcut.
    - Open virtualbox
    - highlight the VM you want to startup

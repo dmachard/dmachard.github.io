@@ -7,6 +7,14 @@ tags: ['ansible', 'system']
 
 This tutorial explains how to make the initial setup of ansible.
 
+# Table of contents
+
+* [Initial setup](#initial-setup)
+* [Run the playbook](#run-the-playbook)
+* [Sanity check](#sanity-check)
+
+# Initial setup
+
 On this tutorial we assume you have at least python installed on all servers to manage and all your servers are available with a hostname in your dns and a root ssh access.
 
 Create a specific automation user for your ansible srever 
@@ -47,6 +55,8 @@ touch ansible.cfg
 [defaults]
 interpreter_python=/usr/bin/python3
 ```
+
+# Run the playbook
 
 Run the *playbook_deploy_ansible_user.yml* playblook to configure:
 - a specific user for ansible to run
@@ -101,6 +111,8 @@ server01    : ok=7    changed=5    unreachable=0    failed=0    skipped=0    res
 server02    : ok=7    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 server03    : ok=7    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
+
+## Sanity check
 
 Finally run the ansible command with ping module
 

@@ -8,6 +8,13 @@ tags: ['squid', 'proxy', 'docker']
 This tutorial explained how to deploy the following [Squid 5](https://github.com/dmachard/squid-docker) docker image
 and how to configure-it with a custom configuration (basic auth user).
 
+# Table of contents
+
+* [Setup user/password store](#setup-user-password-store)
+* [Deploy the Squid container](#deploy-the-squid-container)
+* [Test](#test)
+* [Basic configuration](#basic-configuration)
+
 ## Setup user/password store
 
 ```bash
