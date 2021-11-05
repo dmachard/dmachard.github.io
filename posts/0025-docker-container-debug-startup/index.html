@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-docker
+Docker: debug sur container ne démarrant pas
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,13 +17,21 @@ docker
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/tags/docker/>
-<link rel=alternate type=application/rss+xml href=/tags/docker/index.xml title="My technical gists">
+<link rel=canonical href=/posts/0025-docker-container-debug-startup/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="docker">
-<meta name=twitter:description content="My technical gists">
+<meta name=twitter:title content="Docker: debug sur container ne démarrant pas">
+<meta name=twitter:description content="Quelques commandes pour debugger un container qui ne démarre pas">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Docker: debug sur container ne démarrant pas","headline":"Docker: debug sur container ne démarrant pas","alternativeHeadline":"","description":"
+      
+        Quelques commandes pour debugger un container qui ne démarre pas
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0025-docker-container-debug-startup\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2019","dateCreated":"2019-07-18T00:00:00.00Z","datePublished":"2019-07-18T00:00:00.00Z","dateModified":"2019-07-18T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0025-docker-container-debug-startup\/","wordCount":"70","genre":[],"keywords":["docker","debug"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -113,72 +121,29 @@ Denis MACHARD
 <main>
 <div class=autopagerize_page_element>
 <div class=content>
-<div class="archive
+<div class="post
 .">
-<ul class=list-with-title>
-<div class=listing-title>2021</div>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0012-squid-run-docker/ title="Run a squid proxy in container mode with custom configuration">Run a squid proxy in container mode with custom configuration</a>
-<div class=post-time>
-<span class=date>
-Oct 20
-</span>
-</div>
-</div>
-</div>
+<div class=post-content>
+<div class=post-title>
+<h1>Docker: debug sur container ne démarrant pas</h1>
+</div><p>Quelques commandes pour debugger un container qui ne démarre pas</p>
+<h1 id=sommaire>Sommaire</h1>
+<ul>
+<li><a href=#how-to>How to</a></li>
 </ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0010-powerdns-dnsdist-docker/ title="PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file">PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file</a>
-<div class=post-time>
-<span class=date>
-Oct 1
-</span>
+<h1 id=how-to>How to</h1>
+<p><strong>Comment obtenir un shell dans un container?</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker exec -it &lt;container_id&gt; bash
+</code></pre></div><p><strong>Comment debugguer sur container qui démarre pas?</strong> en modifiant le entrypoint par sh ce qui permet ensuite d&rsquo;exécuter à la main le script ou programme posant problème.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker run -it  --name<span style=color:#f92672>=</span>&lt;moncontainer&gt; --entrypoint<span style=color:#f92672>=</span>sh &lt;container_img&gt;
+</code></pre></div><p><strong>Comment afficher les logs d&rsquo;un container?</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker logs --follow &lt;container_id&gt;
+</code></pre></div></div>
+<div class=post-footer>
+<div class=info>
+<span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/debug/>debug</a></span>
 </div>
 </div>
-</div>
-</ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0022-powerdns-build-docker/ title="Build PowerDNS server with docker ">Build PowerDNS server with docker </a>
-<div class=post-time>
-<span class=date>
-Jun 24
-</span>
-</div>
-</div>
-</div>
-</ul>
-<div class=listing-title>2019</div>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0025-docker-container-debug-startup/ title="Docker: debug sur container ne démarrant pas">Docker: debug sur container ne démarrant pas</a>
-<div class=post-time>
-<span class=date>
-Jul 18
-</span>
-</div>
-</div>
-</div>
-</ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0024-guacamole-docker-installation/ title="Guide installation de guacamole en mode container">Guide installation de guacamole en mode container</a>
-<div class=post-time>
-<span class=date>
-Jan 29
-</span>
-</div>
-</div>
-</div>
-</ul>
-</ul>
 </div>
 </div>
 </div>
