@@ -5,14 +5,32 @@ draft: false
 tags: ['docker', 'installation']
 ---
 
+This post details how to run grafana container with persistent volume
+
+# Table of contents
+
+* [Create volume](#create-volume)
+* [Start Grafana](#start-grafana)
+* [Test](#test)
+
+# Create volume
+
 Create a persistent volume for your data in /var/lib/grafana (database and plugins)
 
 ```bash
 docker volume create grafana-storage
 ```
 
-Start grafana
+# Start grafana
 
 ```bash
-docker run  -d -p 3000:3000 --name=grafana -v grafana-storage:/var/lib/grafana grafana/grafana
+docker run  -d -p 80:3000 --name=grafana -v grafana-storage:/var/lib/grafana grafana/grafana
 ```
+
+# Test
+
+http://<ip>:80/
+
+Default account:
+- login: admin
+- password: admin
