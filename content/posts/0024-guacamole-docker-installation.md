@@ -152,7 +152,8 @@ tcp6       0      0 :::8080                 :::*                    LISTEN      
 
 ## Test de connexion
 
-http://192.168.1.114:8080/guacamole/
+L'interface de guacamole est accessible avec l'adresse suivante: http://ip:8080/guacamole/
 
-login=guacadmin
-password=guacadmin
+Le compte par défaut:
+- login=guacadmin
+- password=guacadmin
