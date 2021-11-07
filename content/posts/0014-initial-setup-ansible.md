@@ -58,7 +58,7 @@ interpreter_python=/usr/bin/python3
 
 # Run the playbook
 
-Run the *playbook_deploy_ansible_user.yml* playblook to configure:
+Clone the repository https://github.com/dmachard/ansible-playbooks/tree/main/setup_ansible and run-it to configure:
 - a specific user for ansible to run
 - disable root ssh access
 - disable password authentication
