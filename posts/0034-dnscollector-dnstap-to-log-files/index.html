@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-My technical gists
+DnsCollector/dnstap: collect dnstap stream and backup-it to log files
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,14 +17,21 @@ My technical gists
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/>
-<link rel=alternate type=application/rss+xml href=/index.xml title="My technical gists">
+<link rel=canonical href=/posts/0034-dnscollector-dnstap-to-log-files/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="My technical gists">
-<meta name=twitter:description content="My technical gists">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"My technical gists","url":"http:\/\/example.org\/","description":"My technical gists","thumbnailUrl":"http:\/\/example.org\/","license":""}</script>
+<meta name=twitter:title content="DnsCollector/dnstap: collect dnstap stream and backup-it to log files">
+<meta name=twitter:description content="Example to collect dnstap messages from dns servers and backup-it in log files">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"DnsCollector\/dnstap: collect dnstap stream and backup-it to log files","headline":"DnsCollector\/dnstap: collect dnstap stream and backup-it to log files","alternativeHeadline":"","description":"
+      
+        Example to collect dnstap messages from dns servers and backup-it in log files
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0034-dnscollector-dnstap-to-log-files\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-10T00:00:00.00Z","datePublished":"2021-10-10T00:00:00.00Z","dateModified":"2021-10-10T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0034-dnscollector-dnstap-to-log-files\/","wordCount":"80","genre":[],"keywords":["dnstap","logs"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -38,7 +45,7 @@ My technical gists
 <ul class=nav__list id=navMenu>
 <div class=nav__links>
 <li>
-<a class=current href=/ title>Home</a>
+<a href=/ title>Home</a>
 </li>
 <li>
 <a href=/posts title>Archive</a>
@@ -116,155 +123,45 @@ Denis MACHARD
 <div class=content>
 <div class="post
 .">
-<div class="post-title post-content">
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0002-ntpd-logs-elk/>Ntpd: How to get statistics usage with ELK</a></h3>
-</div>
 <div class=post-content>
-<div class=p_part>
-<p>
-In this post, I will look at ntpd server to extract some ntp statitics.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, Jun 20, 2020
-</span>
-<span class=separator><a class=tag href=/tags/ntp/>ntp</a><a class=tag href=/tags/logs/>logs</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
 <div class=post-title>
-<h3><a href=/posts/0001-dnstap-testing/>Dnstap: How to enable it on main dns servers</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-This post details how to enable the dnstap feature in main open source dns servers.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, May 23, 2020
-</span>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/logs/>logs</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0025-docker-container-debug-startup/>Docker: debug sur container ne démarrant pas</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-Quelques commandes pour debugger un container qui ne démarre pas
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Thu, Jul 18, 2019
-</span>
-<span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/debug/>debug</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0031-pycnic-api-python/>Exemple de développement d'une API REST avec pycnic</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-Exemple de développement d&rsquo;une API avec la librairie Python pycnic
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sun, Mar 3, 2019
-</span>
-<span class=separator><a class=tag href=/tags/python/>python</a><a class=tag href=/tags/api/>api</a><a class=tag href=/tags/pynic/>pynic</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0030-docker-swarm-installation/>Installation d'un cluster docker swarm</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-Procédure pour installer un clusteur docker swarm sur 3 machines.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, Feb 9, 2019
-</span>
-<span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/swarm/>swarm</a><a class=tag href=/tags/ha/>ha</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class=pagination>
-<ul class=pagination>
-<li class=page-item>
-<a class=page-link href=/page/5/>
-<i class="fa fa-angle-left" aria-label=上一页></i>
-</a>
-</li>
-<li class=page-item>
-<a class=page-link href=/>1</a>
-</li>
-<span class="page-link dots">&mldr;</span>
-<li class=page-item>
-<a class=page-link href=/page/5/>5</a>
-</li>
-<li class=page-item>
-<span class="page-link current">6</span>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/7/>7</a>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/7/>
-<i class="fa fa-angle-right" aria-label=下一页></i>
-</a>
-</li>
+<h1>DnsCollector/dnstap: collect dnstap stream and backup-it to log files</h1>
+</div><p>Example to collect dnstap messages from dns servers and backup-it in log files</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#prequisites>Prequisites</a></li>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#logs>Logs</a></li>
 </ul>
+<h1 id=prequisites>Prequisites</h1>
+<p>Install the dnscollector like described in the following <a href=https://dmachard.github.io/posts/0007-dnscollector-install-binary/>guide</a>.</p>
+<h1 id=configuration>Configuration</h1>
+<p>Download the <a href=https://github.com/dmachard/go-dnscollector/blob/main/example-config/use-case-1.yml>config.yml</a> file.
+With this configuration, the collector waits incoming dnstap messages and save-it in log files in text format with rotation.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>trace</span>:
+  <span style=color:#f92672>verbose</span>: <span style=color:#66d9ef>true</span>
+
+<span style=color:#f92672>collectors</span>:
+  <span style=color:#f92672>dnstap</span>:
+    <span style=color:#f92672>enable</span>: <span style=color:#66d9ef>true</span>
+    <span style=color:#f92672>listen-ip</span>: <span style=color:#ae81ff>0.0.0.0</span>
+    <span style=color:#f92672>listen-port</span>: <span style=color:#ae81ff>6000</span>
+
+<span style=color:#f92672>loggers</span>:
+  <span style=color:#f92672>logfile</span>:
+    <span style=color:#f92672>enable</span>: <span style=color:#66d9ef>true</span>
+    <span style=color:#f92672>file-path</span>:  <span style=color:#e6db74>&#34;/var/run/dnscollector/dnstap.log&#34;</span>
+    <span style=color:#f92672>max-size</span>: <span style=color:#ae81ff>100</span>
+    <span style=color:#f92672>max-files</span>: <span style=color:#ae81ff>10</span>
+    <span style=color:#f92672>mode</span>: <span style=color:#ae81ff>text</span>
+</code></pre></div><h1 id=logs>Logs</h1>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>tail -f /var/run/dnscollector/dnstap.log
+</code></pre></div></div>
+<div class=post-footer>
+<div class=info>
+<span class=separator><a class=tag href=/tags/dnstap/>dnstap</a><a class=tag href=/tags/logs/>logs</a></span>
+</div>
+</div>
 </div>
 </div>
 </div>
