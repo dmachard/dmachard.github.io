@@ -1,5 +1,5 @@
 ---
-title: "How to generate a GPG key to sign commits with Git"
+title: "GPG: how to generate a key to sign commits with Git"
 date: 2021-11-10T00:00:00+01:00
 draft: false
 tags: ['git', 'gpg']

@@ -1,5 +1,5 @@
 ---
-title: "Add an email to an existing GPG key"
+title: "GPG: add an email to an existing key"
 date: 2021-11-10T00:00:00+01:00
 draft: false
 tags: ['gpg']
