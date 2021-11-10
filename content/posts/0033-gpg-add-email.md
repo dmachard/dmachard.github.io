@@ -53,7 +53,7 @@ ssb  rsa4096/C0.....BEA
 [ unknown] (2). John Doe (GitHub key) <123456+jdoe@users.noreply.github.com>
 ```
 
-Finnally save the changes
+Finally save the changes
 
 ```bash
 gpg> save
