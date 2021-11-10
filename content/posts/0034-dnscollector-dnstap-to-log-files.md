@@ -21,12 +21,14 @@ Install the dnscollector like described in the following [guide](https://dmachar
 
 # Overview
 
+
+With this example, the collector waits incoming dnstap messages and save-it in log files in text format with rotation.
+
 ![overview dnstap](/images/0034/use-case-1.png)
 
 # Configuration
 
 Download the [config.yml](https://github.com/dmachard/go-dnscollector/blob/main/example-config/use-case-1.yml) file. 
-With this configuration, the collector waits incoming dnstap messages and save-it in log files in text format with rotation.
 
 ```yaml
 trace:

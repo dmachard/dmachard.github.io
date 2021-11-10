@@ -22,7 +22,7 @@ Install the dnscollector like described in the following [guide](https://dmachar
 
 With this example the collector waits incoming dnstap messages sent by your dns server, then you can watch statistics and metrics on your Grafana dashboard.
 
-![prometheus dnscollector](/images/0035/overview.png)
+![prometheus dnscollector](/images/0035/use-case-2.png)
 
 
 # Configuration
