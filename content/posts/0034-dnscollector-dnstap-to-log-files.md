@@ -11,12 +11,17 @@ Example to collect dnstap messages from dns servers and backup-it in log files
 # Table of contents
 
 * [Prequisites](#prequisites)
+* [Overview](#overview)
 * [Configuration](#configuration)
 * [Logs](#logs)
 
 # Prequisites
 
 Install the dnscollector like described in the following [guide](https://dmachard.github.io/posts/0007-dnscollector-install-binary/).
+
+# Overview
+
+![overview dnstap](/images/0034/use-case-1.png)
 
 # Configuration
 
