@@ -31,7 +31,7 @@ DnsCollector/dnstap: installation guide from binary
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0007-dnscollector-install-binary\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-09-08T00:00:00.00Z","datePublished":"2021-09-08T00:00:00.00Z","dateModified":"2021-09-08T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0007-dnscollector-install-binary\/","wordCount":"173","genre":[],"keywords":["dnstap","installation"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/0007-dnscollector-install-binary\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-09-08T00:00:00.00Z","datePublished":"2021-09-08T00:00:00.00Z","dateModified":"2021-09-08T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"http://example.org/","logo":{"@type":"ImageObject","url":"http:\/\/example.org\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"http:\/\/example.org\/posts\/0007-dnscollector-install-binary\/","wordCount":"187","genre":[],"keywords":["dnstap","installation"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -141,9 +141,11 @@ Denis MACHARD
 
 mkdir /etc/dnscollector/
 mkdir /var/run/dnscollector/
-</code></pre></div><p>Download the latest release from github</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>wget https://github.com/dmachard/go-dnscollector/releases/download/v0.5.0/go-dnscollector_v0.5.0_linux_amd64.tar.gz
-tar xvf go-dnscollector_v0.5.0_linux_amd64.tar.gz
+</code></pre></div><p>Export the following variable to get the version you want to download</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>export DNSCOLLECTOR_VERSION<span style=color:#f92672>=</span>v0.10.0
+</code></pre></div><p>Download the binary</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>wget https://github.com/dmachard/go-dnscollector/releases/download/<span style=color:#66d9ef>$(</span>echo $DNSCOLLECTOR_VERSION<span style=color:#66d9ef>)</span>/go-dnscollector_<span style=color:#66d9ef>$(</span>echo $DNSCOLLECTOR_VERSION<span style=color:#66d9ef>)</span>_linux_amd64.tar.gz
+tar xvf go-dnscollector_<span style=color:#66d9ef>$(</span>echo $DNSCOLLECTOR_VERSION<span style=color:#66d9ef>)</span>_linux_amd64.tar.gz
 mv go-dnscollector /usr/bin/
 mv config.yml /etc/dnscollector/config.yml.default
 </code></pre></div><h1 id=certificate>Certificate</h1>
