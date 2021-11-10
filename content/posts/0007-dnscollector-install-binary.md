@@ -27,11 +27,17 @@ mkdir /etc/dnscollector/
 mkdir /var/run/dnscollector/
 ```
 
-Download the latest release from github 
+Export the following variable to get the version you want to download
 
 ```bash
-wget https://github.com/dmachard/go-dnscollector/releases/download/v0.5.0/go-dnscollector_v0.5.0_linux_amd64.tar.gz
-tar xvf go-dnscollector_v0.5.0_linux_amd64.tar.gz
+export DNSCOLLECTOR_VERSION=v0.10.0
+```
+
+Download the binary
+
+```bash
+wget https://github.com/dmachard/go-dnscollector/releases/download/$(echo $DNSCOLLECTOR_VERSION)/go-dnscollector_$(echo $DNSCOLLECTOR_VERSION)_linux_amd64.tar.gz
+tar xvf go-dnscollector_$(echo $DNSCOLLECTOR_VERSION)_linux_amd64.tar.gz
 mv go-dnscollector /usr/bin/
 mv config.yml /etc/dnscollector/config.yml.default
 ```
