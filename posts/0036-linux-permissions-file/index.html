@@ -31,7 +31,7 @@ How to manage Linux permissions for users, groups, and others
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0036-linux-permissions-file\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-13T00:00:00.00Z","datePublished":"2021-11-13T00:00:00.00Z","dateModified":"2021-11-13T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0036-linux-permissions-file\/","wordCount":"110","genre":[],"keywords":["linux","security"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0036-linux-permissions-file\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-13T00:00:00.00Z","datePublished":"2021-11-13T00:00:00.00Z","dateModified":"2021-11-13T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0036-linux-permissions-file\/","wordCount":"112","genre":[],"keywords":["linux","security"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -134,7 +134,8 @@ Denis MACHARD
 <li><a href=#chmod>Chmod</a></li>
 </ul>
 <h1 id=access-level>Access level</h1>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ll
+<p>Display file permission</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ls -alrt
 total <span style=color:#ae81ff>1</span>
 -rwxrwxr--. <span style=color:#ae81ff>1</span> automation automation <span style=color:#ae81ff>4</span> Nov <span style=color:#ae81ff>13</span> 10:57 helloworld.txt
 </code></pre></div><ul>
@@ -146,12 +147,12 @@ total <span style=color:#ae81ff>1</span>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ll
 total <span style=color:#ae81ff>1</span>
 -rwxrwxr--. <span style=color:#ae81ff>1</span> automation automation <span style=color:#ae81ff>4</span> Nov <span style=color:#ae81ff>13</span> 10:57 helloworld.txt
-</code></pre></div><ul>
-<li>-rwxrwxr&ndash; = [ user = u ] [ group = g ] [ others = o ]</li>
+</code></pre></div><p>[ user = u ] [ group = g ] [ others = o ]</p>
+<ul>
+<li>The user has 4+2+1=7 (full access)</li>
+<li>The group has 4+2+1=7 (full access)</li>
+<li>All others have 4 (read-only)</li>
 </ul>
-<p>The user has 4+2+1=7 (full access)
-The group has 4+2+1=7 (full access)
-All others have 4 (read-only)</p>
 <h1 id=chmod>Chmod</h1>
 <p>Use the command <strong>chmod</strong> to change permission file or directory.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ chmod <span style=color:#ae81ff>644</span> file2
