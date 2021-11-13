@@ -28,7 +28,7 @@ paginate = 5
 
 [params]
     mainSections = ["posts"]
-    description = "My technical gists"
+    description = "My technical gists - Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast."
     contentratio = 0.75
     author = "Denis MACHARD"
     profilePicture = "images/profile.png"
