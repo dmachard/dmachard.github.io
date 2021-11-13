@@ -15,8 +15,10 @@ How to manage Linux permissions for users, groups and others
 
 # Access level
 
+Display file permission
+
 ```bash
-$ ll
+$ ls -alrt
 total 1
 -rwxrwxr--. 1 automation automation 4 Nov 13 10:57 helloworld.txt
 ```
@@ -33,11 +35,11 @@ total 1
 -rwxrwxr--. 1 automation automation 4 Nov 13 10:57 helloworld.txt
 ```
 
-- -rwxrwxr-- = [ user = u ] [ group = g ] [ others = o ]
+[ user = u ] [ group = g ] [ others = o ]
 
-The user has 4+2+1=7 (full access)
-The group has 4+2+1=7 (full access)
-All others have 4  (read-only)
+- The user has 4+2+1=7 (full access)
+- The group has 4+2+1=7 (full access)
+- All others have 4  (read-only)
 
 # Chmod
 
