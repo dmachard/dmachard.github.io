@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-My technical gists
+How to manage Linux permissions for users, groups, and others
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,14 +17,21 @@ My technical gists
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/>
-<link rel=alternate type=application/rss+xml href=/index.xml title="My technical gists">
+<link rel=canonical href=/posts/0036-linux-permissions-file/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="My technical gists">
-<meta name=twitter:description content="Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"My technical gists","url":"https:\/\/dmachard.github.io\/","description":"Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.","thumbnailUrl":"https:\/\/dmachard.github.io\/","license":""}</script>
+<meta name=twitter:title content="How to manage Linux permissions for users, groups, and others">
+<meta name=twitter:description content="How to manage Linux permissions for users, groups and others">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"How to manage Linux permissions for users, groups, and others","headline":"How to manage Linux permissions for users, groups, and others","alternativeHeadline":"","description":"
+      
+        How to manage Linux permissions for users, groups and others
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0036-linux-permissions-file\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-13T00:00:00.00Z","datePublished":"2021-11-13T00:00:00.00Z","dateModified":"2021-11-13T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0036-linux-permissions-file\/","wordCount":"110","genre":[],"keywords":["linux","security"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -38,7 +45,7 @@ My technical gists
 <ul class=nav__list id=navMenu>
 <div class=nav__links>
 <li>
-<a class=current href=/ title>Home</a>
+<a href=/ title>Home</a>
 </li>
 <li>
 <a href=/posts title>Archive</a>
@@ -116,148 +123,44 @@ Denis MACHARD
 <div class=content>
 <div class="post
 .">
-<div class="post-title post-content">
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0036-linux-permissions-file/>How to manage Linux permissions for users, groups, and others</a></h3>
-</div>
 <div class=post-content>
-<div class=p_part>
-<p>
-How to manage Linux permissions for users, groups and others
-</p>
-</div>
-</div>
+<div class=post-title>
+<h1>How to manage Linux permissions for users, groups, and others</h1>
+</div><p>How to manage Linux permissions for users, groups and others</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#access-level>Access level</a></li>
+<li><a href=#identity>Identity</a></li>
+<li><a href=#chmod>Chmod</a></li>
+</ul>
+<h1 id=access-level>Access level</h1>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ll
+total <span style=color:#ae81ff>1</span>
+-rwxrwxr--. <span style=color:#ae81ff>1</span> automation automation <span style=color:#ae81ff>4</span> Nov <span style=color:#ae81ff>13</span> 10:57 helloworld.txt
+</code></pre></div><ul>
+<li>r = read = 4</li>
+<li>w = write = 2</li>
+<li>x = execute = 1</li>
+</ul>
+<h1 id=identity>Identity</h1>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ll
+total <span style=color:#ae81ff>1</span>
+-rwxrwxr--. <span style=color:#ae81ff>1</span> automation automation <span style=color:#ae81ff>4</span> Nov <span style=color:#ae81ff>13</span> 10:57 helloworld.txt
+</code></pre></div><ul>
+<li>-rwxrwxr&ndash; = [ user = u ] [ group = g ] [ others = o ]</li>
+</ul>
+<p>The user has 4+2+1=7 (full access)
+The group has 4+2+1=7 (full access)
+All others have 4 (read-only)</p>
+<h1 id=chmod>Chmod</h1>
+<p>Use the command <strong>chmod</strong> to change permission file or directory.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ chmod <span style=color:#ae81ff>644</span> file2
+</code></pre></div></div>
 <div class=post-footer>
-<div class=meta>
 <div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, Nov 13, 2021
-</span>
 <span class=separator><a class=tag href=/tags/linux/>linux</a><a class=tag href=/tags/security/>security</a></span>
 </div>
 </div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0034-dnscollector-dnstap-to-log-files/>DnsCollector/dnstap: collect dnstap stream and backup-it to log files</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-Example to collect dnstap messages from dns servers and backup-it in log files
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Wed, Nov 10, 2021
-</span>
-<span class=separator><a class=tag href=/tags/dnstap/>dnstap</a><a class=tag href=/tags/logs/>logs</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0035-dnscollector-grafana-prometheus/>DnsCollector/dnstap: collect dnstap stream and get statistics usage</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-Example to collect dnstap stream and get statistics usage
-Table of contents Prequisites Overview Configuration Dashboard Prequisites Install the dnscollector like described in the following guide.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Wed, Nov 10, 2021
-</span>
-<span class=separator><a class=tag href=/tags/dnstap/>dnstap</a><a class=tag href=/tags/logs/>logs</a><a class=tag href=/tags/prometheus/>prometheus</a><a class=tag href=/tags/grafana/>grafana</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0033-gpg-add-email/>GPG: add an email to an existing key</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-This post details how to add an email to an existing GPG key
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Wed, Nov 10, 2021
-</span>
-<span class=separator><a class=tag href=/tags/gpg/>gpg</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0032-generate-gpg-git/>GPG: how to generate a key to sign commits with Git</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-This post details how to generate a GPG key to sign commits with Git
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Wed, Nov 10, 2021
-</span>
-<span class=separator><a class=tag href=/tags/git/>git</a><a class=tag href=/tags/gpg/>gpg</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class=pagination>
-<ul class=pagination>
-<li class=page-item>
-<span class="page-link current">1</span>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/2/>2</a>
-</li>
-<span class="page-link dots">&mldr;</span>
-<li class=page-item>
-<a class=page-link href=/page/8/>8</a>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/2/>
-<i class="fa fa-angle-right" aria-label=下一页></i>
-</a>
-</li>
-</ul>
 </div>
 </div>
 </div>
