@@ -11,7 +11,7 @@ How to manage Linux permissions for users, groups and others
 
 * [Access level](#access-level)
 * [Identity](#identity)
-* [Chmod](#chmod)
+* [Chmod and Chown](#chmod-and-chown)
 
 # Access level
 
@@ -20,7 +20,7 @@ Display file permission
 ```bash
 $ ls -alrt
 total 1
--rwxrwxr--. 1 automation automation 4 Nov 13 10:57 helloworld.txt
+-rwxrwxr--. 1 ansible automation 4 Nov 13 10:57 helloworld.txt
 ```
 
 - r = read = 4
@@ -32,19 +32,25 @@ total 1
 ```bash
 $ ll
 total 1
--rwxrwxr--. 1 automation automation 4 Nov 13 10:57 helloworld.txt
+-rwxrwxr--. 1 ansible automation 4 Nov 13 10:57 helloworld.txt
 ```
 
 [ user = u ] [ group = g ] [ others = o ]
 
-- The user has 4+2+1=7 (full access)
-- The group has 4+2+1=7 (full access)
+- The user *ansible* has 4+2+1=7 (full access)
+- The group *automation* has 4+2+1=7 (full access)
 - All others have 4  (read-only)
 
-# Chmod
+# Chmod and Chown
 
 Use the command **chmod** to change permission file or directory.
 
 ```bash
-$ chmod 644 file2
+$ chmod 644 myfile
+```
+
+Use the command **chown** to change user and group appartenance.
+
+```bash
+$ chown -R user:group /mydirectory/
 ```
