@@ -28,9 +28,6 @@ export VM_OPTS=-"-net0 virtio,bridge=vmbr1"
 ```
 
 # Build
-`
-Export some variables
-
 
 Download a pre-configured image from AlmaLinux’s official repositories.
 
