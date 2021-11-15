@@ -32,7 +32,7 @@ Table of contents  Prerequisites Build  Prerequisites Connect on your proxmox se
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0039-promox-cloudinit\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-14T00:00:00.00Z","datePublished":"2021-11-14T00:00:00.00Z","dateModified":"2021-11-14T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0039-promox-cloudinit\/","wordCount":"137","genre":[],"keywords":["proxmox","almalinux","cloudinit"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0039-promox-cloudinit\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-14T00:00:00.00Z","datePublished":"2021-11-14T00:00:00.00Z","dateModified":"2021-11-14T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0039-promox-cloudinit\/","wordCount":"133","genre":[],"keywords":["proxmox","almalinux","cloudinit"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -144,8 +144,6 @@ export VM_ID<span style=color:#f92672>=</span><span style=color:#ae81ff>1000</sp
 export VM_MEM<span style=color:#f92672>=</span><span style=color:#ae81ff>1024</span>
 export VM_OPTS<span style=color:#f92672>=</span>-<span style=color:#e6db74>&#34;-net0 virtio,bridge=vmbr1&#34;</span>
 </code></pre></div><h1 id=build>Build</h1>
-<p>`
-Export some variables</p>
 <p>Download a pre-configured image from AlmaLinux’s official repositories.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>wget https://repo.almalinux.org/almalinux/8/cloud/x86_64/images/$CI_IMAGE
 </code></pre></div><p>Create empty VM</p>
