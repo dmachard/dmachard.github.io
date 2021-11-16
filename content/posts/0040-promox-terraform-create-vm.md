@@ -94,4 +94,10 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 # Cloud-init custom config
 
-An exemple is available [here](https://github.com/dmachard/terraform-samples/blob/main/proxmox/main_custom.tf) to provide a custom configuration for cloud-init.
+Add snippets to local storage
+
+```
+pvesm set local --content images,rootdir,vztmpl,backup,iso,snippets
+```
+
+An example is available [here](https://github.com/dmachard/terraform-samples/blob/main/proxmox/main_custom.tf) to provide a custom configuration for cloud-init.
