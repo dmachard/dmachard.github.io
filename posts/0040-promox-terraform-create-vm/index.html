@@ -4,7 +4,7 @@ Denis MACHARD
 |
 Proxmox: Infra as code with terraform
 </title>
-<meta charset=utf-8><meta name=generator content="Hugo 0.89.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset=utf-8><meta name=generator content="Hugo 0.89.3"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
       Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
 
@@ -31,7 +31,7 @@ Proxmox: Infra as code with terraform
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0040-promox-terraform-create-vm\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-15T00:00:00.00Z","datePublished":"2021-11-15T00:00:00.00Z","dateModified":"2021-11-15T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0040-promox-terraform-create-vm\/","wordCount":"195","genre":[],"keywords":["proxmox","almalinux","cloudinit","terraform"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0040-promox-terraform-create-vm\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-15T00:00:00.00Z","datePublished":"2021-11-15T00:00:00.00Z","dateModified":"2021-11-15T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0040-promox-terraform-create-vm\/","wordCount":"213","genre":[],"keywords":["proxmox","almalinux","cloud-init","terraform"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -132,6 +132,7 @@ Denis MACHARD
 <li><a href=#prerequisites>Prerequisites</a></li>
 <li><a href=#configure>Configure</a></li>
 <li><a href=#proxmox-as-code>Proxmox as Code</a></li>
+<li><a href=#cloud-init-custom-config>Cloud-init custom config</a></li>
 </ul>
 <h1 id=prerequisites>Prerequisites</h1>
 <ul>
@@ -189,10 +190,12 @@ proxmox_vm_qemu.machine01: Still creating... <span style=color:#f92672>[</span>1
 proxmox_vm_qemu.machine01: Creation complete after 18s <span style=color:#f92672>[</span>id<span style=color:#f92672>=</span>proxmox/qemu/106<span style=color:#f92672>]</span>
 
 Apply complete! Resources: <span style=color:#ae81ff>1</span> added, <span style=color:#ae81ff>0</span> changed, <span style=color:#ae81ff>0</span> destroyed.
-</code></pre></div></div>
+</code></pre></div><h1 id=cloud-init-custom-config>Cloud-init custom config</h1>
+<p>An exemple is available <a href=https://github.com/dmachard/terraform-samples/blob/main/proxmox/main_custom.tf>here</a> to provide a custom configuration for cloud-init.</p>
+</div>
 <div class=post-footer>
 <div class=info>
-<span class=separator><a class=tag href=/tags/proxmox/>proxmox</a><a class=tag href=/tags/almalinux/>almalinux</a><a class=tag href=/tags/cloudinit/>cloudinit</a><a class=tag href=/tags/terraform/>terraform</a></span>
+<span class=separator><a class=tag href=/tags/proxmox/>proxmox</a><a class=tag href=/tags/almalinux/>almalinux</a><a class=tag href=/tags/cloud-init/>cloud-init</a><a class=tag href=/tags/terraform/>terraform</a></span>
 </div>
 </div>
 </div>
