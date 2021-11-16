@@ -31,7 +31,7 @@ Proxmox: Infra as code with terraform
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0040-promox-terraform-create-vm\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-15T00:00:00.00Z","datePublished":"2021-11-15T00:00:00.00Z","dateModified":"2021-11-15T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0040-promox-terraform-create-vm\/","wordCount":"213","genre":[],"keywords":["proxmox","almalinux","cloud-init","terraform"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0040-promox-terraform-create-vm\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-15T00:00:00.00Z","datePublished":"2021-11-15T00:00:00.00Z","dateModified":"2021-11-15T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0040-promox-terraform-create-vm\/","wordCount":"223","genre":[],"keywords":["proxmox","almalinux","cloud-init","terraform"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -191,7 +191,9 @@ proxmox_vm_qemu.machine01: Creation complete after 18s <span style=color:#f92672
 
 Apply complete! Resources: <span style=color:#ae81ff>1</span> added, <span style=color:#ae81ff>0</span> changed, <span style=color:#ae81ff>0</span> destroyed.
 </code></pre></div><h1 id=cloud-init-custom-config>Cloud-init custom config</h1>
-<p>An exemple is available <a href=https://github.com/dmachard/terraform-samples/blob/main/proxmox/main_custom.tf>here</a> to provide a custom configuration for cloud-init.</p>
+<p>Add snippets to local storage</p>
+<pre tabindex=0><code>pvesm set local --content images,rootdir,vztmpl,backup,iso,snippets
+</code></pre><p>An example is available <a href=https://github.com/dmachard/terraform-samples/blob/main/proxmox/main_custom.tf>here</a> to provide a custom configuration for cloud-init.</p>
 </div>
 <div class=post-footer>
 <div class=info>
