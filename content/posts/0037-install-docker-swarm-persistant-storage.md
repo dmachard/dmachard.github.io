@@ -1,8 +1,8 @@
 ---
 title: "Install a Docker Swarm cluster with Persistent Storage Using GlusterFS"
-date: 2021-11-13T00:00:00+01:00
+date: 2021-11-17T00:00:00+01:00
 draft: false
-tags: ['docker', 'GlusterFS', 'installation']
+tags: ['docker', 'swarm', 'glusterfs', 'installation']
 ---
 
 Install a Docker Swarm cluster with Persistent Storage Using GlusterFS
