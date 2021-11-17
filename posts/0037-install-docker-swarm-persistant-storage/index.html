@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-installation
+Install a Docker Swarm cluster with Persistent Storage Using GlusterFS
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.3"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,13 +17,21 @@ installation
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/tags/installation/>
-<link rel=alternate type=application/rss+xml href=/tags/installation/index.xml title="My technical gists">
+<link rel=canonical href=/posts/0037-install-docker-swarm-persistant-storage/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="installation">
-<meta name=twitter:description content="Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.">
+<meta name=twitter:title content="Install a Docker Swarm cluster with Persistent Storage Using GlusterFS">
+<meta name=twitter:description content="Install a Docker Swarm cluster with Persistent Storage Using GlusterFS">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Install a Docker Swarm cluster with Persistent Storage Using GlusterFS","headline":"Install a Docker Swarm cluster with Persistent Storage Using GlusterFS","alternativeHeadline":"","description":"
+      
+        Install a Docker Swarm cluster with Persistent Storage Using GlusterFS
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0037-install-docker-swarm-persistant-storage\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-17T00:00:00.00Z","datePublished":"2021-11-17T00:00:00.00Z","dateModified":"2021-11-17T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0037-install-docker-swarm-persistant-storage\/","wordCount":"87","genre":[],"keywords":["docker","swarm","glusterfs","installation"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -113,72 +121,63 @@ Denis MACHARD
 <main>
 <div class=autopagerize_page_element>
 <div class=content>
-<div class="archive
+<div class="post
 .">
-<ul class=list-with-title>
-<div class=listing-title>2021</div>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0037-install-docker-swarm-persistant-storage/ title="Install a Docker Swarm cluster with Persistent Storage Using GlusterFS">Install a Docker Swarm cluster with Persistent Storage Using GlusterFS</a>
-<div class=post-time>
-<span class=date>
-Nov 17
-</span>
-</div>
-</div>
-</div>
+<div class=post-content>
+<div class=post-title>
+<h1>Install a Docker Swarm cluster with Persistent Storage Using GlusterFS</h1>
+</div><p>Install a Docker Swarm cluster with Persistent Storage Using GlusterFS</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#prerequisites>Prerequisites</a></li>
+<li><a href=#overview>Overview</a></li>
 </ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0013-ansible-almalinux-installation/ title="How to install Ansible 4.7 on AlmaLinux 8.4 with pip">How to install Ansible 4.7 on AlmaLinux 8.4 with pip</a>
-<div class=post-time>
-<span class=date>
-Oct 20
-</span>
-</div>
-</div>
-</div>
+<h1 id=prerequisites>Prerequisites</h1>
+<p>Your ansible inventory and hosts file should be like this:</p>
+<p>cat /etc/hosts</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.1.221	docker-manager01
+192.168.1.222	docker-worker01
+192.168.1.223	docker-worker02
+</code></pre></div><p>cat inventory.ini</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#f92672>[</span>swarm_managers<span style=color:#f92672>]</span>
+docker-manager01
+
+<span style=color:#f92672>[</span>swarm_workers<span style=color:#f92672>]</span>
+docker-worker01
+docker-worker02
+
+<span style=color:#f92672>[</span>swarm:children<span style=color:#f92672>]</span>
+swarm_managers
+swarm_workers
+
+<span style=color:#f92672>[</span>glusterfs<span style=color:#f92672>]</span>
+docker-manager01
+docker-worker01
+docker-worker02
+</code></pre></div><h1 id=overview>Overview</h1>
+<p>The cluster consists of 3 servers:</p>
+<ul>
+<li>1 manager</li>
+<li>2 workers</li>
+<li>A distributed file system</li>
 </ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0007-dnscollector-install-binary/ title="DnsCollector/dnstap: installation guide from binary">DnsCollector/dnstap: installation guide from binary</a>
-<div class=post-time>
-<span class=date>
-Sep 8
-</span>
-</div>
-</div>
-</div>
+<p><img src=/images/0037/dockerswarm_glusterfs.png alt="overview docker swarm and glusterfs"></p>
+<h1 id=installation>Installation</h1>
+<p>Run the following playbooks</p>
+<ul>
+<li>ansible-playbook <a href=https://github.com/dmachard/ansible-playbooks/tree/main/setup_docker>setup_docker/playbook.yml</a></li>
+<li>ansible-playbook <a href=https://github.com/dmachard/ansible-playbooks/tree/main/setup_dockerswarm>setup_dockerswarm/playbook.yml</a></li>
+<li>ansible-playbook <a href=https://github.com/dmachard/ansible-playbooks/tree/main/setup_glusterfs>setup_glusterfs/playbook.yml</a></li>
 </ul>
-<div class=listing-title>2019</div>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0024-guacamole-docker-installation/ title="Guide installation de guacamole en mode container">Guide installation de guacamole en mode container</a>
-<div class=post-time>
-<span class=date>
-Jan 29
-</span>
+</div>
+<div class=post-footer>
+<div class=info>
+<span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/swarm/>swarm</a><a class=tag href=/tags/glusterfs/>glusterfs</a><a class=tag href=/tags/installation/>installation</a></span>
 </div>
 </div>
-</div>
-</ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0027-grafana-installation-volume-persistent/ title="Grafana installation with persistent volume">Grafana installation with persistent volume</a>
-<div class=post-time>
-<span class=date>
-Jan 29
-</span>
-</div>
-</div>
-</div>
-</ul>
-</ul>
 </div>
 </div>
 </div>
