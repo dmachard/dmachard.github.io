@@ -60,6 +60,7 @@ The cluster consists of 3 servers:
 
 Run the following playbooks
 
+- ansible-playbook [setup_iptables/playbook.yml](https://github.com/dmachard/ansible-playbooks/tree/main/setup_iptables)
 - ansible-playbook [setup_docker/playbook.yml](https://github.com/dmachard/ansible-playbooks/tree/main/setup_docker)
 - ansible-playbook [setup_dockerswarm/playbook.yml](https://github.com/dmachard/ansible-playbooks/tree/main/setup_dockerswarm)
 - ansible-playbook [setup_glusterfs/playbook.yml](https://github.com/dmachard/ansible-playbooks/tree/main/setup_glusterfs)
