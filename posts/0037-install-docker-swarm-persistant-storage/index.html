@@ -4,7 +4,7 @@ Denis MACHARD
 |
 Install a Docker Swarm cluster with Persistent Storage Using GlusterFS
 </title>
-<meta charset=utf-8><meta name=generator content="Hugo 0.89.3"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset=utf-8><meta name=generator content="Hugo 0.89.4"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
       Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
 
@@ -31,7 +31,7 @@ Install a Docker Swarm cluster with Persistent Storage Using GlusterFS
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0037-install-docker-swarm-persistant-storage\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-17T00:00:00.00Z","datePublished":"2021-11-17T00:00:00.00Z","dateModified":"2021-11-17T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0037-install-docker-swarm-persistant-storage\/","wordCount":"87","genre":[],"keywords":["docker","swarm","glusterfs","installation"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0037-install-docker-swarm-persistant-storage\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-17T00:00:00.00Z","datePublished":"2021-11-17T00:00:00.00Z","dateModified":"2021-11-17T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0037-install-docker-swarm-persistant-storage\/","wordCount":"89","genre":[],"keywords":["docker","swarm","glusterfs","installation"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -168,6 +168,7 @@ docker-worker02
 <h1 id=installation>Installation</h1>
 <p>Run the following playbooks</p>
 <ul>
+<li>ansible-playbook <a href=https://github.com/dmachard/ansible-playbooks/tree/main/setup_iptables>setup_iptables/playbook.yml</a></li>
 <li>ansible-playbook <a href=https://github.com/dmachard/ansible-playbooks/tree/main/setup_docker>setup_docker/playbook.yml</a></li>
 <li>ansible-playbook <a href=https://github.com/dmachard/ansible-playbooks/tree/main/setup_dockerswarm>setup_dockerswarm/playbook.yml</a></li>
 <li>ansible-playbook <a href=https://github.com/dmachard/ansible-playbooks/tree/main/setup_glusterfs>setup_glusterfs/playbook.yml</a></li>
