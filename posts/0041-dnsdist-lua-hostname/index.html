@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-My technical gists
+PowerDNS/Dnsdist: custom config with LUA
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.89.4"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,14 +17,21 @@ My technical gists
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/>
-<link rel=alternate type=application/rss+xml href=/index.xml title="My technical gists">
+<link rel=canonical href=/posts/0041-dnsdist-lua-hostname/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="My technical gists">
-<meta name=twitter:description content="Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"My technical gists","url":"https:\/\/dmachard.github.io\/","description":"Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.","thumbnailUrl":"https:\/\/dmachard.github.io\/","license":""}</script>
+<meta name=twitter:title content="PowerDNS/Dnsdist: custom config with LUA">
+<meta name=twitter:description content="This post gives some examples of LUA code to modify the behavior of your dnsdist">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"PowerDNS\/Dnsdist: custom config with LUA","headline":"PowerDNS\/Dnsdist: custom config with LUA","alternativeHeadline":"","description":"
+      
+        This post gives some examples of LUA code to modify the behavior of your dnsdist
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0041-dnsdist-lua-hostname\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-21T00:00:00.00Z","datePublished":"2021-11-21T00:00:00.00Z","dateModified":"2021-11-21T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0041-dnsdist-lua-hostname\/","wordCount":"105","genre":[],"keywords":["powerdns","dnsdist","lua"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -38,7 +45,7 @@ My technical gists
 <ul class=nav__list id=navMenu>
 <div class=nav__links>
 <li>
-<a class=current href=/ title>Home</a>
+<a href=/ title>Home</a>
 </li>
 <li>
 <a href=/posts title>Archive</a>
@@ -116,148 +123,39 @@ Denis MACHARD
 <div class=content>
 <div class="post
 .">
-<div class="post-title post-content">
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0041-dnsdist-lua-hostname/>PowerDNS/Dnsdist: custom config with LUA</a></h3>
-</div>
 <div class=post-content>
-<div class=p_part>
-<p>
-This post gives some examples of LUA code to modify the behavior of your dnsdist
-</p>
-</div>
-</div>
+<div class=post-title>
+<h1>PowerDNS/Dnsdist: custom config with LUA</h1>
+</div><p>This post gives some examples of LUA code to modify the behavior of your dnsdist</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#resolve-hostname>Resolve hostname</a></li>
+<li><a href=#get-hostname>Get hostnmae</a></li>
+</ul>
+<h1 id=resolve-hostname>Resolve hostname</h1>
+<p>This exemple enable to make dns resolution at startup.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lua data-lang=lua><span style=color:#66d9ef>local</span> f <span style=color:#f92672>=</span> assert(io.popen(<span style=color:#e6db74>&#39;getent hosts &lt;YOURDNSNAME&gt; | cut -d &#34; &#34; -f 1&#39;</span>, <span style=color:#e6db74>&#39;r&#39;</span>))
+<span style=color:#66d9ef>local</span> dnscollector <span style=color:#f92672>=</span> f:read(<span style=color:#e6db74>&#39;*a&#39;</span>) <span style=color:#f92672>or</span> <span style=color:#e6db74>&#34;127.0.0.1&#34;</span>
+f:close()
+dnscollector <span style=color:#f92672>=</span> string.gsub(dnscollector, <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>$&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
+
+fstl <span style=color:#f92672>=</span> newFrameStreamTcpLogger(dnscollector<span style=color:#f92672>..</span> <span style=color:#e6db74>&#34;:6000&#34;</span>)
+</code></pre></div><h1 id=get-hostname>Get hostname</h1>
+<p>Example to get the hostname of your machine and reuse-it in your dnsdist config</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lua data-lang=lua><span style=color:#66d9ef>local</span> f <span style=color:#f92672>=</span> io.popen (<span style=color:#e6db74>&#34;/bin/hostname&#34;</span>)
+<span style=color:#66d9ef>local</span> hostname <span style=color:#f92672>=</span> f:read(<span style=color:#e6db74>&#34;*a&#34;</span>) <span style=color:#f92672>or</span> <span style=color:#e6db74>&#34;dnsdist&#34;</span>
+f:close()
+hostname <span style=color:#f92672>=</span> string.gsub(hostname, <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>$&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
+
+addAction(AllRule(), DnstapLogAction(hostname, fstl))
+addResponseAction(AllRule(), DnstapLogResponseAction(hostname, fstl))
+addCacheHitResponseAction(AllRule(), DnstapLogResponseAction(hostname, fstl))
+</code></pre></div></div>
 <div class=post-footer>
-<div class=meta>
 <div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sun, Nov 21, 2021
-</span>
 <span class=separator><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/lua/>lua</a></span>
 </div>
 </div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0037-install-docker-swarm-persistant-storage/>Install a Docker Swarm cluster with Persistent Storage Using GlusterFS</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-Install a Docker Swarm cluster with Persistent Storage Using GlusterFS
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Wed, Nov 17, 2021
-</span>
-<span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/swarm/>swarm</a><a class=tag href=/tags/glusterfs/>glusterfs</a><a class=tag href=/tags/installation/>installation</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0040-promox-terraform-create-vm/>Proxmox: Infra as code with terraform</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-This post details how to create a virtual machine with Terraform on your proxmox infrastructure.
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Mon, Nov 15, 2021
-</span>
-<span class=separator><a class=tag href=/tags/proxmox/>proxmox</a><a class=tag href=/tags/almalinux/>almalinux</a><a class=tag href=/tags/cloud-init/>cloud-init</a><a class=tag href=/tags/terraform/>terraform</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0039-promox-cloudinit/>Proxmox: building a cloud-init template with Almalinux8</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-How to build a cloud-init template with Almalinux8
-Table of contents Prerequisites Build Prerequisites Connect on your proxmox server and export the following variables
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sun, Nov 14, 2021
-</span>
-<span class=separator><a class=tag href=/tags/proxmox/>proxmox</a><a class=tag href=/tags/almalinux/>almalinux</a><a class=tag href=/tags/cloudinit/>cloudinit</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class="post
-.">
-<div class=post-title>
-<h3><a href=/posts/0038-promox-disk-passthrough/>Proxmox: Passthrough Physical Disk to Virtual Machine</a></h3>
-</div>
-<div class=post-content>
-<div class=p_part>
-<p>
-How to attach physical disk to Virtual Machine on Promox
-</p>
-</div>
-</div>
-<div class=post-footer>
-<div class=meta>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sun, Nov 14, 2021
-</span>
-<span class=separator><a class=tag href=/tags/proxmox/>proxmox</a><a class=tag href=/tags/disk/>disk</a></span>
-</div>
-</div>
-</div>
-</div>
-<div class=pagination>
-<ul class=pagination>
-<li class=page-item>
-<span class="page-link current">1</span>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/2/>2</a>
-</li>
-<span class="page-link dots">&mldr;</span>
-<li class=page-item>
-<a class=page-link href=/page/9/>9</a>
-</li>
-<li class=page-item>
-<a class=page-link href=/page/2/>
-<i class="fa fa-angle-right" aria-label=下一页></i>
-</a>
-</li>
-</ul>
 </div>
 </div>
 </div>
