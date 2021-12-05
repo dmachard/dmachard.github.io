@@ -82,4 +82,6 @@ modules:
 
 # Grafana
 
+Import the following [dashboard](https://github.com/dmachard/grafana-dashboards/blob/main/Prometheus%20Blackbox%20DNS/Prometheus%20Blackbox%20DNS%20records%20monitor.json).
+
 ![dashboard grafana](/images/0043/dashboard.png)
