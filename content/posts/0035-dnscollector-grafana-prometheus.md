@@ -58,6 +58,18 @@ loggers:
 
 The dashboard can be found [here](https://github.com/dmachard/go-dnscollector/blob/main/example-config/grafana-dashboard.json).
 
+Prometheus config
+
+```yaml
+  - job_name: 'dnscollector'
+    scrape_interval: 5s
+    basic_auth:
+      username: 'admin'
+      password: 'changeme'
+    static_configs:
+      - targets: [ dnscollector:8080 ]
+```
+
 A small overview 
 
 ![dashboard dnscollector](/images/0035/dashboard.png)
