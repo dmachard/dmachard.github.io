@@ -42,6 +42,12 @@ modules:
         - NOERROR
 ```
 
+Reload the blackbox config
+
+```
+curl -X POST http://<ip_blackbox>:9115/-/reload
+```
+
 # Prometheus
 
 ```yaml
@@ -78,6 +84,13 @@ modules:
         - www.microsoft.com:1.1.1.1
         - www.google.com:9.9.9.9
         - www.microsoft.com:9.9.9.9
+```
+
+Reload the prometheus config
+
+```
+curl -X POST http://<ip_prometheus>:9090/-/reload
+
 ```
 
 # Grafana
