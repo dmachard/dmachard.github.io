@@ -56,7 +56,7 @@ loggers:
 
 # Dashboard
 
-The dashboard can be found [here](https://github.com/dmachard/go-dnscollector/blob/main/example-config/grafana-dashboard.json).
+The dashboard can be found [here](https://github.com/dmachard/grafana-dashboards/tree/main/Go-DnsCollector).
 
 Prometheus config
 
