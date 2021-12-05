@@ -32,7 +32,7 @@ Table of contents  Blackbox Prometheus Grafana  Blackbox Configuration blackbox.
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0043-blackbox-prometheus-dns\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-12-04T00:00:00.00Z","datePublished":"2021-12-04T00:00:00.00Z","dateModified":"2021-12-04T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0043-blackbox-prometheus-dns\/","wordCount":"176","genre":[],"keywords":["prometheus","dns","blackbox","grafana"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0043-blackbox-prometheus-dns\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-12-04T00:00:00.00Z","datePublished":"2021-12-04T00:00:00.00Z","dateModified":"2021-12-04T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0043-blackbox-prometheus-dns\/","wordCount":"192","genre":[],"keywords":["prometheus","dns","blackbox","grafana"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -158,7 +158,9 @@ Denis MACHARD
       <span style=color:#f92672>query_type</span>: <span style=color:#e6db74>&#34;A&#34;</span>
       <span style=color:#f92672>valid_rcodes</span>:
         - <span style=color:#ae81ff>NOERROR</span>
-</code></pre></div><h1 id=prometheus>Prometheus</h1>
+</code></pre></div><p>Reload the blackbox config</p>
+<pre tabindex=0><code>curl -X POST http://&lt;ip_blackbox&gt;:9115/-/reload
+</code></pre><h1 id=prometheus>Prometheus</h1>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>  - <span style=color:#f92672>job_name</span>: <span style=color:#e6db74>&#39;blackbox-dns-monitor&#39;</span>
     <span style=color:#f92672>scrape_interval</span>: <span style=color:#ae81ff>5s</span>
     <span style=color:#f92672>metrics_path</span>: <span style=color:#ae81ff>/probe</span>
@@ -192,7 +194,10 @@ Denis MACHARD
         - <span style=color:#ae81ff>www.microsoft.com:1.1.1.1</span>
         - <span style=color:#ae81ff>www.google.com:9.9.9.9</span>
         - <span style=color:#ae81ff>www.microsoft.com:9.9.9.9</span>
-</code></pre></div><h1 id=grafana>Grafana</h1>
+</code></pre></div><p>Reload the prometheus config</p>
+<pre tabindex=0><code>curl -X POST http://&lt;ip_prometheus&gt;:9090/-/reload
+
+</code></pre><h1 id=grafana>Grafana</h1>
 <p>Import the following <a href=https://github.com/dmachard/grafana-dashboards/blob/main/Prometheus%20Blackbox%20DNS/Prometheus%20Blackbox%20DNS%20records%20monitor.json>dashboard</a>.</p>
 <p><img src=/images/0043/dashboard.png alt="dashboard grafana"></p>
 </div>
