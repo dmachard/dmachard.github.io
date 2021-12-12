@@ -35,12 +35,14 @@ trace:
   verbose: true
 
 collectors:
+  # collect dns messages with dnstap
   dnstap:
     enable: true
     listen-ip: 0.0.0.0
     listen-port: 6000
 
 loggers:
+  # write dns logs to text file with rotation
   logfile:
     enable: true
     file-path:  "/var/run/dnscollector/dnstap.log"
@@ -51,6 +53,10 @@ loggers:
 
 # Logs
 
+You can follow the logs like this:
+
 ```bash
 tail -f /var/run/dnscollector/dnstap.log
+2021-12-12T13:05:55.036223063Z 75ebec340c0c CLIENT_QUERY NOERROR 192.168.1.12 39200 INET UDP 49b ns1-1.akamaitech.net AAAA 0.000000
+2021-12-12T13:05:55.036244143Z 75ebec340c0c CLIENT_RESPONSE NOERROR 192.168.1.12 39200 INET UDP 115b ns1-1.akamaitech.net AAAA 0.000021
 ```
