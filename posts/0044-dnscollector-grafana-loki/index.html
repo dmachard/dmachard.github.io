@@ -2,7 +2,7 @@
 <title>
 Denis MACHARD
 |
-grafana
+DnsCollector/dnstap: collect dnstap stream and analysing logs with Loki+Grafana
 </title>
 <meta charset=utf-8><meta name=generator content="Hugo 0.90.1"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
@@ -17,13 +17,21 @@ grafana
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/tags/grafana/>
-<link rel=alternate type=application/rss+xml href=/tags/grafana/index.xml title="My technical gists">
+<link rel=canonical href=/posts/0044-dnscollector-grafana-loki/>
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="grafana">
-<meta name=twitter:description content="Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.">
+<meta name=twitter:title content="DnsCollector/dnstap: collect dnstap stream and analysing logs with Loki+Grafana">
+<meta name=twitter:description content="Example to collect dnstap stream and analysing logs with Loki+Grafana">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"DnsCollector\/dnstap: collect dnstap stream and analysing logs with Loki\u002bGrafana","headline":"DnsCollector\/dnstap: collect dnstap stream and analysing logs with Loki\u002bGrafana","alternativeHeadline":"","description":"
+      
+        Example to collect dnstap stream and analysing logs with Loki\u002bGrafana
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0044-dnscollector-grafana-loki\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-12-16T00:00:00.00Z","datePublished":"2021-12-16T00:00:00.00Z","dateModified":"2021-12-16T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0044-dnscollector-grafana-loki\/","wordCount":"103","genre":[],"keywords":["dnstap","logs","loki","grafana"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -113,47 +121,54 @@ Denis MACHARD
 <main>
 <div class=autopagerize_page_element>
 <div class=content>
-<div class="archive
+<div class="post
 .">
-<ul class=list-with-title>
-<div class=listing-title>2021</div>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0044-dnscollector-grafana-loki/ title="DnsCollector/dnstap: collect dnstap stream and analysing logs with Loki+Grafana">DnsCollector/dnstap: collect dnstap stream and analysing logs with Loki+Grafana</a>
-<div class=post-time>
-<span class=date>
-Dec 16
-</span>
-</div>
-</div>
-</div>
+<div class=post-content>
+<div class=post-title>
+<h1>DnsCollector/dnstap: collect dnstap stream and analysing logs with Loki+Grafana</h1>
+</div><p>Example to collect dnstap stream and analysing logs with Loki+Grafana</p>
+<h1 id=table-of-contents>Table of contents</h1>
+<ul>
+<li><a href=#prequisites>Prequisites</a></li>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#dashboard>Dashboard</a></li>
 </ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0043-blackbox-prometheus-dns/ title="Prometheus: monitor dns records with blackbox exporter">Prometheus: monitor dns records with blackbox exporter</a>
-<div class=post-time>
-<span class=date>
-Dec 4
-</span>
+<h1 id=prequisites>Prequisites</h1>
+<p>Install the dnscollector like described in the following <a href=https://dmachard.github.io/posts/0007-dnscollector-install-binary/>guide</a>.</p>
+<h1 id=overview>Overview</h1>
+<p>With this example the collector waits incoming dnstap messages sent by your dns server, then you can watch and analysing logs on your Grafana dashboard.</p>
+<p><img src=/images/0044/use-case-4.png alt="prometheus dnscollector"></p>
+<h1 id=configuration>Configuration</h1>
+<p>Download the <a href=https://github.com/dmachard/go-dnscollector/blob/main/example-config/use-case-4.yml>config.yml</a> file.</p>
+<pre tabindex=0><code>trace:
+  verbose: true
+
+collectors:
+  dnstap:
+    enable: true
+    listen-ip: 0.0.0.0
+    listen-port: 6000
+    tls-support: true
+    cert-file: &quot;/etc/dnscollector/dnscollector.crt&quot;
+    key-file: &quot;/etc/dnscollector/dnscollector.key&quot;
+
+loggers:
+  lokiclient:
+    enable: true
+    server-url: &quot;http://loki:3100/loki/api/v1/push&quot;
+    job-name: &quot;dnscollector&quot;
+    text-format: &quot;localtime identity qr queryip family protocol qname qtype rcode&quot;
+</code></pre><h1 id=dashboard>Dashboard</h1>
+<p>The dashboard can be found <a href=https://github.com/dmachard/grafana-dashboards/tree/main/Go-DnsCollector>here</a>.</p>
+<p>A small overview</p>
+<p><img src=/images/0044/dashboard.png alt="dashboard dnscollector"></p>
+</div>
+<div class=post-footer>
+<div class=info>
+<span class=separator><a class=tag href=/tags/dnstap/>dnstap</a><a class=tag href=/tags/logs/>logs</a><a class=tag href=/tags/loki/>loki</a><a class=tag href=/tags/grafana/>grafana</a></span>
 </div>
 </div>
-</div>
-</ul>
-<ul class=listing>
-<div class=listing-item>
-<div class=listing-post>
-<a href=/posts/0035-dnscollector-grafana-prometheus/ title="DnsCollector/dnstap: collect dnstap stream and get statistics usage">DnsCollector/dnstap: collect dnstap stream and get statistics usage</a>
-<div class=post-time>
-<span class=date>
-Nov 10
-</span>
-</div>
-</div>
-</div>
-</ul>
-</ul>
 </div>
 </div>
 </div>
