@@ -2,9 +2,9 @@
 <title>
 Denis MACHARD
 |
-PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file
+PowerDns/auth: how to run pdns-auth in a Docker Container with custom configuration file
 </title>
-<meta charset=utf-8><meta name=generator content="Hugo 0.90.1"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset=utf-8><meta name=generator content="Hugo 0.91.1"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
       Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
 
@@ -21,17 +21,17 @@ PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configura
 <script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file">
-<meta name=twitter:description content="The dnsdist product is available in the official dockerhub registry of PowerDNS.">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"PowerDns\/dnsdist: how to run dnsdist in a Docker Container with custom configuration file","headline":"PowerDns\/dnsdist: how to run dnsdist in a Docker Container with custom configuration file","alternativeHeadline":"","description":"
+<meta name=twitter:title content="PowerDns/auth: how to run pdns-auth in a Docker Container with custom configuration file">
+<meta name=twitter:description content="The pdns-auth product is available in the official dockerhub registry of PowerDNS.">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"PowerDns\/auth: how to run pdns-auth in a Docker Container with custom configuration file","headline":"PowerDns\/auth: how to run pdns-auth in a Docker Container with custom configuration file","alternativeHeadline":"","description":"
       
-        The dnsdist product is available in the official dockerhub registry of PowerDNS.
+        The pdns-auth product is available in the official dockerhub registry of PowerDNS.
 
 
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0010-powerdns-dnsdist-docker\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-10-01T00:00:00.00Z","datePublished":"2021-10-01T00:00:00.00Z","dateModified":"2021-10-01T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0010-powerdns-dnsdist-docker\/","wordCount":"478","genre":[],"keywords":["dns","powerdns","dnsdist","docker"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0010-powerdns-dnsdist-docker\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-12-22T00:00:00.00Z","datePublished":"2021-12-22T00:00:00.00Z","dateModified":"2021-12-22T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0010-powerdns-dnsdist-docker\/","wordCount":"212","genre":[],"keywords":["dns","powerdns","auth","docker"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -125,133 +125,83 @@ Denis MACHARD
 .">
 <div class=post-content>
 <div class=post-title>
-<h1>PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file</h1>
-</div><p>The dnsdist product is available in the official <a href=https://hub.docker.com/u/powerdns>dockerhub registry</a> of PowerDNS.
-This post details how to execute <a href=https://dnsdist.org/>dnsdist</a> in <strong>docker container</strong>, <strong>custom configuration file</strong> and <strong>environnement variables</strong>. We assume you have a containers environnement already available.</p>
+<h1>PowerDns/auth: how to run pdns-auth in a Docker Container with custom configuration file</h1>
+</div><p>The <code>pdns-auth</code> product is available in the official <a href=https://hub.docker.com/u/powerdns>dockerhub registry</a> of PowerDNS.
+This post details how to execute pdns-auth in <strong>docker container</strong>, <strong>custom configuration file</strong> with <strong>sqlite3</strong> database.
+We assume you have a containers environnement already available.</p>
 <h1 id=table-of-contents>Table of contents</h1>
 <ul>
-<li><a href=#custom-configuration>Custom configuration</a></li>
-<li><a href=#deploy-dnsdist-container>Deploy dnsdist container</a></li>
-<li><a href=#connect-to-the-console>Connect to the console</a></li>
-<li><a href=#test-dns-resolution>Test DNS resolution</a></li>
-<li><a href=#jinja-configurationg-template>Jinja configurationg template</a></li>
+<li><a href=#custom-config>Custom config</a></li>
+<li><a href=#deploy-container>Deploy container</a></li>
+<li><a href=#persistent-database>Persistent database</a></li>
+<li><a href=#docker-compose>Docker compose</a></li>
+<li><a href=#create-zone>Create zone</a></li>
+<li><a href=#enable-dns-update>Enable DNS Update</a></li>
 </ul>
-<h2 id=custom-configuration>Custom configuration</h2>
-<p>Before to start, install some useful python tools to prepare the configuration</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>pip install dnsdist_console j2cli
-</code></pre></div><p>Now, we will create the configuration from the jinja template <em>dnsdist.lua</em> provided below.
-To do that, you need to export some environment variables.</p>
-<p>The following variables need to be exported:</p>
-<ul>
-<li>DNSDIST_CONSOLE_KEY</li>
-<li>DNSDIST_API_KEY</li>
-<li>DNSDIST_WEB_KEY</li>
-<li>DNSDIST_RESOLVERS</li>
-</ul>
-<p>Copy/Paste and update the list of resolvers according to your needs.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>export DNSDIST_RESOLVERS<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;{&#34;resolvers&#34;: [&#34;8.8.8.8&#34;,&#34;9.9.9.9&#34;]}&#39;</span> <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>export DNSDIST_CONSOLE_KEY<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>python3 -c <span style=color:#e6db74>&#34;from dnsdist_console import Key;print(Key().generate())&#34;</span><span style=color:#66d9ef>)</span> <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>export DNSDIST_API_KEY<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>python3 -c <span style=color:#e6db74>&#34;import secrets; print(secrets.token_urlsafe(16))&#34;</span><span style=color:#66d9ef>)</span> <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>export DNSDIST_WEB_KEY<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>python3 -c <span style=color:#e6db74>&#34;import secrets; print(secrets.token_urlsafe(16))&#34;</span><span style=color:#66d9ef>)</span>
-</code></pre></div><p>Finally use the j2 command to generate the custom configuration</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>echo $DNSDIST_RESOLVERS | j2 --format<span style=color:#f92672>=</span>json dnsdist.j2 &gt; dnsdist.lua
-</code></pre></div><p>The configuration template is just provided for example, your can updated-it according to your needs.
-This config can be used to send all your local DNS queries to a pool of public resolvers.</p>
-<h2 id=deploy-dnsdist-container>Deploy dnsdist container</h2>
+<h2 id=custom-config>Custom config</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>local-address<span style=color:#f92672>=</span>0.0.0.0
+local-port<span style=color:#f92672>=</span><span style=color:#ae81ff>53</span>
+
+launch<span style=color:#f92672>=</span>gsqlite3
+gsqlite3-database<span style=color:#f92672>=</span>/var/lib/powerdns/pdns.sqlite3
+
+dnsupdate<span style=color:#f92672>=</span>yes
+enable-lua-records<span style=color:#f92672>=</span>yes
+</code></pre></div><h2 id=deploy-container>Deploy container</h2>
 <p>Deploy the dnsdist image with the custom configuration</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker run -d -p 53:53/udp -p 53:53/tcp -p 8083:8083 --restart unless-stopped --name<span style=color:#f92672>=</span>dnsdist01 <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>--volume<span style=color:#f92672>=</span>$PWD/dnsdist.lua:/etc/dnsdist/conf.d/dnsdist.conf:ro powerdns/dnsdist-16
-</code></pre></div><p>Check if the container is running properly</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash> docker ps
-CONTAINER ID   IMAGE                   COMMAND                  CREATED         STATUS         PORTS                                                                      NAMES
-8ff7d92ddd1d   powerdns/dnsdist-16     <span style=color:#e6db74>&#34;/usr/bin/tini -- /u…&#34;</span>   <span style=color:#ae81ff>2</span> seconds ago   Up <span style=color:#ae81ff>2</span> seconds   0.0.0.0:53-&gt;53/tcp, 0.0.0.0:8083-&gt;8083/tcp, 0.0.0.0:53-&gt;53/udp, 5199/tcp   dnsdist01
-</code></pre></div><h2 id=connect-to-the-console>Connect to the console</h2>
-<p>Try to connect to the console and display the running configuration</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># docker exec -it dnsdist01 dnsdist -c</span>
-
-&gt; showPools<span style=color:#f92672>()</span>
-Name                                    Cache         ServerPolicy Servers
-                                                  leastOutstanding 
-resolvers                             0/10000           roundrobin 8.8.8.8:53 8.8.8.8:53, 9.9.9.9:53 9.9.9.9:53
-
-&gt; showServers<span style=color:#f92672>()</span>
-<span style=color:#75715e>#   Name                 Address                       State     Qps    Qlim Ord Wt    Queries   Drops Drate   Lat Outstanding Pools</span>
-<span style=color:#ae81ff>0</span>   8.8.8.8:53           8.8.8.8:53                       up     0.0       <span style=color:#ae81ff>0</span>   <span style=color:#ae81ff>1</span>  <span style=color:#ae81ff>1</span>          <span style=color:#ae81ff>0</span>       <span style=color:#ae81ff>0</span>   0.0   0.0           <span style=color:#ae81ff>0</span> resolvers
-<span style=color:#ae81ff>1</span>   9.9.9.9:53           9.9.9.9:53                       up     0.0       <span style=color:#ae81ff>0</span>   <span style=color:#ae81ff>1</span>  <span style=color:#ae81ff>1</span>          <span style=color:#ae81ff>0</span>       <span style=color:#ae81ff>0</span>   0.0   0.0           <span style=color:#ae81ff>0</span> resolvers
-All      
-
-&gt; showRules<span style=color:#f92672>()</span>
-<span style=color:#75715e>#   Name                             Matches Rule                                                     Action</span>
-<span style=color:#ae81ff>0</span>                                          <span style=color:#ae81ff>0</span> All                                                      to pool resolvers
-</code></pre></div><h2 id=test-dns-resolution>Test DNS resolution</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># dig @::1 www.google.fr +tcp +short</span>
-216.58.215.35
-
-<span style=color:#75715e># dig @127.0.0.1 www.google.fr +tcp +short</span>
-216.58.215.35
-</code></pre></div><h2 id=jinja-configurationg-template>Jinja configurationg template</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lua data-lang=lua><span style=color:#75715e>---------------------------------------------------</span>
-<span style=color:#75715e>-- Administration</span>
-<span style=color:#75715e>---------------------------------------------------</span>
-
-<span style=color:#75715e>-- cli</span>
-setKey(<span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_CONSOLE_KEY<span style=color:#e6db74>&#34;) }}&#34;</span>)
-controlSocket(<span style=color:#e6db74>&#34;127.0.0.1:5199&#34;</span>)
-addConsoleACL(<span style=color:#e6db74>&#34;127.0.0.1/8, ::1/128&#34;</span>)
-
-<span style=color:#75715e>-- api</span>
-webserver(<span style=color:#e6db74>&#34;0.0.0.0:8083&#34;</span>)
-setWebserverConfig({
-  apiKey <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_API_KEY<span style=color:#e6db74>&#34;) }}&#34;</span>,
-  password <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ env(&#34;</span>DNSDIST_WEB_KEY<span style=color:#e6db74>&#34;) }}&#34;</span>,
-  acl <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;192.168.0.0/16&#34;</span>,
-})
-
-<span style=color:#75715e>---------------------------------------------------</span>
-<span style=color:#75715e>-- Dns services</span>
-<span style=color:#75715e>---------------------------------------------------</span>
-
-<span style=color:#75715e>-- udp/tcp dns listening</span>
-setLocal(<span style=color:#e6db74>&#34;0.0.0.0:53&#34;</span>, {})
-
-<span style=color:#75715e>-- dns caching</span>
-pc <span style=color:#f92672>=</span> newPacketCache(<span style=color:#ae81ff>10000</span>, {})
-
-<span style=color:#75715e>---------------------------------------------------</span>
-<span style=color:#75715e>-- Pools</span>
-<span style=color:#75715e>---------------------------------------------------</span>
-
-pool_resolv <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;resolvers&#34;</span>
-
-<span style=color:#75715e>-- members definitions</span>
-{<span style=color:#f92672>%</span> <span style=color:#66d9ef>for</span> res <span style=color:#66d9ef>in</span> resolvers <span style=color:#f92672>-%</span>}
-newServer({
-  address <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;{{ res }}&#34;</span>,
-  pool <span style=color:#f92672>=</span> pool_resolv,
-})
-
-{<span style=color:#f92672>%</span> endfor <span style=color:#f92672>-%</span>}
-
-<span style=color:#75715e>-- set the load balacing policy to use</span>
-setPoolServerPolicy(roundrobin, pool_resolv)
-
-<span style=color:#75715e>-- enable cache</span>
-getPool(pool_resolv):setCache(pc)
-
-
-<span style=color:#75715e>---------------------------------------------------</span>
-<span style=color:#75715e>-- Rules</span>
-<span style=color:#75715e>---------------------------------------------------</span>
-
-<span style=color:#75715e>-- matches all incoming traffic and send-it to the pool of resolvers</span>
-addAction(
-  AllRule(),
-  PoolAction(pool_resolv)
-)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker run -d -p 53:53/udp -p 53:53/tcp --restart unless-stopped --name<span style=color:#f92672>=</span>pdns01 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>--volume<span style=color:#f92672>=</span>$PWD/pdns.conf:/etc/powerdns/pdns.conf:z powerdns/pdns-auth-45:4.5.2
+</code></pre></div><h2 id=docker-composer>Docker composer</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>version: <span style=color:#e6db74>&#34;3&#34;</span>
+services:
+  pdns:
+    image: powerdns/pdns-auth-45:4.5.2
+    ports:
+      - mode: host
+        protocol: udp
+        published: <span style=color:#ae81ff>53</span>
+        target: <span style=color:#ae81ff>53</span>
+      - mode: host
+        protocol: tcp
+        published: <span style=color:#ae81ff>53</span>
+        target: <span style=color:#ae81ff>53</span>
+    user: <span style=color:#e6db74>&#34;1000:1000&#34;</span>
+    volumes:
+      - <span style=color:#e6db74>${</span>APP_CONFIG<span style=color:#e6db74>}</span>/pdns/pdns.conf:/etc/powerdns/pdns.conf
+      - <span style=color:#e6db74>${</span>PDNS_STORAGE<span style=color:#e6db74>}</span>/run:/var/run/pdns
+      - <span style=color:#e6db74>${</span>PDNS_STORAGE<span style=color:#e6db74>}</span>/db:/var/lib/powerdns
+</code></pre></div><h2 id=persistent-database>Persistent database</h2>
+<p>Download database schema for sqlite3</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>wget https://raw.githubusercontent.com/PowerDNS/pdns/rel/auth-4.5.x/modules/gsqlite3backend/schema.sqlite3.sql
+</code></pre></div><p>Create the database</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sqlite3 pdns.sqlite3 &lt; schema.sqlite3.sql
+</code></pre></div><h2 id=create-zone>Create zone</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>pdnsutil create-zone &lt;dnszone&gt; ns1.&lt;dnszone&gt;
+pdnsutil add-record &lt;dnszone&gt; ns1 A <span style=color:#ae81ff>3600</span> 192.168.1.221
+</code></pre></div><h2 id=enable-dns-update>Enable DNS Update</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>pdnsutil generate-tsig-key tsigkey hmac-sha256
+pdnsutil set-meta &lt;dnszone&gt; TSIG-ALLOW-DNSUPDATE tsigkey
+pdnsutil set-meta &lt;dnszone&gt; TSIG-ALLOW-AXFR tsigkey
+pdnsutil set-meta &lt;dnszone&gt; ALLOW-DNSUPDATE-FROM 0.0.0.0/0
+</code></pre></div><p>Test with nsupdate</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>touch dnsupdate_add.txt
+server &lt;dns_ip_server&gt;
+zone &lt;dnszone&gt;
+update add dnsupdate.&lt;dnszone&gt;. <span style=color:#ae81ff>3600</span> A 10.10.10.10
+show
+send
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>touch dnsupdate_del.txt
+server &lt;dns_ip_server&gt;
+zone &lt;dnszone&gt;
+update del dnsupdate.&lt;dnszone&gt;. <span style=color:#ae81ff>3600</span> A 10.10.10.10
+show
+send
+</code></pre></div><p>Create record</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nsupdate -p <span style=color:#ae81ff>53</span> -v -y hmac-sha256:tsigkey:$TSIGKEY -v dnsupdate_add.txt
 </code></pre></div></div>
 <div class=post-footer>
 <div class=info>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/docker/>docker</a></span>
+<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/auth/>auth</a><a class=tag href=/tags/docker/>docker</a></span>
 </div>
 </div>
 </div>
