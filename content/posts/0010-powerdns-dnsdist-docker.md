@@ -1,165 +1,120 @@
 ---
-title: "PowerDns/dnsdist: how to run dnsdist in a Docker Container with custom configuration file"
-date: 2021-10-01T00:00:00+01:00
+title: "PowerDns/auth: how to run pdns-auth in a Docker Container with custom configuration file"
+date: 2021-12-22T00:00:00+01:00
 draft: false
-tags: ['dns', 'powerdns', 'dnsdist', 'docker']
+tags: ['dns', 'powerdns', 'auth', 'docker']
 ---
 
-The dnsdist product is available in the official [dockerhub registry](https://hub.docker.com/u/powerdns) of PowerDNS.
-This post details how to execute [dnsdist](https://dnsdist.org/) in **docker container**, **custom configuration file** and **environnement variables**. We assume you have a containers environnement already available.
+The `pdns-auth` product is available in the official [dockerhub registry](https://hub.docker.com/u/powerdns) of PowerDNS.
+This post details how to execute pdns-auth in **docker container**, **custom configuration file** with **sqlite3** database. 
+We assume you have a containers environnement already available.
 
 # Table of contents
 
-* [Custom configuration](#custom-configuration)
-* [Deploy dnsdist container](#deploy-dnsdist-container)
-* [Connect to the console](#connect-to-the-console)
-* [Test DNS resolution](#test-dns-resolution)
-* [Jinja configurationg template](#jinja-configurationg-template)
+* [Custom config](#custom-config)
+* [Deploy container](#deploy-container)
+* [Persistent database](#persistent-database)
+* [Docker compose](#docker-compose)
+* [Create zone](#create-zone)
+* [Enable DNS Update](#enable-dns-update)
 
-## Custom configuration
-
-Before to start, install some useful python tools to prepare the configuration
-
-```bash
-pip install dnsdist_console j2cli
-```
-
-Now, we will create the configuration from the jinja template *dnsdist.lua* provided below.
-To do that, you need to export some environment variables.
-
-The following variables need to be exported:
-- DNSDIST_CONSOLE_KEY
-- DNSDIST_API_KEY
-- DNSDIST_WEB_KEY
-- DNSDIST_RESOLVERS
-
-Copy/Paste and update the list of resolvers according to your needs.
+## Custom config
 
 ```bash
-export DNSDIST_RESOLVERS='{"resolvers": ["8.8.8.8","9.9.9.9"]}' \
-export DNSDIST_CONSOLE_KEY=$(python3 -c "from dnsdist_console import Key;print(Key().generate())") \
-export DNSDIST_API_KEY=$(python3 -c "import secrets; print(secrets.token_urlsafe(16))") \
-export DNSDIST_WEB_KEY=$(python3 -c "import secrets; print(secrets.token_urlsafe(16))")
+local-address=0.0.0.0
+local-port=53
+
+launch=gsqlite3
+gsqlite3-database=/var/lib/powerdns/pdns.sqlite3
+
+dnsupdate=yes
+enable-lua-records=yes
 ```
 
-Finally use the j2 command to generate the custom configuration
-
-```bash
-echo $DNSDIST_RESOLVERS | j2 --format=json dnsdist.j2 > dnsdist.lua
-```
-
-The configuration template is just provided for example, your can updated-it according to your needs.
-This config can be used to send all your local DNS queries to a pool of public resolvers.
-
-## Deploy dnsdist container
+## Deploy container
 
 Deploy the dnsdist image with the custom configuration
 
 ```bash
-docker run -d -p 53:53/udp -p 53:53/tcp -p 8083:8083 --restart unless-stopped --name=dnsdist01 \
---volume=$PWD/dnsdist.lua:/etc/dnsdist/conf.d/dnsdist.conf:ro powerdns/dnsdist-16
+docker run -d -p 53:53/udp -p 53:53/tcp --restart unless-stopped --name=pdns01 \
+--volume=$PWD/pdns.conf:/etc/powerdns/pdns.conf:z powerdns/pdns-auth-45:4.5.2
 ```
 
-Check if the container is running properly
+## Docker composer
 
 ```bash
- docker ps
-CONTAINER ID   IMAGE                   COMMAND                  CREATED         STATUS         PORTS                                                                      NAMES
-8ff7d92ddd1d   powerdns/dnsdist-16     "/usr/bin/tini -- /u…"   2 seconds ago   Up 2 seconds   0.0.0.0:53->53/tcp, 0.0.0.0:8083->8083/tcp, 0.0.0.0:53->53/udp, 5199/tcp   dnsdist01
+version: "3"
+services:
+  pdns:
+    image: powerdns/pdns-auth-45:4.5.2
+    ports:
+      - mode: host
+        protocol: udp
+        published: 53
+        target: 53
+      - mode: host
+        protocol: tcp
+        published: 53
+        target: 53
+    user: "1000:1000"
+    volumes:
+      - ${APP_CONFIG}/pdns/pdns.conf:/etc/powerdns/pdns.conf
+      - ${PDNS_STORAGE}/run:/var/run/pdns
+      - ${PDNS_STORAGE}/db:/var/lib/powerdns
 ```
 
-## Connect to the console
+## Persistent database 
 
-Try to connect to the console and display the running configuration
+Download database schema for sqlite3
 
 ```bash
-# docker exec -it dnsdist01 dnsdist -c
-
-> showPools()
-Name                                    Cache         ServerPolicy Servers
-                                                  leastOutstanding 
-resolvers                             0/10000           roundrobin 8.8.8.8:53 8.8.8.8:53, 9.9.9.9:53 9.9.9.9:53
-
-> showServers()
-#   Name                 Address                       State     Qps    Qlim Ord Wt    Queries   Drops Drate   Lat Outstanding Pools
-0   8.8.8.8:53           8.8.8.8:53                       up     0.0       0   1  1          0       0   0.0   0.0           0 resolvers
-1   9.9.9.9:53           9.9.9.9:53                       up     0.0       0   1  1          0       0   0.0   0.0           0 resolvers
-All      
-
-> showRules()
-#   Name                             Matches Rule                                                     Action
-0                                          0 All                                                      to pool resolvers
+wget https://raw.githubusercontent.com/PowerDNS/pdns/rel/auth-4.5.x/modules/gsqlite3backend/schema.sqlite3.sql
 ```
 
-## Test DNS resolution
+Create the database
 
 ```bash
-# dig @::1 www.google.fr +tcp +short
-216.58.215.35
-
-# dig @127.0.0.1 www.google.fr +tcp +short
-216.58.215.35
+sqlite3 pdns.sqlite3 < schema.sqlite3.sql
 ```
 
-## Jinja configurationg template
+## Create zone 
 
-```lua
----------------------------------------------------
--- Administration
----------------------------------------------------
+```bash
+pdnsutil create-zone <dnszone> ns1.<dnszone>
+pdnsutil add-record <dnszone> ns1 A 3600 192.168.1.221
+```
 
--- cli
-setKey("{{ env("DNSDIST_CONSOLE_KEY") }}")
-controlSocket("127.0.0.1:5199")
-addConsoleACL("127.0.0.1/8, ::1/128")
+## Enable DNS Update
 
--- api
-webserver("0.0.0.0:8083")
-setWebserverConfig({
-  apiKey = "{{ env("DNSDIST_API_KEY") }}",
-  password = "{{ env("DNSDIST_WEB_KEY") }}",
-  acl = "192.168.0.0/16",
-})
+```bash
+pdnsutil generate-tsig-key tsigkey hmac-sha256
+pdnsutil set-meta <dnszone> TSIG-ALLOW-DNSUPDATE tsigkey
+pdnsutil set-meta <dnszone> TSIG-ALLOW-AXFR tsigkey
+pdnsutil set-meta <dnszone> ALLOW-DNSUPDATE-FROM 0.0.0.0/0
+```
 
----------------------------------------------------
--- Dns services
----------------------------------------------------
+Test with nsupdate
 
--- udp/tcp dns listening
-setLocal("0.0.0.0:53", {})
+```bash
+touch dnsupdate_add.txt
+server <dns_ip_server>
+zone <dnszone>
+update add dnsupdate.<dnszone>. 3600 A 10.10.10.10
+show
+send
+```
+ 
+```bash
+touch dnsupdate_del.txt
+server <dns_ip_server>
+zone <dnszone>
+update del dnsupdate.<dnszone>. 3600 A 10.10.10.10
+show
+send
+```
 
--- dns caching
-pc = newPacketCache(10000, {})
+Create record
 
----------------------------------------------------
--- Pools
----------------------------------------------------
-
-pool_resolv = "resolvers"
-
--- members definitions
-{% for res in resolvers -%}
-newServer({
-  address = "{{ res }}",
-  pool = pool_resolv,
-})
-
-{% endfor -%}
-
--- set the load balacing policy to use
-setPoolServerPolicy(roundrobin, pool_resolv)
-
--- enable cache
-getPool(pool_resolv):setCache(pc)
-
-
----------------------------------------------------
--- Rules
----------------------------------------------------
-
--- matches all incoming traffic and send-it to the pool of resolvers
-addAction(
-  AllRule(),
-  PoolAction(pool_resolv)
-)
+```bash
+nsupdate -p 53 -v -y hmac-sha256:tsigkey:$TSIGKEY -v dnsupdate_add.txt
 ```
