@@ -4,7 +4,7 @@ Denis MACHARD
 |
 DnsCollector/dnstap: collect dnstap stream and follow dns answers with JSON format
 </title>
-<meta charset=utf-8><meta name=generator content="Hugo 0.91.1"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset=utf-8><meta name=generator content="Hugo 0.91.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="
       Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
 
@@ -31,7 +31,7 @@ DnsCollector/dnstap: collect dnstap stream and follow dns answers with JSON form
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0042-dnscollector-dnstap-json-answers\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-27T00:00:00.00Z","datePublished":"2021-11-27T00:00:00.00Z","dateModified":"2021-11-27T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0042-dnscollector-dnstap-json-answers\/","wordCount":"130","genre":[],"keywords":["dnstap","logs"]}</script>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0042-dnscollector-dnstap-json-answers\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-27T00:00:00.00Z","datePublished":"2021-11-27T00:00:00.00Z","dateModified":"2021-11-27T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0042-dnscollector-dnstap-json-answers\/","wordCount":"213","genre":[],"keywords":["dnstap","logs"]}</script>
 </head>
 <body>
 <header><div class="page-top
@@ -142,7 +142,7 @@ JSON ouput can be used to get dns answers.</p>
 <h1 id=configuration>Configuration</h1>
 <p>Download the <a href=https://github.com/dmachard/go-dnscollector/blob/main/example-config/use-case-3.yml>config.yml</a> file.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>trace</span>:
-  <span style=color:#f92672>verbose</span>: <span style=color:#66d9ef>true</span>
+  <span style=color:#f92672>verbose</span>: <span style=color:#66d9ef>false</span>
 
 <span style=color:#f92672>collectors</span>:
   <span style=color:#f92672>dnstap</span>:
@@ -150,36 +150,84 @@ JSON ouput can be used to get dns answers.</p>
     <span style=color:#f92672>listen-ip</span>: <span style=color:#ae81ff>0.0.0.0</span>
     <span style=color:#f92672>listen-port</span>: <span style=color:#ae81ff>6000</span>
 
+<span style=color:#f92672>subprocessors</span>:
+  <span style=color:#f92672>filtering</span>:
+    <span style=color:#f92672>log-replies</span>: <span style=color:#66d9ef>true</span>
+
 <span style=color:#f92672>loggers</span>:
   <span style=color:#f92672>stdout</span>:
     <span style=color:#f92672>enable</span>: <span style=color:#66d9ef>true</span>
     <span style=color:#f92672>mode</span>: <span style=color:#ae81ff>json</span>
 </code></pre></div><h1 id=logs>Logs</h1>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>tail -f /var/run/dnscollector/dnstap.log
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>tail -f /var/run/dnscollector/dnstap.log | jq
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
-  <span style=color:#f92672>&#34;operation&#34;</span>: <span style=color:#e6db74>&#34;CLIENT_RESPONSE&#34;</span>,
-  <span style=color:#f92672>&#34;identity&#34;</span>: <span style=color:#e6db74>&#34;040d0d9c68d8&#34;</span>,
-  <span style=color:#f92672>&#34;family&#34;</span>: <span style=color:#e6db74>&#34;INET&#34;</span>,
-  <span style=color:#f92672>&#34;protocol&#34;</span>: <span style=color:#e6db74>&#34;UDP&#34;</span>,
-  <span style=color:#f92672>&#34;query-ip&#34;</span>: <span style=color:#e6db74>&#34;192.168.1.12&#34;</span>,
-  <span style=color:#f92672>&#34;query-port&#34;</span>: <span style=color:#e6db74>&#34;55441&#34;</span>,
-  <span style=color:#f92672>&#34;response-ip&#34;</span>: <span style=color:#e6db74>&#34;172.18.0.4&#34;</span>,
-  <span style=color:#f92672>&#34;response-port&#34;</span>: <span style=color:#e6db74>&#34;53&#34;</span>,
-  <span style=color:#f92672>&#34;length&#34;</span>: <span style=color:#ae81ff>82</span>,
-  <span style=color:#f92672>&#34;rcode&#34;</span>: <span style=color:#e6db74>&#34;NOERROR&#34;</span>,
-  <span style=color:#f92672>&#34;qname&#34;</span>: <span style=color:#e6db74>&#34;global.vortex.data.trafficmanager.net&#34;</span>,
-  <span style=color:#f92672>&#34;qtype&#34;</span>: <span style=color:#e6db74>&#34;A&#34;</span>,
-  <span style=color:#f92672>&#34;latency&#34;</span>: <span style=color:#e6db74>&#34;0.022077&#34;</span>,
-  <span style=color:#f92672>&#34;timestamp-rfc3339&#34;</span>: <span style=color:#e6db74>&#34;2021-11-27T14:46:05.49368055Z&#34;</span>,
-  <span style=color:#f92672>&#34;answers&#34;</span>: [
-    {
-      <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;global.vortex.data.trafficmanager.net&#34;</span>,
-      <span style=color:#f92672>&#34;rdatatype&#34;</span>: <span style=color:#e6db74>&#34;A&#34;</span>,
-      <span style=color:#f92672>&#34;ttl&#34;</span>: <span style=color:#ae81ff>60</span>,
-      <span style=color:#f92672>&#34;rdata&#34;</span>: <span style=color:#e6db74>&#34;40.77.226.250&#34;</span>
-    }
-  ],
-  <span style=color:#f92672>&#34;country-isocode&#34;</span>: <span style=color:#e6db74>&#34;-&#34;</span>
+  <span style=color:#f92672>&#34;network&#34;</span>: {
+    <span style=color:#f92672>&#34;family&#34;</span>: <span style=color:#e6db74>&#34;INET&#34;</span>,
+    <span style=color:#f92672>&#34;protocol&#34;</span>: <span style=color:#e6db74>&#34;UDP&#34;</span>,
+    <span style=color:#f92672>&#34;query-ip&#34;</span>: <span style=color:#e6db74>&#34;192.168.1.200&#34;</span>,
+    <span style=color:#f92672>&#34;query-port&#34;</span>: <span style=color:#e6db74>&#34;53114&#34;</span>,
+    <span style=color:#f92672>&#34;response-ip&#34;</span>: <span style=color:#e6db74>&#34;172.18.0.8&#34;</span>,
+    <span style=color:#f92672>&#34;response-port&#34;</span>: <span style=color:#e6db74>&#34;53&#34;</span>,
+    <span style=color:#f92672>&#34;as-number&#34;</span>: <span style=color:#e6db74>&#34;-&#34;</span>,
+    <span style=color:#f92672>&#34;as-owner&#34;</span>: <span style=color:#e6db74>&#34;-&#34;</span>
+  },
+  <span style=color:#f92672>&#34;dns&#34;</span>: {
+    <span style=color:#f92672>&#34;length&#34;</span>: <span style=color:#ae81ff>178</span>,
+    <span style=color:#f92672>&#34;opcode&#34;</span>: <span style=color:#ae81ff>0</span>,
+    <span style=color:#f92672>&#34;rcode&#34;</span>: <span style=color:#e6db74>&#34;NOERROR&#34;</span>,
+    <span style=color:#f92672>&#34;qname&#34;</span>: <span style=color:#e6db74>&#34;v10.events.data.microsoft.com&#34;</span>,
+    <span style=color:#f92672>&#34;qtype&#34;</span>: <span style=color:#e6db74>&#34;A&#34;</span>,
+    <span style=color:#f92672>&#34;flags&#34;</span>: {
+      <span style=color:#f92672>&#34;qr&#34;</span>: <span style=color:#66d9ef>true</span>,
+      <span style=color:#f92672>&#34;tc&#34;</span>: <span style=color:#66d9ef>false</span>,
+      <span style=color:#f92672>&#34;aa&#34;</span>: <span style=color:#66d9ef>false</span>,
+      <span style=color:#f92672>&#34;ra&#34;</span>: <span style=color:#66d9ef>true</span>,
+      <span style=color:#f92672>&#34;ad&#34;</span>: <span style=color:#66d9ef>false</span>
+    },
+    <span style=color:#f92672>&#34;resource-records&#34;</span>: {
+      <span style=color:#f92672>&#34;an&#34;</span>: [
+        {
+          <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;v10.events.data.microsoft.com&#34;</span>,
+          <span style=color:#f92672>&#34;rdatatype&#34;</span>: <span style=color:#e6db74>&#34;CNAME&#34;</span>,
+          <span style=color:#f92672>&#34;ttl&#34;</span>: <span style=color:#ae81ff>3595</span>,
+          <span style=color:#f92672>&#34;rdata&#34;</span>: <span style=color:#e6db74>&#34;global.asimov.events.data.trafficmanager.net&#34;</span>
+        },
+        {
+          <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;global.asimov.events.data.trafficmanager.net&#34;</span>,
+          <span style=color:#f92672>&#34;rdatatype&#34;</span>: <span style=color:#e6db74>&#34;CNAME&#34;</span>,
+          <span style=color:#f92672>&#34;ttl&#34;</span>: <span style=color:#ae81ff>55</span>,
+          <span style=color:#f92672>&#34;rdata&#34;</span>: <span style=color:#e6db74>&#34;onedscolprdweu00.westeurope.cloudapp.azure.com&#34;</span>
+        },
+        {
+          <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;onedscolprdweu00.westeurope.cloudapp.azure.com&#34;</span>,
+          <span style=color:#f92672>&#34;rdatatype&#34;</span>: <span style=color:#e6db74>&#34;A&#34;</span>,
+          <span style=color:#f92672>&#34;ttl&#34;</span>: <span style=color:#ae81ff>5</span>,
+          <span style=color:#f92672>&#34;rdata&#34;</span>: <span style=color:#e6db74>&#34;13.69.109.130&#34;</span>
+        }
+      ],
+      <span style=color:#f92672>&#34;ns&#34;</span>: [],
+      <span style=color:#f92672>&#34;ar&#34;</span>: []
+    },
+    <span style=color:#f92672>&#34;malformed-packet&#34;</span>: <span style=color:#ae81ff>0</span>
+  },
+  <span style=color:#f92672>&#34;edns&#34;</span>: {
+    <span style=color:#f92672>&#34;udp-size&#34;</span>: <span style=color:#ae81ff>0</span>,
+    <span style=color:#f92672>&#34;rcode&#34;</span>: <span style=color:#ae81ff>0</span>,
+    <span style=color:#f92672>&#34;version&#34;</span>: <span style=color:#ae81ff>0</span>,
+    <span style=color:#f92672>&#34;dnssec-ok&#34;</span>: <span style=color:#ae81ff>0</span>,
+    <span style=color:#f92672>&#34;options&#34;</span>: []
+  },
+  <span style=color:#f92672>&#34;dnstap&#34;</span>: {
+    <span style=color:#f92672>&#34;operation&#34;</span>: <span style=color:#e6db74>&#34;CLIENT_RESPONSE&#34;</span>,
+    <span style=color:#f92672>&#34;identity&#34;</span>: <span style=color:#e6db74>&#34;29e7b0f3cc19&#34;</span>,
+    <span style=color:#f92672>&#34;timestamp-rfc3339ns&#34;</span>: <span style=color:#e6db74>&#34;2021-12-29T07:17:36.934966336Z&#34;</span>,
+    <span style=color:#f92672>&#34;latency&#34;</span>: <span style=color:#e6db74>&#34;0.008425&#34;</span>
+  },
+  <span style=color:#f92672>&#34;geo&#34;</span>: {
+    <span style=color:#f92672>&#34;city&#34;</span>: <span style=color:#e6db74>&#34;-&#34;</span>,
+    <span style=color:#f92672>&#34;continent&#34;</span>: <span style=color:#e6db74>&#34;-&#34;</span>,
+    <span style=color:#f92672>&#34;country-isocode&#34;</span>: <span style=color:#e6db74>&#34;-&#34;</span>
+  }
 }
 </code></pre></div></div>
 <div class=post-footer>
