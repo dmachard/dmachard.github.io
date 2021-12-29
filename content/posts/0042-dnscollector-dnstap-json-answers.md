@@ -29,13 +29,17 @@ Download the [config.yml](https://github.com/dmachard/go-dnscollector/blob/main/
 
 ```yaml
 trace:
-  verbose: true
+  verbose: false
 
 collectors:
   dnstap:
     enable: true
     listen-ip: 0.0.0.0
     listen-port: 6000
+
+subprocessors:
+  filtering:
+    log-replies: true
 
 loggers:
   stdout:
@@ -46,34 +50,78 @@ loggers:
 # Logs
 
 ```bash
-tail -f /var/run/dnscollector/dnstap.log
+tail -f /var/run/dnscollector/dnstap.log | jq
 ```
 
 ```json
 {
-  "operation": "CLIENT_RESPONSE",
-  "identity": "040d0d9c68d8",
-  "family": "INET",
-  "protocol": "UDP",
-  "query-ip": "192.168.1.12",
-  "query-port": "55441",
-  "response-ip": "172.18.0.4",
-  "response-port": "53",
-  "length": 82,
-  "rcode": "NOERROR",
-  "qname": "global.vortex.data.trafficmanager.net",
-  "qtype": "A",
-  "latency": "0.022077",
-  "timestamp-rfc3339": "2021-11-27T14:46:05.49368055Z",
-  "answers": [
-    {
-      "name": "global.vortex.data.trafficmanager.net",
-      "rdatatype": "A",
-      "ttl": 60,
-      "rdata": "40.77.226.250"
-    }
-  ],
-  "country-isocode": "-"
+  "network": {
+    "family": "INET",
+    "protocol": "UDP",
+    "query-ip": "192.168.1.200",
+    "query-port": "53114",
+    "response-ip": "172.18.0.8",
+    "response-port": "53",
+    "as-number": "-",
+    "as-owner": "-"
+  },
+  "dns": {
+    "length": 178,
+    "opcode": 0,
+    "rcode": "NOERROR",
+    "qname": "v10.events.data.microsoft.com",
+    "qtype": "A",
+    "flags": {
+      "qr": true,
+      "tc": false,
+      "aa": false,
+      "ra": true,
+      "ad": false
+    },
+    "resource-records": {
+      "an": [
+        {
+          "name": "v10.events.data.microsoft.com",
+          "rdatatype": "CNAME",
+          "ttl": 3595,
+          "rdata": "global.asimov.events.data.trafficmanager.net"
+        },
+        {
+          "name": "global.asimov.events.data.trafficmanager.net",
+          "rdatatype": "CNAME",
+          "ttl": 55,
+          "rdata": "onedscolprdweu00.westeurope.cloudapp.azure.com"
+        },
+        {
+          "name": "onedscolprdweu00.westeurope.cloudapp.azure.com",
+          "rdatatype": "A",
+          "ttl": 5,
+          "rdata": "13.69.109.130"
+        }
+      ],
+      "ns": [],
+      "ar": []
+    },
+    "malformed-packet": 0
+  },
+  "edns": {
+    "udp-size": 0,
+    "rcode": 0,
+    "version": 0,
+    "dnssec-ok": 0,
+    "options": []
+  },
+  "dnstap": {
+    "operation": "CLIENT_RESPONSE",
+    "identity": "29e7b0f3cc19",
+    "timestamp-rfc3339ns": "2021-12-29T07:17:36.934966336Z",
+    "latency": "0.008425"
+  },
+  "geo": {
+    "city": "-",
+    "continent": "-",
+    "country-isocode": "-"
+  }
 }
 ```
 
