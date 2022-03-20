@@ -1,29 +1,11 @@
-<!doctype html><html dir=ltr lang=en data-theme><head>
-<title>
-Denis MACHARD
+<!doctype html><html dir=ltr lang=en data-theme><head><title>Denis MACHARD
 |
-GPG: add an email to an existing key
-</title>
-<meta charset=utf-8><meta name=generator content="Hugo 0.91.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name=description content="
+GPG: add an email to an existing key</title><meta charset=utf-8><meta name=generator content="Hugo 0.94.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="
       Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
 
 
-    ">
-<link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css>
-<link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous>
-<link rel="shortcut icon" href=/favicon.ico type=image/x-icon>
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/posts/0033-gpg-add-email/>
-<script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
-<script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="GPG: add an email to an existing key">
-<meta name=twitter:description content="This post details how to add an email to an existing GPG key">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"GPG: add an email to an existing key","headline":"GPG: add an email to an existing key","alternativeHeadline":"","description":"
+    "><link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=canonical href=/posts/0033-gpg-add-email/><script type=text/javascript src=/js/anatole-header.min.d0408165d31a17f17bba83038bf54e86121f85021bdf936382e636f0f77a952f.js integrity="sha256-0ECBZdMaF/F7uoMDi/VOhhIfhQIb35NjguY28Pd6lS8=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/anatole-theme-switcher.min.65e936b591bf81484a5ac438c8e4ae6454fb25516d58ce911e4888d7f230bdc5.js integrity="sha256-Zek2tZG/gUhKWsQ4yOSuZFT7JVFtWM6RHkiI1/IwvcU=" crossorigin=anonymous></script><meta name=twitter:card content="summary"><meta name=twitter:title content="GPG: add an email to an existing key"><meta name=twitter:description content="This post details how to add an email to an existing GPG key"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"GPG: add an email to an existing key","headline":"GPG: add an email to an existing key","alternativeHeadline":"","description":"
       
         This post details how to add an email to an existing GPG key
 
@@ -31,167 +13,48 @@ GPG: add an email to an existing key
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0033-gpg-add-email\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-10T00:00:00.00Z","datePublished":"2021-11-10T00:00:00.00Z","dateModified":"2021-11-10T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0033-gpg-add-email\/","wordCount":"187","genre":[],"keywords":["gpg"]}</script>
-</head>
-<body>
-<header><div class="page-top
-.">
-<a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0033-gpg-add-email\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2021","dateCreated":"2021-11-10T00:00:00.00Z","datePublished":"2021-11-10T00:00:00.00Z","dateModified":"2021-11-10T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0033-gpg-add-email\/","wordCount":"187","genre":[],"keywords":["gpg"]}</script></head><body><header><div class="page-top
+."><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span>
 <span aria-hidden=true></span>
-<span aria-hidden=true></span>
-<span aria-hidden=true></span>
-</a>
-<nav>
-<ul class=nav__list id=navMenu>
-<div class=nav__links>
-<li>
-<a href=/ title>Home</a>
-</li>
-<li>
-<a href=/posts title>Archive</a>
-</li>
-<li>
-<a href=/tags title>Tags</a>
-</li>
-</div>
-<ul>
-<li>
-<a class=theme-switch title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</ul>
-</nav>
-</div>
-</header>
-<div class=wrapper>
-<aside><div class="sidebar
-.">
-<div class=sidebar__content>
-<div class=logo-title>
-<div class=title>
-<img src=/images/profile.png alt="profile picture">
-<h3 title><a href=/>My technical gists</a></h3>
-<div class=description>
-<p>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</p>
-</div>
-</div>
-</div>
-<ul class=social-links>
-<li>
-<a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail>
-<i class="fas fa-rss fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://github.com/dmachard/ rel=me aria-label=GitHub>
-<i class="fab fa-github fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://twitter.com/denis_machard rel=me aria-label=Twitter>
-<i class="fab fa-twitter fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin>
-<i class="fab fa-linkedin fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail>
-<i class="fas fa-envelope fa-2x" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div><footer class="footer footer--sidebar">
-<div class=by_farbox>
-<ul class=footer__list>
-<li class=footer__item>
-&copy;
+<span aria-hidden=true></span></a><nav><ul class=nav__list id=navMenu><div class=nav__links><li><a href=/ title>Home</a></li><li><a href=/posts title>Archive</a></li><li><a href=/tags title>Tags</a></li></div><ul><li><a class=theme-switch title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></li></ul></ul></nav></div></header><div class=wrapper><aside><div class="sidebar
+."><div class=sidebar__content><div class=logo-title><div class=title><img src=/images/profile.png alt="profile picture"><h3 title><a href=/>My technical gists</a></h3><div class=description><p>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</p></div></div></div><ul class=social-links><li><a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail><i class="fas fa-rss fa-2x" aria-hidden=true></i></a></li><li><a href=https://github.com/dmachard/ rel=me aria-label=GitHub><i class="fab fa-github fa-2x" aria-hidden=true></i></a></li><li><a href=https://twitter.com/denis_machard rel=me aria-label=Twitter><i class="fab fa-twitter fa-2x" aria-hidden=true></i></a></li><li><a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin><i class="fab fa-linkedin fa-2x" aria-hidden=true></i></a></li><li><a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail><i class="fas fa-envelope fa-2x" aria-hidden=true></i></a></li></ul></div><footer class="footer footer--sidebar"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
 Denis MACHARD
-2021
-</li>
-</ul>
-</div>
-</footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></div>
-</aside>
-<main>
-<div class=autopagerize_page_element>
-<div class=content>
-<div class="post
-.">
-<div class=post-content>
-<div class=post-title>
-<h1>GPG: add an email to an existing key</h1>
-</div><p>This post details how to add an email to an existing GPG key</p>
-<h1 id=table-of-contents>Table of contents</h1>
-<ul>
-<li><a href=#how-to>How to</a></li>
-</ul>
-<h1 id=how-to>How to</h1>
-<p>List your existing GPG keys.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>gpg --list-secret-keys --keyid-format<span style=color:#f92672>=</span>long
-gpg: checking the trustdb
-gpg: marginals needed: <span style=color:#ae81ff>3</span>  completes needed: <span style=color:#ae81ff>1</span>  trust model: pgp
-gpg: depth: <span style=color:#ae81ff>0</span>  valid:   <span style=color:#ae81ff>1</span>  signed:   <span style=color:#ae81ff>0</span>  trust: 0-, 0q, 0n, 0m, 0f, 1u
-/home/denis/.gnupg/pubring.kbx
-------------------------------
-sec   rsa4096/123FFFFFFF456 2021-06-09 <span style=color:#f92672>[</span>SC<span style=color:#f92672>]</span>
-      1294...........BE886
-uid                 <span style=color:#f92672>[</span>ultimate<span style=color:#f92672>]</span> John Doe &lt;jdoe@gmail.com&gt;
-ssb   rsa4096/C07....BEA 2021-06-09 <span style=color:#f92672>[</span>E<span style=color:#f92672>]</span>
-</code></pre></div><p>In this example, the GPG key ID is <strong>123FFFFFFF456</strong></p>
-<p>Enter in your gpg prompt for your key and type adduid</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>gpg --edit-key 123FFFFFFF456
-gpg&gt; adduid 
-Real name: John Doe
-Email address: 123456+jdoe@users.noreply.github.com
-Comment: GitHub key
-You selected this USER-ID:
-    <span style=color:#e6db74>&#34;John Doe (GitHub key) &lt;123456+jdoe@users.noreply.github.com&gt;&#34;</span>
-
-Change <span style=color:#f92672>(</span>N<span style=color:#f92672>)</span>ame, <span style=color:#f92672>(</span>C<span style=color:#f92672>)</span>omment, <span style=color:#f92672>(</span>E<span style=color:#f92672>)</span>mail or <span style=color:#f92672>(</span>O<span style=color:#f92672>)</span>kay/<span style=color:#f92672>(</span>Q<span style=color:#f92672>)</span>uit? O
-
-sec  rsa4096/123FFFFFFF456
-     created: 2021-06-09  expires: never       usage: SC  
-     trust: ultimate      validity: ultimate
-ssb  rsa4096/C0.....BEA
-     created: 2021-06-09  expires: never       usage: E   
-<span style=color:#f92672>[</span>ultimate<span style=color:#f92672>]</span> <span style=color:#f92672>(</span>1<span style=color:#f92672>)</span>  John Doe &lt;jdoe@gmail.com&gt;
-<span style=color:#f92672>[</span> unknown<span style=color:#f92672>]</span> <span style=color:#f92672>(</span>2<span style=color:#f92672>)</span>. John Doe <span style=color:#f92672>(</span>GitHub key<span style=color:#f92672>)</span> &lt;123456+jdoe@users.noreply.github.com&gt;
-</code></pre></div><p>Finally save the changes</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>gpg&gt; save
-</code></pre></div><p>Now you can export you new GPG key</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>gpg --armor --export &lt;MY_KEY_ID&gt;
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-mQINBGDBBhIBEADD/m4EK+XFiW20rE8fhLgom+zI/eExjaTUbLrLPj2q6SxxX2rg
-....
-mQINBGDBBhIBEADD/m4EK+XFiW20rE8fhLgom+zI/eExjaTUbLrLPj2q6SxxX2rg
------END PGP PUBLIC KEY BLOCK-----
-</code></pre></div></div>
-<div class=post-footer>
-<div class=info>
-<span class=separator><a class=tag href=/tags/gpg/>gpg</a></span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div><footer class="footer footer--base">
-<div class=by_farbox>
-<ul class=footer__list>
-<li class=footer__item>
-&copy;
+2022</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.4a40b20209bc12e56cf77caff5feaa93fecd6b0d97d51b33afb0265a732ce636.js integrity="sha256-SkCyAgm8EuVs93yv9f6qk/7Naw2X1Rszr7AmWnMs5jY=" crossorigin=anonymous></script></div></aside><main><div class=autopagerize_page_element><div class=content><div class="post
+."><div class=post-content><div class=post-title><h1>GPG: add an email to an existing key</h1></div><p>This post details how to add an email to an existing GPG key</p><h1 id=table-of-contents>Table of contents</h1><ul><li><a href=#how-to>How to</a></li></ul><h1 id=how-to>How to</h1><p>List your existing GPG keys.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gpg --list-secret-keys --keyid-format<span style=color:#f92672>=</span>long
+</span></span><span style=display:flex><span>gpg: checking the trustdb
+</span></span><span style=display:flex><span>gpg: marginals needed: <span style=color:#ae81ff>3</span>  completes needed: <span style=color:#ae81ff>1</span>  trust model: pgp
+</span></span><span style=display:flex><span>gpg: depth: <span style=color:#ae81ff>0</span>  valid:   <span style=color:#ae81ff>1</span>  signed:   <span style=color:#ae81ff>0</span>  trust: 0-, 0q, 0n, 0m, 0f, 1u
+</span></span><span style=display:flex><span>/home/denis/.gnupg/pubring.kbx
+</span></span><span style=display:flex><span>------------------------------
+</span></span><span style=display:flex><span>sec   rsa4096/123FFFFFFF456 2021-06-09 <span style=color:#f92672>[</span>SC<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>      1294...........BE886
+</span></span><span style=display:flex><span>uid                 <span style=color:#f92672>[</span>ultimate<span style=color:#f92672>]</span> John Doe &lt;jdoe@gmail.com&gt;
+</span></span><span style=display:flex><span>ssb   rsa4096/C07....BEA 2021-06-09 <span style=color:#f92672>[</span>E<span style=color:#f92672>]</span>
+</span></span></code></pre></div><p>In this example, the GPG key ID is <strong>123FFFFFFF456</strong></p><p>Enter in your gpg prompt for your key and type adduid</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gpg --edit-key 123FFFFFFF456
+</span></span><span style=display:flex><span>gpg&gt; adduid 
+</span></span><span style=display:flex><span>Real name: John Doe
+</span></span><span style=display:flex><span>Email address: 123456+jdoe@users.noreply.github.com
+</span></span><span style=display:flex><span>Comment: GitHub key
+</span></span><span style=display:flex><span>You selected this USER-ID:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;John Doe (GitHub key) &lt;123456+jdoe@users.noreply.github.com&gt;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Change <span style=color:#f92672>(</span>N<span style=color:#f92672>)</span>ame, <span style=color:#f92672>(</span>C<span style=color:#f92672>)</span>omment, <span style=color:#f92672>(</span>E<span style=color:#f92672>)</span>mail or <span style=color:#f92672>(</span>O<span style=color:#f92672>)</span>kay/<span style=color:#f92672>(</span>Q<span style=color:#f92672>)</span>uit? O
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>sec  rsa4096/123FFFFFFF456
+</span></span><span style=display:flex><span>     created: 2021-06-09  expires: never       usage: SC  
+</span></span><span style=display:flex><span>     trust: ultimate      validity: ultimate
+</span></span><span style=display:flex><span>ssb  rsa4096/C0.....BEA
+</span></span><span style=display:flex><span>     created: 2021-06-09  expires: never       usage: E   
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>ultimate<span style=color:#f92672>]</span> <span style=color:#f92672>(</span>1<span style=color:#f92672>)</span>  John Doe &lt;jdoe@gmail.com&gt;
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span> unknown<span style=color:#f92672>]</span> <span style=color:#f92672>(</span>2<span style=color:#f92672>)</span>. John Doe <span style=color:#f92672>(</span>GitHub key<span style=color:#f92672>)</span> &lt;123456+jdoe@users.noreply.github.com&gt;
+</span></span></code></pre></div><p>Finally save the changes</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gpg&gt; save
+</span></span></code></pre></div><p>Now you can export you new GPG key</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gpg --armor --export &lt;MY_KEY_ID&gt;
+</span></span><span style=display:flex><span>-----BEGIN PGP PUBLIC KEY BLOCK-----
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>mQINBGDBBhIBEADD/m4EK+XFiW20rE8fhLgom+zI/eExjaTUbLrLPj2q6SxxX2rg
+</span></span><span style=display:flex><span>....
+</span></span><span style=display:flex><span>mQINBGDBBhIBEADD/m4EK+XFiW20rE8fhLgom+zI/eExjaTUbLrLPj2q6SxxX2rg
+</span></span><span style=display:flex><span>-----END PGP PUBLIC KEY BLOCK-----
+</span></span></code></pre></div></div><div class=post-footer><div class=info><span class=separator><a class=tag href=/tags/gpg/>gpg</a></span></div></div></div></div></div></main></div><footer class="footer footer--base"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
 Denis MACHARD
-2021
-</li>
-</ul>
-</div>
-</footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></body>
-</html>
+2022</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.4a40b20209bc12e56cf77caff5feaa93fecd6b0d97d51b33afb0265a732ce636.js integrity="sha256-SkCyAgm8EuVs93yv9f6qk/7Naw2X1Rszr7AmWnMs5jY=" crossorigin=anonymous></script></body></html>

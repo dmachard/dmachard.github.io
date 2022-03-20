@@ -1,29 +1,11 @@
-<!doctype html><html dir=ltr lang=en data-theme><head>
-<title>
-Denis MACHARD
+<!doctype html><html dir=ltr lang=en data-theme><head><title>Denis MACHARD
 |
-Dnstap: How to enable it on main dns servers
-</title>
-<meta charset=utf-8><meta name=generator content="Hugo 0.91.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name=description content="
+Dnstap: How to enable it on main dns servers</title><meta charset=utf-8><meta name=generator content="Hugo 0.94.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="
       Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
 
 
-    ">
-<link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css>
-<link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous>
-<link rel="shortcut icon" href=/favicon.ico type=image/x-icon>
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/posts/0001-dnstap-testing/>
-<script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
-<script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Dnstap: How to enable it on main dns servers">
-<meta name=twitter:description content="This post details how to enable the dnstap feature in main open source dns servers.">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Dnstap: How to enable it on main dns servers","headline":"Dnstap: How to enable it on main dns servers","alternativeHeadline":"","description":"
+    "><link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=canonical href=/posts/0001-dnstap-testing/><script type=text/javascript src=/js/anatole-header.min.d0408165d31a17f17bba83038bf54e86121f85021bdf936382e636f0f77a952f.js integrity="sha256-0ECBZdMaF/F7uoMDi/VOhhIfhQIb35NjguY28Pd6lS8=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/anatole-theme-switcher.min.65e936b591bf81484a5ac438c8e4ae6454fb25516d58ce911e4888d7f230bdc5.js integrity="sha256-Zek2tZG/gUhKWsQ4yOSuZFT7JVFtWM6RHkiI1/IwvcU=" crossorigin=anonymous></script><meta name=twitter:card content="summary"><meta name=twitter:title content="Dnstap: How to enable it on main dns servers"><meta name=twitter:description content="This post details how to enable the dnstap feature in main open source dns servers."><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Dnstap: How to enable it on main dns servers","headline":"Dnstap: How to enable it on main dns servers","alternativeHeadline":"","description":"
       
         This post details how to enable the dnstap feature in main open source dns servers.
 
@@ -31,355 +13,120 @@ Dnstap: How to enable it on main dns servers
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0001-dnstap-testing\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-05-23T00:00:00.00Z","datePublished":"2020-05-23T00:00:00.00Z","dateModified":"2020-05-23T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0001-dnstap-testing\/","wordCount":"698","genre":[],"keywords":["dns","logs"]}</script>
-</head>
-<body>
-<header><div class="page-top
-.">
-<a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0001-dnstap-testing\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-05-23T00:00:00.00Z","datePublished":"2020-05-23T00:00:00.00Z","dateModified":"2020-05-23T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0001-dnstap-testing\/","wordCount":"767","genre":[],"keywords":["dns","logs"]}</script></head><body><header><div class="page-top
+."><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span>
 <span aria-hidden=true></span>
-<span aria-hidden=true></span>
-<span aria-hidden=true></span>
-</a>
-<nav>
-<ul class=nav__list id=navMenu>
-<div class=nav__links>
-<li>
-<a href=/ title>Home</a>
-</li>
-<li>
-<a href=/posts title>Archive</a>
-</li>
-<li>
-<a href=/tags title>Tags</a>
-</li>
-</div>
-<ul>
-<li>
-<a class=theme-switch title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</ul>
-</nav>
-</div>
-</header>
-<div class=wrapper>
-<aside><div class="sidebar
-.">
-<div class=sidebar__content>
-<div class=logo-title>
-<div class=title>
-<img src=/images/profile.png alt="profile picture">
-<h3 title><a href=/>My technical gists</a></h3>
-<div class=description>
-<p>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</p>
-</div>
-</div>
-</div>
-<ul class=social-links>
-<li>
-<a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail>
-<i class="fas fa-rss fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://github.com/dmachard/ rel=me aria-label=GitHub>
-<i class="fab fa-github fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://twitter.com/denis_machard rel=me aria-label=Twitter>
-<i class="fab fa-twitter fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin>
-<i class="fab fa-linkedin fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail>
-<i class="fas fa-envelope fa-2x" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div><footer class="footer footer--sidebar">
-<div class=by_farbox>
-<ul class=footer__list>
-<li class=footer__item>
-&copy;
+<span aria-hidden=true></span></a><nav><ul class=nav__list id=navMenu><div class=nav__links><li><a href=/ title>Home</a></li><li><a href=/posts title>Archive</a></li><li><a href=/tags title>Tags</a></li></div><ul><li><a class=theme-switch title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></li></ul></ul></nav></div></header><div class=wrapper><aside><div class="sidebar
+."><div class=sidebar__content><div class=logo-title><div class=title><img src=/images/profile.png alt="profile picture"><h3 title><a href=/>My technical gists</a></h3><div class=description><p>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</p></div></div></div><ul class=social-links><li><a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail><i class="fas fa-rss fa-2x" aria-hidden=true></i></a></li><li><a href=https://github.com/dmachard/ rel=me aria-label=GitHub><i class="fab fa-github fa-2x" aria-hidden=true></i></a></li><li><a href=https://twitter.com/denis_machard rel=me aria-label=Twitter><i class="fab fa-twitter fa-2x" aria-hidden=true></i></a></li><li><a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin><i class="fab fa-linkedin fa-2x" aria-hidden=true></i></a></li><li><a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail><i class="fas fa-envelope fa-2x" aria-hidden=true></i></a></li></ul></div><footer class="footer footer--sidebar"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
 Denis MACHARD
-2021
-</li>
-</ul>
-</div>
-</footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></div>
-</aside>
-<main>
-<div class=autopagerize_page_element>
-<div class=content>
-<div class="post
-.">
-<div class=post-content>
-<div class=post-title>
-<h1>Dnstap: How to enable it on main dns servers</h1>
-</div><p>This post details how to enable the dnstap feature in main open source dns servers.</p>
-<h1 id=table-of-contents>Table of contents</h1>
-<ul>
-<li><a href=#introduction>Introduction</a></li>
-<li><a href=#isc-bind>ISC bind</a>
-<ul>
-<li><a href=#build-with-dnstap-support>Build with dnstap support</a></li>
-<li><a href=#unix-socket>Unix socket</a></li>
-<li><a href=#tcp-stream>TCP stream</a></li>
-</ul>
-</li>
-<li><a href=#powerdns-pdns-recursor>PowerDNS - pdns-recursor</a>
-<ul>
-<li><a href=#unix-socket>Unix socket</a></li>
-<li><a href=#tcp-stream>TCP stream</a></li>
-</ul>
-</li>
-<li><a href=#powerdns-dnsdist>PowerDNS - dnsdist</a>
-<ul>
-<li><a href=#unix-socket>Unix socket</a></li>
-<li><a href=#tcp-stream>TCP stream</a></li>
-</ul>
-</li>
-<li><a href=#nlnetlabs-nsd>NLnetLabs - nsd</a>
-<ul>
-<li><a href=#build-with-dnstap-support>Build with dnstap support</a></li>
-<li><a href=#unix-socket>Unix socket</a></li>
-</ul>
-</li>
-<li><a href=#nlnetlabs-unbound>NLnetLabs - unbound</a>
-<ul>
-<li><a href=#build-with-dnstap-support>Build with dnstap support</a></li>
-<li><a href=#unix-socket>Unix socket</a></li>
-<li><a href=#tcp-socket>TCP stream</a></li>
-<li><a href=#tls-stream>TLS stream</a></li>
-</ul>
-</li>
-<li><a href=#coredns>CoreDNS</a>
-<ul>
-<li><a href=#unix-socket>Unix socket</a></li>
-<li><a href=#tcp-stream>TCP stream</a></li>
-</ul>
-</li>
-</ul>
-<h2 id=introduction>Introduction</h2>
-<p>This <a href=https://dnstap.info/>dnstap</a> feature has been tested with success with the following dns servers:</p>
-<ul>
-<li>ISC - bind</li>
-<li>PowerDNS - pdns-recursor</li>
-<li>PowerDNS - dnsdist</li>
-<li>NLnet Labs - nsd</li>
-<li>NLnet Labs - unbound</li>
-<li>CoreDNS</li>
-</ul>
-<h2 id=isc-bind>ISC bind</h2>
-<p><img src=https://img.shields.io/badge/9.11.22-tested-green alt="bind 9.11.22"> <img src=https://img.shields.io/badge/9.16.10-tested-green alt="bind 9.16.10"></p>
-<p>Dnstap messages supported:</p>
-<ul>
-<li>RESOLVER_QUERY</li>
-<li>RESOLVER_RESPONSE</li>
-<li>CLIENT_QUERY</li>
-<li>CLIENT_RESPONSE</li>
-<li>AUTH_QUERY</li>
-<li>AUTH_RESPONSE</li>
-</ul>
-<h4 id=build-with-dnstap-support>Build with dnstap support</h4>
-<p>Since 9.16 version, the dnstap feature is enabled before that you need to download latest source and build-it with dnstap support:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>./configure --enable-dnstap
-make <span style=color:#f92672>&amp;&amp;</span> make install
-</code></pre></div><h4 id=unix-socket>Unix socket</h4>
-<p>Update the configuration file <code>/etc/named.conf</code> to activate the dnstap feature:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>options <span style=color:#f92672>{</span>
-    dnstap <span style=color:#f92672>{</span> client; auth; resolver; forwarder; <span style=color:#f92672>}</span>;
-    dnstap-output unix <span style=color:#e6db74>&#34;/var/run/named/dnstap.sock&#34;</span>;
-    dnstap-identity <span style=color:#e6db74>&#34;dns-bind&#34;</span>;
-    dnstap-version <span style=color:#e6db74>&#34;bind&#34;</span>;
-<span style=color:#f92672>}</span>
-</code></pre></div><p>Execute the dnstap receiver with <code>named</code> user:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>su - named -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/var/run/named/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
-</code></pre></div><p>If you have some troubles take a look to <a href=https://gitlab.isc.org/isc-projects/bind9/-/issues/2356#note_185516>selinux</a></p>
-<h4 id=tcp-stream>TCP stream</h4>
-<p>Not supported on Bind! You can apply the following workaround with the <code>socat</code> or <code>stunnel</code> command.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#66d9ef>while</span> true; <span style=color:#66d9ef>do</span> socat unix-listen:/var/run/dnsdist/dnstap.sock tcp4-connect:&lt;ip_dnstap_receiver&gt;:&lt;port_dnstap_receiver&gt;,forever,interval<span style=color:#f92672>=</span>10, fork; sleep 1; <span style=color:#66d9ef>done</span>
-</code></pre></div><h1 id=powerdns---pdns-recursor>PowerDNS - pdns-recursor</h1>
-<p><img src=https://img.shields.io/badge/4.3.4-tested-green alt="pdns-recursor 4.3.4"> <img src=https://img.shields.io/badge/4.4.0-tested-green alt="pdns-recursor 4.4.0"></p>
-<p>Dnstap messages supported:</p>
-<ul>
-<li>RESOLVER_QUERY</li>
-<li>RESOLVER_RESPONSE</li>
-</ul>
-<h4 id=unix-socket-1>Unix socket</h4>
-<p>Update the configuration file to activate the dnstap feature:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /etc/pdns-recursor/recursor.conf
-lua-config-file<span style=color:#f92672>=</span>/etc/pdns-recursor/recursor.lua
-
-vim /etc/pdns-recursor/recursor.lua
-dnstapFrameStreamServer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/var/run/pdns-recursor/dnstap.sock&#34;</span><span style=color:#f92672>)</span>
-</code></pre></div><p>Execute the dnstap receiver with <code>pdns-recursor</code> user:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>su - pdns-recursor -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/var/run/pdns-recursor/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
-</code></pre></div><h2 id=tcp-stream-1>TCP stream</h2>
-<p>Update the configuration file to activate the dnstap feature with tcp mode
-and execute the dnstap receiver in listening tcp socket mode:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /etc/pdns-recursor/recursor.conf
-lua-config-file<span style=color:#f92672>=</span>/etc/pdns-recursor/recursor.lua
-
-vim /etc/pdns-recursor/recursor.lua
-dnstapFrameStreamServer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;10.0.0.100:6000&#34;</span><span style=color:#f92672>)</span>
-</code></pre></div><p>Note: TCP stream are only supported with a recent version of libfstrm.</p>
-<h1 id=powerdns---dnsdist>PowerDNS - dnsdist</h1>
-<p><img src=https://img.shields.io/badge/1.6-tested-green alt="dnsdist 1.6"> <img src=https://img.shields.io/badge/1.5-tested-green alt="dnsdist 1.5"> <img src=https://img.shields.io/badge/1.4.0-tested-green alt="dnsdist 1.4"></p>
-<p>Dnstap messages supported:</p>
-<ul>
-<li>CLIENT_QUERY</li>
-<li>CLIENT_RESPONSE</li>
-</ul>
-<h2 id=unix-socket-2>Unix socket</h2>
-<p>Create the dnsdist folder where the unix socket will be created:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mkdir -p /var/run/dnsdist/
-chown dnsdist.dnsdist /var/run/dnsdist/
-</code></pre></div><p>Update the configuration file <code>/etc/dnsdist/dnsdist.conf</code> to activate the dnstap feature:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>fsul <span style=color:#f92672>=</span> newFrameStreamUnixLogger<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/var/run/dnsdist/dnstap.sock&#34;</span><span style=color:#f92672>)</span>
-addAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
-addResponseAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogResponseAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
--- Cache Hits
-addCacheHitResponseAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogResponseAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
-</code></pre></div><p>Execute the dnstap receiver with <code>dnsdist</code> user:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>su - dnsdist -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/var/run/dnsdist/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
-</code></pre></div><h2 id=tcp-stream-2>TCP stream</h2>
-<p>Update the configuration file <code>/etc/dnsdist/dnsdist.conf</code> to activate the dnstap feature
-with tcp stream and execute the dnstap receiver in listening tcp socket mode:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>fsul <span style=color:#f92672>=</span> newFrameStreamTcpLogger<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;127.0.0.1:8888&#34;</span><span style=color:#f92672>)</span>
-addAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
-addResponseAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogResponseAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
--- Cache Hits
-addCacheHitResponseAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogResponseAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
-</code></pre></div><h1 id=nlnetlabs---nsd>NLnetLabs - nsd</h1>
-<p><img src=https://img.shields.io/badge/4.3.2-tested-green alt="nsd 4.3.2"></p>
-<p>Dnstap messages supported:</p>
-<ul>
-<li>AUTH_QUERY</li>
-<li>AUTH_RESPONSE</li>
-</ul>
-<h2 id=build-with-dnstap-support-1>Build with dnstap support</h2>
-<p>Download latest source and build-it with dnstap support:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>./configure --enable-dnstap
-make <span style=color:#f92672>&amp;&amp;</span> make install
-</code></pre></div><h2 id=unix-socket-3>Unix socket</h2>
-<p>Update the configuration file <code>/etc/nsd/nsd.conf</code> to activate the dnstap feature:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>dnstap</span>:
-    <span style=color:#f92672>dnstap-enable</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-socket-path</span>: <span style=color:#e6db74>&#34;/var/run/nsd/dnstap.sock&#34;</span>
-    <span style=color:#f92672>dnstap-send-identity</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-send-version</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-log-auth-query-messages</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-log-auth-response-messages</span>: <span style=color:#66d9ef>yes</span>
-</code></pre></div><p>Execute the dnstap receiver with <code>nsd</code> user:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>su - nsd -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/var/run/nsd/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
-</code></pre></div><h1 id=nlnetlabs---unbound>NLnetLabs - unbound</h1>
-<p><img src=https://img.shields.io/badge/1.11.0-tested-green alt="unbound 1.11.0"> <img src=https://img.shields.io/badge/1.12.0-tested-green alt="unbound 1.12.0"> <img src=https://img.shields.io/badge/1.13.0-tested-green alt="unbound 1.13.0"></p>
-<p>Dnstap messages supported:</p>
-<ul>
-<li>CLIENT_QUERY</li>
-<li>CLIENT_RESPONSE</li>
-<li>RESOLVER_QUERY</li>
-<li>RESOLVER_RESPONSE</li>
-</ul>
-<h4 id=build-with-dnstap-support-2>Build with dnstap support</h4>
-<p>Download latest source and build-it with dnstap support:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>./configure --enable-dnstap
-make <span style=color:#f92672>&amp;&amp;</span> make install
-</code></pre></div><h2 id=unix-socket-4>Unix socket</h2>
-<p>Update the configuration file <code>/etc/unbound/unbound.conf</code> to activate the dnstap feature:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>dnstap</span>:
-    <span style=color:#f92672>dnstap-enable</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-socket-path</span>: <span style=color:#e6db74>&#34;dnstap.sock&#34;</span>
-    <span style=color:#f92672>dnstap-send-identity</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-send-version</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-log-resolver-query-messages</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-log-resolver-response-messages</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-log-client-query-messages</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-log-client-response-messages</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-log-forwarder-query-messages</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-log-forwarder-response-messages</span>: <span style=color:#66d9ef>yes</span>
-</code></pre></div><p>Execute the dnstap receiver with <code>unbound</code> user:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>su - unbound -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/usr/local/etc/unbound/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
-</code></pre></div><h4 id=tcp-stream-3>TCP stream</h4>
-<p>Update the configuration file <code>/etc/unbound/unbound.conf</code> to activate the dnstap feature
-with tcp mode and execute the dnstap receiver in listening tcp socket mode:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>dnstap</span>:
-    <span style=color:#f92672>dnstap-enable</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-socket-path</span>: <span style=color:#e6db74>&#34;&#34;</span>
-    <span style=color:#f92672>dnstap-ip</span>: <span style=color:#e6db74>&#34;10.0.0.100@6000&#34;</span>
-    <span style=color:#f92672>dnstap-tls</span>: <span style=color:#66d9ef>no</span>
-    <span style=color:#f92672>dnstap-send-identity</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-send-version</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-log-client-query-messages</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-log-client-response-messages</span>: <span style=color:#66d9ef>yes</span>
-</code></pre></div><h2 id=tls-stream>TLS stream</h2>
-<p>Update the configuration file <code>/etc/unbound/unbound.conf</code> to activate the dnstap feature
-with tls mode and execute the dnstap receiver in listening tcp/tls socket mode:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>dnstap</span>:
-    <span style=color:#f92672>dnstap-enable</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-socket-path</span>: <span style=color:#e6db74>&#34;&#34;</span>
-    <span style=color:#f92672>dnstap-ip</span>: <span style=color:#e6db74>&#34;10.0.0.100@6000&#34;</span>
-    <span style=color:#f92672>dnstap-tls</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-send-identity</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-send-version</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-log-client-query-messages</span>: <span style=color:#66d9ef>yes</span>
-    <span style=color:#f92672>dnstap-log-client-response-messages</span>: <span style=color:#66d9ef>yes</span>
-</code></pre></div><h1 id=coredns>CoreDNS</h1>
-<p><img src=https://img.shields.io/badge/1.8.4-tested-green alt="coredns 1.8.4"> <img src=https://img.shields.io/badge/1.8.0-tested-green alt="coredns 1.8.0"></p>
-<p>Dnstap messages supported:</p>
-<ul>
-<li>CLIENT_QUERY</li>
-<li>CLIENT_RESPONSE</li>
-<li>FORWARDER_QUERY</li>
-<li>FORWARDER_RESPONSE</li>
-</ul>
-<h2 id=unix-socket-5>Unix socket</h2>
-<p>corefile example</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>.:53 <span style=color:#f92672>{</span>
-    dnstap /tmp/dnstap.sock full
-    forward . 8.8.8.8:53
-<span style=color:#f92672>}</span>
-</code></pre></div><p>Then execute CoreDNS with your corefile</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash> ./coredns -conf corefile
-</code></pre></div><h2 id=tcp-stream-4>TCP stream</h2>
-<p>corefile example</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>.:53 <span style=color:#f92672>{</span>
-        dnstap tcp://10.0.0.51:6000 full
-        forward . 8.8.8.8:53
-<span style=color:#f92672>}</span>
-</code></pre></div><p>Then execute CoreDNS with your corefile</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash> ./coredns -conf corefile
-</code></pre></div></div>
-<div class=post-footer>
-<div class=info>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/logs/>logs</a></span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div><footer class="footer footer--base">
-<div class=by_farbox>
-<ul class=footer__list>
-<li class=footer__item>
-&copy;
+2022</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.4a40b20209bc12e56cf77caff5feaa93fecd6b0d97d51b33afb0265a732ce636.js integrity="sha256-SkCyAgm8EuVs93yv9f6qk/7Naw2X1Rszr7AmWnMs5jY=" crossorigin=anonymous></script></div></aside><main><div class=autopagerize_page_element><div class=content><div class="post
+."><div class=post-content><div class=post-title><h1>Dnstap: How to enable it on main dns servers</h1></div><p>This post details how to enable the dnstap feature in main open source dns servers.</p><h1 id=table-of-contents>Table of contents</h1><ul><li><a href=#introduction>Introduction</a></li><li><a href=#isc-bind>ISC bind</a><ul><li><a href=#build-with-dnstap-support>Build with dnstap support</a></li><li><a href=#unix-socket>Unix socket</a></li><li><a href=#tcp-stream>TCP stream</a></li></ul></li><li><a href=#powerdns-pdns-recursor>PowerDNS - pdns-recursor</a><ul><li><a href=#unix-socket>Unix socket</a></li><li><a href=#tcp-stream>TCP stream</a></li></ul></li><li><a href=#powerdns-dnsdist>PowerDNS - dnsdist</a><ul><li><a href=#unix-socket>Unix socket</a></li><li><a href=#tcp-stream>TCP stream</a></li></ul></li><li><a href=#nlnetlabs-nsd>NLnetLabs - nsd</a><ul><li><a href=#build-with-dnstap-support>Build with dnstap support</a></li><li><a href=#unix-socket>Unix socket</a></li></ul></li><li><a href=#nlnetlabs-unbound>NLnetLabs - unbound</a><ul><li><a href=#build-with-dnstap-support>Build with dnstap support</a></li><li><a href=#unix-socket>Unix socket</a></li><li><a href=#tcp-socket>TCP stream</a></li><li><a href=#tls-stream>TLS stream</a></li></ul></li><li><a href=#coredns>CoreDNS</a><ul><li><a href=#unix-socket>Unix socket</a></li><li><a href=#tcp-stream>TCP stream</a></li></ul></li><li><a href=#cznic-knot-resolver>CZ-NIC - knot resolver</a><ul><li><a href=#unix-socket>Unix socket</a></li></ul></li></ul><h2 id=introduction>Introduction</h2><p>This <a href=https://dnstap.info/>dnstap</a> feature has been tested with success with the following dns servers:</p><ul><li>ISC - bind</li><li>PowerDNS - pdns-recursor</li><li>PowerDNS - dnsdist</li><li>NLnet Labs - nsd</li><li>NLnet Labs - unbound</li><li>CoreDNS</li></ul><h2 id=isc-bind>ISC bind</h2><p><img src=https://img.shields.io/badge/9.11.22-tested-green alt="bind 9.11.22"> <img src=https://img.shields.io/badge/9.16.10-tested-green alt="bind 9.16.10"></p><p>Dnstap messages supported:</p><ul><li>RESOLVER_QUERY</li><li>RESOLVER_RESPONSE</li><li>CLIENT_QUERY</li><li>CLIENT_RESPONSE</li><li>AUTH_QUERY</li><li>AUTH_RESPONSE</li></ul><h4 id=build-with-dnstap-support>Build with dnstap support</h4><p>Since 9.16 version, the dnstap feature is enabled before that you need to download latest source and build-it with dnstap support:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>./configure --enable-dnstap
+</span></span><span style=display:flex><span>make <span style=color:#f92672>&amp;&amp;</span> make install
+</span></span></code></pre></div><h4 id=unix-socket>Unix socket</h4><p>Update the configuration file <code>/etc/named.conf</code> to activate the dnstap feature:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>options <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    dnstap <span style=color:#f92672>{</span> client; auth; resolver; forwarder; <span style=color:#f92672>}</span>;
+</span></span><span style=display:flex><span>    dnstap-output unix <span style=color:#e6db74>&#34;/var/run/named/dnstap.sock&#34;</span>;
+</span></span><span style=display:flex><span>    dnstap-identity <span style=color:#e6db74>&#34;dns-bind&#34;</span>;
+</span></span><span style=display:flex><span>    dnstap-version <span style=color:#e6db74>&#34;bind&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>Execute the dnstap receiver with <code>named</code> user:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>su - named -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/var/run/named/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
+</span></span></code></pre></div><p>If you have some troubles take a look to <a href=https://gitlab.isc.org/isc-projects/bind9/-/issues/2356#note_185516>selinux</a></p><h4 id=tcp-stream>TCP stream</h4><p>Not supported on Bind! You can apply the following workaround with the <code>socat</code> or <code>stunnel</code> command.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#66d9ef>while</span> true; <span style=color:#66d9ef>do</span> socat unix-listen:/var/run/dnsdist/dnstap.sock tcp4-connect:&lt;ip_dnstap_receiver&gt;:&lt;port_dnstap_receiver&gt;,forever,interval<span style=color:#f92672>=</span>10, fork; sleep 1; <span style=color:#66d9ef>done</span>
+</span></span></code></pre></div><h1 id=powerdns---pdns-recursor>PowerDNS - pdns-recursor</h1><p><img src=https://img.shields.io/badge/4.3.4-tested-green alt="pdns-recursor 4.3.4"> <img src=https://img.shields.io/badge/4.4.0-tested-green alt="pdns-recursor 4.4.0"></p><p>Dnstap messages supported:</p><ul><li>RESOLVER_QUERY</li><li>RESOLVER_RESPONSE</li></ul><h4 id=unix-socket-1>Unix socket</h4><p>Update the configuration file to activate the dnstap feature:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vim /etc/pdns-recursor/recursor.conf
+</span></span><span style=display:flex><span>lua-config-file<span style=color:#f92672>=</span>/etc/pdns-recursor/recursor.lua
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>vim /etc/pdns-recursor/recursor.lua
+</span></span><span style=display:flex><span>dnstapFrameStreamServer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/var/run/pdns-recursor/dnstap.sock&#34;</span><span style=color:#f92672>)</span>
+</span></span></code></pre></div><p>Execute the dnstap receiver with <code>pdns-recursor</code> user:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>su - pdns-recursor -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/var/run/pdns-recursor/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
+</span></span></code></pre></div><h2 id=tcp-stream-1>TCP stream</h2><p>Update the configuration file to activate the dnstap feature with tcp mode
+and execute the dnstap receiver in listening tcp socket mode:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vim /etc/pdns-recursor/recursor.conf
+</span></span><span style=display:flex><span>lua-config-file<span style=color:#f92672>=</span>/etc/pdns-recursor/recursor.lua
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>vim /etc/pdns-recursor/recursor.lua
+</span></span><span style=display:flex><span>dnstapFrameStreamServer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;10.0.0.100:6000&#34;</span><span style=color:#f92672>)</span>
+</span></span></code></pre></div><p>Note: TCP stream are only supported with a recent version of libfstrm.</p><h1 id=powerdns---dnsdist>PowerDNS - dnsdist</h1><p><img src=https://img.shields.io/badge/1.6-tested-green alt="dnsdist 1.6"> <img src=https://img.shields.io/badge/1.5-tested-green alt="dnsdist 1.5"> <img src=https://img.shields.io/badge/1.4.0-tested-green alt="dnsdist 1.4"></p><p>Dnstap messages supported:</p><ul><li>CLIENT_QUERY</li><li>CLIENT_RESPONSE</li></ul><h2 id=unix-socket-2>Unix socket</h2><p>Create the dnsdist folder where the unix socket will be created:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir -p /var/run/dnsdist/
+</span></span><span style=display:flex><span>chown dnsdist.dnsdist /var/run/dnsdist/
+</span></span></code></pre></div><p>Update the configuration file <code>/etc/dnsdist/dnsdist.conf</code> to activate the dnstap feature:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>fsul <span style=color:#f92672>=</span> newFrameStreamUnixLogger<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/var/run/dnsdist/dnstap.sock&#34;</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>addAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
+</span></span><span style=display:flex><span>addResponseAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogResponseAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
+</span></span><span style=display:flex><span>-- Cache Hits
+</span></span><span style=display:flex><span>addCacheHitResponseAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogResponseAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
+</span></span></code></pre></div><p>Execute the dnstap receiver with <code>dnsdist</code> user:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>su - dnsdist -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/var/run/dnsdist/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
+</span></span></code></pre></div><h2 id=tcp-stream-2>TCP stream</h2><p>Update the configuration file <code>/etc/dnsdist/dnsdist.conf</code> to activate the dnstap feature
+with tcp stream and execute the dnstap receiver in listening tcp socket mode:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>fsul <span style=color:#f92672>=</span> newFrameStreamTcpLogger<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;127.0.0.1:8888&#34;</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>addAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
+</span></span><span style=display:flex><span>addResponseAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogResponseAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
+</span></span><span style=display:flex><span>-- Cache Hits
+</span></span><span style=display:flex><span>addCacheHitResponseAction<span style=color:#f92672>(</span>AllRule<span style=color:#f92672>()</span>, DnstapLogResponseAction<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;dnsdist&#34;</span>, fsul<span style=color:#f92672>))</span>
+</span></span></code></pre></div><h1 id=nlnetlabs---nsd>NLnetLabs - nsd</h1><p><img src=https://img.shields.io/badge/4.3.2-tested-green alt="nsd 4.3.2"></p><p>Dnstap messages supported:</p><ul><li>AUTH_QUERY</li><li>AUTH_RESPONSE</li></ul><h2 id=build-with-dnstap-support-1>Build with dnstap support</h2><p>Download latest source and build-it with dnstap support:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>./configure --enable-dnstap
+</span></span><span style=display:flex><span>make <span style=color:#f92672>&amp;&amp;</span> make install
+</span></span></code></pre></div><h2 id=unix-socket-3>Unix socket</h2><p>Update the configuration file <code>/etc/nsd/nsd.conf</code> to activate the dnstap feature:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>dnstap</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-enable</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-socket-path</span>: <span style=color:#e6db74>&#34;/var/run/nsd/dnstap.sock&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-send-identity</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-send-version</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-log-auth-query-messages</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-log-auth-response-messages</span>: <span style=color:#66d9ef>yes</span>
+</span></span></code></pre></div><p>Execute the dnstap receiver with <code>nsd</code> user:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>su - nsd -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/var/run/nsd/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
+</span></span></code></pre></div><h1 id=nlnetlabs---unbound>NLnetLabs - unbound</h1><p><img src=https://img.shields.io/badge/1.11.0-tested-green alt="unbound 1.11.0"> <img src=https://img.shields.io/badge/1.12.0-tested-green alt="unbound 1.12.0"> <img src=https://img.shields.io/badge/1.13.0-tested-green alt="unbound 1.13.0"></p><p>Dnstap messages supported:</p><ul><li>CLIENT_QUERY</li><li>CLIENT_RESPONSE</li><li>RESOLVER_QUERY</li><li>RESOLVER_RESPONSE</li></ul><h4 id=build-with-dnstap-support-2>Build with dnstap support</h4><p>Download latest source and build-it with dnstap support:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>./configure --enable-dnstap
+</span></span><span style=display:flex><span>make <span style=color:#f92672>&amp;&amp;</span> make install
+</span></span></code></pre></div><h2 id=unix-socket-4>Unix socket</h2><p>Update the configuration file <code>/etc/unbound/unbound.conf</code> to activate the dnstap feature:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>dnstap</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-enable</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-socket-path</span>: <span style=color:#e6db74>&#34;dnstap.sock&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-send-identity</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-send-version</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-log-resolver-query-messages</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-log-resolver-response-messages</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-log-client-query-messages</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-log-client-response-messages</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-log-forwarder-query-messages</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-log-forwarder-response-messages</span>: <span style=color:#66d9ef>yes</span>
+</span></span></code></pre></div><p>Execute the dnstap receiver with <code>unbound</code> user:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>su - unbound -s /bin/bash -c <span style=color:#e6db74>&#34;dnstap_receiver -u &#34;</span>/usr/local/etc/unbound/dnstap.sock<span style=color:#e6db74>&#34;&#34;</span>
+</span></span></code></pre></div><h4 id=tcp-stream-3>TCP stream</h4><p>Update the configuration file <code>/etc/unbound/unbound.conf</code> to activate the dnstap feature
+with tcp mode and execute the dnstap receiver in listening tcp socket mode:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>dnstap</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-enable</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-socket-path</span>: <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-ip</span>: <span style=color:#e6db74>&#34;10.0.0.100@6000&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-tls</span>: <span style=color:#66d9ef>no</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-send-identity</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-send-version</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-log-client-query-messages</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-log-client-response-messages</span>: <span style=color:#66d9ef>yes</span>
+</span></span></code></pre></div><h2 id=tls-stream>TLS stream</h2><p>Update the configuration file <code>/etc/unbound/unbound.conf</code> to activate the dnstap feature
+with tls mode and execute the dnstap receiver in listening tcp/tls socket mode:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>dnstap</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-enable</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-socket-path</span>: <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-ip</span>: <span style=color:#e6db74>&#34;10.0.0.100@6000&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-tls</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-send-identity</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-send-version</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-log-client-query-messages</span>: <span style=color:#66d9ef>yes</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap-log-client-response-messages</span>: <span style=color:#66d9ef>yes</span>
+</span></span></code></pre></div><h1 id=coredns>CoreDNS</h1><p><img src=https://img.shields.io/badge/1.8.4-tested-green alt="coredns 1.8.4"> <img src=https://img.shields.io/badge/1.8.0-tested-green alt="coredns 1.8.0"></p><p>Dnstap messages supported:</p><ul><li>CLIENT_QUERY</li><li>CLIENT_RESPONSE</li><li>FORWARDER_QUERY</li><li>FORWARDER_RESPONSE</li></ul><h2 id=unix-socket-5>Unix socket</h2><p>corefile example</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>.:53 <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    dnstap /tmp/dnstap.sock full
+</span></span><span style=display:flex><span>    forward . 8.8.8.8:53
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>Then execute CoreDNS with your corefile</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span> ./coredns -conf corefile
+</span></span></code></pre></div><h2 id=tcp-stream-4>TCP stream</h2><p>corefile example</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>.:53 <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        dnstap tcp://10.0.0.51:6000 full
+</span></span><span style=display:flex><span>        forward . 8.8.8.8:53
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>Then execute CoreDNS with your corefile</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span> ./coredns -conf corefile
+</span></span></code></pre></div><h1 id=cz-nic---knot-resolver>CZ-NIC - Knot Resolver</h1><h2 id=unix-socket-6>Unix socket</h2><p>corefile example</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>net.listen<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;0.0.0.0&#34;</span>, 5553<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>modules.load<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;nsid&#39;</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>nsid.name<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;instance1&#39;</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>modules <span style=color:#f92672>=</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    dnstap <span style=color:#f92672>=</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        socket_path <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;/tmp/dnstap.sock&#34;</span>,
+</span></span><span style=display:flex><span>        identity <span style=color:#f92672>=</span>  nsid.name<span style=color:#f92672>()</span> or <span style=color:#e6db74>&#34;&#34;</span>,
+</span></span><span style=display:flex><span>        version <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;knot-resolver&#34;</span> .. package_version<span style=color:#f92672>()</span>,
+</span></span><span style=display:flex><span>        client <span style=color:#f92672>=</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            log_queries <span style=color:#f92672>=</span> true,
+</span></span><span style=display:flex><span>            log_responses <span style=color:#f92672>=</span> true,
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>Then execute the Knot Resolver, example with docker</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo docker run -d -v $PWD/kresd.conf:/etc/knot-resolver/kresd.conf --name<span style=color:#f92672>=</span>knot --network<span style=color:#f92672>=</span>host cznic/knot-resolver -n -c /etc/knot-resolver/kresd.conf
+</span></span></code></pre></div></div><div class=post-footer><div class=info><span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/logs/>logs</a></span></div></div></div></div></div></main></div><footer class="footer footer--base"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
 Denis MACHARD
-2021
-</li>
-</ul>
-</div>
-</footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></body>
-</html>
+2022</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.4a40b20209bc12e56cf77caff5feaa93fecd6b0d97d51b33afb0265a732ce636.js integrity="sha256-SkCyAgm8EuVs93yv9f6qk/7Naw2X1Rszr7AmWnMs5jY=" crossorigin=anonymous></script></body></html>

@@ -1,29 +1,11 @@
-<!doctype html><html dir=ltr lang=en data-theme><head>
-<title>
-Denis MACHARD
+<!doctype html><html dir=ltr lang=en data-theme><head><title>Denis MACHARD
 |
-Guide installation de guacamole en mode container
-</title>
-<meta charset=utf-8><meta name=generator content="Hugo 0.91.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name=description content="
+Guide installation de guacamole en mode container</title><meta charset=utf-8><meta name=generator content="Hugo 0.94.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="
       Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
 
 
-    ">
-<link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css>
-<link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous>
-<link rel="shortcut icon" href=/favicon.ico type=image/x-icon>
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/posts/0024-guacamole-docker-installation/>
-<script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
-<script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Guide installation de guacamole en mode container">
-<meta name=twitter:description content="Guide d&rsquo;installation de guacamole en mode container avec une base de donnée PostgreSQL.">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Guide installation de guacamole en mode container","headline":"Guide installation de guacamole en mode container","alternativeHeadline":"","description":"
+    "><link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=canonical href=/posts/0024-guacamole-docker-installation/><script type=text/javascript src=/js/anatole-header.min.d0408165d31a17f17bba83038bf54e86121f85021bdf936382e636f0f77a952f.js integrity="sha256-0ECBZdMaF/F7uoMDi/VOhhIfhQIb35NjguY28Pd6lS8=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/anatole-theme-switcher.min.65e936b591bf81484a5ac438c8e4ae6454fb25516d58ce911e4888d7f230bdc5.js integrity="sha256-Zek2tZG/gUhKWsQ4yOSuZFT7JVFtWM6RHkiI1/IwvcU=" crossorigin=anonymous></script><meta name=twitter:card content="summary"><meta name=twitter:title content="Guide installation de guacamole en mode container"><meta name=twitter:description content="Guide d&rsquo;installation de guacamole en mode container avec une base de donnée PostgreSQL."><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Guide installation de guacamole en mode container","headline":"Guide installation de guacamole en mode container","alternativeHeadline":"","description":"
       
         Guide d\u0026rsquo;installation de guacamole en mode container avec une base de donnée PostgreSQL.
 
@@ -31,218 +13,77 @@ Guide installation de guacamole en mode container
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0024-guacamole-docker-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2019","dateCreated":"2019-01-29T00:00:00.00Z","datePublished":"2019-01-29T00:00:00.00Z","dateModified":"2019-01-29T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0024-guacamole-docker-installation\/","wordCount":"478","genre":[],"keywords":["docker","guacamole","installation"]}</script>
-</head>
-<body>
-<header><div class="page-top
-.">
-<a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0024-guacamole-docker-installation\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2019","dateCreated":"2019-01-29T00:00:00.00Z","datePublished":"2019-01-29T00:00:00.00Z","dateModified":"2019-01-29T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0024-guacamole-docker-installation\/","wordCount":"478","genre":[],"keywords":["docker","guacamole","installation"]}</script></head><body><header><div class="page-top
+."><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span>
 <span aria-hidden=true></span>
-<span aria-hidden=true></span>
-<span aria-hidden=true></span>
-</a>
-<nav>
-<ul class=nav__list id=navMenu>
-<div class=nav__links>
-<li>
-<a href=/ title>Home</a>
-</li>
-<li>
-<a href=/posts title>Archive</a>
-</li>
-<li>
-<a href=/tags title>Tags</a>
-</li>
-</div>
-<ul>
-<li>
-<a class=theme-switch title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</ul>
-</nav>
-</div>
-</header>
-<div class=wrapper>
-<aside><div class="sidebar
-.">
-<div class=sidebar__content>
-<div class=logo-title>
-<div class=title>
-<img src=/images/profile.png alt="profile picture">
-<h3 title><a href=/>My technical gists</a></h3>
-<div class=description>
-<p>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</p>
-</div>
-</div>
-</div>
-<ul class=social-links>
-<li>
-<a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail>
-<i class="fas fa-rss fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://github.com/dmachard/ rel=me aria-label=GitHub>
-<i class="fab fa-github fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://twitter.com/denis_machard rel=me aria-label=Twitter>
-<i class="fab fa-twitter fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin>
-<i class="fab fa-linkedin fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail>
-<i class="fas fa-envelope fa-2x" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div><footer class="footer footer--sidebar">
-<div class=by_farbox>
-<ul class=footer__list>
-<li class=footer__item>
-&copy;
+<span aria-hidden=true></span></a><nav><ul class=nav__list id=navMenu><div class=nav__links><li><a href=/ title>Home</a></li><li><a href=/posts title>Archive</a></li><li><a href=/tags title>Tags</a></li></div><ul><li><a class=theme-switch title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></li></ul></ul></nav></div></header><div class=wrapper><aside><div class="sidebar
+."><div class=sidebar__content><div class=logo-title><div class=title><img src=/images/profile.png alt="profile picture"><h3 title><a href=/>My technical gists</a></h3><div class=description><p>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</p></div></div></div><ul class=social-links><li><a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail><i class="fas fa-rss fa-2x" aria-hidden=true></i></a></li><li><a href=https://github.com/dmachard/ rel=me aria-label=GitHub><i class="fab fa-github fa-2x" aria-hidden=true></i></a></li><li><a href=https://twitter.com/denis_machard rel=me aria-label=Twitter><i class="fab fa-twitter fa-2x" aria-hidden=true></i></a></li><li><a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin><i class="fab fa-linkedin fa-2x" aria-hidden=true></i></a></li><li><a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail><i class="fas fa-envelope fa-2x" aria-hidden=true></i></a></li></ul></div><footer class="footer footer--sidebar"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
 Denis MACHARD
-2021
-</li>
-</ul>
-</div>
-</footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></div>
-</aside>
-<main>
-<div class=autopagerize_page_element>
-<div class=content>
-<div class="post
-.">
-<div class=post-content>
-<div class=post-title>
-<h1>Guide installation de guacamole en mode container</h1>
-</div><p>Guide d&rsquo;installation de <strong><a href=https://guacamole.apache.org/>guacamole</a></strong> en mode container avec une base de donnée PostgreSQL.</p>
-<h1 id=sommaire>Sommaire</h1>
-<ul>
-<li><a href=#prerequis>Prérequis</a></li>
-<li><a href=#deploiment-postgresql>Déploiment PostgreSQL</a></li>
-<li><a href=#deploiment-guacamole>Déploiment Guacamole</a></li>
-<li><a href=#test-de-connexion>Test de connexion</a></li>
-</ul>
-<h2 id=prérequis>Prérequis</h2>
-<p>Ce tutorial nécessite un environnement docker et de récupérer les images dockers suivantes:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo docker pull postgres:9.4
-sudo docker pull guacamole/guacd
-sudo docker pull guacamole/guacamole
-</code></pre></div><h2 id=déploiment-postgresql>Déploiment PostgreSQL</h2>
-<h3 id=démarrage-container>Démarrage container</h3>
-<p>Pour avoir des données persistantes, prévoir un répertoire sur le système hôte.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mkdir -p /home/guacamole/postgresql_data
-cd /home/guacamole/postgresql_data
-sudo docker container run --name postgres01 -e POSTGRES_PASSWORD<span style=color:#f92672>=</span>bonjour -d -p 5432:5432 -v $PWD/postgresql_data:/var/lib/postgresql/data  postgres
-
-<span style=color:#75715e>### Vérification des logs</span>
-
-<span style=color:#e6db74>```</span>bash
-sudo docker logs postgres01
-The files belonging to this database system will be owned by user <span style=color:#e6db74>&#34;postgres&#34;</span>.
-This user must also own the server process
-...
-LOG:  database system is ready to accept connections
-</code></pre></div><h3 id=alter-user>alter user</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo docker exec -it postgres01 bash
-root@c26e9831087a:/# su - postgres
-postgres@c26e9831087a:~$  psql -d postgres -c <span style=color:#e6db74>&#34;ALTER USER postgres WITH PASSWORD &#39;bonjour&#39;;&#34;</span>
-ALTER ROLE
-</code></pre></div><h3 id=test-de-connexion>test de connexion</h3>
-<p>Enfin faire un test de connexion sur la bdd</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo apt-get install -y postgresql-client
-psql -h localhost -U postgres -d postgres
-Password <span style=color:#66d9ef>for</span> user postgres: 
-psql <span style=color:#f92672>(</span>13.4 <span style=color:#f92672>(</span>Ubuntu 13.4-0ubuntu0.21.04.1<span style=color:#f92672>)</span>, server 14.0 <span style=color:#f92672>(</span>Debian 14.0-1.pgdg110+1<span style=color:#f92672>))</span>
-WARNING: psql major version 13, server major version 14.
-         Some psql features might not work.
-Type <span style=color:#e6db74>&#34;help&#34;</span> <span style=color:#66d9ef>for</span> help.
-
-postgres<span style=color:#f92672>=</span><span style=color:#75715e>#</span>
-</code></pre></div><h2 id=déploiment-guacamole>Déploiment Guacamole</h2>
-<h3 id=création-base>Création base</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>psql -h localhost -U postgres -d postgres
-
-CREATE USER guacamole_user SUPERUSER PASSWORD <span style=color:#e6db74>&#39;guac&#39;</span>;
-CREATE DATABASE guacamole_db ;
-GRANT ALL PRIVILEGES ON DATABASE guacamole_db TO guacamole_user;
-</code></pre></div><h3 id=test-connexion>Test connexion</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ psql -h localhost -U guacamole_user -d guacamole_db
-Password <span style=color:#66d9ef>for</span> user guacamole_user: 
-psql <span style=color:#f92672>(</span>13.4 <span style=color:#f92672>(</span>Ubuntu 13.4-0ubuntu0.21.04.1<span style=color:#f92672>)</span>, server 14.0 <span style=color:#f92672>(</span>Debian 14.0-1.pgdg110+1<span style=color:#f92672>))</span>
-WARNING: psql major version 13, server major version 14.
-         Some psql features might not work.
-Type <span style=color:#e6db74>&#34;help&#34;</span> <span style=color:#66d9ef>for</span> help.
-
-guacamole_db<span style=color:#f92672>=</span><span style=color:#75715e># exit</span>
-</code></pre></div><h3 id=création-schéma>Création schéma</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --postgres &gt; initdb.sql
-cat initdb.sql | psql -h localhost -U guacamole_user -d guacamole_db -f -
-Password <span style=color:#66d9ef>for</span> user guacamole_user: 
-CREATE TYPE
-....
-INSERT <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>6</span>
-INSERT <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>3</span>
-</code></pre></div><h3 id=démarrage-des-containers>Démarrage des containers</h3>
-<p>Lancement du serveur guacd</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo docker run --name guacd01 -d guacamole/guacd
-</code></pre></div><p>Vérification</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo docker logs guacd01
-guacd<span style=color:#f92672>[</span>7<span style=color:#f92672>]</span>: INFO:	Guacamole proxy daemon <span style=color:#f92672>(</span>guacd<span style=color:#f92672>)</span> version 1.3.0 started
-guacd<span style=color:#f92672>[</span>7<span style=color:#f92672>]</span>: INFO:	Listening on host 0.0.0.0, port <span style=color:#ae81ff>4822</span>
-</code></pre></div><p>Lancement du client guacamole</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo docker container run --name guacamole01 --link guacd01:guacd --link postgres01:postgres -e POSTGRES_DATABASE<span style=color:#f92672>=</span>guacamole_db -e POSTGRES_USER<span style=color:#f92672>=</span>guacamole_user -e POSTGRES_PASSWORD<span style=color:#f92672>=</span>guac -d -p 8080:8080 guacamole/guacamole
-</code></pre></div><p>Vérification</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo docker logs guacamole01
-05-Nov-2021 19:38:11.788 INFO <span style=color:#f92672>[</span>main<span style=color:#f92672>]</span> org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/8.5.72
-05-Nov-2021 19:38:11.796 INFO <span style=color:#f92672>[</span>main<span style=color:#f92672>]</span> org.apache.catalina.startup.VersionLoggerListener.log Server built:          Oct <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>2021</span> 15:15:33 UTC
-05-Nov-2021 19:38:11.797 INFO <span style=color:#f92672>[</span>main<span style=color:#f92672>]</span> org.apache.catalina.startup.VersionLoggerListener.log Server version number: 8.5.72.0
-...
-at/webapps/guacamole.war<span style=color:#f92672>]</span> has finished in <span style=color:#f92672>[</span>6,039<span style=color:#f92672>]</span> ms
-05-Nov-2021 19:38:18.231 INFO <span style=color:#f92672>[</span>main<span style=color:#f92672>]</span> org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;http-nio-8080&#34;</span><span style=color:#f92672>]</span>
-05-Nov-2021 19:38:18.245 INFO <span style=color:#f92672>[</span>main<span style=color:#f92672>]</span> org.apache.catalina.startup.Catalina.start Server startup in <span style=color:#ae81ff>6168</span> ms
-</code></pre></div><p>Vérification de l&rsquo;écoute du programme</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo netstat -anp | grep <span style=color:#ae81ff>8080</span>
-tcp        <span style=color:#ae81ff>0</span>      <span style=color:#ae81ff>0</span> 0.0.0.0:8080            0.0.0.0:*               LISTEN      2275956/docker-prox 
-tcp6       <span style=color:#ae81ff>0</span>      <span style=color:#ae81ff>0</span> :::8080                 :::*                    LISTEN      2275964/docker-prox
-</code></pre></div><h2 id=test-de-connexion-1>Test de connexion</h2>
-<p>L&rsquo;interface de guacamole est accessible avec l&rsquo;adresse suivante: http://ip:8080/guacamole/</p>
-<p>Le compte par défaut:</p>
-<ul>
-<li>login=guacadmin</li>
-<li>password=guacadmin</li>
-</ul>
-</div>
-<div class=post-footer>
-<div class=info>
-<span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/guacamole/>guacamole</a><a class=tag href=/tags/installation/>installation</a></span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div><footer class="footer footer--base">
-<div class=by_farbox>
-<ul class=footer__list>
-<li class=footer__item>
-&copy;
+2022</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.4a40b20209bc12e56cf77caff5feaa93fecd6b0d97d51b33afb0265a732ce636.js integrity="sha256-SkCyAgm8EuVs93yv9f6qk/7Naw2X1Rszr7AmWnMs5jY=" crossorigin=anonymous></script></div></aside><main><div class=autopagerize_page_element><div class=content><div class="post
+."><div class=post-content><div class=post-title><h1>Guide installation de guacamole en mode container</h1></div><p>Guide d&rsquo;installation de <strong><a href=https://guacamole.apache.org/>guacamole</a></strong> en mode container avec une base de donnée PostgreSQL.</p><h1 id=sommaire>Sommaire</h1><ul><li><a href=#prerequis>Prérequis</a></li><li><a href=#deploiment-postgresql>Déploiment PostgreSQL</a></li><li><a href=#deploiment-guacamole>Déploiment Guacamole</a></li><li><a href=#test-de-connexion>Test de connexion</a></li></ul><h2 id=prérequis>Prérequis</h2><p>Ce tutorial nécessite un environnement docker et de récupérer les images dockers suivantes:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo docker pull postgres:9.4
+</span></span><span style=display:flex><span>sudo docker pull guacamole/guacd
+</span></span><span style=display:flex><span>sudo docker pull guacamole/guacamole
+</span></span></code></pre></div><h2 id=déploiment-postgresql>Déploiment PostgreSQL</h2><h3 id=démarrage-container>Démarrage container</h3><p>Pour avoir des données persistantes, prévoir un répertoire sur le système hôte.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir -p /home/guacamole/postgresql_data
+</span></span><span style=display:flex><span>cd /home/guacamole/postgresql_data
+</span></span><span style=display:flex><span>sudo docker container run --name postgres01 -e POSTGRES_PASSWORD<span style=color:#f92672>=</span>bonjour -d -p 5432:5432 -v $PWD/postgresql_data:/var/lib/postgresql/data  postgres
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Vérification des logs</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>```</span>bash
+</span></span><span style=display:flex><span>sudo docker logs postgres01
+</span></span><span style=display:flex><span>The files belonging to this database system will be owned by user <span style=color:#e6db74>&#34;postgres&#34;</span>.
+</span></span><span style=display:flex><span>This user must also own the server process
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>LOG:  database system is ready to accept connections
+</span></span></code></pre></div><h3 id=alter-user>alter user</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo docker exec -it postgres01 bash
+</span></span><span style=display:flex><span>root@c26e9831087a:/# su - postgres
+</span></span><span style=display:flex><span>postgres@c26e9831087a:~$  psql -d postgres -c <span style=color:#e6db74>&#34;ALTER USER postgres WITH PASSWORD &#39;bonjour&#39;;&#34;</span>
+</span></span><span style=display:flex><span>ALTER ROLE
+</span></span></code></pre></div><h3 id=test-de-connexion>test de connexion</h3><p>Enfin faire un test de connexion sur la bdd</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install -y postgresql-client
+</span></span><span style=display:flex><span>psql -h localhost -U postgres -d postgres
+</span></span><span style=display:flex><span>Password <span style=color:#66d9ef>for</span> user postgres: 
+</span></span><span style=display:flex><span>psql <span style=color:#f92672>(</span>13.4 <span style=color:#f92672>(</span>Ubuntu 13.4-0ubuntu0.21.04.1<span style=color:#f92672>)</span>, server 14.0 <span style=color:#f92672>(</span>Debian 14.0-1.pgdg110+1<span style=color:#f92672>))</span>
+</span></span><span style=display:flex><span>WARNING: psql major version 13, server major version 14.
+</span></span><span style=display:flex><span>         Some psql features might not work.
+</span></span><span style=display:flex><span>Type <span style=color:#e6db74>&#34;help&#34;</span> <span style=color:#66d9ef>for</span> help.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>postgres<span style=color:#f92672>=</span><span style=color:#75715e>#</span>
+</span></span></code></pre></div><h2 id=déploiment-guacamole>Déploiment Guacamole</h2><h3 id=création-base>Création base</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>psql -h localhost -U postgres -d postgres
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>CREATE USER guacamole_user SUPERUSER PASSWORD <span style=color:#e6db74>&#39;guac&#39;</span>;
+</span></span><span style=display:flex><span>CREATE DATABASE guacamole_db ;
+</span></span><span style=display:flex><span>GRANT ALL PRIVILEGES ON DATABASE guacamole_db TO guacamole_user;
+</span></span></code></pre></div><h3 id=test-connexion>Test connexion</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ psql -h localhost -U guacamole_user -d guacamole_db
+</span></span><span style=display:flex><span>Password <span style=color:#66d9ef>for</span> user guacamole_user: 
+</span></span><span style=display:flex><span>psql <span style=color:#f92672>(</span>13.4 <span style=color:#f92672>(</span>Ubuntu 13.4-0ubuntu0.21.04.1<span style=color:#f92672>)</span>, server 14.0 <span style=color:#f92672>(</span>Debian 14.0-1.pgdg110+1<span style=color:#f92672>))</span>
+</span></span><span style=display:flex><span>WARNING: psql major version 13, server major version 14.
+</span></span><span style=display:flex><span>         Some psql features might not work.
+</span></span><span style=display:flex><span>Type <span style=color:#e6db74>&#34;help&#34;</span> <span style=color:#66d9ef>for</span> help.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>guacamole_db<span style=color:#f92672>=</span><span style=color:#75715e># exit</span>
+</span></span></code></pre></div><h3 id=création-schéma>Création schéma</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --postgres &gt; initdb.sql
+</span></span><span style=display:flex><span>cat initdb.sql | psql -h localhost -U guacamole_user -d guacamole_db -f -
+</span></span><span style=display:flex><span>Password <span style=color:#66d9ef>for</span> user guacamole_user: 
+</span></span><span style=display:flex><span>CREATE TYPE
+</span></span><span style=display:flex><span>....
+</span></span><span style=display:flex><span>INSERT <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>6</span>
+</span></span><span style=display:flex><span>INSERT <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>3</span>
+</span></span></code></pre></div><h3 id=démarrage-des-containers>Démarrage des containers</h3><p>Lancement du serveur guacd</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo docker run --name guacd01 -d guacamole/guacd
+</span></span></code></pre></div><p>Vérification</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo docker logs guacd01
+</span></span><span style=display:flex><span>guacd<span style=color:#f92672>[</span>7<span style=color:#f92672>]</span>: INFO:	Guacamole proxy daemon <span style=color:#f92672>(</span>guacd<span style=color:#f92672>)</span> version 1.3.0 started
+</span></span><span style=display:flex><span>guacd<span style=color:#f92672>[</span>7<span style=color:#f92672>]</span>: INFO:	Listening on host 0.0.0.0, port <span style=color:#ae81ff>4822</span>
+</span></span></code></pre></div><p>Lancement du client guacamole</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo docker container run --name guacamole01 --link guacd01:guacd --link postgres01:postgres -e POSTGRES_DATABASE<span style=color:#f92672>=</span>guacamole_db -e POSTGRES_USER<span style=color:#f92672>=</span>guacamole_user -e POSTGRES_PASSWORD<span style=color:#f92672>=</span>guac -d -p 8080:8080 guacamole/guacamole
+</span></span></code></pre></div><p>Vérification</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo docker logs guacamole01
+</span></span><span style=display:flex><span>05-Nov-2021 19:38:11.788 INFO <span style=color:#f92672>[</span>main<span style=color:#f92672>]</span> org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/8.5.72
+</span></span><span style=display:flex><span>05-Nov-2021 19:38:11.796 INFO <span style=color:#f92672>[</span>main<span style=color:#f92672>]</span> org.apache.catalina.startup.VersionLoggerListener.log Server built:          Oct <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>2021</span> 15:15:33 UTC
+</span></span><span style=display:flex><span>05-Nov-2021 19:38:11.797 INFO <span style=color:#f92672>[</span>main<span style=color:#f92672>]</span> org.apache.catalina.startup.VersionLoggerListener.log Server version number: 8.5.72.0
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>at/webapps/guacamole.war<span style=color:#f92672>]</span> has finished in <span style=color:#f92672>[</span>6,039<span style=color:#f92672>]</span> ms
+</span></span><span style=display:flex><span>05-Nov-2021 19:38:18.231 INFO <span style=color:#f92672>[</span>main<span style=color:#f92672>]</span> org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;http-nio-8080&#34;</span><span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>05-Nov-2021 19:38:18.245 INFO <span style=color:#f92672>[</span>main<span style=color:#f92672>]</span> org.apache.catalina.startup.Catalina.start Server startup in <span style=color:#ae81ff>6168</span> ms
+</span></span></code></pre></div><p>Vérification de l&rsquo;écoute du programme</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo netstat -anp | grep <span style=color:#ae81ff>8080</span>
+</span></span><span style=display:flex><span>tcp        <span style=color:#ae81ff>0</span>      <span style=color:#ae81ff>0</span> 0.0.0.0:8080            0.0.0.0:*               LISTEN      2275956/docker-prox 
+</span></span><span style=display:flex><span>tcp6       <span style=color:#ae81ff>0</span>      <span style=color:#ae81ff>0</span> :::8080                 :::*                    LISTEN      2275964/docker-prox
+</span></span></code></pre></div><h2 id=test-de-connexion-1>Test de connexion</h2><p>L&rsquo;interface de guacamole est accessible avec l&rsquo;adresse suivante: http://ip:8080/guacamole/</p><p>Le compte par défaut:</p><ul><li>login=guacadmin</li><li>password=guacadmin</li></ul></div><div class=post-footer><div class=info><span class=separator><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/guacamole/>guacamole</a><a class=tag href=/tags/installation/>installation</a></span></div></div></div></div></div></main></div><footer class="footer footer--base"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
 Denis MACHARD
-2021
-</li>
-</ul>
-</div>
-</footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></body>
-</html>
+2022</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.4a40b20209bc12e56cf77caff5feaa93fecd6b0d97d51b33afb0265a732ce636.js integrity="sha256-SkCyAgm8EuVs93yv9f6qk/7Naw2X1Rszr7AmWnMs5jY=" crossorigin=anonymous></script></body></html>

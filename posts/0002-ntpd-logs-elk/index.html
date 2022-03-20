@@ -1,29 +1,11 @@
-<!doctype html><html dir=ltr lang=en data-theme><head>
-<title>
-Denis MACHARD
+<!doctype html><html dir=ltr lang=en data-theme><head><title>Denis MACHARD
 |
-Ntpd: How to get statistics usage with ELK
-</title>
-<meta charset=utf-8><meta name=generator content="Hugo 0.91.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name=description content="
+Ntpd: How to get statistics usage with ELK</title><meta charset=utf-8><meta name=generator content="Hugo 0.94.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="
       Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
 
 
-    ">
-<link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css>
-<link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous>
-<link rel="shortcut icon" href=/favicon.ico type=image/x-icon>
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/posts/0002-ntpd-logs-elk/>
-<script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
-<script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Ntpd: How to get statistics usage with ELK">
-<meta name=twitter:description content="In this post, I will look at ntpd server to extract some ntp statitics.">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Ntpd: How to get statistics usage with ELK","headline":"Ntpd: How to get statistics usage with ELK","alternativeHeadline":"","description":"
+    "><link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=canonical href=/posts/0002-ntpd-logs-elk/><script type=text/javascript src=/js/anatole-header.min.d0408165d31a17f17bba83038bf54e86121f85021bdf936382e636f0f77a952f.js integrity="sha256-0ECBZdMaF/F7uoMDi/VOhhIfhQIb35NjguY28Pd6lS8=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/anatole-theme-switcher.min.65e936b591bf81484a5ac438c8e4ae6454fb25516d58ce911e4888d7f230bdc5.js integrity="sha256-Zek2tZG/gUhKWsQ4yOSuZFT7JVFtWM6RHkiI1/IwvcU=" crossorigin=anonymous></script><meta name=twitter:card content="summary"><meta name=twitter:title content="Ntpd: How to get statistics usage with ELK"><meta name=twitter:description content="In this post, I will look at ntpd server to extract some ntp statitics."><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Ntpd: How to get statistics usage with ELK","headline":"Ntpd: How to get statistics usage with ELK","alternativeHeadline":"","description":"
       
         In this post, I will look at ntpd server to extract some ntp statitics.
 
@@ -31,415 +13,138 @@ Ntpd: How to get statistics usage with ELK
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0002-ntpd-logs-elk\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-06-20T00:00:00.00Z","datePublished":"2020-06-20T00:00:00.00Z","dateModified":"2020-06-20T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0002-ntpd-logs-elk\/","wordCount":"712","genre":[],"keywords":["ntp","logs"]}</script>
-</head>
-<body>
-<header><div class="page-top
-.">
-<a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0002-ntpd-logs-elk\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2020","dateCreated":"2020-06-20T00:00:00.00Z","datePublished":"2020-06-20T00:00:00.00Z","dateModified":"2020-06-20T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0002-ntpd-logs-elk\/","wordCount":"712","genre":[],"keywords":["ntp","logs"]}</script></head><body><header><div class="page-top
+."><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span>
 <span aria-hidden=true></span>
-<span aria-hidden=true></span>
-<span aria-hidden=true></span>
-</a>
-<nav>
-<ul class=nav__list id=navMenu>
-<div class=nav__links>
-<li>
-<a href=/ title>Home</a>
-</li>
-<li>
-<a href=/posts title>Archive</a>
-</li>
-<li>
-<a href=/tags title>Tags</a>
-</li>
-</div>
-<ul>
-<li>
-<a class=theme-switch title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</ul>
-</nav>
-</div>
-</header>
-<div class=wrapper>
-<aside><div class="sidebar
-.">
-<div class=sidebar__content>
-<div class=logo-title>
-<div class=title>
-<img src=/images/profile.png alt="profile picture">
-<h3 title><a href=/>My technical gists</a></h3>
-<div class=description>
-<p>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</p>
-</div>
-</div>
-</div>
-<ul class=social-links>
-<li>
-<a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail>
-<i class="fas fa-rss fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://github.com/dmachard/ rel=me aria-label=GitHub>
-<i class="fab fa-github fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://twitter.com/denis_machard rel=me aria-label=Twitter>
-<i class="fab fa-twitter fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin>
-<i class="fab fa-linkedin fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail>
-<i class="fas fa-envelope fa-2x" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div><footer class="footer footer--sidebar">
-<div class=by_farbox>
-<ul class=footer__list>
-<li class=footer__item>
-&copy;
+<span aria-hidden=true></span></a><nav><ul class=nav__list id=navMenu><div class=nav__links><li><a href=/ title>Home</a></li><li><a href=/posts title>Archive</a></li><li><a href=/tags title>Tags</a></li></div><ul><li><a class=theme-switch title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></li></ul></ul></nav></div></header><div class=wrapper><aside><div class="sidebar
+."><div class=sidebar__content><div class=logo-title><div class=title><img src=/images/profile.png alt="profile picture"><h3 title><a href=/>My technical gists</a></h3><div class=description><p>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</p></div></div></div><ul class=social-links><li><a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail><i class="fas fa-rss fa-2x" aria-hidden=true></i></a></li><li><a href=https://github.com/dmachard/ rel=me aria-label=GitHub><i class="fab fa-github fa-2x" aria-hidden=true></i></a></li><li><a href=https://twitter.com/denis_machard rel=me aria-label=Twitter><i class="fab fa-twitter fa-2x" aria-hidden=true></i></a></li><li><a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin><i class="fab fa-linkedin fa-2x" aria-hidden=true></i></a></li><li><a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail><i class="fas fa-envelope fa-2x" aria-hidden=true></i></a></li></ul></div><footer class="footer footer--sidebar"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
 Denis MACHARD
-2021
-</li>
-</ul>
-</div>
-</footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></div>
-</aside>
-<main>
-<div class=autopagerize_page_element>
-<div class=content>
-<div class="post
-.">
-<div class=post-content>
-<div class=post-title>
-<h1>Ntpd: How to get statistics usage with ELK</h1>
-</div><p>In this post, I will look at ntpd server to extract some ntp statitics.</p>
-<h2 id=table-of-contents>Table of contents</h2>
-<ul>
-<li><a href=#activate-ntpd-logs>Activate ntpd logs</a>
-<ul>
-<li><a href=#peerstats-documentation>peerstats documentation</a></li>
-<li><a href=#sysstats-documentation>sysstats documentation</a></li>
-</ul>
-</li>
-<li><a href=#counting-ntp-clients>Counting NTP clients</a></li>
-<li><a href=#expected-logs>Expected logs</a></li>
-<li><a href=#export-logs-to-elk>Export Logs to ELK</a>
-<ul>
-<li><a href=#deploy-filebeat>Deploy Filebeat</a></li>
-<li><a href=#configure-logstash>Configure Logstash</a></li>
-</ul>
-</li>
-<li><a href=#examples-of-dashboard-on-kibana>Examples of dashboard on Kibana</a></li>
-</ul>
-<h2 id=activate-ntpd-logs>Activate ntpd logs</h2>
-<p>Update the ntpd configuration</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /etc/ntp.conf
-statsdir /var/log/ntpstats/
-statistics peerstats sysstats
-filegen peerstats file peerstats.log type day enable
-filegen sysstats file sysstats.log type none enable
-</code></pre></div><p>Restart the daemon</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>systemctl restart ntpd
-</code></pre></div><h3 id=peerstats-documentation>peerstats documentation</h3>
-<p>Record peer statistics.
-An event occurs upon an update from either another NTP server</p>
-<table>
-<thead>
-<tr>
-<th>Units</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>MJD</td>
-<td>date</td>
-</tr>
-<tr>
-<td>s</td>
-<td>time past midnight</td>
-</tr>
-<tr>
-<td>IP</td>
-<td>source address</td>
-</tr>
-<tr>
-<td>hex</td>
-<td>status word</td>
-</tr>
-<tr>
-<td>s</td>
-<td>clock offset</td>
-</tr>
-<tr>
-<td>s</td>
-<td>roundtrip delay</td>
-</tr>
-<tr>
-<td>s</td>
-<td>dispersion</td>
-</tr>
-<tr>
-<td>s</td>
-<td>jitter</td>
-</tr>
-</tbody>
-</table>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>tailf /var/log/ntpstats/peerstats
-<span style=color:#ae81ff>58927</span> 1293.735 91.224.149.41 941a -0.031646296 0.047783430 0.019218732 0.002787419
-<span style=color:#ae81ff>58927</span> 1315.710 129.250.35.250 945a -0.033762728 0.027946319 0.019098537 0.001580388
-<span style=color:#ae81ff>58927</span> 1848.736 193.141.27.6 941a -0.034690903 0.054624853 0.015236537 0.001218647
-<span style=color:#ae81ff>58927</span> 2006.714 92.222.117.115 961a -0.033217220 0.031581741 0.015059831 0.001349028
-</code></pre></div><table>
-<thead>
-<tr>
-<th></th>
-<th>Definition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>delay</td>
-<td>Shows the round trip time (RTT) of your computer communicating with the remote server.</td>
-</tr>
-<tr>
-<td>offset</td>
-<td>Using root mean squares, and shows how far off your clock is from the reported time the server gave you. It can be positive or negative.</td>
-</tr>
-<tr>
-<td>jitter</td>
-<td>Showing the root mean squared deviation of your offsets.</td>
-</tr>
-</tbody>
-</table>
-<h3 id=sysstats-documentation>sysstats documentation</h3>
-<p>Each hour one line is appended to the sysstats file set in the following format</p>
-<table>
-<thead>
-<tr>
-<th>Units</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>MJD</td>
-<td>date</td>
-</tr>
-<tr>
-<td>s</td>
-<td>time past midnight</td>
-</tr>
-<tr>
-<td>s</td>
-<td>time since reset</td>
-</tr>
-<tr>
-<td></td>
-<td>packets received</td>
-</tr>
-<tr>
-<td></td>
-<td>packets generated</td>
-</tr>
-<tr>
-<td></td>
-<td>current versions</td>
-</tr>
-<tr>
-<td></td>
-<td>old version</td>
-</tr>
-<tr>
-<td></td>
-<td>access denied</td>
-</tr>
-<tr>
-<td></td>
-<td>bad length or format</td>
-</tr>
-<tr>
-<td></td>
-<td>bad authentication</td>
-</tr>
-<tr>
-<td></td>
-<td>declined</td>
-</tr>
-<tr>
-<td></td>
-<td>rate exceeded</td>
-</tr>
-<tr>
-<td></td>
-<td>kiss-o'-death packets sent</td>
-</tr>
-</tbody>
-</table>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>tailf /var/log/ntpstats/sysstats
-<span style=color:#ae81ff>58927</span> 52035.251 <span style=color:#ae81ff>3599</span> <span style=color:#ae81ff>225</span> <span style=color:#ae81ff>205</span> <span style=color:#ae81ff>225</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span>
-<span style=color:#ae81ff>58927</span> 55635.257 <span style=color:#ae81ff>3600</span> <span style=color:#ae81ff>88</span> <span style=color:#ae81ff>88</span> <span style=color:#ae81ff>88</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span>
-<span style=color:#ae81ff>58927</span> 59235.313 <span style=color:#ae81ff>3600</span> <span style=color:#ae81ff>49</span> <span style=color:#ae81ff>49</span> <span style=color:#ae81ff>49</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span>
-</code></pre></div><h2 id=counting-ntp-clients>Counting NTP clients</h2>
-<p>The ntpd does not give you how many clients it serves.</p>
-<p>Install iptables</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>yum remove firewalld <span style=color:#f92672>&amp;&amp;</span> yum install iptables-services
-systemctl enable iptables.service
-</code></pre></div><p>Add the rule to log UDP port 123 traffic</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/sbin/iptables -A INPUT -p udp --dport <span style=color:#ae81ff>123</span> -j LOG --log-prefix<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;[NTP] &#39;</span> --log-level debug
-/usr/libexec/iptables/iptables.init save
-</code></pre></div><p>Update rsyslog to log NTP traffic in specific file</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>touch /etc/rsyslog.d/00-iptables.conf
-vim /etc/rsyslog.d/00-iptables.conf
-:msg,contains,<span style=color:#e6db74>&#34;[NTP] &#34;</span> /var/log/ntpstats/iptables.log
-</code></pre></div><p>Restart rsyslog</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>service rsyslog restart
-</code></pre></div><p>Example of log</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># tailf /var/log/ntpstats/iptables.log</span>
-Mar <span style=color:#ae81ff>19</span> 06:56:10 localhost kernel: <span style=color:#f92672>[</span>NTP<span style=color:#f92672>]</span> IN<span style=color:#f92672>=</span>enp0s3 OUT<span style=color:#f92672>=</span> MAC<span style=color:#f92672>=</span>08:00:27:96:57:49:a0:40:a0:8d:29:95:08:00 <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>SRC<span style=color:#f92672>=</span>185.242.56.3 DST<span style=color:#f92672>=</span>10.0.0.33 LEN<span style=color:#f92672>=</span><span style=color:#ae81ff>76</span> TOS<span style=color:#f92672>=</span>0x00 PREC<span style=color:#f92672>=</span>0x00 TTL<span style=color:#f92672>=</span><span style=color:#ae81ff>44</span> ID<span style=color:#f92672>=</span><span style=color:#ae81ff>56768</span> <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>DF PROTO<span style=color:#f92672>=</span>UDP SPT<span style=color:#f92672>=</span><span style=color:#ae81ff>123</span> DPT<span style=color:#f92672>=</span><span style=color:#ae81ff>123</span> LEN<span style=color:#f92672>=</span><span style=color:#ae81ff>56</span>
-</code></pre></div><h2 id=expected-logs>Expected logs</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#f92672>[</span>root@localhost ntpstats<span style=color:#f92672>]</span><span style=color:#75715e># ll</span>
-total <span style=color:#ae81ff>740</span>
--rw-------. <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>669741</span> Mar <span style=color:#ae81ff>22</span> 08:42 iptables.log
--rw-r--r--. <span style=color:#ae81ff>2</span> ntp  ntp    <span style=color:#ae81ff>3549</span> Mar <span style=color:#ae81ff>22</span> 07:14 peerstats.log
--rw-r--r--. <span style=color:#ae81ff>1</span> ntp  ntp   <span style=color:#ae81ff>32829</span> Mar <span style=color:#ae81ff>21</span> 00:58 peerstats.log.20200320
--rw-r--r--. <span style=color:#ae81ff>1</span> ntp  ntp   <span style=color:#ae81ff>16910</span> Mar <span style=color:#ae81ff>22</span> 00:59 peerstats.log.20200321
--rw-r--r--. <span style=color:#ae81ff>2</span> ntp  ntp    <span style=color:#ae81ff>3549</span> Mar <span style=color:#ae81ff>22</span> 07:14 peerstats.log.20200322
--rw-r--r--. <span style=color:#ae81ff>2</span> ntp  ntp     <span style=color:#ae81ff>347</span> Mar <span style=color:#ae81ff>22</span> 08:35 sysstats.log
--rw-r--r--. <span style=color:#ae81ff>1</span> ntp  ntp     <span style=color:#ae81ff>980</span> Mar <span style=color:#ae81ff>21</span> 00:46 sysstats.log.20200320
--rw-r--r--. <span style=color:#ae81ff>1</span> ntp  ntp    <span style=color:#ae81ff>1041</span> Mar <span style=color:#ae81ff>22</span> 00:35 sysstats.log.20200321
--rw-r--r--. <span style=color:#ae81ff>2</span> ntp  ntp     <span style=color:#ae81ff>347</span> Mar <span style=color:#ae81ff>22</span> 08:35 sysstats.log.20200322
-</code></pre></div><h2 id=export-logs-to-elk>Export Logs to ELK</h2>
-<h3 id=deploy-filebeat>Deploy Filebeat</h3>
-<p>Install filebeat, follow this procedure</p>
-<p>Configure filebeat</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /etc/filebeat/filebeat.yml
-
-filebeat.inputs:
-- type: log
-	enabled: true
-	paths:
-	- /var/log/ntpstats/iptables.log
-	fields:
-	logtype: iptables
-
-- type: log
-	enabled: true
-	paths:
-	- /var/log/ntpstats/peerstats.log
-	fields:
-	logtype: peerstats
-
-- type: log
-	enabled: true
-	paths:
-	- /var/log/ntpstats/sysstats.log
-	fields:
-	logtype: sysstats
-	
-output.logstash:
-	hosts: <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;&lt;ip_logstash&gt;:5044&#34;</span><span style=color:#f92672>]</span>
-</code></pre></div><p>Start filebeat</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>systemctl start filebeat
-</code></pre></div><h3 id=configure-logstash>Configure Logstash</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>touch /etc/logstash/conf.d/00-beats.conf
-vim /etc/logstash/conf.d/00-beats.conf
-
-input <span style=color:#f92672>{</span>
-	beats <span style=color:#f92672>{</span>
-	port <span style=color:#f92672>=</span>&gt; <span style=color:#ae81ff>5044</span>
-	<span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
-
-filter <span style=color:#f92672>{</span>
-	<span style=color:#66d9ef>if</span><span style=color:#f92672>(</span> <span style=color:#f92672>[</span>fields<span style=color:#f92672>][</span>logtype<span style=color:#f92672>]</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;iptables&#34;</span><span style=color:#f92672>){</span>
-	dissect <span style=color:#f92672>{</span>
-		mapping <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>{</span> <span style=color:#e6db74>&#34;message&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;%{} %{} %{} %{} kernel: [NTP] IN=%{} OUT=%{} MAC=%{} SRC=%{ntp_clientip} %{}&#34;</span> <span style=color:#f92672>}</span>
-	<span style=color:#f92672>}</span>
-	<span style=color:#66d9ef>if</span><span style=color:#f92672>([</span>ntp_clientip<span style=color:#f92672>]</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;&lt;ip1_ntp_peer&#34;</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-	drop <span style=color:#f92672>{}</span>
-	<span style=color:#f92672>}</span>
-	<span style=color:#f92672>}</span>
-	<span style=color:#66d9ef>if</span><span style=color:#f92672>(</span> <span style=color:#f92672>[</span>fields<span style=color:#f92672>][</span>logtype<span style=color:#f92672>]</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;peerstats&#34;</span><span style=color:#f92672>){</span>
-	dissect <span style=color:#f92672>{</span>
-		mapping <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>{</span> <span style=color:#e6db74>&#34;message&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;%{datemjd} %{timepast_midnight} %{src_addr} %{status_word} %{clock_offset} %{roundtrip_delay} %{dispersion} %{rms_jitter}&#34;</span> <span style=color:#f92672>}</span>
-	<span style=color:#f92672>}</span>
-	mutate <span style=color:#f92672>{</span>
-	convert <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>{</span>
-		<span style=color:#e6db74>&#34;clock_offset&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;float&#34;</span>
-		<span style=color:#e6db74>&#34;roundtrip_delay&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;float&#34;</span>
-		<span style=color:#e6db74>&#34;dispersion&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;float&#34;</span>
-		<span style=color:#e6db74>&#34;rms_jitter&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;float&#34;</span>
-		<span style=color:#f92672>}</span>
-	<span style=color:#f92672>}</span>
-	<span style=color:#f92672>}</span>
-
-	<span style=color:#66d9ef>if</span><span style=color:#f92672>(</span> <span style=color:#f92672>[</span>fields<span style=color:#f92672>][</span>logtype<span style=color:#f92672>]</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;sysstats&#34;</span><span style=color:#f92672>){</span>
-	dissect <span style=color:#f92672>{</span>
-		mapping <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>{</span> <span style=color:#e6db74>&#34;message&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;%{date_mjd} %{timepast_midnight} %{timesince_reset} %{pkts_received} %{pkts_generated} %{pkts_ntpv4} %{pkts_ntpv3} %{pkts_denied} %{pkts_bad} %{bad_auth} %{declined} %{rate_exceeded} %{pkts_kiss}&#34;</span> <span style=color:#f92672>}</span>
-	<span style=color:#f92672>}</span>
-		mutate <span style=color:#f92672>{</span>
-	convert <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>{</span>
-		<span style=color:#e6db74>&#34;pkts_received&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
-		<span style=color:#e6db74>&#34;pkts_generated&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
-		<span style=color:#e6db74>&#34;pkts_ntpv4&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
-		<span style=color:#e6db74>&#34;pkts_ntpv3&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
-		<span style=color:#e6db74>&#34;pkts_denied&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
-		<span style=color:#e6db74>&#34;pkts_bad&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
-		<span style=color:#e6db74>&#34;bad_auth&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
-		<span style=color:#e6db74>&#34;declined&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
-		<span style=color:#e6db74>&#34;rate_exceeded&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
-		<span style=color:#e6db74>&#34;pkts_kiss&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
-	<span style=color:#f92672>}</span>
-	<span style=color:#f92672>}</span>
-	<span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
-
-output <span style=color:#f92672>{</span>
-	elasticsearch <span style=color:#f92672>{</span>
-	hosts <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;http://localhost:9200&#34;</span><span style=color:#f92672>]</span>
-	index <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;%{[@metadata][beat]}-%{[@metadata][version]}&#34;</span>
-	<span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
-</code></pre></div><h2 id=examples-of-dashboard-on-kibana>Examples of dashboard on Kibana</h2>
-<p><img src=/images/0002/ntp-elk-dashboard.png alt="ELK dashboard image"></p>
-<p><img src=/images/0002/ntp-elk-dashboard-offset.png alt="ELK dashboard image"></p>
-</div>
-<div class=post-footer>
-<div class=info>
-<span class=separator><a class=tag href=/tags/ntp/>ntp</a><a class=tag href=/tags/logs/>logs</a></span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div><footer class="footer footer--base">
-<div class=by_farbox>
-<ul class=footer__list>
-<li class=footer__item>
-&copy;
+2022</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.4a40b20209bc12e56cf77caff5feaa93fecd6b0d97d51b33afb0265a732ce636.js integrity="sha256-SkCyAgm8EuVs93yv9f6qk/7Naw2X1Rszr7AmWnMs5jY=" crossorigin=anonymous></script></div></aside><main><div class=autopagerize_page_element><div class=content><div class="post
+."><div class=post-content><div class=post-title><h1>Ntpd: How to get statistics usage with ELK</h1></div><p>In this post, I will look at ntpd server to extract some ntp statitics.</p><h2 id=table-of-contents>Table of contents</h2><ul><li><a href=#activate-ntpd-logs>Activate ntpd logs</a><ul><li><a href=#peerstats-documentation>peerstats documentation</a></li><li><a href=#sysstats-documentation>sysstats documentation</a></li></ul></li><li><a href=#counting-ntp-clients>Counting NTP clients</a></li><li><a href=#expected-logs>Expected logs</a></li><li><a href=#export-logs-to-elk>Export Logs to ELK</a><ul><li><a href=#deploy-filebeat>Deploy Filebeat</a></li><li><a href=#configure-logstash>Configure Logstash</a></li></ul></li><li><a href=#examples-of-dashboard-on-kibana>Examples of dashboard on Kibana</a></li></ul><h2 id=activate-ntpd-logs>Activate ntpd logs</h2><p>Update the ntpd configuration</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vim /etc/ntp.conf
+</span></span><span style=display:flex><span>statsdir /var/log/ntpstats/
+</span></span><span style=display:flex><span>statistics peerstats sysstats
+</span></span><span style=display:flex><span>filegen peerstats file peerstats.log type day enable
+</span></span><span style=display:flex><span>filegen sysstats file sysstats.log type none enable
+</span></span></code></pre></div><p>Restart the daemon</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>systemctl restart ntpd
+</span></span></code></pre></div><h3 id=peerstats-documentation>peerstats documentation</h3><p>Record peer statistics.
+An event occurs upon an update from either another NTP server</p><table><thead><tr><th>Units</th><th>Description</th></tr></thead><tbody><tr><td>MJD</td><td>date</td></tr><tr><td>s</td><td>time past midnight</td></tr><tr><td>IP</td><td>source address</td></tr><tr><td>hex</td><td>status word</td></tr><tr><td>s</td><td>clock offset</td></tr><tr><td>s</td><td>roundtrip delay</td></tr><tr><td>s</td><td>dispersion</td></tr><tr><td>s</td><td>jitter</td></tr></tbody></table><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>tailf /var/log/ntpstats/peerstats
+</span></span><span style=display:flex><span><span style=color:#ae81ff>58927</span> 1293.735 91.224.149.41 941a -0.031646296 0.047783430 0.019218732 0.002787419
+</span></span><span style=display:flex><span><span style=color:#ae81ff>58927</span> 1315.710 129.250.35.250 945a -0.033762728 0.027946319 0.019098537 0.001580388
+</span></span><span style=display:flex><span><span style=color:#ae81ff>58927</span> 1848.736 193.141.27.6 941a -0.034690903 0.054624853 0.015236537 0.001218647
+</span></span><span style=display:flex><span><span style=color:#ae81ff>58927</span> 2006.714 92.222.117.115 961a -0.033217220 0.031581741 0.015059831 0.001349028
+</span></span></code></pre></div><table><thead><tr><th></th><th>Definition</th></tr></thead><tbody><tr><td>delay</td><td>Shows the round trip time (RTT) of your computer communicating with the remote server.</td></tr><tr><td>offset</td><td>Using root mean squares, and shows how far off your clock is from the reported time the server gave you. It can be positive or negative.</td></tr><tr><td>jitter</td><td>Showing the root mean squared deviation of your offsets.</td></tr></tbody></table><h3 id=sysstats-documentation>sysstats documentation</h3><p>Each hour one line is appended to the sysstats file set in the following format</p><table><thead><tr><th>Units</th><th>Description</th></tr></thead><tbody><tr><td>MJD</td><td>date</td></tr><tr><td>s</td><td>time past midnight</td></tr><tr><td>s</td><td>time since reset</td></tr><tr><td></td><td>packets received</td></tr><tr><td></td><td>packets generated</td></tr><tr><td></td><td>current versions</td></tr><tr><td></td><td>old version</td></tr><tr><td></td><td>access denied</td></tr><tr><td></td><td>bad length or format</td></tr><tr><td></td><td>bad authentication</td></tr><tr><td></td><td>declined</td></tr><tr><td></td><td>rate exceeded</td></tr><tr><td></td><td>kiss-o&rsquo;-death packets sent</td></tr></tbody></table><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>tailf /var/log/ntpstats/sysstats
+</span></span><span style=display:flex><span><span style=color:#ae81ff>58927</span> 52035.251 <span style=color:#ae81ff>3599</span> <span style=color:#ae81ff>225</span> <span style=color:#ae81ff>205</span> <span style=color:#ae81ff>225</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>58927</span> 55635.257 <span style=color:#ae81ff>3600</span> <span style=color:#ae81ff>88</span> <span style=color:#ae81ff>88</span> <span style=color:#ae81ff>88</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>58927</span> 59235.313 <span style=color:#ae81ff>3600</span> <span style=color:#ae81ff>49</span> <span style=color:#ae81ff>49</span> <span style=color:#ae81ff>49</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span>
+</span></span></code></pre></div><h2 id=counting-ntp-clients>Counting NTP clients</h2><p>The ntpd does not give you how many clients it serves.</p><p>Install iptables</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>yum remove firewalld <span style=color:#f92672>&amp;&amp;</span> yum install iptables-services
+</span></span><span style=display:flex><span>systemctl enable iptables.service
+</span></span></code></pre></div><p>Add the rule to log UDP port 123 traffic</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>/sbin/iptables -A INPUT -p udp --dport <span style=color:#ae81ff>123</span> -j LOG --log-prefix<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;[NTP] &#39;</span> --log-level debug
+</span></span><span style=display:flex><span>/usr/libexec/iptables/iptables.init save
+</span></span></code></pre></div><p>Update rsyslog to log NTP traffic in specific file</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>touch /etc/rsyslog.d/00-iptables.conf
+</span></span><span style=display:flex><span>vim /etc/rsyslog.d/00-iptables.conf
+</span></span><span style=display:flex><span>:msg,contains,<span style=color:#e6db74>&#34;[NTP] &#34;</span> /var/log/ntpstats/iptables.log
+</span></span></code></pre></div><p>Restart rsyslog</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>service rsyslog restart
+</span></span></code></pre></div><p>Example of log</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># tailf /var/log/ntpstats/iptables.log</span>
+</span></span><span style=display:flex><span>Mar <span style=color:#ae81ff>19</span> 06:56:10 localhost kernel: <span style=color:#f92672>[</span>NTP<span style=color:#f92672>]</span> IN<span style=color:#f92672>=</span>enp0s3 OUT<span style=color:#f92672>=</span> MAC<span style=color:#f92672>=</span>08:00:27:96:57:49:a0:40:a0:8d:29:95:08:00 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>SRC<span style=color:#f92672>=</span>185.242.56.3 DST<span style=color:#f92672>=</span>10.0.0.33 LEN<span style=color:#f92672>=</span><span style=color:#ae81ff>76</span> TOS<span style=color:#f92672>=</span>0x00 PREC<span style=color:#f92672>=</span>0x00 TTL<span style=color:#f92672>=</span><span style=color:#ae81ff>44</span> ID<span style=color:#f92672>=</span><span style=color:#ae81ff>56768</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>DF PROTO<span style=color:#f92672>=</span>UDP SPT<span style=color:#f92672>=</span><span style=color:#ae81ff>123</span> DPT<span style=color:#f92672>=</span><span style=color:#ae81ff>123</span> LEN<span style=color:#f92672>=</span><span style=color:#ae81ff>56</span>
+</span></span></code></pre></div><h2 id=expected-logs>Expected logs</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>[</span>root@localhost ntpstats<span style=color:#f92672>]</span><span style=color:#75715e># ll</span>
+</span></span><span style=display:flex><span>total <span style=color:#ae81ff>740</span>
+</span></span><span style=display:flex><span>-rw-------. <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>669741</span> Mar <span style=color:#ae81ff>22</span> 08:42 iptables.log
+</span></span><span style=display:flex><span>-rw-r--r--. <span style=color:#ae81ff>2</span> ntp  ntp    <span style=color:#ae81ff>3549</span> Mar <span style=color:#ae81ff>22</span> 07:14 peerstats.log
+</span></span><span style=display:flex><span>-rw-r--r--. <span style=color:#ae81ff>1</span> ntp  ntp   <span style=color:#ae81ff>32829</span> Mar <span style=color:#ae81ff>21</span> 00:58 peerstats.log.20200320
+</span></span><span style=display:flex><span>-rw-r--r--. <span style=color:#ae81ff>1</span> ntp  ntp   <span style=color:#ae81ff>16910</span> Mar <span style=color:#ae81ff>22</span> 00:59 peerstats.log.20200321
+</span></span><span style=display:flex><span>-rw-r--r--. <span style=color:#ae81ff>2</span> ntp  ntp    <span style=color:#ae81ff>3549</span> Mar <span style=color:#ae81ff>22</span> 07:14 peerstats.log.20200322
+</span></span><span style=display:flex><span>-rw-r--r--. <span style=color:#ae81ff>2</span> ntp  ntp     <span style=color:#ae81ff>347</span> Mar <span style=color:#ae81ff>22</span> 08:35 sysstats.log
+</span></span><span style=display:flex><span>-rw-r--r--. <span style=color:#ae81ff>1</span> ntp  ntp     <span style=color:#ae81ff>980</span> Mar <span style=color:#ae81ff>21</span> 00:46 sysstats.log.20200320
+</span></span><span style=display:flex><span>-rw-r--r--. <span style=color:#ae81ff>1</span> ntp  ntp    <span style=color:#ae81ff>1041</span> Mar <span style=color:#ae81ff>22</span> 00:35 sysstats.log.20200321
+</span></span><span style=display:flex><span>-rw-r--r--. <span style=color:#ae81ff>2</span> ntp  ntp     <span style=color:#ae81ff>347</span> Mar <span style=color:#ae81ff>22</span> 08:35 sysstats.log.20200322
+</span></span></code></pre></div><h2 id=export-logs-to-elk>Export Logs to ELK</h2><h3 id=deploy-filebeat>Deploy Filebeat</h3><p>Install filebeat, follow this procedure</p><p>Configure filebeat</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vim /etc/filebeat/filebeat.yml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>filebeat.inputs:
+</span></span><span style=display:flex><span>- type: log
+</span></span><span style=display:flex><span>	enabled: true
+</span></span><span style=display:flex><span>	paths:
+</span></span><span style=display:flex><span>	- /var/log/ntpstats/iptables.log
+</span></span><span style=display:flex><span>	fields:
+</span></span><span style=display:flex><span>	logtype: iptables
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- type: log
+</span></span><span style=display:flex><span>	enabled: true
+</span></span><span style=display:flex><span>	paths:
+</span></span><span style=display:flex><span>	- /var/log/ntpstats/peerstats.log
+</span></span><span style=display:flex><span>	fields:
+</span></span><span style=display:flex><span>	logtype: peerstats
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- type: log
+</span></span><span style=display:flex><span>	enabled: true
+</span></span><span style=display:flex><span>	paths:
+</span></span><span style=display:flex><span>	- /var/log/ntpstats/sysstats.log
+</span></span><span style=display:flex><span>	fields:
+</span></span><span style=display:flex><span>	logtype: sysstats
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span>output.logstash:
+</span></span><span style=display:flex><span>	hosts: <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;&lt;ip_logstash&gt;:5044&#34;</span><span style=color:#f92672>]</span>
+</span></span></code></pre></div><p>Start filebeat</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>systemctl start filebeat
+</span></span></code></pre></div><h3 id=configure-logstash>Configure Logstash</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>touch /etc/logstash/conf.d/00-beats.conf
+</span></span><span style=display:flex><span>vim /etc/logstash/conf.d/00-beats.conf
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>input <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>	beats <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>	port <span style=color:#f92672>=</span>&gt; <span style=color:#ae81ff>5044</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>filter <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span><span style=color:#f92672>(</span> <span style=color:#f92672>[</span>fields<span style=color:#f92672>][</span>logtype<span style=color:#f92672>]</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;iptables&#34;</span><span style=color:#f92672>){</span>
+</span></span><span style=display:flex><span>	dissect <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>		mapping <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>{</span> <span style=color:#e6db74>&#34;message&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;%{} %{} %{} %{} kernel: [NTP] IN=%{} OUT=%{} MAC=%{} SRC=%{ntp_clientip} %{}&#34;</span> <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span><span style=color:#f92672>([</span>ntp_clientip<span style=color:#f92672>]</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;&lt;ip1_ntp_peer&#34;</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>	drop <span style=color:#f92672>{}</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span><span style=color:#f92672>(</span> <span style=color:#f92672>[</span>fields<span style=color:#f92672>][</span>logtype<span style=color:#f92672>]</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;peerstats&#34;</span><span style=color:#f92672>){</span>
+</span></span><span style=display:flex><span>	dissect <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>		mapping <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>{</span> <span style=color:#e6db74>&#34;message&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;%{datemjd} %{timepast_midnight} %{src_addr} %{status_word} %{clock_offset} %{roundtrip_delay} %{dispersion} %{rms_jitter}&#34;</span> <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>	mutate <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>	convert <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;clock_offset&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;float&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;roundtrip_delay&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;float&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;dispersion&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;float&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;rms_jitter&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;float&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span><span style=color:#f92672>(</span> <span style=color:#f92672>[</span>fields<span style=color:#f92672>][</span>logtype<span style=color:#f92672>]</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;sysstats&#34;</span><span style=color:#f92672>){</span>
+</span></span><span style=display:flex><span>	dissect <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>		mapping <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>{</span> <span style=color:#e6db74>&#34;message&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;%{date_mjd} %{timepast_midnight} %{timesince_reset} %{pkts_received} %{pkts_generated} %{pkts_ntpv4} %{pkts_ntpv3} %{pkts_denied} %{pkts_bad} %{bad_auth} %{declined} %{rate_exceeded} %{pkts_kiss}&#34;</span> <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>		mutate <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>	convert <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;pkts_received&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;pkts_generated&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;pkts_ntpv4&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;pkts_ntpv3&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;pkts_denied&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;pkts_bad&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;bad_auth&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;declined&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;rate_exceeded&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;pkts_kiss&#34;</span> <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;integer&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>output <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>	elasticsearch <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>	hosts <span style=color:#f92672>=</span>&gt; <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;http://localhost:9200&#34;</span><span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>	index <span style=color:#f92672>=</span>&gt; <span style=color:#e6db74>&#34;%{[@metadata][beat]}-%{[@metadata][version]}&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><h2 id=examples-of-dashboard-on-kibana>Examples of dashboard on Kibana</h2><p><img src=/images/0002/ntp-elk-dashboard.png alt="ELK dashboard image"></p><p><img src=/images/0002/ntp-elk-dashboard-offset.png alt="ELK dashboard image"></p></div><div class=post-footer><div class=info><span class=separator><a class=tag href=/tags/ntp/>ntp</a><a class=tag href=/tags/logs/>logs</a></span></div></div></div></div></div></main></div><footer class="footer footer--base"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
 Denis MACHARD
-2021
-</li>
-</ul>
-</div>
-</footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></body>
-</html>
+2022</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.4a40b20209bc12e56cf77caff5feaa93fecd6b0d97d51b33afb0265a732ce636.js integrity="sha256-SkCyAgm8EuVs93yv9f6qk/7Naw2X1Rszr7AmWnMs5jY=" crossorigin=anonymous></script></body></html>

@@ -1,29 +1,11 @@
-<!doctype html><html dir=ltr lang=en data-theme><head>
-<title>
-Denis MACHARD
+<!doctype html><html dir=ltr lang=en data-theme><head><title>Denis MACHARD
 |
-Exemple de développement d'une API REST avec pycnic
-</title>
-<meta charset=utf-8><meta name=generator content="Hugo 0.91.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name=description content="
+Exemple de développement d'une API REST avec pycnic</title><meta charset=utf-8><meta name=generator content="Hugo 0.94.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="
       Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
 
 
-    ">
-<link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css>
-<link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous>
-<link rel="shortcut icon" href=/favicon.ico type=image/x-icon>
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=/posts/0031-pycnic-api-python/>
-<script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
-<script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Exemple de développement d'une API REST avec pycnic">
-<meta name=twitter:description content="Exemple de développement d&rsquo;une API avec la librairie Python pycnic">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Exemple de développement d\u0027une API REST avec pycnic","headline":"Exemple de développement d\u0027une API REST avec pycnic","alternativeHeadline":"","description":"
+    "><link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=canonical href=/posts/0031-pycnic-api-python/><script type=text/javascript src=/js/anatole-header.min.d0408165d31a17f17bba83038bf54e86121f85021bdf936382e636f0f77a952f.js integrity="sha256-0ECBZdMaF/F7uoMDi/VOhhIfhQIb35NjguY28Pd6lS8=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/anatole-theme-switcher.min.65e936b591bf81484a5ac438c8e4ae6454fb25516d58ce911e4888d7f230bdc5.js integrity="sha256-Zek2tZG/gUhKWsQ4yOSuZFT7JVFtWM6RHkiI1/IwvcU=" crossorigin=anonymous></script><meta name=twitter:card content="summary"><meta name=twitter:title content="Exemple de développement d'une API REST avec pycnic"><meta name=twitter:description content="Exemple de développement d&rsquo;une API avec la librairie Python pycnic"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Exemple de développement d\u0027une API REST avec pycnic","headline":"Exemple de développement d\u0027une API REST avec pycnic","alternativeHeadline":"","description":"
       
         Exemple de développement d\u0026rsquo;une API avec la librairie Python pycnic
 
@@ -31,166 +13,55 @@ Exemple de développement d'une API REST avec pycnic
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0031-pycnic-api-python\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2019","dateCreated":"2019-03-03T00:00:00.00Z","datePublished":"2019-03-03T00:00:00.00Z","dateModified":"2019-03-03T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0031-pycnic-api-python\/","wordCount":"115","genre":[],"keywords":["python","api","pynic"]}</script>
-</head>
-<body>
-<header><div class="page-top
-.">
-<a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false>
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0031-pycnic-api-python\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2019","dateCreated":"2019-03-03T00:00:00.00Z","datePublished":"2019-03-03T00:00:00.00Z","dateModified":"2019-03-03T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0031-pycnic-api-python\/","wordCount":"115","genre":[],"keywords":["python","api","pynic"]}</script></head><body><header><div class="page-top
+."><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span>
 <span aria-hidden=true></span>
-<span aria-hidden=true></span>
-<span aria-hidden=true></span>
-</a>
-<nav>
-<ul class=nav__list id=navMenu>
-<div class=nav__links>
-<li>
-<a href=/ title>Home</a>
-</li>
-<li>
-<a href=/posts title>Archive</a>
-</li>
-<li>
-<a href=/tags title>Tags</a>
-</li>
-</div>
-<ul>
-<li>
-<a class=theme-switch title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</ul>
-</nav>
-</div>
-</header>
-<div class=wrapper>
-<aside><div class="sidebar
-.">
-<div class=sidebar__content>
-<div class=logo-title>
-<div class=title>
-<img src=/images/profile.png alt="profile picture">
-<h3 title><a href=/>My technical gists</a></h3>
-<div class=description>
-<p>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</p>
-</div>
-</div>
-</div>
-<ul class=social-links>
-<li>
-<a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail>
-<i class="fas fa-rss fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://github.com/dmachard/ rel=me aria-label=GitHub>
-<i class="fab fa-github fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://twitter.com/denis_machard rel=me aria-label=Twitter>
-<i class="fab fa-twitter fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin>
-<i class="fab fa-linkedin fa-2x" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail>
-<i class="fas fa-envelope fa-2x" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div><footer class="footer footer--sidebar">
-<div class=by_farbox>
-<ul class=footer__list>
-<li class=footer__item>
-&copy;
+<span aria-hidden=true></span></a><nav><ul class=nav__list id=navMenu><div class=nav__links><li><a href=/ title>Home</a></li><li><a href=/posts title>Archive</a></li><li><a href=/tags title>Tags</a></li></div><ul><li><a class=theme-switch title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></li></ul></ul></nav></div></header><div class=wrapper><aside><div class="sidebar
+."><div class=sidebar__content><div class=logo-title><div class=title><img src=/images/profile.png alt="profile picture"><h3 title><a href=/>My technical gists</a></h3><div class=description><p>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</p></div></div></div><ul class=social-links><li><a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail><i class="fas fa-rss fa-2x" aria-hidden=true></i></a></li><li><a href=https://github.com/dmachard/ rel=me aria-label=GitHub><i class="fab fa-github fa-2x" aria-hidden=true></i></a></li><li><a href=https://twitter.com/denis_machard rel=me aria-label=Twitter><i class="fab fa-twitter fa-2x" aria-hidden=true></i></a></li><li><a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin><i class="fab fa-linkedin fa-2x" aria-hidden=true></i></a></li><li><a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail><i class="fas fa-envelope fa-2x" aria-hidden=true></i></a></li></ul></div><footer class="footer footer--sidebar"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
 Denis MACHARD
-2021
-</li>
-</ul>
-</div>
-</footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></div>
-</aside>
-<main>
-<div class=autopagerize_page_element>
-<div class=content>
-<div class="post
-.">
-<div class=post-content>
-<div class=post-title>
-<h1>Exemple de développement d'une API REST avec pycnic</h1>
-</div><p>Exemple de développement d&rsquo;une API avec la librairie Python <strong><a href=http://pycnic.nullism.com/>pycnic</a></strong></p>
-<p>Installation de la librarie</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>pip install pycnic
-</code></pre></div><p>Exemple simple d&rsquo;une API serveur:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> pycnic.core <span style=color:#f92672>import</span> WSGI, Handler
-<span style=color:#f92672>from</span> pycnic.errors <span style=color:#f92672>import</span> HTTP_401, HTTP_400, HTTP_500, HTTP_403, HTTP_404
-
-<span style=color:#f92672>from</span> wsgiref.simple_server <span style=color:#f92672>import</span> make_server, WSGIServer
-<span style=color:#f92672>from</span> SocketServer <span style=color:#f92672>import</span> ThreadingMixIn
-
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>HandlerCors</span>(Handler):
-    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>options</span>(self):
-        <span style=color:#66d9ef>return</span> {}
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>HelloWorld</span>(HandlerCors):
-    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>post</span>(self):
-	    <span style=color:#66d9ef>return</span> { <span style=color:#e6db74>&#34;msg&#34;</span>: <span style=color:#e6db74>&#34;success&#34;</span> }
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>app</span>(WSGI):
-    headers <span style=color:#f92672>=</span> [
-                (<span style=color:#e6db74>&#34;Access-Control-Allow-Origin&#34;</span>, <span style=color:#e6db74>&#34;*&#34;</span>),
-                (<span style=color:#e6db74>&#34;Access-Control-Allow-Method&#34;</span>, <span style=color:#e6db74>&#34;*&#34;</span>),
-                (<span style=color:#e6db74>&#34;Access-Control-Allow-Headers&#34;</span>, <span style=color:#e6db74>&#34;content-type, authorization&#34;</span>),
-            ]
-    routes <span style=color:#f92672>=</span> [
-        (<span style=color:#e6db74>&#39;/helloworld&#39;</span>, HelloWorld())
-    ]
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ThreadingWSGIServer</span>(ThreadingMixIn, WSGIServer):
-    daemon_threads <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Server</span>:
-    <span style=color:#66d9ef>def</span> __init__(self, wsgi_app, listen<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;127.0.0.1&#39;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>8080</span>):
-        self<span style=color:#f92672>.</span>wsgi_app <span style=color:#f92672>=</span> wsgi_app
-        self<span style=color:#f92672>.</span>listen <span style=color:#f92672>=</span> listen
-        self<span style=color:#f92672>.</span>port <span style=color:#f92672>=</span> port
-        self<span style=color:#f92672>.</span>server <span style=color:#f92672>=</span> make_server(self<span style=color:#f92672>.</span>listen, self<span style=color:#f92672>.</span>port, self<span style=color:#f92672>.</span>wsgi_app,
-                                  ThreadingWSGIServer)
-
-    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>serve_forever</span>(self):
-        self<span style=color:#f92672>.</span>server<span style=color:#f92672>.</span>serve_forever()
-
-httpd <span style=color:#f92672>=</span> Server(app, <span style=color:#e6db74>&#39;0.0.0.0&#39;</span>, <span style=color:#ae81ff>8080</span>)
-httpd<span style=color:#f92672>.</span>serve_forever()
-</code></pre></div></div>
-<div class=post-footer>
-<div class=info>
-<span class=separator><a class=tag href=/tags/python/>python</a><a class=tag href=/tags/api/>api</a><a class=tag href=/tags/pynic/>pynic</a></span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div><footer class="footer footer--base">
-<div class=by_farbox>
-<ul class=footer__list>
-<li class=footer__item>
-&copy;
+2022</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.4a40b20209bc12e56cf77caff5feaa93fecd6b0d97d51b33afb0265a732ce636.js integrity="sha256-SkCyAgm8EuVs93yv9f6qk/7Naw2X1Rszr7AmWnMs5jY=" crossorigin=anonymous></script></div></aside><main><div class=autopagerize_page_element><div class=content><div class="post
+."><div class=post-content><div class=post-title><h1>Exemple de développement d'une API REST avec pycnic</h1></div><p>Exemple de développement d&rsquo;une API avec la librairie Python <strong><a href=http://pycnic.nullism.com/>pycnic</a></strong></p><p>Installation de la librarie</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>pip install pycnic
+</span></span></code></pre></div><p>Exemple simple d&rsquo;une API serveur:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> pycnic.core <span style=color:#f92672>import</span> WSGI, Handler
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pycnic.errors <span style=color:#f92672>import</span> HTTP_401, HTTP_400, HTTP_500, HTTP_403, HTTP_404
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> wsgiref.simple_server <span style=color:#f92672>import</span> make_server, WSGIServer
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> SocketServer <span style=color:#f92672>import</span> ThreadingMixIn
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>HandlerCors</span>(Handler):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>options</span>(self):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>HelloWorld</span>(HandlerCors):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>post</span>(self):
+</span></span><span style=display:flex><span>	    <span style=color:#66d9ef>return</span> { <span style=color:#e6db74>&#34;msg&#34;</span>: <span style=color:#e6db74>&#34;success&#34;</span> }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>app</span>(WSGI):
+</span></span><span style=display:flex><span>    headers <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>                (<span style=color:#e6db74>&#34;Access-Control-Allow-Origin&#34;</span>, <span style=color:#e6db74>&#34;*&#34;</span>),
+</span></span><span style=display:flex><span>                (<span style=color:#e6db74>&#34;Access-Control-Allow-Method&#34;</span>, <span style=color:#e6db74>&#34;*&#34;</span>),
+</span></span><span style=display:flex><span>                (<span style=color:#e6db74>&#34;Access-Control-Allow-Headers&#34;</span>, <span style=color:#e6db74>&#34;content-type, authorization&#34;</span>),
+</span></span><span style=display:flex><span>            ]
+</span></span><span style=display:flex><span>    routes <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>        (<span style=color:#e6db74>&#39;/helloworld&#39;</span>, HelloWorld())
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ThreadingWSGIServer</span>(ThreadingMixIn, WSGIServer):
+</span></span><span style=display:flex><span>    daemon_threads <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Server</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __init__(self, wsgi_app, listen<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;127.0.0.1&#39;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>8080</span>):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>wsgi_app <span style=color:#f92672>=</span> wsgi_app
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>listen <span style=color:#f92672>=</span> listen
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>port <span style=color:#f92672>=</span> port
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>server <span style=color:#f92672>=</span> make_server(self<span style=color:#f92672>.</span>listen, self<span style=color:#f92672>.</span>port, self<span style=color:#f92672>.</span>wsgi_app,
+</span></span><span style=display:flex><span>                                  ThreadingWSGIServer)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>serve_forever</span>(self):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>server<span style=color:#f92672>.</span>serve_forever()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>httpd <span style=color:#f92672>=</span> Server(app, <span style=color:#e6db74>&#39;0.0.0.0&#39;</span>, <span style=color:#ae81ff>8080</span>)
+</span></span><span style=display:flex><span>httpd<span style=color:#f92672>.</span>serve_forever()
+</span></span></code></pre></div></div><div class=post-footer><div class=info><span class=separator><a class=tag href=/tags/python/>python</a><a class=tag href=/tags/api/>api</a><a class=tag href=/tags/pynic/>pynic</a></span></div></div></div></div></div></main></div><footer class="footer footer--base"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
 Denis MACHARD
-2021
-</li>
-</ul>
-</div>
-</footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></body>
-</html>
+2022</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.4a40b20209bc12e56cf77caff5feaa93fecd6b0d97d51b33afb0265a732ce636.js integrity="sha256-SkCyAgm8EuVs93yv9f6qk/7Naw2X1Rszr7AmWnMs5jY=" crossorigin=anonymous></script></body></html>
