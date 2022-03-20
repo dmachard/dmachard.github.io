@@ -31,6 +31,8 @@ This post details how to enable the dnstap feature in main open source dns serve
 * [CoreDNS](#coredns)
     * [Unix socket](#unix-socket)
     * [TCP stream](#tcp-stream)
+* [CZ-NIC - knot resolver](#cznic-knot-resolver)
+    * [Unix socket](#unix-socket)
 
 ## Introduction
 
@@ -216,7 +218,8 @@ Execute the dnstap receiver with `nsd` user:
 ```bash
 su - nsd -s /bin/bash -c "dnstap_receiver -u "/var/run/nsd/dnstap.sock""
 ```
-#  NLnetLabs - unbound
+
+# NLnetLabs - unbound
 
 ![unbound 1.11.0](https://img.shields.io/badge/1.11.0-tested-green) ![unbound 1.12.0](https://img.shields.io/badge/1.12.0-tested-green) ![unbound 1.13.0](https://img.shields.io/badge/1.13.0-tested-green)
 
@@ -337,3 +340,33 @@ Then execute CoreDNS with your corefile
  ./coredns -conf corefile
 ```
 
+# CZ-NIC - Knot Resolver
+
+## Unix socket
+
+corefile example
+
+```bash
+net.listen("0.0.0.0", 5553)
+
+modules.load('nsid')
+nsid.name('instance1')
+
+modules = {
+    dnstap = {
+        socket_path = "/tmp/dnstap.sock",
+        identity =  nsid.name() or "",
+        version = "knot-resolver" .. package_version(),
+        client = {
+            log_queries = true,
+            log_responses = true,
+        },
+    }
+}
+```
+
+Then execute the Knot Resolver, example with docker
+
+```bash
+sudo docker run -d -v $PWD/kresd.conf:/etc/knot-resolver/kresd.conf --name=knot --network=host cznic/knot-resolver -n -c /etc/knot-resolver/kresd.conf
+```
