@@ -31,7 +31,7 @@ This post details how to enable the dnstap feature in main open source dns serve
 * [CoreDNS](#coredns)
     * [Unix socket](#unix-socket-4)
     * [TCP stream](#tcp-stream-4)
-* [CZ-NIC - knot resolver](#cznic---knot-resolver)
+* [CZ-NIC - knot resolver](#cz-nic---knot-resolver)
     * [Unix socket](#unix-socket-5)
 
 ## Introduction
