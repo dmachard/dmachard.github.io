@@ -31,20 +31,26 @@ Download the [config.yml](https://github.com/dmachard/go-dnscollector/blob/main/
 trace:
   verbose: false
 
-collectors:
-  dnstap:
-    enable: true
-    listen-ip: 0.0.0.0
-    listen-port: 6000
+multiplexer:
+  collectors:
+    - name: tap
+      dnstap:
+        listen-ip: 0.0.0.0
+        listen-port: 6000
+
+  loggers:
+    - name: std_out
+      stdout:
+        mode: json
+
+  routes:
+    - from: [tap]
+      to: [std_out]
 
 subprocessors:
   filtering:
     log-replies: true
 
-loggers:
-  stdout:
-    enable: true
-    mode: json
 ```
 
 # Logs

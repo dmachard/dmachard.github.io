@@ -33,25 +33,31 @@ Download the [config.yml](https://github.com/dmachard/go-dnscollector/blob/main/
 trace:
   verbose: true
 
-collectors:
-  dnstap:
-    enable: true
-    listen-ip: 0.0.0.0
-    listen-port: 6000
-    tls-support: true
-    cert-file: "/etc/dnscollector/dnscollector.crt"
-    key-file: "/etc/dnscollector/dnscollector.key"
 
-loggers:
-  webserver:
-    enable: true
-    listen-ip: 0.0.0.0
-    listen-port: 8080
-    basic-auth-login: admin
-    basic-auth-pwd: changeme
-    tls-support: true
-    cert-file: "/etc/dnscollector/dnscollector.crt"
-    key-file: "/etc/dnscollector/dnscollector.key"
+multiplexer:
+  collectors:
+    - name: tap_tls
+      dnstap:
+        listen-ip: 0.0.0.0
+        listen-port: 6000
+        tls-support: true
+        cert-file: "/etc/dnscollector/dnscollector.crt"
+        key-file: "/etc/dnscollector/dnscollector.key"
+
+  loggers:
+    - name: web_api
+      webserver:
+        listen-ip: 0.0.0.0
+        listen-port: 8080
+        basic-auth-login: admin
+        basic-auth-pwd: changeme
+        tls-support: true
+        cert-file: "/etc/dnscollector/dnscollector.crt"
+        key-file: "/etc/dnscollector/dnscollector.key"
+
+  routes:
+    - from: [ tap_tls ]
+      to: [ web_api ]
 ```
 
 # Dashboard

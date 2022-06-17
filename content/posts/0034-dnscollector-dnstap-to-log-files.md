@@ -34,21 +34,24 @@ Download the [config.yml](https://github.com/dmachard/go-dnscollector/blob/main/
 trace:
   verbose: true
 
-collectors:
-  # collect dns messages with dnstap
-  dnstap:
-    enable: true
-    listen-ip: 0.0.0.0
-    listen-port: 6000
+multiplexer:
+  collectors:
+    - name: "tap"
+      dnstap:
+        listen-ip: 0.0.0.0
+        listen-port: 6000
 
-loggers:
-  # write dns logs to text file with rotation
-  logfile:
-    enable: true
-    file-path:  "/var/run/dnscollector/dnstap.log"
-    max-size: 100
-    max-files: 10
-    mode: text
+  loggers:
+    - name: file
+      logfile:
+        file-path:  "/var/run/dnscollector/dnstap.log"
+        max-size: 100
+        max-files: 10
+        mode: text
+
+  routes:
+    - from: [tap]
+      to: [file]
 ```
 
 # Logs

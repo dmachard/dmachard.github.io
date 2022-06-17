@@ -33,21 +33,26 @@ Download the [config.yml](https://github.com/dmachard/go-dnscollector/blob/main/
 trace:
   verbose: true
 
-collectors:
-  dnstap:
-    enable: true
-    listen-ip: 0.0.0.0
-    listen-port: 6000
-    tls-support: true
-    cert-file: "/etc/dnscollector/dnscollector.crt"
-    key-file: "/etc/dnscollector/dnscollector.key"
+multiplexer:
+  collectors:
+    - name: tap
+      dnstap:
+        listen-ip: 0.0.0.0
+        listen-port: 6000
+        tls-support: true
+        cert-file: "/etc/dnscollector/dnscollector.crt"
+        key-file: "/etc/dnscollector/dnscollector.key"
 
-loggers:
-  lokiclient:
-    enable: true
-    server-url: "http://loki:3100/loki/api/v1/push"
-    job-name: "dnscollector"
-    text-format: "localtime identity qr queryip family protocol qname qtype rcode"
+  loggers:
+    - name: loki
+      lokiclient:
+        server-url: "http://loki:3100/loki/api/v1/push"
+        job-name: "dnscollector"
+        text-format: "localtime identity qr queryip family protocol qname qtype rcode"
+
+  routes:
+    - from: [tap]
+      to: [loki]
 ```
 
 # Dashboard
