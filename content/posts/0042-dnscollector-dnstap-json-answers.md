@@ -28,8 +28,9 @@ JSON ouput can be used to get dns answers.
 Download the [config.yml](https://github.com/dmachard/go-dnscollector/blob/main/example-config/use-case-3.yml) file. 
 
 ```yaml
-trace:
-  verbose: false
+global:
+  trace:
+    verbose: false
 
 multiplexer:
   collectors:
@@ -46,11 +47,6 @@ multiplexer:
   routes:
     - from: [tap]
       to: [std_out]
-
-subprocessors:
-  filtering:
-    log-replies: true
-
 ```
 
 # Logs

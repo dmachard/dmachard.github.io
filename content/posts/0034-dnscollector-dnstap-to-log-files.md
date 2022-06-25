@@ -31,8 +31,9 @@ With this example, the collector waits incoming dnstap messages and save-it in l
 Download the [config.yml](https://github.com/dmachard/go-dnscollector/blob/main/example-config/use-case-1.yml) file. 
 
 ```yaml
-trace:
-  verbose: true
+global:
+  trace:
+    verbose: true
 
 multiplexer:
   collectors:
