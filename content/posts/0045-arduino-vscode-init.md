@@ -1,3 +1,4 @@
+---
 title: "Procedure Arduino IDE 1.8.19 for Ubuntu 22.04 and VScode"
 date: 2022-09-25T00:00:00+01:00
 draft: false
