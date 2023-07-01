@@ -23,7 +23,7 @@ Denis MACHARD
 ."><div class=post-content><div class=post-title><h1>PowerDNS dnsdist: dynamic blacklist with CDB database</h1></div><p>This procedure explains how to configure dnsdist to block ads/malwares domains effectively.</p><p>Download the following CDB blocklist file <a href=https://github.com/dmachard/blocklist-domains>https://github.com/dmachard/blocklist-domains</a>
 and put-it in /etc/dnsdist/conf.d/</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lua data-lang=lua><span style=display:flex><span><span style=color:#75715e>--- open your CDB database </span>
 </span></span><span style=display:flex><span><span style=color:#75715e>--- dnsdist with reload this database every 3600s</span>
-</span></span><span style=display:flex><span>kvs <span style=color:#f92672>=</span> newCDBKVStore(<span style=color:#f92672>/</span>etc<span style=color:#f92672>/</span>dnsdist<span style=color:#f92672>/</span>conf.d<span style=color:#f92672>/</span>blocklist.cdb, <span style=color:#ae81ff>3600</span>)
+</span></span><span style=display:flex><span>kvs <span style=color:#f92672>=</span> newCDBKVStore(<span style=color:#e6db74>&#34;/etc/dnsdist/conf.d/blocklist.cdb&#34;</span>, <span style=color:#ae81ff>3600</span>)
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>-- block domains ?</span>
 </span></span><span style=display:flex><span>addAction(KeyValueStoreLookupRule(kvs, KeyValueLookupKeyQName(<span style=color:#66d9ef>false</span>)), SetTagAction(<span style=color:#e6db74>&#39;policy_block&#39;</span>))
