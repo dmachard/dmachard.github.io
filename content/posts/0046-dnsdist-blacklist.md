@@ -23,3 +23,9 @@ addAction(TagRule('policy_block', SpoofAction({"127.0.0.1", "::1"}))
 --- or answer with NXDOMAIN
 --- addAction(TagRule('policy_block'), RCodeAction(DNSRCode.NXDOMAIN))
 ```
+
+Official documentation links
+
+- newCDBKVStore https://dnsdist.org/reference/kvs.html#newCDBKVStore
+- KeyValueStoreLookupRule https://dnsdist.org/rules-actions.html#KeyValueStoreLookupRule
+- KeyValueLookupKeyQName https://dnsdist.org/reference/kvs.html#KeyValueLookupKeyQName
