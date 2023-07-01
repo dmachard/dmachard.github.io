@@ -14,7 +14,7 @@ and put-it in /etc/dnsdist/conf.d/
 ```lua
 --- open your CDB database 
 --- dnsdist with reload this database every 3600s
-kvs = newCDBKVStore(/etc/dnsdist/conf.d/blocklist.cdb, 3600)
+kvs = newCDBKVStore("/etc/dnsdist/conf.d/blocklist.cdb", 3600)
 
 -- block domains ?
 addAction(KeyValueStoreLookupRule(kvs, KeyValueLookupKeyQName(false)), SetTagAction('policy_block'))
