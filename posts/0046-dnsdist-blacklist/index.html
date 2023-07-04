@@ -1,6 +1,6 @@
 <!doctype html><html dir=ltr lang=en data-theme><head><title>Denis MACHARD
 |
-PowerDNS dnsdist: dynamic blacklist with CDB database</title><meta charset=utf-8><meta name=generator content="Hugo 0.115.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="
+PowerDNS dnsdist: dynamic blacklist with CDB database</title><meta charset=utf-8><meta name=generator content="Hugo 0.115.1"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="
       Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
 
 
@@ -13,7 +13,7 @@ PowerDNS dnsdist: dynamic blacklist with CDB database</title><meta charset=utf-8
       
 
 
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0046-dnsdist-blacklist\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2023","dateCreated":"2023-07-01T00:00:00.00Z","datePublished":"2023-07-01T00:00:00.00Z","dateModified":"2023-07-01T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0046-dnsdist-blacklist\/","wordCount":"67","genre":[],"keywords":["powerdns","dnsdist","blacklist","cdb"]}</script></head><body><header><div class="page-top
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0046-dnsdist-blacklist\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2023","dateCreated":"2023-07-01T00:00:00.00Z","datePublished":"2023-07-01T00:00:00.00Z","dateModified":"2023-07-01T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0046-dnsdist-blacklist\/","wordCount":"68","genre":[],"keywords":["powerdns","dnsdist","blacklist","cdb"]}</script></head><body><header><div class="page-top
 ."><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span>
 <span aria-hidden=true></span>
 <span aria-hidden=true></span></a><nav><ul class=nav__list id=navMenu><div class=nav__links><li><a href=/ title>Home</a></li><li><a href=/posts title>Archive</a></li><li><a href=/tags title>Tags</a></li></div><ul><li><a class=theme-switch title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></li></ul></ul></nav></div></header><div class=wrapper><aside><div class="sidebar
@@ -26,8 +26,8 @@ and put-it in /etc/dnsdist/conf.d/</p><div class=highlight><pre tabindex=0 style
 </span></span><span style=display:flex><span>kvs <span style=color:#f92672>=</span> newCDBKVStore(<span style=color:#e6db74>&#34;/etc/dnsdist/conf.d/blocklist.cdb&#34;</span>, <span style=color:#ae81ff>3600</span>)
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>-- block domains ?</span>
-</span></span><span style=display:flex><span>addAction(KeyValueStoreLookupRule(kvs, KeyValueLookupKeyQName(<span style=color:#66d9ef>false</span>)), SetTagAction(<span style=color:#e6db74>&#39;policy_block&#39;</span>))
-</span></span><span style=display:flex><span>addAction(TagRule(<span style=color:#e6db74>&#39;policy_block&#39;</span>, SpoofAction({<span style=color:#e6db74>&#34;127.0.0.1&#34;</span>, <span style=color:#e6db74>&#34;::1&#34;</span>}))
+</span></span><span style=display:flex><span>addAction(KeyValueStoreLookupRule(kvs, KeyValueLookupKeyQName(<span style=color:#66d9ef>false</span>)), SetTagAction(<span style=color:#e6db74>&#39;policy_block&#39;</span>, <span style=color:#e6db74>&#39;&#39;</span>))
+</span></span><span style=display:flex><span>addAction(TagRule(<span style=color:#e6db74>&#39;policy_block&#39;</span>), SpoofAction({<span style=color:#e6db74>&#34;127.0.0.1&#34;</span>, <span style=color:#e6db74>&#34;::1&#34;</span>}))
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>--- or answer with NXDOMAIN</span>
 </span></span><span style=display:flex><span><span style=color:#75715e>--- addAction(TagRule(&#39;policy_block&#39;), RCodeAction(DNSRCode.NXDOMAIN))</span>
