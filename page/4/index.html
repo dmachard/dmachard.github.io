@@ -1,6 +1,6 @@
 <!doctype html><html dir=ltr lang=en data-theme><head><title>Denis MACHARD
 |
-My technical gists</title><meta charset=utf-8><meta name=generator content="Hugo 0.115.2"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="
+My technical gists</title><meta charset=utf-8><meta name=generator content="Hugo 0.115.4"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="
       Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
 
 
@@ -13,6 +13,13 @@ My technical gists</title><meta charset=utf-8><meta name=generator content="Hugo
 Denis MACHARD
 2023</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.44288fd315b6cda68c1f4743caad56535c0f81a5b5a672f385e82b3896575c1d.js integrity="sha256-RCiP0xW2zaaMH0dDyq1WU1wPgaW1pnLzhegrOJZXXB0=" crossorigin=anonymous></script></div></aside><main><div class=autopagerize_page_element><div class=content><div class="post
 ."><div class="post-title post-content"></div></div><div class="post
+."><div class=post-title><h3><a href=/posts/0034-dnscollector-dnstap-to-log-files/>DnsCollector/dnstap: collect dnstap stream and backup-it to log files</a></h3></div><div class=post-content><div class=p_part><p>Example to collect dnstap messages from dns servers and backup-it in log files</p></div></div><div class=post-footer><div class=meta><div class=info><em class="fas fa-calendar-day"></em>
+<span class=date>Wed, Nov 10, 2021</span>
+<span class=separator><a class=tag href=/tags/dnstap/>dnstap</a><a class=tag href=/tags/logs/>logs</a></span></div></div></div></div><div class="post
+."><div class=post-title><h3><a href=/posts/0035-dnscollector-grafana-prometheus/>DnsCollector/dnstap: collect dnstap stream and get statistics usage</a></h3></div><div class=post-content><div class=p_part><p>Example to collect dnstap stream and get statistics usage
+Table of contents Prequisites Overview Configuration Dashboard Prequisites Install the dnscollector like described in the following guide.</p></div></div><div class=post-footer><div class=meta><div class=info><em class="fas fa-calendar-day"></em>
+<span class=date>Wed, Nov 10, 2021</span>
+<span class=separator><a class=tag href=/tags/dnstap/>dnstap</a><a class=tag href=/tags/logs/>logs</a><a class=tag href=/tags/prometheus/>prometheus</a><a class=tag href=/tags/grafana/>grafana</a></span></div></div></div></div><div class="post
 ."><div class=post-title><h3><a href=/posts/0033-gpg-add-email/>GPG: add an email to an existing key</a></h3></div><div class=post-content><div class=p_part><p>This post details how to add an email to an existing GPG key</p></div></div><div class=post-footer><div class=meta><div class=info><em class="fas fa-calendar-day"></em>
 <span class=date>Wed, Nov 10, 2021</span>
 <span class=separator><a class=tag href=/tags/gpg/>gpg</a></span></div></div></div></div><div class="post
@@ -21,12 +28,6 @@ Denis MACHARD
 <span class=separator><a class=tag href=/tags/git/>git</a><a class=tag href=/tags/gpg/>gpg</a></span></div></div></div></div><div class="post
 ."><div class=post-title><h3><a href=/posts/0014-initial-setup-ansible/>Initial Ansible setup server</a></h3></div><div class=post-content><div class=p_part><p>This tutorial explains how to make the initial setup of ansible.</p></div></div><div class=post-footer><div class=meta><div class=info><em class="fas fa-calendar-day"></em>
 <span class=date>Sat, Oct 23, 2021</span>
-<span class=separator><a class=tag href=/tags/ansible/>ansible</a><a class=tag href=/tags/system/>system</a></span></div></div></div></div><div class="post
-."><div class=post-title><h3><a href=/posts/0013-ansible-almalinux-installation/>How to install Ansible 4.7 on AlmaLinux 8.4 with pip</a></h3></div><div class=post-content><div class=p_part><p>This post will details how to install ansible on AlmaLinux 8.</p></div></div><div class=post-footer><div class=meta><div class=info><em class="fas fa-calendar-day"></em>
-<span class=date>Wed, Oct 20, 2021</span>
-<span class=separator><a class=tag href=/tags/ansible/>ansible</a><a class=tag href=/tags/almalinux/>almalinux</a><a class=tag href=/tags/installation/>installation</a></span></div></div></div></div><div class="post
-."><div class=post-title><h3><a href=/posts/0011-powerdns-dnsdist-doh-servers/>PowerDns/dnsdist: route incoming UDP/TCP DNS queries to a pool of DoH servers</a></h3></div><div class=post-content><div class=p_part><p>The goal of this tutorial is to send all your local DNS queries (udp/tcp) to a pool of DoH public resolvers with dnsdist load balancer.</p></div></div><div class=post-footer><div class=meta><div class=info><em class="fas fa-calendar-day"></em>
-<span class=date>Wed, Oct 20, 2021</span>
-<span class=separator><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/doh/>doh</a></span></div></div></div></div><div class=pagination><ul class=pagination><li class=page-item><a class=page-link href=/page/3/><i class="fa fa-angle-left" aria-label=上一页></i></a></li><li class=page-item><a class=page-link href=/>1</a></li><span class="page-link dots">&mldr;</span><li class=page-item><a class=page-link href=/page/3/>3</a></li><li class=page-item><span class="page-link current">4</span></li><li class=page-item><a class=page-link href=/page/5/>5</a></li><span class="page-link dots">&mldr;</span><li class=page-item><a class=page-link href=/page/10/>10</a></li><li class=page-item><a class=page-link href=/page/5/><i class="fa fa-angle-right" aria-label=下一页></i></a></li></ul></div></div></div></main></div><footer class="footer footer--base"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
+<span class=separator><a class=tag href=/tags/ansible/>ansible</a><a class=tag href=/tags/system/>system</a></span></div></div></div></div><div class=pagination><ul class=pagination><li class=page-item><a class=page-link href=/page/3/><i class="fa fa-angle-left" aria-label=上一页></i></a></li><li class=page-item><a class=page-link href=/>1</a></li><span class="page-link dots">&mldr;</span><li class=page-item><a class=page-link href=/page/3/>3</a></li><li class=page-item><span class="page-link current">4</span></li><li class=page-item><a class=page-link href=/page/5/>5</a></li><span class="page-link dots">&mldr;</span><li class=page-item><a class=page-link href=/page/10/>10</a></li><li class=page-item><a class=page-link href=/page/5/><i class="fa fa-angle-right" aria-label=下一页></i></a></li></ul></div></div></div></main></div><footer class="footer footer--base"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
 Denis MACHARD
 2023</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.44288fd315b6cda68c1f4743caad56535c0f81a5b5a672f385e82b3896575c1d.js integrity="sha256-RCiP0xW2zaaMH0dDyq1WU1wPgaW1pnLzhegrOJZXXB0=" crossorigin=anonymous></script></body></html>

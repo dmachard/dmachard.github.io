@@ -1,0 +1,74 @@
+<!doctype html><html dir=ltr lang=en data-theme><head><title>Denis MACHARD
+|
+DNSdist: dns tunneling protection</title><meta charset=utf-8><meta name=generator content="Hugo 0.115.4"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="
+      Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.
+
+
+    "><link rel=stylesheet href=/css/main.min.a956a7860fcf75291ef2e359251769d8df586ea2fb01de06445ab2d52b512e04.css integrity="sha256-qVanhg/PdSke8uNZJRdp2N9YbqL7Ad4GRFqy1StRLgQ=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=canonical href=/posts/0048-dnsdist-dns-tunneling-protection/><script type=text/javascript src=/js/anatole-header.min.d0408165d31a17f17bba83038bf54e86121f85021bdf936382e636f0f77a952f.js integrity="sha256-0ECBZdMaF/F7uoMDi/VOhhIfhQIb35NjguY28Pd6lS8=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/anatole-theme-switcher.min.ea8ebe268922ef9849261a1312cd65b640595e65251ce4c00534a176afd1ac0c.js integrity="sha256-6o6+Joki75hJJhoTEs1ltkBZXmUlHOTABTShdq/RrAw=" crossorigin=anonymous></script><meta name=twitter:card content="summary"><meta name=twitter:title content="DNSdist: dns tunneling protection"><meta name=twitter:description content="A DNSdist configuration example to attempt to block DNS tunnelling."><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"DNSdist: dns tunneling protection","headline":"DNSdist: dns tunneling protection","alternativeHeadline":"","description":"
+      
+        A DNSdist configuration example to attempt to block DNS tunnelling.
+
+
+      
+
+
+    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dmachard.github.io\/posts\/0048-dnsdist-dns-tunneling-protection\/"},"author":{"@type":"Person","name":"Denis MACHARD"},"creator":{"@type":"Person","name":"Denis MACHARD"},"accountablePerson":{"@type":"Person","name":"Denis MACHARD"},"copyrightHolder":{"@type":"Person","name":"Denis MACHARD"},"copyrightYear":"2023","dateCreated":"2023-07-22T00:00:00.00Z","datePublished":"2023-07-22T00:00:00.00Z","dateModified":"2023-07-22T00:00:00.00Z","publisher":{"@type":"Organization","name":"Denis MACHARD","url":"https://dmachard.github.io/","logo":{"@type":"ImageObject","url":"https:\/\/dmachard.github.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/dmachard.github.io\/posts\/0048-dnsdist-dns-tunneling-protection\/","wordCount":"287","genre":[],"keywords":["powerdns","dnsdist","tunnelling","dns","security"]}</script></head><body><header><div class="page-top
+."><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span></a><nav><ul class=nav__list id=navMenu><div class=nav__links><li><a href=/ title>Home</a></li><li><a href=/posts title>Archive</a></li><li><a href=/tags title>Tags</a></li></div><ul><li><a class=theme-switch title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></li></ul></ul></nav></div></header><div class=wrapper><aside><div class="sidebar
+."><div class=sidebar__content><div class=logo-title><div class=title><img src=/images/profile.png alt="profile picture"><h3 title><a href=/>My technical gists</a></h3><div class=description><p>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</p></div></div></div><ul class=social-links><li><a href=https://dmachard.github.io/index.xml rel=me aria-label=e-mail><i class="fas fa-rss fa-2x" aria-hidden=true></i></a></li><li><a href=https://github.com/dmachard/ rel=me aria-label=GitHub><i class="fab fa-github fa-2x" aria-hidden=true></i></a></li><li><a href=https://twitter.com/denis_machard rel=me aria-label=Twitter><i class="fab fa-twitter fa-2x" aria-hidden=true></i></a></li><li><a href=https://www.linkedin.com/in/dmachard/ rel=me aria-label=Linkedin><i class="fab fa-linkedin fa-2x" aria-hidden=true></i></a></li><li><a href=mailto:d.machard@gmail.com rel=me aria-label=e-mail><i class="fas fa-envelope fa-2x" aria-hidden=true></i></a></li></ul></div><footer class="footer footer--sidebar"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
+Denis MACHARD
+2023</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.44288fd315b6cda68c1f4743caad56535c0f81a5b5a672f385e82b3896575c1d.js integrity="sha256-RCiP0xW2zaaMH0dDyq1WU1wPgaW1pnLzhegrOJZXXB0=" crossorigin=anonymous></script></div></aside><main><div class=autopagerize_page_element><div class=content><div class="post
+."><div class=post-content><div class=post-title><h1>DNSdist: dns tunneling protection</h1></div><p>A DNSdist configuration example to attempt to block DNS tunnelling.</p><p>The global approach is to blacklist IP when some malicious behaviour are detected:</p><ul><li>Uncommon DNS Qtype like NULL, PRIVATE are blocked</li><li>A generic regex to block long successive DNS label with whitelist to avoid false-positive</li><li>Apply some rate limitations per IP</li></ul><p>The latest version of the configuration can be downloaded here <a href=https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blocking_dnstunneling.lua>https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blocking_dnstunneling.lua</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lua data-lang=lua><span style=display:flex><span><span style=color:#75715e>-- Generic rules to block malicious dns traffic like DNS tunneling</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- remote security events logger based on dnstap</span>
+</span></span><span style=display:flex><span>security_dnstap_logger <span style=color:#f92672>=</span> newFrameStreamTcpLogger(<span style=color:#e6db74>&#34;10.0.0.100:6000&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- trusted domains to exclude</span>
+</span></span><span style=display:flex><span>trusted_domains <span style=color:#f92672>=</span> newSuffixMatchNode()
+</span></span><span style=display:flex><span>trusted_domains:add(newDNSName(<span style=color:#e6db74>&#34;google.fr.&#34;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- blacklist ip during 60s</span>
+</span></span><span style=display:flex><span>blacklisted_ips <span style=color:#f92672>=</span> TimedIPSetRule()
+</span></span><span style=display:flex><span><span style=color:#66d9ef>local</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>blacklistIP</span>(dq)
+</span></span><span style=display:flex><span>   blacklisted_ips:add(dq.remoteaddr, <span style=color:#ae81ff>60</span>)
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>return</span> DNSAction.Refused
+</span></span><span style=display:flex><span><span style=color:#66d9ef>end</span>
+</span></span><span style=display:flex><span>addAction(blacklisted_ips:slice(), RCodeAction(DNSRCode.REFUSED))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- match uncommon qtype like NULL (10), PRIVATE (65399) - works fine to block iodine</span>
+</span></span><span style=display:flex><span>addAction(AndRule({OrRule({QTypeRule(<span style=color:#ae81ff>10</span>), QTypeRule(<span style=color:#ae81ff>65399</span>)}), NotRule(SuffixMatchNodeRule(trusted_domains, <span style=color:#66d9ef>true</span>)) }), SetTagAction(<span style=color:#e6db74>&#39;malicious_qtypes&#39;</span>, <span style=color:#e6db74>&#39;matched&#39;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- match long qname - 2 labels with a minimum of 50 bytes each - works fine to block tools like iodine, dnscat2, dns2tcp...</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- to avoid false-positive. The regex has been tested on the top 1 million list exposed by Cisco Umbrella http://s3-us-west-1.amazonaws.com/umbrella-static/top-1m.csv.zip</span>
+</span></span><span style=display:flex><span>addAction(AndRule({RegexRule(<span style=color:#e6db74>&#39;([^.]{50,}</span><span style=color:#ae81ff>\\</span><span style=color:#e6db74>.){2,}&#39;</span>), NotRule(SuffixMatchNodeRule(trusted_domains, <span style=color:#66d9ef>true</span>)) }), SetTagAction(<span style=color:#e6db74>&#39;malicious_longqnames&#39;</span>, <span style=color:#e6db74>&#39;matched&#39;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- rate limiting on TXT, CNAME and MX</span>
+</span></span><span style=display:flex><span>addAction(AndRule({ MaxQPSIPRule(<span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>32</span>, <span style=color:#ae81ff>64</span>, <span style=color:#ae81ff>5</span>), OrRule({QTypeRule(DNSQType.TXT), QTypeRule(DNSQType.CNAME), QTypeRule(DNSQType.MX)}), NotRule(SuffixMatchNodeRule(trusted_domains, <span style=color:#66d9ef>true</span>)) }), SetTagAction(<span style=color:#e6db74>&#39;malicious_ratelimiting&#39;</span>, <span style=color:#e6db74>&#39;matched&#39;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- logging malicious queries on remote dnstap logger</span>
+</span></span><span style=display:flex><span>addAction(TagRule(<span style=color:#e6db74>&#39;malicious_qtypes&#39;</span>), DnstapLogAction(<span style=color:#e6db74>&#34;event_deniedqtypes_detected&#34;</span>, security_dnstap_logger))
+</span></span><span style=display:flex><span>addAction(TagRule(<span style=color:#e6db74>&#39;malicious_longqnames&#39;</span>), DnstapLogAction(<span style=color:#e6db74>&#34;event_longqnames_detected&#34;</span>, security_dnstap_logger))
+</span></span><span style=display:flex><span>addAction(TagRule(<span style=color:#e6db74>&#39;malicious_ratelimiting&#39;</span>), DnstapLogAction(<span style=color:#e6db74>&#34;event_ratelimiting_detected&#34;</span>, security_dnstap_logger))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- finally refuses and blacklist client ip during limited time</span>
+</span></span><span style=display:flex><span>addAction(TagRule(<span style=color:#e6db74>&#39;malicious_qtypes&#39;</span>), LuaAction(blacklistIP))
+</span></span><span style=display:flex><span>addAction(TagRule(<span style=color:#e6db74>&#39;malicious_longqnames&#39;</span>), LuaAction(blacklistIP))
+</span></span><span style=display:flex><span>addAction(TagRule(<span style=color:#e6db74>&#39;malicious_ratelimiting&#39;</span>), LuaAction(blacklistIP))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- Update the dynamic blocks with refused reply by default</span>
+</span></span><span style=display:flex><span>setDynBlocksAction(DNSAction.Refused)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- Rate exceeded detection with automatic ip blacklisting during 60s</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>--  * max bw to 1000bytes/s during 5s</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>local</span> dbr <span style=color:#f92672>=</span> dynBlockRulesGroup()
+</span></span><span style=display:flex><span>dbr:setResponseByteRate(<span style=color:#ae81ff>1000</span>, <span style=color:#ae81ff>5</span>, <span style=color:#e6db74>&#34;Exceeded resp BW rate&#34;</span>, <span style=color:#ae81ff>60</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- check dynamic rule every second</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>maintenance</span>()
+</span></span><span style=display:flex><span>  dbr:apply()
+</span></span><span style=display:flex><span><span style=color:#66d9ef>end</span>
+</span></span></code></pre></div></div><div class=post-footer><div class=info><span class=separator><a class=tag href=/tags/powerdns/>powerdns</a><a class=tag href=/tags/dnsdist/>dnsdist</a><a class=tag href=/tags/tunnelling/>tunnelling</a><a class=tag href=/tags/dns/>dns</a><a class=tag href=/tags/security/>security</a></span></div></div></div></div></div></main></div><footer class="footer footer--base"><div class=by_farbox><ul class=footer__list><li class=footer__item>&copy;
+Denis MACHARD
+2023</li></ul></div></footer><script type=text/javascript src=/js/medium-zoom.min.44288fd315b6cda68c1f4743caad56535c0f81a5b5a672f385e82b3896575c1d.js integrity="sha256-RCiP0xW2zaaMH0dDyq1WU1wPgaW1pnLzhegrOJZXXB0=" crossorigin=anonymous></script></body></html>
