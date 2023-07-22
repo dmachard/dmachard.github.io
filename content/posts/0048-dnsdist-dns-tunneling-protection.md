@@ -1,5 +1,5 @@
 ---
-title: "DNSdist: dns tunneling protection"
+title: "PowerDNS DNSdist: dns tunneling protection"
 date: 2023-07-22T00:00:00+01:00
 draft: false
 tags: ['powerdns', 'dnsdist', 'tunnelling', 'dns', 'security']
