@@ -1,5 +1,5 @@
 ---
-title: "DNS Tunneling: tools overview and dnsdist rules to block them"
+title: "DNS Tunneling: tools overview"
 date: 2023-07-04T00:00:00+01:00
 draft: false
 tags: ['tunnel', 'dns', 'security']
