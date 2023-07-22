@@ -7,15 +7,17 @@ tags: ['powerdns', 'dnsdist', 'tunnelling', 'dns', 'security']
 
 A DNSdist configuration example to map any IP address to a hostname for development purpose.
 The following formats are supported:
-- 10.0.0.1.local.dev maps to A 10.0.0.1
-- 192-168-1-250.local.dev maps to A 192.168.1.250
-- app.10.8.0.1.local.dev maps to A 10.8.0.1
-- app-116-203-255-68.local.dev maps to A 116.203.255.68
-- customer1.app.10.0.0.1.local.dev maps to A 10.0.0.1
-- customer-app1-127-0-0-1.local.dev maps to A 127.0.0.1
-- 0a000803.local.dev maps to A 10.0.8.3
-- app-c0a801fc.local.dev maps to A 192.168.1.252
-- customer3-app-7f000101.local.dev maps to 127.0.1.1
+- 10.0.0.1.local.dev will return A record as A 10.0.0.1
+- 192-168-1-250.local.dev will return A record as A 192.168.1.250
+- app.10.8.0.1.local.dev will return A record as A 10.8.0.1
+- app-116-203-255-68.local.dev will return A record as A 116.203.255.68
+- customer1.app.10.0.0.1.local.dev will return A record as A 10.0.0.1
+- customer-app1-127-0-0-1.local.dev will return A record as A 127.0.0.1
+- 0a000803.local.dev will return A record as A 10.0.8.3
+- app-c0a801fc.local.dev will return A record as 192.168.1.252
+- customer3-app-7f000101.local.dev will return A record as 127.0.1.1
+
+Invalid IP will return CNAME record.
 
 The latest version of the configuration can be downloaded here https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/echoip.lua
 
