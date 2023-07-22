@@ -21,7 +21,8 @@ This post is an overview of some dns tunnneling tools with installation procedur
 ## What is DNS tunneling?
 
 DNS tunneling exploits DNS protocol for tunneling data via DNS query and response packet.
-It can be used to extract data silently from a corporate network.
+
+It can be used to extract or import data silently from a corporate network.
 
 ## Tools overview
 
