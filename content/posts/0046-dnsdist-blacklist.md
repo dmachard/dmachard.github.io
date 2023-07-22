@@ -5,7 +5,8 @@ draft: false
 tags: ['powerdns', 'dnsdist', 'blacklist', 'cdb']
 ---
 
-This procedure explains how to configure dnsdist to block ads/malwares domains effectively.
+A DNSdist configuration example to block big list of ads/malwares domains effectively
+with a CDB database and dynamic reload. 
 
 Download the following CDB blocklist file https://github.com/dmachard/blocklist-domains 
 and put-it in /etc/dnsdist/conf.d/
