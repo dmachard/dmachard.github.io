@@ -2,11 +2,12 @@
 title: "PowerDNS DNSdist: echo capability of ip address from domain name for development"
 date: 2023-07-22T00:00:00+01:00
 draft: false
-tags: ['powerdns', 'dnsdist', 'tunnelling', 'dns', 'security']
+tags: ['powerdns', 'dnsdist', 'development', 'dns']
 ---
 
 A DNSdist configuration example to map any IP address to a hostname for development purpose.
 The following formats are supported:
+
 - 10.0.0.1.local.dev will return A record as A 10.0.0.1
 - 192-168-1-250.local.dev will return A record as A 192.168.1.250
 - app.10.8.0.1.local.dev will return A record as A 10.8.0.1
@@ -19,12 +20,18 @@ The following formats are supported:
 
 Invalid IP will return CNAME record.
 
-The latest version of the configuration can be downloaded here https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/echoip.lua
+In the following example, the `local.dev` domain is used to map IP addresses otherwise all other DNS queries are forwarded 
+to the default backend `1.1.1.1`.
+
+The full dnsdist.conf example:
 
 ```lua
--- Echo capability of ip address from domain name for development
+setLocal("0.0.0.0:53", {})
+newServer({address = "1.1.1.1:53"})
 
-local function echoIpAddress(dq)
+
+-- Echo capability of ip address from domain name for development
+local function onEchoIpAddress(dq)
         -- list of regexs to find ip in qname
         ipsregex = {}
 
@@ -65,5 +72,34 @@ local function echoIpAddress(dq)
         return DNSAction.Spoof, retip
 end
 
-addAction("local.dev.", LuaAction(echoIpAddress))
+-- rule to match local domain
+addAction("local.dev.", LuaAction(onEchoIpAddress))
+
+-- default rule
+addAction( AllRule(), PoolAction("default"))
+```
+
+> The latest version of the configuration can be downloaded from [github](https://github.com/dmachard/lua-dnsdist-config-examples/).
+
+Use the `dig` command to test this configuration:
+
+```bash
+dig 10.0.0.1.local.dev
+
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 24739
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+;; QUESTION SECTION:
+;10.0.0.1.local.dev.            IN      A
+
+;; ANSWER SECTION:
+10.0.0.1.local.dev.     60      IN      A       10.0.0.1
+
+;; Query time: 0 msec
+;; SERVER: 127.0.0.1#5553(127.0.0.1) (TCP)
+;; WHEN: Sat Aug 12 21:16:14 CEST 2023
+;; MSG SIZE  rcvd: 63
 ```

@@ -8,11 +8,12 @@ tags: ['powerdns', 'dnsdist', 'tunnelling', 'dns', 'security']
 A DNSdist configuration example to attempt to block DNS tunnelling.
 
 The global approach is to blacklist IP when some malicious behaviour are detected:
+
 - Uncommon DNS Qtype like NULL, PRIVATE are blocked
 - A generic regex to block long successive DNS label with whitelist to avoid false-positive
 - Apply some rate limitations per IP
 
-The latest version of the configuration can be downloaded here https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blocking_dnstunneling.lua
+The latest version of the configuration can be downloaded from [github](https://github.com/dmachard/lua-dnsdist-config-examples/).
 
 ```lua
 -- Generic rules to block malicious dns traffic like DNS tunneling

@@ -6,11 +6,12 @@ tags: ['powerdns', 'dnsdist', 'blacklist', 'cdb']
 ---
 
 A DNSdist configuration example to block big list of ads/malwares domains effectively
-with a CDB database and dynamic reload. 
+with a CDB database and dynamic reload.
 
-Download the following CDB blocklist file https://github.com/dmachard/blocklist-domains 
+Download the following CDB blocklist file https://github.com/dmachard/blocklist-domains
 and put-it in /etc/dnsdist/conf.d/
 
+The latest version of the configuration can be downloaded from [github](https://github.com/dmachard/lua-dnsdist-config-examples/).
 
 ```lua
 --- open your CDB database 
