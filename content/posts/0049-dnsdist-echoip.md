@@ -25,6 +25,8 @@ to the default backend `1.1.1.1`.
 
 The full dnsdist.conf example:
 
+> The latest version of the configuration can be downloaded from [github](https://github.com/dmachard/lua-dnsdist-config-examples/).
+
 ```lua
 setLocal("0.0.0.0:53", {})
 newServer({address = "1.1.1.1:53"})
@@ -78,8 +80,6 @@ addAction("local.dev.", LuaAction(onEchoIpAddress))
 -- default rule
 addAction( AllRule(), PoolAction("default"))
 ```
-
-> The latest version of the configuration can be downloaded from [github](https://github.com/dmachard/lua-dnsdist-config-examples/).
 
 Use the `dig` command to test this configuration:
 

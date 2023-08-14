@@ -1,11 +1,12 @@
 ---
-title: "PowerDNS DNSdist: block or unblock domain in dynamic way (DNS notify)"
+title: "PowerDNS DNSdist: temporarily block domains with DNS notify"
 date: 2023-08-12T00:00:00+01:00
 draft: false
-tags: ['powerdns', 'dnsdist', 'dns', 'security', 'blacklist']
+tags: ['powerdns', 'dnsdist', 'dns', 'security', 'blocklist']
 ---
 
-A DNSdist configuration example to block or unblock domains in a dynamic way with DNS notify.
+A DNSdist configuration example to block or unblock domains temporarily and in a dynamic way with DNS notify.
+This example is volatible, a restart of the dnsdist will erase the blocklist. If you want to keep the blocklist even after restart, you can refer to the post [blackhole/spoofing domains with external files](https://github.com/dmachard/lua-dnsdist-config-examples/security_blackhole_domains.lua)
 
 ## DNSdist configuration
 
@@ -14,23 +15,29 @@ Before that, an action is defined to check if the domain must be refused or not.
 
 The full dnsdist.conf example:
 
+> The latest version of the configuration can be downloaded from [github](https://github.com/dmachard/lua-dnsdist-config-examples/).
+
 ```lua
+-- basic config with one backend for test purpose only
 setLocal("0.0.0.0:53", {})
 newServer({address = "1.1.1.1:53", pool="default"})
 
+-- Creates a new SuffixMatchNode: https://dnsdist.org/reference/config.html?highlight=newsuffixmatchnode
 local blackholeDomains = newSuffixMatchNode()
 
+-- function to add or remove domain from the suffixMatchNode
 local function onRegisterDomain(dq)
     if blackholeDomains:check(dq.qname) then
-        infolog("removing domain " ..  dq.qname:toString() .. " from blacklist")
+        infolog("removing domain: " ..  dq.qname:toString() .. " from blacklist")
         blackholeDomains:remove(dq.qname)
     else
-        infolog("blacklisting the domain: " ..  dq.qname:toString())
+        infolog("blacklisting domain: " ..  dq.qname:toString())
         blackholeDomains:add(dq.qname)
     end
     return DNSAction.Spoof, "success"
 end
 
+-- Check if the given qname is a sub-domain of one of those in the set
 local function onBlacklistDomain(dq)
     if blackholeDomains:check(dq.qname) then
         return DNSAction.Refused
@@ -49,31 +56,35 @@ addAction(AllRule(), LuaAction(onBlacklistDomain))
 addAction( AllRule(), PoolAction("default"))
 ```
 
-> The latest version of the configuration can be downloaded from [github](https://github.com/dmachard/lua-dnsdist-config-examples/).
-
-## Add a domain to the blocklist
+## How to block/unblock a domain
 
 To add a domain in the blacklist, you must send a DNS notify to the domain (or a part of) to block.
 
-Example to block fbcdn.net and all subdomains:
+To block the domain `fbcdn.net` and all subdomains, use the *dig* command to send a DNS notify.
+You can also display the DNSdist logs to see log messages.
 
 ```bash
-dig @127.0.0.1 +opcode=notify +tcp fbcdn.net +short
+$ dig @127.0.0.1 +opcode=notify +tcp fbcdn.net +short
 success.
+
+$ sudo docker logs dnsdist
+blacklisting domain: fbcdn.net.
 ```
 
-Display DNSdist logs to check if the blacklist is added
+To unblock the domain, send again the same DNS notify.
 
 ```bash
+$ dig @127.0.0.1 +opcode=notify +tcp fbcdn.net +short
+success.
+
 $ sudo docker logs dnsdist
-blacklisting the domain: fbcdn.net.
+removing domain: fbcdn.net.
 ```
 
-> To unblock the domain, send again the same DNS notify.
+## Testing: make some DNS resolutions
 
-## Test
-
-Test the domain `static.xx.fbcdn.net`, it should be `REFUSED`
+Use the *dig* command on the domain `static.xx.fbcdn.net`
+The status of the response is `REFUSED` because of the blacklist.
 
 ```bash
 $ dig @127.0.0.1 static.xx.fbcdn.net
@@ -97,14 +108,14 @@ $ dig @127.0.0.1 static.xx.fbcdn.net
 ;; MSG SIZE  rcvd: 48
 ```
 
-Remove `fbcdn.net` from the blocklist
+Remove the domain `fbcdn.net` from the blocklist
 
 ```bash
 $ dig @127.0.0.1 +opcode=notify +tcp fbcdn.net +short
 success.
 
 $ sudo docker logs dnsdist
-removing domain fbcdn.net. from blacklist
+removing domain: fbcdn.net. from blacklist
 ```
 
 Try again to make the DNS resolution, this time the query is no more refused.
