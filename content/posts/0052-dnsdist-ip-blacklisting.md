@@ -8,6 +8,8 @@ tags: ['powerdns', 'dnsdist', 'dns', 'security', 'blacklist', 'ip', 'update']
 A DNSdist configuration example to blacklist IP addresses with DNS UPDATE control and dynamic blocking duration.
 This example is volatible, dnsdist will restart with an empty blocklist of IP addresses.
 
+> dnsdist 1.8 minimum is required for this example.
+
 ## DNSdist configuration
 
 In the following example, DNSdist will forward all incoming queries to `1.1.1.1` by default.
