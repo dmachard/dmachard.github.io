@@ -6,8 +6,11 @@ tags: ["dns", 'logs']
 ---
 
 This post details how to enable the dnstap feature in main open source dns servers.
+
 [dnstap](https://dnstap.info/) is a flexible, structured binary log format for DNS servers.
-It uses [Protocol Buffers](https://protobuf.dev/) to encode DNS packets in events. dnstap can encode any DNS messages with network informations like ip and port. It includes client queries and responses.
+It uses [Protocol Buffers](https://protobuf.dev/) to encode DNS packets in events. 
+
+dnstap can encode any DNS messages with network informations like ip and port. It includes client queries and responses.
 
 # Table of contents
 
