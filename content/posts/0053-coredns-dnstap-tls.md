@@ -24,7 +24,7 @@ Create the following `config_coredns.conf` in your working folder.
 - `192.168.1.200:6000` is the IP/port address of your DNStap collector.
 - `skipverify`: this setting ignore TLS verification, do not use this settings in production.
 
-```json
+```ini
 .:53 {
         dnstap tls://192.168.1.200:6000 full {
                 skipverify
