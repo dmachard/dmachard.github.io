@@ -1,5 +1,5 @@
 ---
-title: "CoreDNS: enable TLS on outgoing DNSTAP stream"
+title: "CoreDNS: secure your DNSTAP streams with TLS"
 date: 2023-08-28T00:00:00+01:00
 draft: false
 tags: ['coredns', 'dnstap', 'dns', 'security', 'tls']
