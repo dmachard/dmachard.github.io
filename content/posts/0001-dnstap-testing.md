@@ -145,7 +145,7 @@ Note: TCP stream are only supported with a recent version of libfstrm.
 
 # PowerDNS - dnsdist
 
-![dnsdist 1.6](https://img.shields.io/badge/1.6-tested-green) ![dnsdist 1.5](https://img.shields.io/badge/1.5-tested-green) ![dnsdist 1.4](https://img.shields.io/badge/1.4.0-tested-green)
+![dnsdist 1.8](https://img.shields.io/badge/1.8-tested-green) ![dnsdist 1.7](https://img.shields.io/badge/1.7-tested-green) ![dnsdist 1.6](https://img.shields.io/badge/1.6-tested-green) ![dnsdist 1.5](https://img.shields.io/badge/1.5-tested-green) ![dnsdist 1.4](https://img.shields.io/badge/1.4.0-tested-green)
 
 Dnstap messages supported:
 
@@ -308,7 +308,7 @@ dnstap:
 
 # CoreDNS
 
-![coredns 1.8.4](https://img.shields.io/badge/1.8.4-tested-green) ![coredns 1.8.0](https://img.shields.io/badge/1.8.0-tested-green)
+![coredns 1.11.1](https://img.shields.io/badge/1.11.1-tested-green) ![coredns 1.8.4](https://img.shields.io/badge/1.8.4-tested-green) ![coredns 1.8.0](https://img.shields.io/badge/1.8.0-tested-green)
 
 Dnstap messages supported:
 
