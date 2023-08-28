@@ -6,55 +6,59 @@ tags: ["dns", 'logs']
 ---
 
 This post details how to enable the dnstap feature in main open source dns servers.
+[dnstap](https://dnstap.info/) is a flexible, structured binary log format for DNS servers.
+It uses [Protocol Buffers](https://protobuf.dev/) to encode DNS packets in events. dnstap can encode any DNS messages with network informations like ip and port. It includes client queries and responses.
 
 # Table of contents
 
 * [Introduction](#introduction)
 * [ISC bind](#isc-bind)
-	* [Build with dnstap support](#build-with-dnstap-support)
-    * [Unix socket](#unix-socket)
-    * [TCP stream](#tcp-stream)
+  * [Build with dnstap support](#build-with-dnstap-support)
+  * [Unix socket](#unix-socket)
+  * [TCP stream](#tcp-stream)
 * [PowerDNS - pdns-recursor](#powerdns---pdns-recursor)
-    * [Unix socket](#unix-socket-1)
-    * [TCP stream](#tcp-stream-1)
+  * [Unix socket](#unix-socket-1)
+  * [TCP stream](#tcp-stream-1)
 * [PowerDNS - dnsdist](#powerdns---dnsdist)
-    * [Unix socket](#unix-socket-2)
-    * [TCP stream](#tcp-stream-2)
+  * [Unix socket](#unix-socket-2)
+  * [TCP stream](#tcp-stream-2)
 * [NLnetLabs - nsd](#nlnetlabs---nsd)
-    * [Build with dnstap support](#build-with-dnstap-support-1)
-    * [Unix socket](#unix-socket-3)
+  * [Build with dnstap support](#build-with-dnstap-support-1)
+  * [Unix socket](#unix-socket-3)
 * [NLnetLabs - unbound](#nlnetlabs---unbound)
-	* [Build with dnstap support](#build-with-dnstap-support-2)
-    * [Unix socket](#unix-socket-3)
-    * [TCP stream](#tcp-socket-3)
-    * [TLS stream](#tls-stream)
+  * [Build with dnstap support](#build-with-dnstap-support-2)
+  * [Unix socket](#unix-socket-3)
+  * [TCP stream](#tcp-socket-3)
+  * [TLS stream](#tls-stream)
 * [CoreDNS](#coredns)
-    * [Unix socket](#unix-socket-4)
-    * [TCP stream](#tcp-stream-4)
+  * [Unix socket](#unix-socket-4)
+  * [TCP stream](#tcp-stream-4)
 * [CZ-NIC - knot resolver](#cz-nic---knot-resolver)
-    * [Unix socket](#unix-socket-5)
+  * [Unix socket](#unix-socket-5)
 
 ## Introduction
 
 This [dnstap](https://dnstap.info/) feature has been tested with success with the following dns servers:
-- ISC - bind
-- PowerDNS - pdns-recursor
-- PowerDNS - dnsdist
-- NLnet Labs - nsd
-- NLnet Labs - unbound
-- CoreDNS
+
+* ISC - bind
+* PowerDNS - pdns-recursor
+* PowerDNS - dnsdist
+* NLnet Labs - nsd
+* NLnet Labs - unbound
+* CoreDNS
 
 ## ISC bind
 
 ![bind 9.11.22](https://img.shields.io/badge/9.11.22-tested-green) ![bind 9.16.10](https://img.shields.io/badge/9.16.10-tested-green)
 
 Dnstap messages supported:
- - RESOLVER_QUERY
- - RESOLVER_RESPONSE
- - CLIENT_QUERY
- - CLIENT_RESPONSE
- - AUTH_QUERY
- - AUTH_RESPONSE
+
+* RESOLVER_QUERY
+* RESOLVER_RESPONSE
+* CLIENT_QUERY
+* CLIENT_RESPONSE
+* AUTH_QUERY
+* AUTH_RESPONSE
 
 #### Build with dnstap support
 
@@ -85,7 +89,7 @@ su - named -s /bin/bash -c "dnstap_receiver -u "/var/run/named/dnstap.sock""
 ```
 
 If you have some troubles take a look to [selinux](https://gitlab.isc.org/isc-projects/bind9/-/issues/2356#note_185516)
- 
+
 #### TCP stream
 
 Not supported on Bind! You can apply the following workaround with the `socat` or `stunnel` command.
@@ -94,14 +98,14 @@ Not supported on Bind! You can apply the following workaround with the `socat` o
 while true; do socat unix-listen:/var/run/dnsdist/dnstap.sock tcp4-connect:<ip_dnstap_receiver>:<port_dnstap_receiver>,forever,interval=10, fork; sleep 1; done
 ```
 
-
 # PowerDNS - pdns-recursor
 
 ![pdns-recursor 4.3.4](https://img.shields.io/badge/4.3.4-tested-green) ![pdns-recursor 4.4.0](https://img.shields.io/badge/4.4.0-tested-green)
 
 Dnstap messages supported:
- - RESOLVER_QUERY
- - RESOLVER_RESPONSE
+
+* RESOLVER_QUERY
+* RESOLVER_RESPONSE
 
 #### Unix socket
 
@@ -123,7 +127,7 @@ su - pdns-recursor -s /bin/bash -c "dnstap_receiver -u "/var/run/pdns-recursor/d
 
 ## TCP stream
 
-Update the configuration file to activate the dnstap feature with tcp mode 
+Update the configuration file to activate the dnstap feature with tcp mode
 and execute the dnstap receiver in listening tcp socket mode:
 
 ```bash
@@ -135,14 +139,15 @@ dnstapFrameStreamServer("10.0.0.100:6000")
 ```
 
 Note: TCP stream are only supported with a recent version of libfstrm.
- 
+
 # PowerDNS - dnsdist
 
-![dnsdist 1.6](https://img.shields.io/badge/1.6-tested-green) ![dnsdist 1.5](https://img.shields.io/badge/1.5-tested-green) ![dnsdist 1.4](https://img.shields.io/badge/1.4.0-tested-green) 
+![dnsdist 1.6](https://img.shields.io/badge/1.6-tested-green) ![dnsdist 1.5](https://img.shields.io/badge/1.5-tested-green) ![dnsdist 1.4](https://img.shields.io/badge/1.4.0-tested-green)
 
 Dnstap messages supported:
- - CLIENT_QUERY
- - CLIENT_RESPONSE
+
+* CLIENT_QUERY
+* CLIENT_RESPONSE
 
 ## Unix socket
 
@@ -187,8 +192,9 @@ addCacheHitResponseAction(AllRule(), DnstapLogResponseAction("dnsdist", fsul))
 ![nsd 4.3.2](https://img.shields.io/badge/4.3.2-tested-green)
 
 Dnstap messages supported:
- - AUTH_QUERY
- - AUTH_RESPONSE
+
+* AUTH_QUERY
+* AUTH_RESPONSE
 
 ## Build with dnstap support
 
@@ -224,11 +230,12 @@ su - nsd -s /bin/bash -c "dnstap_receiver -u "/var/run/nsd/dnstap.sock""
 ![unbound 1.11.0](https://img.shields.io/badge/1.11.0-tested-green) ![unbound 1.12.0](https://img.shields.io/badge/1.12.0-tested-green) ![unbound 1.13.0](https://img.shields.io/badge/1.13.0-tested-green)
 
 Dnstap messages supported:
- - CLIENT_QUERY
- - CLIENT_RESPONSE
- - RESOLVER_QUERY
- - RESOLVER_RESPONSE
- 
+
+* CLIENT_QUERY
+* CLIENT_RESPONSE
+* RESOLVER_QUERY
+* RESOLVER_RESPONSE
+
 #### Build with dnstap support
 
 Download latest source and build-it with dnstap support:
@@ -264,7 +271,7 @@ su - unbound -s /bin/bash -c "dnstap_receiver -u "/usr/local/etc/unbound/dnstap.
 
 #### TCP stream
 
-Update the configuration file `/etc/unbound/unbound.conf` to activate the dnstap feature 
+Update the configuration file `/etc/unbound/unbound.conf` to activate the dnstap feature
 with tcp mode and execute the dnstap receiver in listening tcp socket mode:
 
 ```yaml
@@ -281,7 +288,7 @@ dnstap:
 
 ## TLS stream
 
-Update the configuration file `/etc/unbound/unbound.conf` to activate the dnstap feature 
+Update the configuration file `/etc/unbound/unbound.conf` to activate the dnstap feature
 with tls mode and execute the dnstap receiver in listening tcp/tls socket mode:
 
 ```yaml
@@ -301,10 +308,11 @@ dnstap:
 ![coredns 1.8.4](https://img.shields.io/badge/1.8.4-tested-green) ![coredns 1.8.0](https://img.shields.io/badge/1.8.0-tested-green)
 
 Dnstap messages supported:
- - CLIENT_QUERY
- - CLIENT_RESPONSE
- - FORWARDER_QUERY
- - FORWARDER_RESPONSE
+
+* CLIENT_QUERY
+* CLIENT_RESPONSE
+* FORWARDER_QUERY
+* FORWARDER_RESPONSE
 
 ## Unix socket
 
