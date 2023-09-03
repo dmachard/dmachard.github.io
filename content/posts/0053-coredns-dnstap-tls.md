@@ -1,9 +1,12 @@
 ---
-title: "CoreDNS: secure your DNSTAP streams with TLS"
+title: "Secure your DNSTAP streams with TLS on CoreDNS"
+summary: "This post explains how to enable TLS on outgoing dnstap streams with CoreDNS"
 date: 2023-08-28T00:00:00+01:00
 draft: false
-tags: ['coredns', 'dnstap', 'dns', 'security', 'tls']
+tags: ['coredns', 'dnstap', 'dns', 'logs', 'tls']
 ---
+
+# Secure your DNSTAP streams with TLS on CoreDNS
 
 This post explains how to enable TLS on outgoing [dnstap](https://dnstap.info/) streams with [CoreDNS](https://coredns.io/). Please refer to [How to enable it on main dns servers](https://dmachard.github.io/posts/0001-dnstap-testing/#coredns) to enable DNStap in basic way.
 
