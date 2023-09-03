@@ -1,7 +1,7 @@
 baseURL = "https://dmachard.github.io/"
 languageCode = "en-US"
 title = "My technical gists"
-theme = "hugo-technical-gists"
+theme = "gists"
 pygmentsCodeFences = true
 paginate = 10
 
