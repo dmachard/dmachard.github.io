@@ -1,10 +1,13 @@
 ---
 title: "How to enable and use the DNSTAP protocol on main dns servers"
+summary: "This post details how to enable the dnstap feature in main open source dns servers."
 date: 2020-05-23T00:00:00+01:00
 draft: false
 tags: ["dns", 'logs', 'dnstap']
 pin: true
 ---
+
+# How to enable and use the DNSTAP protocol on main dns servers
 
 This post details how to enable the dnstap feature in main open source dns servers.
 
@@ -13,34 +16,7 @@ It uses [Protocol Buffers](https://protobuf.dev/) to encode DNS packets in event
 
 dnstap can encode any DNS messages with network informations like ip and port. It includes client queries and responses.
 
-## Table of contents
-
-* [Introduction](#introduction)
-* [ISC bind](#isc-bind)
-  * [Build with dnstap support](#build-with-dnstap-support)
-  * [Unix socket](#unix-socket)
-  * [TCP stream](#tcp-stream)
-* [PowerDNS - pdns-recursor](#powerdns---pdns-recursor)
-  * [Unix socket](#unix-socket-1)
-  * [TCP stream](#tcp-stream-1)
-* [PowerDNS - dnsdist](#powerdns---dnsdist)
-  * [Unix socket](#unix-socket-2)
-  * [TCP stream](#tcp-stream-2)
-* [NLnetLabs - nsd](#nlnetlabs---nsd)
-  * [Build with dnstap support](#build-with-dnstap-support-1)
-  * [Unix socket](#unix-socket-3)
-* [NLnetLabs - unbound](#nlnetlabs---unbound)
-  * [Build with dnstap support](#build-with-dnstap-support-2)
-  * [Unix socket](#unix-socket-3)
-  * [TCP stream](#tcp-stream-3)
-  * [TLS stream](#tls-stream)
-* [CoreDNS](#coredns)
-  * [Unix socket](#unix-socket-4)
-  * [TCP stream](#tcp-stream-4)
-* [CZ-NIC - knot resolver](#cz-nic---knot-resolver)
-  * [Unix socket](#unix-socket-5)
-
-### Introduction
+## Introduction
 
 This [dnstap](https://dnstap.info/) feature has been tested with success with the following dns servers:
 
@@ -51,7 +27,7 @@ This [dnstap](https://dnstap.info/) feature has been tested with success with th
 * NLnet Labs - unbound
 * CoreDNS
 
-### ISC bind
+## ISC bind
 
 ![bind 9.11.22](https://img.shields.io/badge/9.11.22-tested-green) ![bind 9.16.10](https://img.shields.io/badge/9.16.10-tested-green)
 
@@ -64,7 +40,7 @@ Dnstap messages supported:
 * AUTH_QUERY
 * AUTH_RESPONSE
 
-#### Build with dnstap support
+### Build with dnstap support
 
 Since 9.16 version, the dnstap feature is enabled before that you need to download latest source and build-it with dnstap support:
 
@@ -73,7 +49,7 @@ Since 9.16 version, the dnstap feature is enabled before that you need to downlo
 make && make install
 ```
 
-#### Unix socket
+### Unix socket
 
 Update the configuration file `/etc/named.conf` to activate the dnstap feature:
 
@@ -94,7 +70,7 @@ su - named -s /bin/bash -c "dnstap_receiver -u "/var/run/named/dnstap.sock""
 
 If you have some troubles take a look to [selinux](https://gitlab.isc.org/isc-projects/bind9/-/issues/2356#note_185516)
 
-#### TCP stream
+### TCP stream
 
 Not supported on Bind! You can apply the following workaround with the `socat` or `stunnel` command.
 
