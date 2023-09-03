@@ -1,62 +1,21 @@
 baseURL = "https://dmachard.github.io/"
-languageCode = "en-us"
+languageCode = "en-US"
 title = "My technical gists"
-theme = "anatole"
-enableRobotsTXT = true
-summarylength = 10
-paginate = 5
-
-[menu]
-  [[menu.main]]
-  name = "Home"
-  identifier = "home"
-  weight = 100
-  url = "/"
-
-  [[menu.main]]
-  name = "Archive"
-  identifier = "posts"
-  weight = 150
-  url = "/posts"
-
-  [[menu.main]]
-  name = "Tags"
-  identifier = "tags"
-  weight = 150
-  url = "/tags"
-
+theme = "hugo-technical-gists"
+pygmentsCodeFences = true
+paginate = 10
 
 [params]
-    mainSections = ["posts"]
-    title = "My technical gists"
-    description = "Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast."
-    contentratio = 0.75
-    author = "Denis MACHARD"
-    profilePicture = "images/profile.png"
-    readMore = false
-    doNotLoadAnimations = true
+  author = "Denis Machard"
+  resume = "My technical gists"
+  email = "d.machard@gmail.com"
+  description = "Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast."
+  github = "dmachard"
+  mastodon = "https://fosstodon.org/@dmachard"
+  keywords = "blog, technical"
+  rss = true
+  lastmod = true
+  favicon = "/images/avatar.png"
 
-[[params.socialIcons]]
-icon = "fas fa-rss"
-title = "e-mail"
-url = "https://dmachard.github.io/index.xml"
-
-[[params.socialIcons]]
-icon = "fab fa-github"
-title = "GitHub"
-url = "https://github.com/dmachard/"
-
-[[params.socialIcons]]
-icon = "fab fa-twitter"
-title = "Twitter"
-url = "https://twitter.com/denis_machard"
-
-[[params.socialIcons]]
-icon = "fab fa-linkedin"
-title = "Linkedin"
-url = "https://www.linkedin.com/in/dmachard/"
-
-[[params.socialIcons]]
-icon = "fas fa-envelope"
-title = "e-mail"
-url = "mailto:d.machard@gmail.com"
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]
