@@ -15,7 +15,7 @@ paginate = 10
   keywords = "blog, technical"
   rss = true
   lastmod = true
-  favicon = "/images/avatar.png"
+  favicon = "/images/profile.png"
 
 [frontmatter]
   lastmod = ["lastmod", ":fileModTime", ":default"]
