@@ -328,6 +328,25 @@ Then execute CoreDNS with your corefile
  ./coredns -conf corefile
 ```
 
+### TLS stream
+
+corefile example
+
+```bash
+.:53 {
+        dnstap tls://10.0.0.51:6000 full {
+          skip-verify
+        }
+        forward . 8.8.8.8:53
+}
+```
+
+Then execute CoreDNS with your corefile
+
+```bash
+ ./coredns -conf corefile
+```
+
 ## CZ-NIC - Knot Resolver
 
 ### Unix socket

@@ -1,23 +1,15 @@
 ---
 title: "DNS Tunneling: tools overview"
+summary: "This post is an overview of some dns tunnneling tools with installation procedure."
 date: 2023-07-04T00:00:00+01:00
 draft: false
 tags: ['tunnel', 'dns', 'security']
+pin: true
 ---
 
+# DNS Tunneling: tools overview
+
 This post is an overview of some dns tunnneling tools with installation procedure.
-
-# Table of contents
-
-* [What is DNS tunneling?](#what-is-dns-tunneling)
-* [Tools overview](#tools-overview)
-    * [iodine](#iodine)
-    * [dnscat2](#dnscat2)
-    * [dns2tcp](#dns2tcp)
-    * [DNSExfiltrator](#DNSExfiltrator)
-    * [Sods](#sods)
-    * [Other tools](#other-tools)
-
 ## What is DNS tunneling?
 
 DNS tunneling exploits DNS protocol for tunneling data via DNS query and response packet.

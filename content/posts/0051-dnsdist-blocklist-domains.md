@@ -1,9 +1,12 @@
 ---
-title: "PowerDNS DNSdist: temporarily block domains with DNS notify"
+title: "Temporarily block domains with DNS notify with DNSdist"
+summary: "A DNSdist configuration example to block or unblock domains temporarily and in a dynamic way with DNS notify."
 date: 2023-08-12T00:00:00+01:00
 draft: false
 tags: ['powerdns', 'dnsdist', 'dns', 'security', 'blocklist']
 ---
+
+# Temporarily block domains with DNS notify with DNSdist
 
 A DNSdist configuration example to block or unblock domains temporarily and in a dynamic way with DNS notify.
 This example is volatible, a restart of the dnsdist will erase the blocklist. If you want to keep the blocklist even after restart, you can refer to the post [blackhole/spoofing domains with external files](https://github.com/dmachard/lua-dnsdist-config-examples/security_blackhole_domains.lua)

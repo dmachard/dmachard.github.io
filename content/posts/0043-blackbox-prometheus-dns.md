@@ -1,17 +1,14 @@
 ---
-title: "Prometheus: monitor dns records with blackbox exporter"
+title: "Monitor dns records with blackbox exporter and Prometheus"
+summary: "Example to monitor DNS records with the blackbox exporter"
 date: 2021-12-04T00:00:00+01:00
 draft: false
 tags: ['prometheus', 'dns', 'blackbox', 'grafana' ]
 ---
 
-Example to monitor DNS records with the blackbox exporter
+# Monitor DNS records with blackbox exporter
 
-# Table of contents
-
-* [Blackbox](#blackbox)
-* [Prometheus](#prometheus)
-* [Grafana](#grafana)
+Example to monitor DNS records with the blackbox exporter and Prometheus
 
 # Blackbox
 

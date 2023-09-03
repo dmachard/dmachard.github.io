@@ -1,9 +1,12 @@
 ---
-title: "Python Module to get your V4/V6 public IP from random providers in several ways (DNS, HTTPS or STUN)"
+title: "Python Module to get your V4/V6 public IP from random providers"
+summary: "Simple python module for getting your public IP V4 and V6 from several providers in random mode with also several protocols (DNS, HTTPS and STUN)."
 date: 2023-07-22T01:00:00+01:00
 draft: false
 tags: ['python', 'publicip', 'ipv4', 'ipv6', 'package']
 ---
+
+# Python Module to get your V4/V6 public IP from random providers
 
 Simple python module for getting your public IP V4 and V6 from several providers in random mode with also several protocols (DNS, HTTPS and STUN).
 

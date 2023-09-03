@@ -1,29 +1,24 @@
 ---
-title: "DnsCollector/dnstap: collect dnstap stream and follow dns answers with JSON format"
+title: "Collect dnstap stream and follow dns answers with JSON format"
 date: 2021-11-27T00:00:00+01:00
 draft: false
-tags: ['dnstap', 'logs']
+tags: ['dnstap', 'logs', 'go-dnscollector']
 ---
+
+# Collect dnstap stream and follow dns answers with JSON format
 
 Example to collect dnstap messages from dns servers and follow dns answers with JSON format.
 
-# Table of contents
-
-* [Prequisites](#prequisites)
-* [Overview](#overview)
-* [Configuration](#configuration)
-* [Logs](#logs)
-
-# Prequisites
+## Prequisites
 
 Install the dnscollector like described in the following [guide](https://dmachard.github.io/posts/0007-dnscollector-install-binary/).
 
-# Overview
+## Overview
 
 With this example, the collector waits incoming dnstap messages and redirect them to stdout in JSON format.
 JSON ouput can be used to get dns answers.
 
-# Configuration
+## Configuration
 
 Download the [config.yml](https://github.com/dmachard/go-dnscollector/blob/main/example-config/use-case-3.yml) file. 
 
@@ -49,7 +44,7 @@ multiplexer:
       to: [std_out]
 ```
 
-# Logs
+## Logs
 
 ```bash
 tail -f /var/run/dnscollector/dnstap.log | jq
@@ -126,5 +121,3 @@ tail -f /var/run/dnscollector/dnstap.log | jq
   }
 }
 ```
-
-

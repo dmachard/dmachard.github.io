@@ -1,18 +1,15 @@
 ---
-title: "DnsCollector/dnstap: collect dnstap stream and analysing logs with Loki+Grafana"
+title: "Collect DNSTAP stream and analysing DNS logs with Loki and Grafana"
+summary: "Example to collect dnstap stream and analysing logs with Loki and Grafana"
 date: 2021-12-16T00:00:00+01:00
 draft: false
-tags: ['dnstap', 'logs', 'loki', 'grafana']
+tags: ['dnstap', 'logs', 'loki', 'grafana', 'go-dnscollector']
+pin: true
 ---
 
+# Collect DNSTAP stream and analysing DNS logs with Loki and Grafana
+
 Example to collect dnstap stream and analysing logs with Loki+Grafana
-
-# Table of contents
-
-* [Prequisites](#prequisites)
-* [Overview](#overview)
-* [Configuration](#configuration)
-* [Dashboard](#dashboard)
 
 # Prequisites
 
@@ -24,12 +21,11 @@ With this example the collector waits incoming dnstap messages sent by your dns 
 
 ![prometheus dnscollector](/images/0044/use-case-4.png)
 
-
 # Configuration
 
 Download the [config.yml](https://github.com/dmachard/go-dnscollector/blob/main/example-config/use-case-4.yml) file. 
 
-```
+```ini
 global:
   trace:
     verbose: true
