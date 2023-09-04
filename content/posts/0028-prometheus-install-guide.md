@@ -1,13 +1,16 @@
 ---
 title: "Prometheus installation guide"
+summary: "This post details how to run prometheus"
 date: 2020-12-20T00:00:00+01:00
 draft: false
 tags: ['docker', 'prometheus']
 ---
 
+# Prometheus installation guide
+
 This post details how to run [prometheus](https://prometheus.io/) container
 
-# Configuration
+## Configuration
 
 ```bash
 cat /var/prometheus/prometheus.yml 
@@ -24,12 +27,12 @@ scrape_configs:
       - targets: ['10.0.0.249:8082']
 ```
 
-# Start prometheus
+## Start prometheus
 
 ```bash
 docker run -u root -d -p 9090:9090 -v /var/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml --restart=always --name promserver01 prom/prometheus
 ```
 
-# Test
+## Test
 
 The web interface is available at http://yourip:9090
