@@ -1,5 +1,5 @@
 ---
-title: "DNS Tunneling: tools overview"
+title: "Mainstream DNS Tunneling tools overview"
 summary: "This post is an overview of some dns tunnneling tools with installation procedure."
 date: 2023-07-04T00:00:00+01:00
 draft: false
@@ -7,17 +7,22 @@ tags: ['tunnel', 'dns', 'security']
 pin: true
 ---
 
-# DNS Tunneling: tools overview
+# Mainstream DNS Tunneling tools overview
 
 This post is an overview of some dns tunnneling tools with installation procedure.
+
 ## What is DNS tunneling?
 
 DNS tunneling exploits DNS protocol for tunneling data via DNS query and response packet.
 
 It can be used to extract or import data silently from a corporate network.
 
+> Great post about DNS tunneling to look:
+> - [DNS Tunneling: how DNS can be (ab)used by malicious actors](https://unit42.paloaltonetworks.com/> dns-tunneling-how-dns-can-be-abused-by-malicious-actors/) or [PDF](./pdf/unit42_paloaltonetworks_com_dns_tunneling_how_dns_can_be_abused_by_malicious_actors.pdf)
+
 ## Tools overview
 
+Before to start, take a look to the post [DNS tunneling protection with DNSdist](https://dmachard.github.io/posts/0048-dnsdist-dns-tunneling-protection/) to block these tools.
 ### Iodine
 
 Tunnel IPv4 data over DNS

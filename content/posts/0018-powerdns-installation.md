@@ -1,5 +1,6 @@
 ---
 title: "Authoritary PowerDNS installation on CentOS"
+summary: "PowerDNS authoritary servers installation procedure"
 date: 2020-06-21T00:00:00+01:00
 draft: false
 tags: ['dns', 'powerdns', 'authoritary']

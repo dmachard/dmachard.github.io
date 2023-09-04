@@ -1,5 +1,6 @@
 ---
 title: "Procedure Arduino IDE 1.8.19 for Ubuntu 22.04 and VScode"
+summary: "Install arduino IDE"
 date: 2022-09-25T00:00:00+01:00
 draft: false
 tags: ['arduino', 'vscode', 'ide', 'esp']
@@ -7,15 +8,14 @@ tags: ['arduino', 'vscode', 'ide', 'esp']
 
 # Install arduino IDE
 
-```
-# sudo apt update && sudo apt upgrade -y
-# sudo snap install arduino
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo snap install arduino
 arduino 1.8.19 from Merlijn Sebrechts installed
-
-# sudo usermod -a -G dialout <username>
+sudo usermod -a -G dialout <username>
 ```
 
-# Configure Arduino
+## Configure Arduino
 
 File > Preference 
 
@@ -27,12 +27,12 @@ Tools > Board > Boards Manager
 Tools > Board > ESP32 Arduino > DOIT ESP32 DEVKIT V1 
 Tools > Port > /dev/ttyUSB0
 
-# Run example
+## Run example
 
 File > Examples > 01.Basics > Blink
 Sketch > Upload
 
-```
+```bash
 Sketch uses 219037 bytes (16%) of program storage space. Maximum is 1310720 bytes.
 Global variables use 16088 bytes (4%) of dynamic memory, leaving 311592 bytes for local variables. Maximum is 327680 bytes.
 esptool.py v4.2.1
@@ -80,10 +80,10 @@ Leaving...
 Hard resetting via RTS pin...
 ```
 
-# Configure VScode
+## Configure VScode
 
-```
-# sudo python3 -m pip install pyserial
+```bash
+sudo python3 -m pip install pyserial
 ```
 
 Install the following extension: Arduino for Visual Studio Code
@@ -92,7 +92,7 @@ File > Preferences > Settings
 Swap to json view and add the following line to settings.json 
 in arduino.path the number 70 may vary.
 
-```
+```json
 {
 ....
     "arduino.path": "/snap/arduino/70",
@@ -107,6 +107,6 @@ in arduino.path the number 70 may vary.
 Ctrl+Shift+p and type Arduino: Board Manager and search esp32
 Then install the available package
 
-```
+```bash
 [Done] Installed board package - esp32
 ```

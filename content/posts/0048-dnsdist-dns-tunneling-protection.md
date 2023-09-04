@@ -3,7 +3,7 @@ title: "DNS tunneling protection with DNSdist"
 summary: "A DNSdist configuration example to attempt to block DNS tunnelling."
 date: 2023-07-22T00:00:00+01:00
 draft: false
-tags: ['powerdns', 'dnsdist', 'tunnelling', 'dns', 'security']
+tags: ['powerdns', 'dnsdist', 'tunnel', 'dns', 'security']
 ---
 
 # DNS tunneling protection with DNSdist
