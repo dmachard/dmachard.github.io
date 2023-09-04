@@ -5,18 +5,9 @@ draft: false
 tags: ['dns', 'powerdns', 'authoritary']
 ---
 
+# Authoritary PowerDNS installation on CentOS
+
 PowerDNS authoritary servers installation on **CentOS 7* with **sqlite** database
-
-# Table of contents
-
-* [Installation](#Installation)
-* [Configuration](#Configuration)
-* [Start server](#start-server)
-* [Manage configuration](#manage-configuration)
-* [Cache purge entries](#cache-purge-entries)
-* [DNS-UPDATE (RFC2136)](#dns-update-rfc2136)
-* [GSLB feature](#gslb-feature)
-* [Play with REST API](#play-with-rest-api)
 
 ## Installation
 

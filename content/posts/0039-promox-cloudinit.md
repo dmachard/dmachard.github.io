@@ -1,18 +1,16 @@
 ---
-title: "Proxmox: building a cloud-init template with Almalinux8"
+title: "Building a cloud-init template with Almalinux8 on Proxmox"
+summary: "How to build a cloud-init template with Almalinux8"
 date: 2021-11-14T00:00:00+01:00
 draft: false
-tags: ['proxmox', 'almalinux', 'cloudinit']
+tags: ['proxmox', 'almalinux', 'cloudinit', 'how to']
 ---
+
+# Building a cloud-init template with Almalinux8 on Proxmox
 
 How to build a cloud-init template with Almalinux8
 
-# Table of contents
-
-* [Prerequisites](#build)
-* [Build](#build)
-
-# Prerequisites
+## Prerequisites
 
 Connect on your proxmox server and export the following variables
 
@@ -27,7 +25,7 @@ export VM_MEM=1024
 export VM_OPTS=-"-net0 virtio,bridge=vmbr1"
 ```
 
-# Build
+## Build
 
 Download a pre-configured image from AlmaLinux’s official repositories.
 

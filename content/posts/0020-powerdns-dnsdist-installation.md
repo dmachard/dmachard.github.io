@@ -1,16 +1,12 @@
 ---
-title: "PowerDNS/dnsdist: installation guide on CentOS 7"
+title: "Installation guide of DNSdist on CentOS 7"
+summary: "Procedure installation"
 date: 2020-06-21T00:00:00+01:00
 draft: false
-tags: ['dns', 'powerdns', 'dnsdist']
+tags: ['dns', 'powerdns', 'dnsdist', 'installation']
 ---
 
-# Table of contents
-
-* [Installation](#Installation)
-* [Configuration](#Configuration)
-* [Start](#start)
-* [Firewalld configuration](#firewalld-configuration)
+# Installation guide of DNSdist on CentOS 7
 
 ## Installation
 

@@ -1,22 +1,16 @@
 ---
-title: "PowerDns/auth: how to run pdns-auth in a Docker Container with custom configuration file"
+title: "How to run pdns-auth in a Docker Container with custom configuration file"
+summary: "This post details how to execute pdns-auth in docker container"
 date: 2021-12-22T00:00:00+01:00
 draft: false
 tags: ['dns', 'powerdns', 'auth', 'docker']
 ---
 
+# How to run pdns-auth in a Docker Container with custom configuration file
+
 The `pdns-auth` product is available in the official [dockerhub registry](https://hub.docker.com/u/powerdns) of PowerDNS.
 This post details how to execute pdns-auth in **docker container**, **custom configuration file** with **sqlite3** database. 
 We assume you have a containers environnement already available.
-
-# Table of contents
-
-* [Custom config](#custom-config)
-* [Deploy container](#deploy-container)
-* [Persistent database](#persistent-database)
-* [Docker compose](#docker-compose)
-* [Create zone](#create-zone)
-* [Enable DNS Update](#enable-dns-update)
 
 ## Custom config
 
@@ -77,7 +71,7 @@ Create the database
 sqlite3 pdns.sqlite3 < schema.sqlite3.sql
 ```
 
-## Create zone 
+## Create zone
 
 ```bash
 pdnsutil create-zone <dnszone> ns1.<dnszone>

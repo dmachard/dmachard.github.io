@@ -1,26 +1,23 @@
 ---
 title: "Client en Python pour la banque Crédit Agricole"
+summary: "Récupérer ses opérations bancaires stockées par le Crédit Agricole."
 date: 2021-09-27T00:00:00+01:00
 draft: false
 tags: ['python', 'client']
 ---
 
+# Client en Python pour la banque Crédit Agricole
+
 Le [client Python](https://github.com/dmachard/creditagricole-particuliers) est à destination des particuliers souhaitant récupérer ses opérations bancaires stockées par le Crédit Agricole.
 
-# Sommaire
-
-* [Introduction](#introduction)
-* [Installation](#installation)
-* [Exemple](#exemple)
-
-# Introduction
+## Introduction
 
 Ce client Python permet de:
 - lister l'ensemble des comptes bancaires associés au compte
 - récupérer le solde total
 - récupérer la liste des opérations au format JSON
 
-# Installation
+## Installation
 
 Le module python `creditagricole-particuliers` disponible sur pypi
 
@@ -29,7 +26,7 @@ Le module python `creditagricole-particuliers` disponible sur pypi
 pip install creditagricole-particuliers
 ```
 
-# Exemple
+## Exemple
 
 Code pour calculer le solde total de l'ensemble des comptes.
 

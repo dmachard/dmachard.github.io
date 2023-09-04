@@ -1,13 +1,16 @@
 ---
 title: "Connexion SSH par certificat"
+summary: "Cet article détaille comment se connecter sur un système distant par certificat."
 date: 2018-10-17T00:00:00+01:00
 draft: false
 tags: ['certificat', 'ssh']
 ---
 
+# Connexion SSH par certificat
+
 Cet article détaille comment se connecter sur un système distant par certificat.
 
-# Génération clé
+## Génération clé
 
 ```bash
 # ssh-keygen -t rsa
@@ -27,7 +30,7 @@ The key's randomart image is:
 +-----------------+
 ```
 
-# Copier la clé publique
+## Copier la clé publique
 
 Copier la clé publique sur le système distant
 

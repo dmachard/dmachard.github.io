@@ -1,19 +1,15 @@
 ---
 title: "Run a squid proxy in container mode with custom configuration"
+summary: "This tutorial explained how to deploy the following Squid 5"
 date: 2021-10-20T00:00:00+01:00
 draft: false
 tags: ['squid', 'proxy', 'docker']
 ---
 
+# Run a squid proxy in container mode with custom configuration
+
 This tutorial explained how to deploy the following [Squid 5](https://github.com/dmachard/squid-docker) docker image
 and how to configure-it with a custom configuration (basic auth user).
-
-# Table of contents
-
-* [Setup user/password store](#setup-user-password-store)
-* [Deploy the Squid container](#deploy-the-squid-container)
-* [Test](#test)
-* [Basic configuration](#basic-configuration)
 
 ## Setup user/password store
 
@@ -24,6 +20,7 @@ mkdir squid && cd squid
 touch passwords
 htpasswd -c passwords [USERNAME]
 ```
+
 Replace [USERNAME] with your username. You will be prompted for entering the password. Enter and confirm it. 
 
 ## Deploy the Squid container

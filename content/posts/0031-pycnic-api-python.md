@@ -1,9 +1,12 @@
 ---
 title: "Exemple de développement d'une API REST avec pycnic"
+summary: "RESTful api"
 date: 2019-03-03T00:00:00+01:00
 draft: false
 tags: ['python', 'api', 'pynic']
 ---
+
+# Exemple de développement d'une API REST avec pycnic
 
 Exemple de développement d'une API avec la librairie Python **[pycnic](http://pycnic.nullism.com/)**
 

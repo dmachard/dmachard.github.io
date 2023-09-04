@@ -1,18 +1,16 @@
 ---
 title: "Install a Docker Swarm cluster with Persistent Storage Using GlusterFS"
+summmary: "Procedure to install docker swarm"
 date: 2021-11-17T00:00:00+01:00
 draft: false
-tags: ['docker', 'swarm', 'glusterfs', 'installation']
+tags: ['docker', 'swarm', 'glusterfs', 'installation', 'how to']
 ---
+
+# Install a Docker Swarm cluster with Persistent Storage Using GlusterFS
 
 Install a Docker Swarm cluster with Persistent Storage Using GlusterFS
 
-# Table of contents
-
-* [Prerequisites](#prerequisites)
-* [Overview](#overview)
-
-# Prerequisites
+## Prerequisites
 
 Your ansible inventory and hosts file should be like this:
 
@@ -47,7 +45,7 @@ docker-worker01
 docker-worker02
 ```
 
-# Overview
+## Overview
 
 The cluster consists of 3 servers:
 - 1 manager
@@ -56,7 +54,7 @@ The cluster consists of 3 servers:
 
 ![overview docker swarm and glusterfs](/images/0037/dockerswarm_glusterfs.png)
 
-# Installation
+## Installation
 
 Run the following playbooks
 

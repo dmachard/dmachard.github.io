@@ -1,22 +1,14 @@
 ---
-title: "Ntpd: How to get statistics usage with ELK"
+title: "How to get NTPd statistics usage with ELK"
+summary: "In this post, I will look at ntpd server  to extract some ntp statitics."
 date: 2020-06-20T00:00:00+01:00
 draft: false
-tags: ["ntp", 'logs']
+tags: ["ntp", 'logs', 'howto']
 ---
 
-In this post, I will look at ntpd server  to extract some ntp statitics.
+# How to get NTPd statistics usage with ELK
 
-## Table of contents
-* [Activate ntpd logs](#activate-ntpd-logs)
-	* [peerstats documentation](#peerstats-documentation)
- 	* [sysstats documentation](#sysstats-documentation)
-* [Counting NTP clients](#counting-ntp-clients)
-* [Expected logs](#expected-logs)
-* [Export Logs to ELK](#export-logs-to-elk)
-	* [Deploy Filebeat](#deploy-filebeat)
-	* [Configure Logstash](#configure-logstash)
-* [Examples of dashboard on Kibana](#examples-of-dashboard-on-kibana)
+In this post, I will look at ntpd server  to extract some ntp statitics.
 
 ## Activate ntpd logs
 

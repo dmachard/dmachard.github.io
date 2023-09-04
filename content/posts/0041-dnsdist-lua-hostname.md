@@ -1,19 +1,15 @@
-
 ---
-title: "PowerDNS/Dnsdist: custom config with LUA"
+title: "Custom LUA config with DNSdist"
+summary: "This post gives some examples of LUA code to modify the behavior of your dnsdist"
 date: 2021-11-21T00:00:00+01:00
 draft: false
 tags: ['powerdns', 'dnsdist', 'lua']
 ---
 
+# Custom LUA config with DNSdist
+
 This post gives some examples of LUA code to modify the behavior of your dnsdist 
-
-# Table of contents
-
-* [Resolve hostname](#resolve-hostname)
-* [Get hostnmae](#get-hostname)
-
-# Resolve hostname
+## Resolve hostname
 
 This exemple enable to make dns resolution at startup.
 
@@ -26,7 +22,7 @@ dnscollector = string.gsub(dnscollector, "\n$", "")
 fstl = newFrameStreamTcpLogger(dnscollector.. ":6000")
 ```
 
-# Get hostname
+## Get hostname
 
 Example to get the hostname of your machine and reuse-it in your dnsdist config
 

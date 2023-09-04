@@ -1,18 +1,14 @@
 ---
 title: "Guide installation de guacamole en mode container"
+summary: "Guide d'installation de guacamole"
 date: 2019-01-29T00:00:00+01:00
 draft: false
 tags: ['docker', 'guacamole', 'installation']
 ---
 
+# Guide installation de guacamole en mode container
+
 Guide d'installation de **[guacamole](https://guacamole.apache.org/)** en mode container avec une base de donnée PostgreSQL.
-
-# Sommaire
-
-* [Prérequis](#prerequis)
-* [Déploiment PostgreSQL](#deploiment-postgresql)
-* [Déploiment Guacamole](#deploiment-guacamole)
-* [Test de connexion](#test-de-connexion)
 
 ## Prérequis
 

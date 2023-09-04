@@ -1,18 +1,14 @@
 ---
-title: "PowerDNS/auth: how to manage LUA records with terraform"
+title: "How to manage LUA records from PowerDNS software with terraform"
+summary: "This post details how to manage LUA records with dynamic updates"
 date: 2021-05-22T00:00:00+01:00
 draft: false
 tags: ["dns", 'powerdns', 'terraform']
 ---
 
+# How to manage LUA records from PowerDNS software with terraform
+
 This post details how to manage LUA records with dynamic updates and [terraform](https://registry.terraform.io/providers/dmachard/powerdns-gslb/latest/docs) with your authoritative server.
-
-# Table of contents
-
-* [Requirements](#requirements)
-* [Provider configuration](#provider-configuration)
-* [Create custom LUA record](#create-custom-lua-record)
-* [Create pre-configured record](#create-pre-configured-record)
 
 ## Requirements
 

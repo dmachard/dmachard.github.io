@@ -1,15 +1,14 @@
 ---
-title: "Contribution guide to open source project - fork and pull request"
+title: "Contribution guide to open source project"
+summary: "How to fork and pull request"
 date: 2021-10-05T00:00:00+01:00
 draft: false
 tags: ['fork', 'github']
 ---
 
-# Table of contents
+# Contribution guide to open source project
 
-* [GitHub Fork & Pull Request ](#gitHub-fork-pull-request )
-
-# GitHub Fork & Pull Request 
+## GitHub Fork & Pull Request 
 
 Fork the project you want to contribute
 

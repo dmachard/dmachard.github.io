@@ -1,18 +1,14 @@
 ---
 title: "Recursor PowerDNS installation on CentOS"
+summary: "PowerDNS recursor servers installation on CentOS."
 date: 2020-06-21T00:00:00+01:00
 draft: false
 tags: ['dns', 'powerdns', 'recursor']
 ---
 
+# Recursor PowerDNS installation on CentOS
+
 PowerDNS recursor servers installation on CentOS.
-
-# Table of contents
-
-* [Installation](#Installation)
-* [Configuration](#Configuration)
-* [Start server](#start-server)
-* [Cache purge entries](#cache-purge-entries)
 
 ## Installation
 

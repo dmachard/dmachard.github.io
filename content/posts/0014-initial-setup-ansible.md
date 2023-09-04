@@ -1,19 +1,16 @@
 ---
 title: "Initial Ansible setup server"
+summary: "This tutorial explains how to make the initial setup of ansible."
 date: 2021-10-23T00:00:00+01:00
 draft: false
 tags: ['ansible', 'system']
 ---
 
+# Initial Ansible setup server
+
 This tutorial explains how to make the initial setup of ansible.
 
-# Table of contents
-
-* [Initial setup](#initial-setup)
-* [Run the playbook](#run-the-playbook)
-* [Sanity check](#sanity-check)
-
-# Initial setup
+## Initial setup
 
 On this tutorial we assume you have at least python installed on all servers to manage and all your servers are available with a hostname in your dns and a root ssh access.
 
@@ -56,7 +53,7 @@ touch ansible.cfg
 interpreter_python=/usr/bin/python3
 ```
 
-# Run the playbook
+## Run the playbook
 
 Clone the repository https://github.com/dmachard/ansible-playbooks/tree/main/setup_ansible and run-it to configure:
 - a specific user for ansible to run

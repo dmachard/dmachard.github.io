@@ -1,15 +1,12 @@
 ---
-title: "Build PowerDNS server with docker "
+title: "Build PowerDNS server with docker"
+summary: "Developer guide to build pdns authoritary"
 date: 2021-06-24T00:00:00+01:00
 draft: false
-tags: ['dns', 'powerdns', 'docker']
+tags: ['dns', 'powerdns', 'docker', 'build']
 ---
 
-# Table of contents
-
-* [Developer guide](#developer-guide)
-
-# Developer guide
+# Build PowerDNS server with docker
 
 clone the source code from powerdns repositories
 
@@ -66,5 +63,3 @@ test your server
 ```bash
 dig @127.0.0.1 -p 5354 a.zone.test
 ```
-
-

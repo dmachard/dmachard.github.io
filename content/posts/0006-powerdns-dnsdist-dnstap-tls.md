@@ -1,18 +1,14 @@
 ---
-title: "PowerDNS/dnsdist: how to configure TLS for outgoing dnstap stream using stunnel"
+title: "How to configure TLS for outgoing dnstap stream using stunnel and DNSdist"
+summary: "This post will detail how to wrap your outgoing dnstap stream with TLS using stunnel"
 date: 2021-09-08T00:00:00+01:00
 draft: false
 tags: ["dns", 'powerdns', 'dnsdist', 'dnstap', 'tls']
 ---
 
+# How to configure TLS for outgoing dnstap stream using stunnel and DNSdist
+
 This post will detail how to wrap your outgoing dnstap stream with TLS using **stunnel**.
-
-# Table of contents
-
-* [Introduction](#introduction)
-* [Installation](#installation)
-* [Configuration](#configuration)
-* [Systemd](#systemd)
 
 ## Introduction
 

@@ -1,25 +1,21 @@
 ---
-title: "Proxmox: Infra as code with terraform"
+title: "Infra as code with Terraform and Proxmox"
+summary: "This post details how to create a virtual machine with Terraform on your proxmox infrastructure."
 date: 2021-11-15T00:00:00+01:00
 draft: false
 tags: ['proxmox', 'almalinux', 'cloud-init', 'terraform']
 ---
 
+# Infra as code with Terraform and Proxmox
+
 This post details how to create a virtual machine with Terraform on your proxmox infrastructure.
 
-# Table of contents
-
-* [Prerequisites](#prerequisites)
-* [Configure](#configure)
-* [Proxmox as Code](#proxmox-as-code)
-* [Cloud-init custom config](#cloud-init-custom-config)
-
-# Prerequisites
+## Prerequisites
 
 - Terraform installed on your system
 - AlmaLinux cloudinit template on your promox system
 
-# Configure
+## Configure
 
 Create a *main.tf* file and install the provider [Telmate/promox](https://registry.terraform.io/providers/Telmate/proxmox/latest/docs)
 
@@ -78,7 +74,7 @@ resource "proxmox_vm_qemu" "machine01" {
 }
 ```
 
-# Proxmox as Code
+## Proxmox as Code
 
 Finally run-it
 
@@ -92,7 +88,7 @@ proxmox_vm_qemu.machine01: Creation complete after 18s [id=proxmox/qemu/106]
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 ```
 
-# Cloud-init custom config
+## Cloud-init custom config
 
 Add snippets to local storage
 

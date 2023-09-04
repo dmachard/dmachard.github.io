@@ -1,17 +1,14 @@
 ---
-title: "PowerDNS/auth: how to manage DNS records with dynamic updates and terraform"
+title: "How to manage DNS records with dynamic updates on PowerDNS and terraform"
+summary: "This post details how to manage DNS records with dynamic updates"
 date: 2021-05-22T00:00:00+01:00
 draft: false
 tags: ["dns", 'powerdns', 'terraform']
 ---
 
+# How to manage DNS records with dynamic updates on PowerDNS and terraform
+
 This post details how to manage DNS records with dynamic updates and [terraform](https://registry.terraform.io/providers/hashicorp/dns/latest/docs) with your authoritative server.
-
-# Table of contents
-
-* [Requirements](#requirements)
-* [Provider configuration](#provider-configuration)
-* [Create DNS record](#create-dns-record)
 
 ## Requirements
 

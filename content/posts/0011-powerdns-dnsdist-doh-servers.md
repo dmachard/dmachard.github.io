@@ -1,18 +1,14 @@
 ---
-title: "PowerDns/dnsdist: route incoming UDP/TCP DNS queries to a pool of DoH servers"
+title: "Route incoming UDP/TCP DNS queries to a pool of DoH servers with DNSdist"
+summary: "The goal of this tutorial is to send all your local DNS queries (udp/tcp) to a pool of DoH public resolvers"
 date: 2021-10-20T00:00:00+01:00
 draft: false
 tags: ['dns', 'powerdns', 'dnsdist', 'doh']
 ---
 
+# Route incoming UDP/TCP DNS queries to a pool of DoH servers with DNSdist
+
 The goal of this tutorial is to send all your local DNS queries (udp/tcp) to a pool of DoH public resolvers with [dnsdist](https://dnsdist.org/) load balancer. A dns cache is also enabled to optimize the traffic. We also assume you have a docker environement to follow this tutorial.
-
-# Table of contents
-
-* [Prepare configuration](#prepare-configuration)
-* [Deploy dnsdist container](#deploy-dnsdist-container)
-* [Test DNS resolution](#test-dns-resolution)
-* [Jinja configuration template](#jinja-configuration-template)
 
 ## Prepare configuration
 

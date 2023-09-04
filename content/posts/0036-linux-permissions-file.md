@@ -1,19 +1,16 @@
 ---
-title: "How to manage Linux permissions for users, groups, and others"
+title: "Manage Linux permissions for users, groups, and others"
+summary: "How to"
 date: 2021-11-13T00:00:00+01:00
 draft: false
-tags: ['linux', 'security']
+tags: ['linux', 'security', 'how to']
 ---
+
+# Manage Linux permissions for users, groups, and others
 
 How to manage Linux permissions for users, groups and others
 
-# Table of contents
-
-* [Access level](#access-level)
-* [Identity](#identity)
-* [Chmod and Chown](#chmod-and-chown)
-
-# Access level
+## Access level
 
 Display file permission
 
@@ -27,7 +24,7 @@ total 1
 - w = write = 2
 - x = execute = 1
 
-# Identity
+## Identity
 
 ```bash
 $ ll
@@ -41,7 +38,7 @@ total 1
 - The group *automation* has 4+2+1=7 (full access)
 - All others have 4  (read-only)
 
-# Chmod and Chown
+## Chmod and Chown
 
 Use the command **chmod** to change permission file or directory.
 

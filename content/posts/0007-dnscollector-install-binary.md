@@ -1,20 +1,16 @@
 ---
-title: "DnsCollector/dnstap: installation guide from binary"
+title: "Installation guide of DNS-collector from binary"
+summary: "This post details how to install the DNS-collector"
 date: 2021-09-08T00:00:00+01:00
 draft: false
 tags: ['dnstap', 'installation']
 ---
 
+# Installation guide of DNS-collector from binary
+
 This post details how to install the [go-dnscollector](https://github.com/dmachard/go-dnscollector) tool with systemd.
 
-# Table of contents
-
-* [Installation](#installation)
-* [Certificate](#certificate)
-* [Configuration](#configuration)
-* [Start](#start)
-
-# Installation
+## Installation
 
 Install go-dnscollector from binary
 
@@ -42,7 +38,7 @@ mv go-dnscollector /usr/bin/
 mv config.yml /etc/dnscollector/config.yml.default
 ```
 
-# Certificate
+## Certificate
 
 Create a certificate. In this example we used a self-signed cert. Prefer to use an official TLS certificate according to your context.
 
@@ -51,7 +47,7 @@ cd /etc/dnscollector/
 openssl req -x509 -nodes -newkey rsa:2048 -keyout dnscollector.key -out dnscollector.crt
 ```
 
-# Configuration
+## Configuration
 
 Configure go-dnscollector
 
@@ -80,8 +76,7 @@ loggers:
     mode: text
 ```
 
-
-# Start
+## Start
 
 Enable & Start stunnel. Configure your systemd service
 

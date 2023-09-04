@@ -1,22 +1,16 @@
 ---
 title: "ELK installation on CentOS 7"
+summary: "This post details how to install ELK (ElasticSearch, Logstash, Kibana and also Filebeat) on CentOS7."
 date: 2020-06-21T00:00:00+01:00
 draft: false
 tags: ['elk', 'logs']
 ---
 
+# ELK installation on CentOS 7
+
 This post details how to install ELK (ElasticSearch, Logstash, Kibana and also Filebeat) on CentOS7.
 
-# Table of contents
-
-* [ElastiscSearch](#elasticsearch)
-* [Logstash](#logstash)
-* [Kibana](#kibana)
-* [Filebeat](#filebeat)
-
-# ElasticSearch
-
-## Installation
+## Installation ElasticSearch
 
 ```bash
 rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
@@ -61,9 +55,7 @@ systemctl status elasticsearch.service
 curl -X GET "localhost:9200"
 ```
 
-# Logstash
-
-## Installation with yum
+## Logstash Installation with yum
 
 ```bash
 rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
@@ -108,9 +100,7 @@ In the folder /etc/logstash/conf.d/ and test-it with the following command
 /usr/share/logstash/bin/logstash --path.settings /etc/logstash -t
 ```
 
-# Kibana
-
-# Installation
+# Kibana Installation
 
 ```bash
 rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
@@ -160,11 +150,8 @@ Listen 9090
 ## Sanity check
 
 From web browser, try to load kibana with http://x.x.x.x:9090
-  
 
-# Filebeat
-
-## Installation
+## Filebeat Installation
 
 ```bash
 rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch

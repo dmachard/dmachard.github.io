@@ -1,13 +1,16 @@
 ---
-title: "Docker: debug sur container ne démarrant pas"
+title: "Debug sur container ne démarrant pas"
+summary: "Quelques commandes pour debugger un container qui ne démarre pas"
 date: 2019-07-18T00:00:00+01:00
 draft: false
-tags: ['docker', 'debug']
+tags: ['docker', 'debug', 'howto']
 ---
+
+# Debug sur container ne démarrant pas
 
 Quelques commandes pour debugger un container qui ne démarre pas
 
-# How to
+## How to
 
 **Comment obtenir un shell dans un container?**
 

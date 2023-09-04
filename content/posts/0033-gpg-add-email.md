@@ -1,19 +1,18 @@
 ---
 title: "GPG: add an email to an existing key"
+summary: "This post details how to add an email to an existing GPG key"
 date: 2021-11-10T00:00:00+01:00
 draft: false
-tags: ['gpg']
+tags: ['gpg', 'howto']
 ---
+
+# GPG: add an email to an existing key
 
 This post details how to add an email to an existing GPG key
 
-# Table of contents
+## How to
 
-* [How to](#how-to)
-
-# How to
-
-List your existing GPG keys. 
+List your existing GPG keys.
 
 ```bash
 gpg --list-secret-keys --keyid-format=long
@@ -29,7 +28,6 @@ ssb   rsa4096/C07....BEA 2021-06-09 [E]
 ```
 
 In this example, the GPG key ID is **123FFFFFFF456**
-
 
 Enter in your gpg prompt for your key and type adduid 
 

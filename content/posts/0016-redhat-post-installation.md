@@ -1,19 +1,14 @@
 ---
 title: "RedHat Family 8.x post installation"
+summary: "Post installation tunning for RedHat system family."
 date: 2020-06-21T00:00:00+01:00
 draft: false
 tags: ['system', 'redhat']
 ---
 
+# RedHat Family 8.x post installation
+
 Post installation tunning for RedHat system family.
-
-# Table of contents
-
-* [keyboard](#keyboard)
-* [hostname configuration](#hostname-configuration)
-* [date, time and timezone](#date-time-and-timezone)
-* [minimal network configuration](#minimal-network-configuration)
-* [install minimal tools](#install-minimals-tools)
 
 ## keyboard
 
@@ -22,7 +17,6 @@ localectl set-keymap fr
 ```
 
 To confirm your permanent keymap settings execute the localectl command without any arguments
-
 
 ## hostname configuration
 

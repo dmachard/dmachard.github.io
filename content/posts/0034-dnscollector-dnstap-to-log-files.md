@@ -1,32 +1,26 @@
 ---
-title: "DnsCollector/dnstap: collect dnstap stream and backup-it to log files"
+title: "Collect dnstap stream and backup-it to log files with DNS-collector"
+summary: "Example to collect dnstap messages from dns servers and backup-it in log files"
 date: 2021-11-10T00:00:00+01:00
 draft: false
-tags: ['dnstap', 'logs']
+tags: ['dnstap', 'logs', 'go-dnscollector']
 ---
+
+# Collect dnstap stream and backup-it to log files with DNS-collector
 
 Example to collect dnstap messages from dns servers and backup-it in log files
 
-
-# Table of contents
-
-* [Prequisites](#prequisites)
-* [Overview](#overview)
-* [Configuration](#configuration)
-* [Logs](#logs)
-
-# Prequisites
+## Prequisites
 
 Install the dnscollector like described in the following [guide](https://dmachard.github.io/posts/0007-dnscollector-install-binary/).
 
-# Overview
-
+## Overview
 
 With this example, the collector waits incoming dnstap messages and save-it in log files in text format with rotation.
 
 ![overview dnstap](/images/0034/use-case-1.png)
 
-# Configuration
+## Configuration
 
 Download the [config.yml](https://github.com/dmachard/go-dnscollector/blob/main/example-config/use-case-1.yml) file. 
 
@@ -55,7 +49,7 @@ multiplexer:
       to: [file]
 ```
 
-# Logs
+## Logs
 
 You can follow the logs like this:
 
