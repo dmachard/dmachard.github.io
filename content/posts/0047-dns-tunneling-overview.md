@@ -17,7 +17,7 @@ DNS tunneling exploits DNS protocol for tunneling data via DNS query and respons
 
 It can be used to extract or import data silently from a corporate network.
 
-> Great post about DNS tunneling to look:
+> Great post about DNS tunneling to read:
 > - [DNS Tunneling: how DNS can be (ab)used by malicious actors](https://unit42.paloaltonetworks.com/dns-tunneling-how-dns-can-be-abused-by-malicious-actors/) or [PDF](./../../pdf/0047/unit42_paloaltonetworks_com_dns_tunneling_how_dns_can_be_abused_by_malicious_actors.pdf)
 
 ## Tools overview
