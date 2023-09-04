@@ -1,19 +1,10 @@
-<!doctype html><html lang=en-US><head><meta charset=utf-8><meta name=viewport content="width=device-width"><link rel=stylesheet href=https://dmachard.github.io/css/primer/core.min.css><link rel=stylesheet href=https://dmachard.github.io/css/primer/product.min.css><title>Procedure Arduino IDE 1.8.19 for Ubuntu 22.04 and VScode - My technical gists</title><link rel=icon type=image/x-icon href=/images/avatar.png><meta name=theme-color content="#1e2327"><meta name=description content="Install arduino IDE # sudo apt update &amp;amp;&amp;amp; sudo apt upgrade -y # sudo snap install arduino arduino 1.8.19 from Merlijn Sebrechts installed # sudo usermod -a -G dialout &amp;lt;username&amp;gt; Configure Arduino File &amp;gt; Preference
-Additional Boards Manager URLS: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json Tools &amp;gt; Board &amp;gt; Boards Manager Search esp32 and install the extension
-Tools &amp;gt; Board &amp;gt; ESP32 Arduino &amp;gt; DOIT ESP32 DEVKIT V1 Tools &amp;gt; Port &amp;gt; /dev/ttyUSB0
-Run example File &amp;gt; Examples &amp;gt; 01."><meta name=keywords content="blog,technical"><meta name=robots content="noodp"><link rel=canonical href=https://dmachard.github.io/posts/0045-arduino-vscode-init/><meta name=twitter:card content="summary"><meta name=twitter:title content="Procedure Arduino IDE 1.8.19 for Ubuntu 22.04 and VScode - My technical gists"><meta name=twitter:description content="Install arduino IDE # sudo apt update &amp;amp;&amp;amp; sudo apt upgrade -y # sudo snap install arduino arduino 1.8.19 from Merlijn Sebrechts installed # sudo usermod -a -G dialout &amp;lt;username&amp;gt; Configure Arduino File &amp;gt; Preference
-Additional Boards Manager URLS: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json Tools &amp;gt; Board &amp;gt; Boards Manager Search esp32 and install the extension
-Tools &amp;gt; Board &amp;gt; ESP32 Arduino &amp;gt; DOIT ESP32 DEVKIT V1 Tools &amp;gt; Port &amp;gt; /dev/ttyUSB0
-Run example File &amp;gt; Examples &amp;gt; 01."><meta name=twitter:site content="https://dmachard.github.io/"><meta name=twitter:creator content><meta name=twitter:image content="https://dmachard.github.io/"><meta property="og:type" content="article"><meta property="og:title" content="Procedure Arduino IDE 1.8.19 for Ubuntu 22.04 and VScode - My technical gists"><meta property="og:description" content="Install arduino IDE # sudo apt update &amp;amp;&amp;amp; sudo apt upgrade -y # sudo snap install arduino arduino 1.8.19 from Merlijn Sebrechts installed # sudo usermod -a -G dialout &amp;lt;username&amp;gt; Configure Arduino File &amp;gt; Preference
-Additional Boards Manager URLS: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json Tools &amp;gt; Board &amp;gt; Boards Manager Search esp32 and install the extension
-Tools &amp;gt; Board &amp;gt; ESP32 Arduino &amp;gt; DOIT ESP32 DEVKIT V1 Tools &amp;gt; Port &amp;gt; /dev/ttyUSB0
-Run example File &amp;gt; Examples &amp;gt; 01."><meta property="og:url" content="https://dmachard.github.io/posts/0045-arduino-vscode-init/"><meta property="og:site_name" content="Procedure Arduino IDE 1.8.19 for Ubuntu 22.04 and VScode"><meta property="og:image" content="https://dmachard.github.io/"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2022-09-25 00:00:00 +0100 +0100"></head><body><main><div class="mt-0 position-sticky top-0 d-none d-md-block bg-white width-full color-border-secondary" style=z-index:3><div class="container-xl px-3 px-md-4 px-lg-5"><div class="gutter-condensed gutter-lg flex-column flex-md-row d-flex"><div class="flex-shrink-0 col-12 col-md-3 mb-4 mb-md-0"><div class="vcard-names-container float-left col-10 col-md-12 pt-1 pt-md-3 pb-1 pb-md-3 js-sticky js-user-profile-sticky-fields" data-original-top=0px style=position:sticky><h1 class="vcard-names pl-2 pl-md-0"><span class="p-name vcard-fullname d-block overflow-hidden">Denis Machard</span>
+<!doctype html><html lang=en-US><head><meta charset=utf-8><meta name=viewport content="width=device-width"><link rel=stylesheet href=https://dmachard.github.io/css/primer/core.min.css><link rel=stylesheet href=https://dmachard.github.io/css/primer/product.min.css><title>Procedure Arduino IDE 1.8.19 for Ubuntu 22.04 and VScode - My technical gists</title><link rel=icon type=image/x-icon href=/images/avatar.png><meta name=theme-color content="#1e2327"><meta name=description content="Install arduino IDE"><meta name=keywords content="blog,technical"><meta name=robots content="noodp"><link rel=canonical href=https://dmachard.github.io/posts/0045-arduino-vscode-init/><meta name=twitter:card content="summary"><meta name=twitter:title content="Procedure Arduino IDE 1.8.19 for Ubuntu 22.04 and VScode - My technical gists"><meta name=twitter:description content="Install arduino IDE"><meta name=twitter:site content="https://dmachard.github.io/"><meta name=twitter:creator content><meta name=twitter:image content="https://dmachard.github.io/"><meta property="og:type" content="article"><meta property="og:title" content="Procedure Arduino IDE 1.8.19 for Ubuntu 22.04 and VScode - My technical gists"><meta property="og:description" content="Install arduino IDE"><meta property="og:url" content="https://dmachard.github.io/posts/0045-arduino-vscode-init/"><meta property="og:site_name" content="Procedure Arduino IDE 1.8.19 for Ubuntu 22.04 and VScode"><meta property="og:image" content="https://dmachard.github.io/"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2022-09-25 00:00:00 +0100 +0100"></head><body><main><div class="mt-0 position-sticky top-0 d-none d-md-block bg-white width-full color-border-secondary" style=z-index:3><div class="container-xl px-3 px-md-4 px-lg-5"><div class="gutter-condensed gutter-lg flex-column flex-md-row d-flex"><div class="flex-shrink-0 col-12 col-md-3 mb-4 mb-md-0"><div class="vcard-names-container float-left col-10 col-md-12 pt-1 pt-md-3 pb-1 pb-md-3 js-sticky js-user-profile-sticky-fields" data-original-top=0px style=position:sticky><h1 class="vcard-names pl-2 pl-md-0"><span class="p-name vcard-fullname d-block overflow-hidden">Denis Machard</span>
 <span class="p-nickname vcard-username d-block">My technical gists</span></h1></div></div><div class="flex-shrink-0 col-12 col-md-9 mb-4 mb-md-0"><div class="UnderlineNav width-full border-bottom box-shadow-none hx_UnderlineNav-with-profile-color-modes-banner"><nav class=UnderlineNav-body><a class=UnderlineNav-item href=https://dmachard.github.io/><svg class="octicon octicon-pin UnderlineNav-octicon hide-sm" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="m11.294.984 3.722 3.722a1.75 1.75.0 01-.504 2.826l-1.327.613a3.089 3.089.0 00-1.707 2.084l-.584 2.454c-.317 1.332-1.972 1.8-2.94.832L5.75 11.311 1.78 15.28A.749.749.0 11.72 14.22l3.969-3.97-2.204-2.204c-.968-.968-.5-2.623.832-2.94l2.454-.584a3.08 3.08.0 002.084-1.707l.613-1.327a1.75 1.75.0 012.826-.504zM6.283 9.723l2.732 2.731a.25.25.0 00.42-.119l.584-2.454a4.586 4.586.0 012.537-3.098l1.328-.613a.25.25.0 00.072-.404l-3.722-3.722a.25.25.0 00-.404.072l-.613 1.328A4.584 4.584.0 016.119 5.981l-2.454.584a.25.25.0 00-.119.42l2.731 2.732z"/></svg>Pinned
 <span class=Counter>3</span></a>
 <a class="UnderlineNav-item selected" href=https://dmachard.github.io//posts/><svg class="octicon octicon-repo UnderlineNav-octicon hide-sm" height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M0 1.75A.75.75.0 01.75 1h4.253c1.227.0 2.317.59 3 1.501A3.744 3.744.0 0111.006 1h4.245a.75.75.0 01.75.75v10.5a.75.75.0 01-.75.75h-4.507a2.25 2.25.0 00-1.591.659l-.622.621a.75.75.0 01-1.06.0l-.622-.621A2.25 2.25.0 005.258 13H.75A.75.75.0 010 12.25V1.75zm8.755 3a2.25 2.25.0 012.25-2.25H14.5v9h-3.757c-.71.0-1.4.201-1.992.572l.004-7.322zm-1.504 7.324.004-5.073-.002-2.253A2.25 2.25.0 005.003 2.5H1.5v9h3.757a3.75 3.75.0 011.994.574z"/></svg>Gists
 <span class=Counter>53</span></a>
 <a class=UnderlineNav-item href=https://dmachard.github.io//tags/><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>Tags
-<span class=Counter>75</span></a></nav></div></div></div></div></div><div class="container-xl px-3 px-md-4 px-lg-5"><div class="gutter-condensed gutter-lg flex-column flex-md-row d-flex"><div class="flex-shrink-0 col-12 col-md-3 mb-4 mb-md-0"><div class="h-card pt-4 pt-md-0"><div class="clearfix d-flex d-md-block flex-items-center mb-4 mb-md-0"><div class="position-relative d-inline-block col-2 col-md-12 mr-3 mr-md-0 flex-shrink-0" style=z-index:2><a href=/images/profile.png><img style=height:auto alt=Avatar width=260 height=260 id=headerImg class="avatar avatar-user width-full border bg-white" src=/images/profile.png></a></div><div class="vcard-names-container d-md-none float-left col-10 col-md-12 pt-1 pt-md-3 pb-1 pb-md-3 js-sticky js-user-profile-sticky-fields" data-original-top=0px style=position:sticky><h1 class="vcard-names pl-2 pl-md-0"><span class="p-name vcard-fullname d-block overflow-hidden">Denis Machard</span>
+<span class=Counter>74</span></a></nav></div></div></div></div></div><div class="container-xl px-3 px-md-4 px-lg-5"><div class="gutter-condensed gutter-lg flex-column flex-md-row d-flex"><div class="flex-shrink-0 col-12 col-md-3 mb-4 mb-md-0"><div class="h-card pt-4 pt-md-0"><div class="clearfix d-flex d-md-block flex-items-center mb-4 mb-md-0"><div class="position-relative d-inline-block col-2 col-md-12 mr-3 mr-md-0 flex-shrink-0" style=z-index:2><a href=/images/profile.png><img style=height:auto alt=Avatar width=260 height=260 id=headerImg class="avatar avatar-user width-full border bg-white" src=/images/profile.png></a></div><div class="vcard-names-container d-md-none float-left col-10 col-md-12 pt-1 pt-md-3 pb-1 pb-md-3 js-sticky js-user-profile-sticky-fields" data-original-top=0px style=position:sticky><h1 class="vcard-names pl-2 pl-md-0"><span class="p-name vcard-fullname d-block overflow-hidden">Denis Machard</span>
 <span class="p-nickname vcard-username d-block">My technical gists</span></h1></div></div><div class="p-note user-profile-bio mt-3 js-user-profile-bio f4"><div>Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast.</div></div><div class="d-flex flex-column mt-3"><div class="js-profile-editable-area d-flex flex-column d-md-block"><ul class=vcard-details><li class="vcard-detail pt-1 css-truncate css-truncate-target"><svg class="octicon octicon-mail" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.75 2A1.75 1.75.0 000 3.75v.736a.75.75.0 000 .027v7.737C0 13.216.784 14 1.75 14h12.5A1.75 1.75.0 0016 12.25v-8.5A1.75 1.75.0 0014.25 2H1.75zM14.5 4.07v-.32a.25.25.0 00-.25-.25H1.75a.25.25.0 00-.25.25v.32L8 7.88l6.5-3.81zm-13 1.74v6.441c0 .138.112.25.25.25h12.5a.25.25.0 00.25-.25V5.809L8.38 9.397a.75.75.0 01-.76.0L1.5 5.809z"/></svg><a class="u-email link-gray-dark" href=mailto:d.machard@gmail.com>d.machard@gmail.com</a></li></ul></div></div><div class="color-border-secondary pt-3 mt-3 clearfix hide-sm hide-md"><div style=display:flex;justify-content:flex-start;flex-wrap:wrap;margin-bottom:3px><a style="margin:0 10px 10px 0" href=https://github.com/dmachard><svg id="github-icon" viewBox="0 0 16 16" width="32" height="32" fill="#24292e"><path fill-rule="evenodd" d="M8 0C3.58.0.0 3.58.0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38.0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95.0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12.0.0.67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15.0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48.0 1.07-.01 1.93-.01 2.2.0.21.15.46.55.38A8.013 8.013.0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a><a style="margin:0 10px 10px 0" href=https://fosstodon.org/@dmachard><img alt=@linkedin width=32 height=32 src=https://dmachard.github.io/images/mastodon.png class=avatar></a>
 <a style="margin:0 10px 10px 0" href=https://dmachard.github.io/index.xml><img alt=@rss width=32 height=32 src=https://dmachard.github.io/images/rss.png class=avatar></a></div></div></div></div><div class="flex-shrink-0 col-12 col-md-9 mb-4 mb-md-0"><div class="UnderlineNav user-profile-nav d-block d-md-none position-sticky top-0 pl-3 ml-n3 mr-n3 pr-3 bg-white" style=z-index:3><nav class=UnderlineNav-body><a class=UnderlineNav-item href=https://dmachard.github.io/>Pinned
 <span class=Counter>3</span></a>
@@ -22,76 +13,75 @@ Run example File &amp;gt; Examples &amp;gt; 01."><meta property="og:url" content
 <a class=UnderlineNav-item href=https://dmachard.github.io//tags/>Tags
 <span class=Counter>53</span></a></nav></div><div class="file mt-md-0"><div id=post-header class="file-header d-flex flex-items-start" style=z-index:2><div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto"><div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0"><summary id=toc-toggle onclick=clickToc() class="btn btn-octicon m-0 mr-2 p-2"><svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered"><path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75.0 000 1.5h8.5a.75.75.0 000-1.5h-8.5zm0 5a.75.75.0 000 1.5h8.5a.75.75.0 000-1.5h-8.5zm0 5a.75.75.0 000 1.5h8.5a.75.75.0 000-1.5h-8.5zM3 8A1 1 0 111 8a1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"/></svg></summary><details-menu class=SelectMenu id=toc-details style="display: none;"><div class="SelectMenu-modal rounded-3 mt-1" style=max-height:340px><div class="SelectMenu-list SelectMenu-list--borderless p-2" style=overscroll-behavior:contain id=toc-list></div></div></details-menu>Created <relative-time datetime="Sun, 25 Sep 2022 00:00:00 +0100" class=no-wrap>Sun, 25 Sep 2022 00:00:00 +0100</relative-time>
 <span class=file-info-divider></span>
-Modified <relative-time datetime="Mon, 04 Sep 2023 18:52:54 +0000" class=no-wrap>Mon, 04 Sep 2023 18:52:54 +0000</relative-time></div><div class="file-actions flex-order-2 pt-0 d-none d-md-block"><a class="muted-link mr-3" href=/tags/arduino><svg class="octicon octicon-tag mr-1" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>arduino</a>
+Modified <relative-time datetime="Mon, 04 Sep 2023 19:08:57 +0000" class=no-wrap>Mon, 04 Sep 2023 19:08:57 +0000</relative-time></div><div class="file-actions flex-order-2 pt-0 d-none d-md-block"><a class="muted-link mr-3" href=/tags/arduino><svg class="octicon octicon-tag mr-1" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>arduino</a>
 <a class="muted-link mr-3" href=/tags/vscode><svg class="octicon octicon-tag mr-1" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>vscode</a>
 <a class="muted-link mr-3" href=/tags/ide><svg class="octicon octicon-tag mr-1" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>ide</a>
-<a class="muted-link mr-3" href=/tags/esp><svg class="octicon octicon-tag mr-1" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>esp</a></div></div></div><div class="Box-body px-5 pb-5" style=z-index:1><article class="markdown-body entry-content container-lg"><h1 id=install-arduino-ide>Install arduino IDE</h1><pre tabindex=0><code># sudo apt update &amp;&amp; sudo apt upgrade -y
-# sudo snap install arduino
-arduino 1.8.19 from Merlijn Sebrechts installed
-
-# sudo usermod -a -G dialout &lt;username&gt;
-</code></pre><h1 id=configure-arduino>Configure Arduino</h1><p>File > Preference</p><pre><code>Additional Boards Manager URLS: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+<a class="muted-link mr-3" href=/tags/esp><svg class="octicon octicon-tag mr-1" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>esp</a></div></div></div><div class="Box-body px-5 pb-5" style=z-index:1><article class="markdown-body entry-content container-lg"><h1 id=install-arduino-ide>Install arduino IDE</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt update <span style=color:#f92672>&amp;&amp;</span> sudo apt upgrade -y
+</span></span><span style=display:flex><span>sudo snap install arduino
+</span></span><span style=display:flex><span>arduino 1.8.19 from Merlijn Sebrechts installed
+</span></span><span style=display:flex><span>sudo usermod -a -G dialout &lt;username&gt;
+</span></span></code></pre></div><h2 id=configure-arduino>Configure Arduino</h2><p>File > Preference</p><pre><code>Additional Boards Manager URLS: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
 </code></pre><p>Tools > Board > Boards Manager
 Search esp32 and install the extension</p><p>Tools > Board > ESP32 Arduino > DOIT ESP32 DEVKIT V1
-Tools > Port > /dev/ttyUSB0</p><h1 id=run-example>Run example</h1><p>File > Examples > 01.Basics > Blink
-Sketch > Upload</p><pre tabindex=0><code>Sketch uses 219037 bytes (16%) of program storage space. Maximum is 1310720 bytes.
-Global variables use 16088 bytes (4%) of dynamic memory, leaving 311592 bytes for local variables. Maximum is 327680 bytes.
-esptool.py v4.2.1
-Serial port /dev/ttyUSB0
-Connecting.....
-Chip is ESP32-D0WDQ6 (revision 1)
-Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
-Crystal is 40MHz
-MAC: 30:c6:f7:30:4b:60
-Uploading stub...
-Running stub...
-Stub running...
-Changing baud rate to 921600
-Changed.
-Configuring flash size...
-Flash will be erased from 0x00001000 to 0x00005fff...
-Flash will be erased from 0x00008000 to 0x00008fff...
-Flash will be erased from 0x0000e000 to 0x0000ffff...
-Flash will be erased from 0x00010000 to 0x00045fff...
-Compressed 17472 bytes to 12125...
-Writing at 0x00001000... (100 %)
-Wrote 17472 bytes (12125 compressed) at 0x00001000 in 0.3 seconds (effective 400.3 kbit/s)...
-Hash of data verified.
-Compressed 3072 bytes to 128...
-Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (128 compressed) at 0x00008000 in 0.1 seconds (effective 394.7 kbit/s)...
-Hash of data verified.
-Compressed 8192 bytes to 47...
-Writing at 0x0000e000... (100 %)
-Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds (effective 531.5 kbit/s)...
-Hash of data verified.
-Compressed 219424 bytes to 120815...
-Writing at 0x00010000... (12 %)
-Writing at 0x0001d9f4... (25 %)
-Writing at 0x00022fe7... (37 %)
-Writing at 0x00028296... (50 %)
-Writing at 0x0002d706... (62 %)
-Writing at 0x00035f7c... (75 %)
-Writing at 0x0003e05e... (87 %)
-Writing at 0x000438f3... (100 %)
-Wrote 219424 bytes (120815 compressed) at 0x00010000 in 2.1 seconds (effective 853.2 kbit/s)...
-Hash of data verified.
-
-Leaving...
-Hard resetting via RTS pin...
-</code></pre><h1 id=configure-vscode>Configure VScode</h1><pre tabindex=0><code># sudo python3 -m pip install pyserial
-</code></pre><p>Install the following extension: Arduino for Visual Studio Code</p><p>File > Preferences > Settings
+Tools > Port > /dev/ttyUSB0</p><h2 id=run-example>Run example</h2><p>File > Examples > 01.Basics > Blink
+Sketch > Upload</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>Sketch uses <span style=color:#ae81ff>219037</span> bytes <span style=color:#f92672>(</span>16%<span style=color:#f92672>)</span> of program storage space. Maximum is <span style=color:#ae81ff>1310720</span> bytes.
+</span></span><span style=display:flex><span>Global variables use <span style=color:#ae81ff>16088</span> bytes <span style=color:#f92672>(</span>4%<span style=color:#f92672>)</span> of dynamic memory, leaving <span style=color:#ae81ff>311592</span> bytes <span style=color:#66d9ef>for</span> local variables. Maximum is <span style=color:#ae81ff>327680</span> bytes.
+</span></span><span style=display:flex><span>esptool.py v4.2.1
+</span></span><span style=display:flex><span>Serial port /dev/ttyUSB0
+</span></span><span style=display:flex><span>Connecting.....
+</span></span><span style=display:flex><span>Chip is ESP32-D0WDQ6 <span style=color:#f92672>(</span>revision 1<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+</span></span><span style=display:flex><span>Crystal is 40MHz
+</span></span><span style=display:flex><span>MAC: 30:c6:f7:30:4b:60
+</span></span><span style=display:flex><span>Uploading stub...
+</span></span><span style=display:flex><span>Running stub...
+</span></span><span style=display:flex><span>Stub running...
+</span></span><span style=display:flex><span>Changing baud rate to <span style=color:#ae81ff>921600</span>
+</span></span><span style=display:flex><span>Changed.
+</span></span><span style=display:flex><span>Configuring flash size...
+</span></span><span style=display:flex><span>Flash will be erased from 0x00001000 to 0x00005fff...
+</span></span><span style=display:flex><span>Flash will be erased from 0x00008000 to 0x00008fff...
+</span></span><span style=display:flex><span>Flash will be erased from 0x0000e000 to 0x0000ffff...
+</span></span><span style=display:flex><span>Flash will be erased from 0x00010000 to 0x00045fff...
+</span></span><span style=display:flex><span>Compressed <span style=color:#ae81ff>17472</span> bytes to 12125...
+</span></span><span style=display:flex><span>Writing at 0x00001000... <span style=color:#f92672>(</span><span style=color:#ae81ff>100</span> %<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Wrote <span style=color:#ae81ff>17472</span> bytes <span style=color:#f92672>(</span><span style=color:#ae81ff>12125</span> compressed<span style=color:#f92672>)</span> at 0x00001000 in 0.3 seconds <span style=color:#f92672>(</span>effective 400.3 kbit/s<span style=color:#f92672>)</span>...
+</span></span><span style=display:flex><span>Hash of data verified.
+</span></span><span style=display:flex><span>Compressed <span style=color:#ae81ff>3072</span> bytes to 128...
+</span></span><span style=display:flex><span>Writing at 0x00008000... <span style=color:#f92672>(</span><span style=color:#ae81ff>100</span> %<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Wrote <span style=color:#ae81ff>3072</span> bytes <span style=color:#f92672>(</span><span style=color:#ae81ff>128</span> compressed<span style=color:#f92672>)</span> at 0x00008000 in 0.1 seconds <span style=color:#f92672>(</span>effective 394.7 kbit/s<span style=color:#f92672>)</span>...
+</span></span><span style=display:flex><span>Hash of data verified.
+</span></span><span style=display:flex><span>Compressed <span style=color:#ae81ff>8192</span> bytes to 47...
+</span></span><span style=display:flex><span>Writing at 0x0000e000... <span style=color:#f92672>(</span><span style=color:#ae81ff>100</span> %<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Wrote <span style=color:#ae81ff>8192</span> bytes <span style=color:#f92672>(</span><span style=color:#ae81ff>47</span> compressed<span style=color:#f92672>)</span> at 0x0000e000 in 0.1 seconds <span style=color:#f92672>(</span>effective 531.5 kbit/s<span style=color:#f92672>)</span>...
+</span></span><span style=display:flex><span>Hash of data verified.
+</span></span><span style=display:flex><span>Compressed <span style=color:#ae81ff>219424</span> bytes to 120815...
+</span></span><span style=display:flex><span>Writing at 0x00010000... <span style=color:#f92672>(</span><span style=color:#ae81ff>12</span> %<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Writing at 0x0001d9f4... <span style=color:#f92672>(</span><span style=color:#ae81ff>25</span> %<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Writing at 0x00022fe7... <span style=color:#f92672>(</span><span style=color:#ae81ff>37</span> %<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Writing at 0x00028296... <span style=color:#f92672>(</span><span style=color:#ae81ff>50</span> %<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Writing at 0x0002d706... <span style=color:#f92672>(</span><span style=color:#ae81ff>62</span> %<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Writing at 0x00035f7c... <span style=color:#f92672>(</span><span style=color:#ae81ff>75</span> %<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Writing at 0x0003e05e... <span style=color:#f92672>(</span><span style=color:#ae81ff>87</span> %<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Writing at 0x000438f3... <span style=color:#f92672>(</span><span style=color:#ae81ff>100</span> %<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Wrote <span style=color:#ae81ff>219424</span> bytes <span style=color:#f92672>(</span><span style=color:#ae81ff>120815</span> compressed<span style=color:#f92672>)</span> at 0x00010000 in 2.1 seconds <span style=color:#f92672>(</span>effective 853.2 kbit/s<span style=color:#f92672>)</span>...
+</span></span><span style=display:flex><span>Hash of data verified.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Leaving...
+</span></span><span style=display:flex><span>Hard resetting via RTS pin...
+</span></span></code></pre></div><h2 id=configure-vscode>Configure VScode</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo python3 -m pip install pyserial
+</span></span></code></pre></div><p>Install the following extension: Arduino for Visual Studio Code</p><p>File > Preferences > Settings
 Swap to json view and add the following line to settings.json
-in arduino.path the number 70 may vary.</p><pre tabindex=0><code>{
-....
-    &#34;arduino.path&#34;: &#34;/snap/arduino/70&#34;,
-    &#34;arduino.commandPath&#34;: &#34;arduino&#34;,
-    &#34;arduino.additionalUrls&#34;: [
-    &#34;https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json&#34;
-    ],
-
-}
-</code></pre><p>Ctrl+Shift+p and type Arduino: Board Manager and search esp32
-Then install the available package</p><pre tabindex=0><code>[Done] Installed board package - esp32
-</code></pre></article></div></div><script type=application/javascript src=https://dmachard.github.io/js/toc.js></script>
+in arduino.path the number 70 may vary.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>....</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;arduino.path&#34;</span>: <span style=color:#e6db74>&#34;/snap/arduino/70&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;arduino.commandPath&#34;</span>: <span style=color:#e6db74>&#34;arduino&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;arduino.additionalUrls&#34;</span>: [
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json&#34;</span>
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Ctrl+Shift+p and type Arduino: Board Manager and search esp32
+Then install the available package</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>[</span>Done<span style=color:#f92672>]</span> Installed board package - esp32
+</span></span></code></pre></div></article></div></div><script type=application/javascript src=https://dmachard.github.io/js/toc.js></script>
 <link rel=stylesheet href=https://dmachard.github.io/css/toc.css></div></div></div></main><div class="footer container-xl width-full p-responsive"><div class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light"><span>Propulsed by <a href=https://gohugo.io/>hugo</a> and <a href=https://github.com/dmachard/hugo-theme-gists>hugo-theme-gists</a></li></span></div></div></body><script type=application/javascript src=https://dmachard.github.io/js/lib.js></script></html>
