@@ -20,8 +20,8 @@ dnstap can encode any DNS messages with network informations like ip and port. I
 
 This [dnstap](https://dnstap.info/) feature has been tested with success with the following dns servers:
 
-|                        | RQ/RS | CQ/CR | AQ/AR | FQ/FR | Unix Socket | TCP Stream | TLS support | Extra Field |
-|------------------------|-------|-------|-------|-------|-------------|------------|-------------|-------------|
+|                        | RQ/RS   | CQ/CR | AQ/AR | FQ/FR | Unix Socket | TCP Stream | TLS support | Extra Field |
+|------------------------|:-------:|-------|-------|-------|-------------|------------|-------------|-------------|
 | ISC Bind               |   x   |   x   |   x   |       |      x      |      x     |             |             |
 | PowerDNS - recursor    |   x   |       |       |       |      x      |      x     |             |             |
 | PowerDNS - dnsdist     |       |   x   |       |       |      x      |      x     |             |      x      |
