@@ -20,12 +20,16 @@ dnstap can encode any DNS messages with network informations like ip and port. I
 
 This [dnstap](https://dnstap.info/) feature has been tested with success with the following dns servers:
 
-* ISC - bind
-* PowerDNS - pdns-recursor
-* PowerDNS - dnsdist
-* NLnet Labs - nsd
-* NLnet Labs - unbound
-* CoreDNS
+|                        | RQ/RS | CQ/CR | AQ/AR | FQ/FR | Unix Socket | TCP Stream | TLS support | Extra Field |
+|------------------------|-------|-------|-------|-------|-------------|------------|-------------|-------------|
+| ISC Bind               |   x   |   x   |   x   |       |      x      |      x     |             |             |
+| PowerDNS - recursor    |   x   |       |       |       |      x      |      x     |             |             |
+| PowerDNS - dnsdist     |       |   x   |       |       |      x      |      x     |             |      x      |
+| NLnet Labs - NSD       |       |       |   x   |       |      x      |            |             |             |
+| NLnet Labs - unbound   |   x   |   x   |       |   x   |      x      |      x     |      x      |             |
+| CoreDNS                |       |   x   |       |   x   |      x      |      x     |      x      |      x      |
+| CZ-NIC - Knot Resolver |       |   x   |       |       |      x      |            |             |             |
+| CZ-NIC - Knot DNS      |       |       |   X   |       |      x      |            |             |             |
 
 ## ISC bind
 
