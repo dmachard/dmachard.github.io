@@ -1,0 +1,309 @@
+
+.user-profile-nav {
+    background-color: var(--color-bg-primary);
+    border-bottom: 1px solid var(--color-border-tertiary);
+    box-shadow: none
+}
+
+.avatar {
+    display: inline-block;
+    overflow: hidden;
+    line-height: 1;
+    vertical-align: middle;
+    background-color: var(--color-avatar-bg);
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px var(--color-avatar-border)
+}
+
+.avatar-user {
+    border-radius: 50%!important
+}
+
+.Counter {
+    display: inline-block;
+    min-width: 20px;
+    padding: 0 6px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    color: var(--color-counter-text);
+    text-align: center;
+    background-color: var(--color-counter-bg);
+    border: 1px solid transparent;
+    border-radius: 2em
+}
+
+.SelectMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    display: flex;
+    padding: 16px;
+    pointer-events: none;
+    flex-direction: column
+}
+
+@media (min-width: 544px) {
+    .SelectMenu {
+        position:absolute;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        padding: 0
+    }
+}
+
+.SelectMenu:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    content: "";
+    background-color: var(--color-select-menu-backdrop-bg)
+}
+
+@media (min-width: 544px) {
+    .SelectMenu:before {
+        display:none
+    }
+}
+
+.SelectMenu-modal {
+    position: relative;
+    z-index: 99;
+    display: flex;
+    max-height: 66%;
+    margin: auto 0;
+    overflow: hidden;
+    pointer-events: auto;
+    flex-direction: column;
+    background-color: var(--color-bg-overlay);
+    border: 1px solid var(--color-select-menu-backdrop-border);
+    border-radius: 12px;
+    box-shadow: var(--color-select-menu-shadow);
+    animation: SelectMenu-modal-animation .12s cubic-bezier(0,.1,.1,1) backwards
+}
+
+@media (min-width: 544px) {
+    .SelectMenu-modal {
+        width:300px;
+        height: auto;
+        max-height: 480px;
+        margin: 8px 0 16px;
+        font-size: 12px;
+        border-color: var(--color-border-overlay);
+        border-radius: 6px;
+        box-shadow: var(--color-shadow-large);
+        animation-name: SelectMenu-modal-animation--sm
+    }
+}
+
+
+.SelectMenu-list {
+    position: relative;
+    padding: 0;
+    margin: 0 0 -1px;
+    flex: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch
+}
+
+.SelectMenu-item,.SelectMenu-list {
+    background-color: var(--color-bg-overlay)
+}
+
+.SelectMenu-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px;
+    overflow: hidden;
+    color: var(--color-text-primary);
+    text-align: left;
+    cursor: pointer;
+    border: 0;
+    border-bottom: 1px solid var(--color-select-menu-border-secondary)
+}
+
+@media (min-width: 544px) {
+    .SelectMenu-item {
+        padding-top:7px;
+        padding-bottom: 7px
+    }
+}
+
+.SelectMenu-list--borderless .SelectMenu-item {
+    border-bottom: 0
+}
+
+.UnderlineNav-item.selected .UnderlineNav-octicon,.UnderlineNav-item[aria-current]:not([aria-current=false]) .UnderlineNav-octicon,.UnderlineNav-item[role=tab][aria-selected=true] .UnderlineNav-octicon {
+    color: inherit
+}
+
+@media (min-width: 1280px) {
+    .hx_UnderlineNav-with-profile-color-modes-banner {
+        overflow:visible;
+        padding-top: 8px;
+        align-items: flex-end
+    }
+}
+
+.file {
+    position: relative;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border: 1px solid var(--color-border-primary,#ddd);
+    border-radius: 6px
+}
+
+.file-header {
+    padding: 5px 10px;
+    background-color: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border-primary);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px
+}
+
+.file-header:after,.file-header:before {
+    display: table;
+    content: ""
+}
+
+.file-header:after {
+    clear: both
+}
+
+.file-actions {
+    float: right;
+    padding-top: 2px;
+    font-size: 13px
+}
+
+.file-info {
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    font-size: 12px;
+    line-height: 32px
+}
+
+.file-info .octicon {
+    vertical-align: text-bottom
+}
+
+
+.file-info-divider {
+    display: inline-block;
+    width: 1px;
+    height: 18px;
+    margin-right: 3px;
+    margin-left: 3px;
+    vertical-align: middle;
+    background-color: #ddd
+}
+
+
+.vcard-names {
+    line-height: 1
+}
+
+.vcard-fullname {
+    font-size: 26px;
+    line-height: 1.25
+}
+
+.vcard-username {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+    color: var(--color-text-secondary)
+}
+
+.vcard-details {
+    list-style: none
+}
+
+.vcard-details .css-truncate.css-truncate-target {
+    width: 100%;
+    max-width: 100%
+}
+
+
+.vcard-detail {
+    padding-left: 24px;
+    font-size: 14px
+}
+
+.vcard-detail .octicon {
+    float: left;
+    width: 16px;
+    margin-top: 3px;
+    margin-left: -24px;
+    color: var(--color-text-tertiary);
+    text-align: center
+}
+
+.user-profile-bio {
+    overflow: hidden;
+    font-size: 14px
+}
+
+
+.vcard-detail {
+    padding-left: 22px
+}
+
+.vcard-detail .octicon {
+    margin-left: -22px
+}
+
+.vcard-names-container {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0
+}
+
+
+:root,[data-color-mode=light] {
+    --color-calendar-halloween-graph-day-L1-bg: #ffee4a;
+    --color-calendar-halloween-graph-day-L2-bg: #ffc501;
+    --color-calendar-halloween-graph-day-L3-bg: #fe9600;
+    --color-calendar-halloween-graph-day-L4-bg: #03001c;
+    --color-workflow-card-connector-line: var(--color-scale-gray-3);
+    --color-workflow-card-connector-node-bg: var(--color-scale-gray-3);
+    --color-workflow-card-bg: var(--color-scale-white);
+    --color-workflow-card-header-shadow: rgba(27,31,35,0.04);
+    --color-workflow-card-progress-complete-bg: var(--color-scale-gray-4);
+    --color-workflow-card-progress-incomplete-bg: var(--color-scale-gray-2);
+    --color-checks-donut-error: var(--color-scale-red-6);
+    --color-checks-donut-pending: var(--color-scale-yellow-7);
+    --color-checks-donut-success: var(--color-scale-green-5);
+    --color-checks-donut-neutral: var(--color-scale-gray-4);
+    --color-discussions-answer-border: var(--color-scale-green-5);
+    --color-discussions-answer-icon: var(--color-scale-green-6);
+    --color-discussions-answer-text: var(--color-scale-green-6);
+    --color-discussions-state-answered-icon: var(--color-scale-white);
+    --color-bg-discussions-row-emoji-box: rgba(209,213,218,0.5);
+    --color-upvote-icon-bg: var(--color-scale-blue-1);
+    --color-search-hover-hl: var(--color-scale-white);
+    --color-notifications-button-text: var(--color-text-secondary);
+    --color-notifications-button-hover-text: var(--color-text-primary);
+    --color-notifications-button-hover-bg: var(--color-auto-gray-2);
+    --color-notifications-row-read-bg: var(--color-bg-tertiary);
+    --color-notifications-row-bg: var(--color-auto-white);
+    --color-timeline-merged-bg: var(--color-auto-purple-5);
+    --color-current-user-tip-bg: var(--color-box-bg-info);
+    --color-current-user-tip-border: #d4e2f8;
+    --color-promo-color-modes-toggle-track-border: var(--color-scale-gray-3);
+    --color-promo-color-modes-toggle-track-bg: var(--color-scale-white);
+    --color-profile-color-modes-toggle-track-border: var(--color-scale-gray-3);
+    --color-profile-color-modes-toggle-track-bg: var(--color-scale-white);
+    --color-profile-color-modes-toggle-thumb-bg: var(--color-scale-gray-8);
+    --color-profile-color-modes-toggle-moon: var(--color-scale-yellow-4);
+}
