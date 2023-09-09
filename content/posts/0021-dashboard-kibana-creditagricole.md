@@ -3,7 +3,7 @@ title: "Dashboard Kibana pour le Credit Agricole"
 summary: "Procédure de mise en oeuvre d'un dashboard Kibana permettant de suivre les opérations bancaires du crédit agricole."
 date: 2020-06-21T00:00:00+01:00
 draft: false
-tags: ['dashbaord', 'banque', 'kibana']
+tags: ['kibana']
 ---
 
 # Dashboard Kibana pour le Credit Agricole

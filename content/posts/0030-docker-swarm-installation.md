@@ -3,7 +3,7 @@ title: "Installation d'un cluster docker swarm"
 summary: "Procédure pour installer un clusteur docker swarm sur 3 machines."
 date: 2019-02-09T00:00:00+01:00
 draft: false
-tags: ['docker', 'swarm', 'ha']
+tags: ['docker', 'swarm']
 ---
 
 # Installation d'un cluster docker swarm

@@ -3,7 +3,7 @@ title: "Manage Linux permissions for users, groups, and others"
 summary: "How to"
 date: 2021-11-13T00:00:00+01:00
 draft: false
-tags: ['linux', 'security', 'how to']
+tags: ['linux', 'security', 'howto']
 ---
 
 # Manage Linux permissions for users, groups, and others

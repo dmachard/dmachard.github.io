@@ -3,7 +3,7 @@ title: "Dynamic blacklist with CDB database on DNSdist"
 summary: "A DNSdist configuration example to block big list of ads/malwares domains "
 date: 2023-07-01T00:00:00+01:00
 draft: false
-tags: ['powerdns', 'dnsdist', 'blacklist', 'cdb']
+tags: ['powerdns', 'dnsdist', 'security']
 ---
 
 # Dynamic blacklist with CDB database on DNSdist

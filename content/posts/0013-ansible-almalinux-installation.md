@@ -3,7 +3,7 @@ title: "How to install Ansible 4.7 on AlmaLinux 8.4 with pip"
 summary: "This post will details how to install ansible on AlmaLinux 8.4."
 date: 2021-10-20T00:00:00+01:00
 draft: false
-tags: ['ansible', 'almalinux', 'installation']
+tags: ['ansible', 'almalinux', 'howto']
 ---
 
 # How to install Ansible 4.7 on AlmaLinux 8.4 with pip

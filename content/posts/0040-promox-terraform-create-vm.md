@@ -3,7 +3,7 @@ title: "Infra as code with Terraform and Proxmox"
 summary: "This post details how to create a virtual machine with Terraform on your proxmox infrastructure."
 date: 2021-11-15T00:00:00+01:00
 draft: false
-tags: ['proxmox', 'almalinux', 'cloud-init', 'terraform']
+tags: ['proxmox', 'almalinux', 'cloudinit', 'terraform']
 ---
 
 # Infra as code with Terraform and Proxmox

@@ -3,7 +3,7 @@ title: "Guide installation de guacamole en mode container"
 summary: "Guide d'installation de guacamole"
 date: 2019-01-29T00:00:00+01:00
 draft: false
-tags: ['docker', 'guacamole', 'installation']
+tags: ['docker', 'guacamole', 'howto']
 ---
 
 # Guide installation de guacamole en mode container

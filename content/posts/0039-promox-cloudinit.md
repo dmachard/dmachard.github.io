@@ -3,7 +3,7 @@ title: "Building a cloud-init template with Almalinux8 on Proxmox"
 summary: "How to build a cloud-init template with Almalinux8"
 date: 2021-11-14T00:00:00+01:00
 draft: false
-tags: ['proxmox', 'almalinux', 'cloudinit', 'how to']
+tags: ['proxmox', 'almalinux', 'cloudinit', 'howto']
 ---
 
 # Building a cloud-init template with Almalinux8 on Proxmox

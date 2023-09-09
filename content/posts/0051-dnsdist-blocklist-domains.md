@@ -3,7 +3,7 @@ title: "Temporarily block domains with DNS notify with DNSdist"
 summary: "A DNSdist configuration example to block or unblock domains temporarily and in a dynamic way with DNS notify."
 date: 2023-08-12T00:00:00+01:00
 draft: false
-tags: ['powerdns', 'dnsdist', 'dns', 'security', 'blocklist']
+tags: ['powerdns', 'dnsdist', 'dns', 'security']
 ---
 
 # Temporarily block domains with DNS notify with DNSdist

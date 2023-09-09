@@ -3,7 +3,7 @@ title: "Freshrss installation guide in container mode"
 summary: "This post details how to run [*freshrss"
 date: 2021-03-10T00:00:00+01:00
 draft: false
-tags: ['docker', 'freshrss', 'rss']
+tags: ['docker', 'freshrss', 'howto']
 ---
 
 # Freshrss installation guide in container mode

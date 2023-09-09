@@ -3,7 +3,7 @@ title: "Secure your DNSTAP streams with TLS on CoreDNS"
 summary: "This post explains how to enable TLS on outgoing dnstap streams with CoreDNS"
 date: 2023-08-28T00:00:00+01:00
 draft: false
-tags: ['coredns', 'dnstap', 'dns', 'logs', 'tls']
+tags: ['coredns', 'dnstap', 'dns', 'logs', 'security']
 pin: true
 ---
 

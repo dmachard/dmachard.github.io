@@ -3,7 +3,7 @@ title: "Procedure Arduino IDE 1.8.19 for Ubuntu 22.04 and VScode"
 summary: "Install arduino IDE"
 date: 2022-09-25T00:00:00+01:00
 draft: false
-tags: ['arduino', 'vscode', 'ide', 'esp']
+tags: ['arduino', 'vscode']
 ---
 
 # Install arduino IDE

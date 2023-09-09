@@ -3,7 +3,7 @@ title: "How to run pdns-auth in a Docker Container with custom configuration fil
 summary: "This post details how to execute pdns-auth in docker container"
 date: 2021-12-22T00:00:00+01:00
 draft: false
-tags: ['dns', 'powerdns', 'auth', 'docker']
+tags: ['dns', 'powerdns', 'docker']
 ---
 
 # How to run pdns-auth in a Docker Container with custom configuration file

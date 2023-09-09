@@ -3,7 +3,7 @@ title: "Client en Python pour la banque Crédit Agricole"
 summary: "Récupérer ses opérations bancaires stockées par le Crédit Agricole."
 date: 2021-09-27T00:00:00+01:00
 draft: false
-tags: ['python', 'client']
+tags: ['python']
 ---
 
 # Client en Python pour la banque Crédit Agricole

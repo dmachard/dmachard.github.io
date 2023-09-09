@@ -3,7 +3,7 @@ title: "Collect dnstap stream and follow dns answers with JSON format"
 summary: "Example to collect dnstap messages from dns servers and follow dns answers with JSON format"
 date: 2021-11-27T00:00:00+01:00
 draft: false
-tags: ['dnstap', 'logs', 'go-dnscollector']
+tags: ['dnstap', 'logs', 'dnscollector']
 ---
 
 # Collect dnstap stream and follow dns answers with JSON format

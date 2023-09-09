@@ -3,7 +3,7 @@ title: "Build PowerDNS server with docker"
 summary: "Developer guide to build pdns authoritary"
 date: 2021-06-24T00:00:00+01:00
 draft: false
-tags: ['dns', 'powerdns', 'docker', 'build']
+tags: ['dns', 'powerdns', 'docker']
 ---
 
 # Build PowerDNS server with docker

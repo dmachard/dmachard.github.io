@@ -3,7 +3,7 @@ title: "Collect dnstap stream and get statistics usage with DNS-collector"
 summary: "Example to collect dnstap stream and get statistics usage"
 date: 2021-11-10T00:00:00+01:00
 draft: false
-tags: ['dnstap', 'logs', 'prometheus', 'grafana', 'go-dnscollector']
+tags: ['dnstap', 'logs', 'prometheus', 'grafana', 'dnscollector']
 ---
 
 # Collect dnstap stream and get statistics usage with DNS-collector

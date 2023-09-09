@@ -3,7 +3,7 @@ title: "Mainstream DNS Tunneling tools overview"
 summary: "This post is an overview of some dns tunnneling tools with installation procedure."
 date: 2023-07-04T00:00:00+01:00
 draft: false
-tags: ['tunnel', 'dns', 'security']
+tags: ['dns', 'security']
 pin: true
 ---
 

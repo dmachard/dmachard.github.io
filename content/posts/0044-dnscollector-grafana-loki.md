@@ -3,7 +3,7 @@ title: "Collect DNSTAP stream and analysing DNS logs with Loki and Grafana"
 summary: "Example to collect dnstap stream and analysing logs with Loki and Grafana"
 date: 2021-12-16T00:00:00+01:00
 draft: false
-tags: ['dnstap', 'logs', 'loki', 'grafana', 'go-dnscollector']
+tags: ['dnstap', 'logs', 'loki', 'grafana', 'dnscollector']
 pin: false
 ---
 

@@ -3,7 +3,7 @@ title: "Installation guide of DNSdist on CentOS 7"
 summary: "Procedure installation"
 date: 2020-06-21T00:00:00+01:00
 draft: false
-tags: ['dns', 'powerdns', 'dnsdist', 'installation']
+tags: ['dns', 'powerdns', 'dnsdist', 'howto']
 ---
 
 # Installation guide of DNSdist on CentOS 7

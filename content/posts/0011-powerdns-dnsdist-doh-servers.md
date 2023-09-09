@@ -3,7 +3,7 @@ title: "Route incoming UDP/TCP DNS queries to a pool of DoH servers with DNSdist
 summary: "The goal of this tutorial is to send all your local DNS queries (udp/tcp) to a pool of DoH public resolvers"
 date: 2021-10-20T00:00:00+01:00
 draft: false
-tags: ['dns', 'powerdns', 'dnsdist', 'doh']
+tags: ['dns', 'powerdns', 'dnsdist']
 ---
 
 # Route incoming UDP/TCP DNS queries to a pool of DoH servers with DNSdist

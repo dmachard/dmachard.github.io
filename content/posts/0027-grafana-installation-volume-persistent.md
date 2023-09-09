@@ -3,7 +3,7 @@ title: "Grafana installation with persistent volume"
 summary: "This post details how to run grafana container with persistent volume"
 date: 2019-01-29T00:00:00+01:00
 draft: false
-tags: ['docker', 'installation']
+tags: ['docker', 'howto']
 ---
 
 # Grafana installation with persistent volume

@@ -3,7 +3,7 @@ title: "Collect dnstap stream and backup-it to log files with DNS-collector"
 summary: "Example to collect dnstap messages from dns servers and backup-it in log files"
 date: 2021-11-10T00:00:00+01:00
 draft: false
-tags: ['dnstap', 'logs', 'go-dnscollector']
+tags: ['dnstap', 'logs', 'dnscollector']
 ---
 
 # Collect dnstap stream and backup-it to log files with DNS-collector

@@ -3,7 +3,7 @@ title: "Initial Ansible setup server"
 summary: "This tutorial explains how to make the initial setup of ansible."
 date: 2021-10-23T00:00:00+01:00
 draft: false
-tags: ['ansible', 'system']
+tags: ['ansible']
 ---
 
 # Initial Ansible setup server

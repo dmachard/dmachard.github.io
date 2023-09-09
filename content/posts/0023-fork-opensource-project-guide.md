@@ -3,7 +3,7 @@ title: "Contribution guide to open source project"
 summary: "How to fork and pull request"
 date: 2021-10-05T00:00:00+01:00
 draft: false
-tags: ['fork', 'github']
+tags: ['github']
 ---
 
 # Contribution guide to open source project
