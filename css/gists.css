@@ -286,10 +286,7 @@
 .octicon {
     display: inline-block;
     vertical-align: text-top;
-    fill: currentColor
-}
-
-.octicon {
+    fill: currentColor;
     vertical-align: text-bottom
 }
 
@@ -369,7 +366,6 @@
     box-shadow: var(--color-btn-focus-shadow)
 }
 
-
 .btn-octicon {
     display: inline-block;
     padding: 5px;
@@ -447,19 +443,6 @@
     border-bottom-right-radius: 6px
 }
 
-.BtnGroup-item:active,.BtnGroup-item:focus,.BtnGroup-item:hover {
-    border-right-width: 1px
-}
-
-.BtnGroup-item:active+.BtnGroup-item,.BtnGroup-item:focus+.BtnGroup-item,.BtnGroup-item:hover+.BtnGroup-item {
-    border-left-width: 0
-}
-
-.BtnGroup-item:active,.BtnGroup-item:focus {
-    z-index: 1
-}
-
-
 .Box {
     background-color: var(--color-bg-primary);
     border: 1px solid var(--color-border-primary);
@@ -475,21 +458,6 @@
     margin-bottom: -1px;
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px
-}
-
-.TableObject {
-    display: table
-}
-
-.TableObject-item {
-    display: table-cell;
-    width: 1%;
-    white-space: nowrap;
-    vertical-align: middle
-}
-
-.TableObject-item--primary {
-    width: 99%
 }
 
 .container-lg {
