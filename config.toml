@@ -14,9 +14,5 @@ paginate = 10
   mastodon = "https://fosstodon.org/@dmachard"
   keywords = "blog, technical"
   rss = true
-  lastmod = true
   favicon = "/images/avatar.png"
   avatar = "/images/profile.png"
-
-[frontmatter]
-  lastmod = ["lastmod", ":fileModTime", ":default"]
