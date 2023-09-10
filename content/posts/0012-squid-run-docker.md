@@ -3,7 +3,7 @@ title: "Run a squid proxy in container mode with custom configuration"
 summary: "This tutorial explained how to deploy the following Squid 5"
 date: 2021-10-20T00:00:00+01:00
 draft: false
-tags: ['squid', 'proxy', 'docker']
+tags: ['squid', 'docker']
 ---
 
 # Run a squid proxy in container mode with custom configuration

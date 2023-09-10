@@ -3,7 +3,7 @@ title: "How to configure TLS for the API using stunnel and DNSdist"
 summary: "This post will detail how to wrap your DnsDIST webserver/API and dnstap stream with TLS"
 date: 2021-09-08T00:00:00+01:00
 draft: false
-tags: ["dns", 'powerdns', 'dnsdist', 'api', 'security']
+tags: ["dns", 'powerdns', 'dnsdist', 'security']
 ---
 
 # How to configure TLS for the API using stunnel and DNSdist

@@ -3,7 +3,7 @@ title: "Echo capability of ip address from domain name for development with DNSd
 summary: "A DNSdist configuration example to map any IP address to a hostname for development purpose."
 date: 2023-07-22T00:00:00+01:00
 draft: false
-tags: ['powerdns', 'dnsdist', 'development', 'dns']
+tags: ['powerdns', 'dnsdist', 'dns']
 ---
 
 # Echo capability of ip address from domain name for development with DNSdist
