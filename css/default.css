@@ -1,0 +1,171 @@
+
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-canvas)
+}
+
+a {
+    color: var(--color-text-link);
+    text-decoration: none;
+    background-color: initial
+}
+
+a:active,a:hover {
+    outline-width: 0
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+h1 {
+    font-size: 2em;
+    margin: .67em 0
+}
+
+img {
+    border-style: none
+}
+
+strong {
+    font-weight: 600;
+    font-weight: inherit;
+    font-weight: bolder
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse
+}
+
+td,th {
+    padding: 0
+}
+
+h1,h2,h3 {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+h1,h2 {
+    font-weight: 600
+}
+
+h1 {
+    font-size: 32px
+}
+
+h2 {
+    font-size: 24px
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 600
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 10px
+}
+
+summary {
+    display: list-item
+}
+
+article,main,nav {
+    display: block
+}
+
+code,pre {
+    font-family: monospace,monospace;
+    font-size: 1em;
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    font-size: 12px
+}
+
+pre {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+button {
+    font: inherit;
+    margin: 0;
+    overflow: visible;
+    text-transform: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    border-radius: 0
+}
+
+button::-moz-focus-inner {
+    border-style: none;
+    padding: 0
+}
+
+button:-moz-focusring {
+    outline: 1px dotted ButtonText
+}
+
+blockquote {
+    margin: 0
+}
+
+ol,ul {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+@supports ((-webkit-clip-path: polygon(50% 0,100% 50%,50% 100%)) or (clip-path:polygon(50% 0,100% 50%,50% 100%))) {
+}
+
+@supports (-webkit-touch-callout:none) {
+}
+
+:-ms-input-placeholder {
+    color: var(--color-text-placeholder);
+    opacity: 1
+}
+
+::-ms-input-placeholder {
+    color: var(--color-text-placeholder);
+    opacity: 1
+}
+
+:checked+.radio-label {
+    position: relative;
+    z-index: 1;
+    border-color: var(--color-border-info)
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+::-webkit-input-placeholder {
+    color: inherit;
+    opacity: .54
+}
+
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit
+}
+
+* {
+    box-sizing: border-box
+}
