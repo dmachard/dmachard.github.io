@@ -33,6 +33,20 @@
     border-radius: 2em
 }
 
+.Tag {
+    display: inline-block;
+    min-width: 20px;
+    padding: 0 6px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--color-counter-text);
+    text-align: center;
+    background-color: var(--color-counter-bg);
+    border: 1px solid transparent;
+    border-radius: 5px
+}
+
 .SelectMenu {
     position: fixed;
     top: 0;
