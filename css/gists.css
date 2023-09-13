@@ -1,3 +1,18 @@
+.nolink:hover {
+    text-decoration: none!important
+}
+
+.link-gray-dark {
+    color: var(--color-text-primary)!important
+}
+
+.link-gray-dark:hover {
+    color: var(--color-text-link)!important
+}
+
+.text-gray {
+    color: var(--color-text-secondary)!important
+}
 
 .user-profile-nav {
     background-color: var(--color-bg-primary);
@@ -12,10 +27,7 @@
     vertical-align: middle;
     background-color: var(--color-avatar-bg);
     border-radius: 6px;
-    box-shadow: 0 0 0 1px var(--color-avatar-border)
-}
-
-.avatar-user {
+    box-shadow: 0 0 0 1px var(--color-avatar-border);
     border-radius: 50%!important
 }
 
@@ -263,12 +275,6 @@
     text-align: center
 }
 
-.user-profile-bio {
-    overflow: hidden;
-    font-size: 14px
-}
-
-
 .vcard-detail {
     padding-left: 22px
 }
@@ -290,7 +296,11 @@
     vertical-align: text-bottom
 }
 
-.btn {
+/* .btn:hover {
+    text-decoration: none
+} */
+
+/* .btn {
     position: relative;
     display: inline-block;
     padding: 5px 16px;
@@ -331,9 +341,9 @@
 
 .btn .octicon:only-child {
     margin-right: 0
-}
+} */
 
-.btn {
+/* .btn {
     color: var(--color-btn-text);
     background-color: var(--color-btn-bg);
     border-color: var(--color-btn-border);
@@ -409,9 +419,9 @@
 .btn-outline:focus {
     border-color: var(--color-btn-outline-focus-border);
     box-shadow: var(--color-btn-outline-focus-shadow)
-}
+} */
 
-.BtnGroup {
+/* .BtnGroup {
     display: inline-block;
     vertical-align: middle
 }
@@ -441,7 +451,7 @@
     border-right-width: 1px;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px
-}
+} */
 
 .Box {
     background-color: var(--color-bg-primary);
@@ -538,20 +548,12 @@
     }
 }
 
-.link-gray-dark {
-    color: var(--color-text-primary)!important
-}
-
-.link-gray-dark:hover {
-    color: var(--color-text-link)!important
-}
-
 .muted-link {
     color: var(--color-text-secondary)!important
 }
 
 .muted-link:hover {
-    color: var(--color-text-link)!important;
+    /* color: var(--color-text-link)!important; */
     text-decoration: none
 }
 
@@ -612,12 +614,6 @@
     color: var(--color-underlinenav-counter-text)
 }
 
-.paginate-container {
-    margin-top: 16px;
-    margin-bottom: 16px;
-    text-align: center
-}
-
 .css-truncate.css-truncate-target {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -656,10 +652,6 @@
 
 .bg-white {
     background-color: var(--color-bg-primary)!important
-}
-
-.text-gray {
-    color: var(--color-text-secondary)!important
 }
 
 .border-gray-light {
