@@ -3,7 +3,7 @@ languageCode = "en-US"
 title = "My technical gists"
 theme = "gists"
 pygmentsCodeFences = true
-paginate = 10
+paginate = 5
 
 [params]
   author = "Denis Machard"
