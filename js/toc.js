@@ -28,7 +28,7 @@ function getToc() {
     for (const h of hs) {
         const size = Number(h.tagName.toLowerCase().replace('h', ''));
         const a = document.createElement('a');
-        a.classList.add("nolink", "filter-item", "SelectMenu-item", "ws-normal", "wb-break-word", "line-clamp-2", "py-1", "toc-item");
+        a.classList.add("text-decoration-none", "filter-item", "SelectMenu-item", "ws-normal", "wb-break-word", "line-clamp-2", "py-1", "toc-item");
         a.href = `#${h.id}`;
         a.innerText = h.innerText;
         a.style.paddingLeft = `${size * 12}px`;
