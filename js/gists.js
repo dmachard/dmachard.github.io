@@ -2,10 +2,6 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const monthsFull = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const now = new Date();
 
-(() => {
-  setRelativeTime();
-})();
-
 function relativeTime(dateStr) {
   const now = new Date();
   const date = new Date(dateStr);
@@ -39,3 +35,34 @@ function setRelativeTime() {
     elem.setAttribute('title', new Date(dateStr).toLocaleString());
   });
 }
+
+function getToc() {
+  const markdown = document.querySelector('.markdown-body')
+  if(markdown == null) {
+      return
+  }
+  const hs = markdown.querySelectorAll('h2, h3, h4, h5, h6');
+ 
+  const toc_list = document.querySelector("#toc-list");
+  for (const h of hs) {
+      const size = Number(h.tagName.toLowerCase().replace('h', ''));
+      
+      const li = document.createElement('li');
+      li.classList.add("dropdown-item");
+
+      const a = document.createElement('a');
+      a.href = `#${h.id}`;
+      a.classList.add("text-dark-emphasis", "text-decoration-none");
+      a.innerText = h.innerText;
+      a.style.paddingLeft = `${(size-2) * 12}px`;
+
+      li.appendChild(a);
+
+      toc_list.appendChild(li);
+  }
+}
+
+(() => {
+  setRelativeTime();
+  getToc();
+})();
