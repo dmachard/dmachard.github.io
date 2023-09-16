@@ -1,10 +1,8 @@
 
-.link-gray-dark {
-    color: var(--color-text-primary)!important
-}
-
-.link-gray-dark:hover {
-    color: var(--color-text-link)!important
+.user-profile-nav {
+    background-color: var(--color-bg-primary);
+    border-bottom: 1px solid var(--color-border-tertiary);
+    box-shadow: none
 }
 
 .avatar {
@@ -14,7 +12,10 @@
     vertical-align: middle;
     background-color: var(--color-avatar-bg);
     border-radius: 6px;
-    box-shadow: 0 0 0 1px var(--color-avatar-border);
+    box-shadow: 0 0 0 1px var(--color-avatar-border)
+}
+
+.avatar-user {
     border-radius: 50%!important
 }
 
@@ -46,6 +47,190 @@
     border-radius: 5px
 }
 
+.SelectMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    display: flex;
+    padding: 16px;
+    pointer-events: none;
+    flex-direction: column
+}
+
+@media (min-width: 544px) {
+    .SelectMenu {
+        position:absolute;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        padding: 0
+    }
+}
+
+.SelectMenu:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    content: "";
+    background-color: var(--color-select-menu-backdrop-bg)
+}
+
+@media (min-width: 544px) {
+    .SelectMenu:before {
+        display:none
+    }
+}
+
+.SelectMenu-modal {
+    position: relative;
+    z-index: 99;
+    display: flex;
+    max-height: 66%;
+    margin: auto 0;
+    overflow: hidden;
+    pointer-events: auto;
+    flex-direction: column;
+    background-color: var(--color-bg-overlay);
+    border: 1px solid var(--color-select-menu-backdrop-border);
+    border-radius: 12px;
+    box-shadow: var(--color-select-menu-shadow);
+    animation: SelectMenu-modal-animation .12s cubic-bezier(0,.1,.1,1) backwards
+}
+
+@media (min-width: 544px) {
+    .SelectMenu-modal {
+        width:300px;
+        height: auto;
+        max-height: 480px;
+        margin: 8px 0 16px;
+        font-size: 12px;
+        border-color: var(--color-border-overlay);
+        border-radius: 6px;
+        box-shadow: var(--color-shadow-large);
+        animation-name: SelectMenu-modal-animation--sm
+    }
+}
+
+
+.SelectMenu-list {
+    position: relative;
+    padding: 0;
+    margin: 0 0 -1px;
+    flex: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch
+}
+
+.SelectMenu-item,.SelectMenu-list {
+    background-color: var(--color-bg-overlay)
+}
+
+.SelectMenu-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px;
+    overflow: hidden;
+    color: var(--color-text-primary);
+    text-align: left;
+    cursor: pointer;
+    border: 0;
+    border-bottom: 1px solid var(--color-select-menu-border-secondary)
+}
+
+@media (min-width: 544px) {
+    .SelectMenu-item {
+        padding-top:7px;
+        padding-bottom: 7px
+    }
+}
+
+.SelectMenu-list--borderless .SelectMenu-item {
+    border-bottom: 0
+}
+
+.UnderlineNav-item.selected .UnderlineNav-octicon,.UnderlineNav-item[aria-current]:not([aria-current=false]) .UnderlineNav-octicon,.UnderlineNav-item[role=tab][aria-selected=true] .UnderlineNav-octicon {
+    color: inherit
+}
+
+@media (min-width: 1280px) {
+    .hx_UnderlineNav-with-profile-color-modes-banner {
+        overflow:visible;
+        padding-top: 8px;
+        align-items: flex-end
+    }
+}
+
+.file {
+    position: relative;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border: 1px solid var(--color-border-primary,#ddd);
+    border-radius: 6px
+}
+
+.file-header {
+    padding: 5px 10px;
+    background-color: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border-primary);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px
+}
+
+.file-header:after,.file-header:before {
+    display: table;
+    content: ""
+}
+
+.file-header:after {
+    clear: both
+}
+
+.file-actions {
+    float: right;
+    padding-top: 2px;
+    font-size: 13px
+}
+
+.file-info {
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    font-size: 12px;
+    line-height: 32px
+}
+
+.file-info .octicon {
+    vertical-align: text-bottom
+}
+
+
+.file-info-divider {
+    display: inline-block;
+    width: 1px;
+    height: 18px;
+    margin-right: 3px;
+    margin-left: 3px;
+    vertical-align: middle;
+    background-color: #ddd
+}
+
+
+.vcard-names {
+    line-height: 1
+}
+
+.vcard-fullname {
+    font-size: 26px;
+    line-height: 1.25
+}
+
 .vcard-username {
     font-size: 20px;
     font-style: normal;
@@ -55,15 +240,18 @@
 }
 
 .vcard-details {
-    list-style: none;
+    list-style: none
+}
+
+.vcard-details .css-truncate.css-truncate-target {
     width: 100%;
     max-width: 100%
 }
 
+
 .vcard-detail {
     padding-left: 24px;
-    font-size: 14px;
-    padding-left: 22px
+    font-size: 14px
 }
 
 .vcard-detail .octicon {
@@ -75,6 +263,26 @@
     text-align: center
 }
 
+.user-profile-bio {
+    overflow: hidden;
+    font-size: 14px
+}
+
+
+.vcard-detail {
+    padding-left: 22px
+}
+
+.vcard-detail .octicon {
+    margin-left: -22px
+}
+
+.vcard-names-container {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0
+}
+
 .octicon {
     display: inline-block;
     vertical-align: text-top;
@@ -82,7 +290,186 @@
     vertical-align: text-bottom
 }
 
+.btn {
+    position: relative;
+    display: inline-block;
+    padding: 5px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid;
+    border-radius: 6px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none
+}
+
+.btn:hover {
+    text-decoration: none
+}
+
+.btn:disabled {
+    cursor: default
+}
+
+.btn:disabled .octicon {
+    color: inherit
+}
+
+.btn .octicon {
+    margin-right: 4px;
+    color: var(--color-text-tertiary);
+    vertical-align: text-bottom
+}
+
+.btn .octicon:only-child {
+    margin-right: 0
+}
+
+.btn {
+    color: var(--color-btn-text);
+    background-color: var(--color-btn-bg);
+    border-color: var(--color-btn-border);
+    box-shadow: var(--color-btn-shadow),var(--color-btn-inset-shadow);
+    transition: .2s cubic-bezier(.3,0,.5,1);
+    transition-property: color,background-color,border-color
+}
+
+.btn:hover {
+    background-color: var(--color-btn-hover-bg);
+    border-color: var(--color-btn-hover-border);
+    transition-duration: .1s
+}
+
+.btn:active {
+    background-color: var(--color-btn-selected-bg);
+    box-shadow: var(--color-shadow-inset);
+    transition: none
+}
+
+.btn:disabled {
+    color: var(--color-text-disabled);
+    background-color: var(--color-btn-bg);
+    border-color: var(--color-btn-border)
+}
+
+.btn:focus {
+    border-color: var(--color-btn-focus-border);
+    outline: none;
+    box-shadow: var(--color-btn-focus-shadow)
+}
+
+.btn-octicon {
+    display: inline-block;
+    padding: 5px;
+    margin-left: 5px;
+    line-height: 1;
+    color: var(--color-text-secondary);
+    vertical-align: middle;
+    background: transparent;
+    border: 0
+}
+
+.btn-octicon:hover {
+    color: var(--color-text-link)
+}
+
+.btn-outline {
+    color: var(--color-btn-outline-text)
+}
+
+.btn-outline:hover {
+    color: var(--color-btn-outline-hover-text);
+    background-color: var(--color-btn-outline-hover-bg);
+    border-color: var(--color-btn-outline-hover-border);
+    box-shadow: var(--color-btn-outline-hover-shadow),var(--color-btn-outline-hover-inset-shadow)
+}
+
+.btn-outline:active {
+    color: var(--color-btn-outline-selected-text);
+    background-color: var(--color-btn-outline-selected-bg);
+    border-color: var(--color-btn-outline-selected-border);
+    box-shadow: var(--color-btn-outline-selected-shadow)
+}
+
+.btn-outline:disabled {
+    color: var(--color-btn-outline-disabled-text);
+    background-color: var(--color-btn-outline-disabled-bg);
+    border-color: var(--color-btn-border);
+    box-shadow: none
+}
+
+.btn-outline:focus {
+    border-color: var(--color-btn-outline-focus-border);
+    box-shadow: var(--color-btn-outline-focus-shadow)
+}
+
+.BtnGroup {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.BtnGroup:after,.BtnGroup:before {
+    display: table;
+    content: ""
+}
+
+.BtnGroup:after {
+    clear: both
+}
+
+.BtnGroup-item {
+    position: relative;
+    float: left;
+    border-right-width: 0;
+    border-radius: 0
+}
+
+.BtnGroup-item:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px
+}
+
+.BtnGroup-item:last-child {
+    border-right-width: 1px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px
+}
+
+.Box {
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: 6px
+}
+
+.Box-body {
+    padding: 16px;
+    border-bottom: 1px solid var(--color-border-primary)
+}
+
+.Box-body:last-of-type {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px
+}
+
+.container-lg {
+    max-width: 1012px
+}
+
 .container-lg,.container-xl {
+    margin-right: auto;
+    margin-left: auto
+}
+
+.container-xl {
     margin-right: auto;
     margin-left: auto
 }
@@ -151,11 +538,20 @@
     }
 }
 
+.link-gray-dark {
+    color: var(--color-text-primary)!important
+}
+
+.link-gray-dark:hover {
+    color: var(--color-text-link)!important
+}
+
 .muted-link {
     color: var(--color-text-secondary)!important
 }
 
 .muted-link:hover {
+    color: var(--color-text-link)!important;
     text-decoration: none
 }
 
@@ -214,6 +610,60 @@
 .UnderlineNav .Counter {
     margin-left: 4px;
     color: var(--color-underlinenav-counter-text)
+}
+
+.paginate-container {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    text-align: center
+}
+
+.css-truncate.css-truncate-target {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.css-truncate.css-truncate-target {
+    display: inline-block;
+    max-width: 125px;
+    vertical-align: top
+}
+
+.border {
+    border: 1px solid var(--color-border-primary)!important
+}
+
+.border-top {
+    border-top: 1px solid var(--color-border-primary)!important
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--color-border-primary)!important
+}
+
+.rounded-3 {
+    border-radius: 8px!important
+}
+
+.box-shadow-none {
+    box-shadow: none!important
+}
+
+.color-border-secondary {
+    border-color: var(--color-border-secondary)!important
+}
+
+.bg-white {
+    background-color: var(--color-bg-primary)!important
+}
+
+.text-gray {
+    color: var(--color-text-secondary)!important
+}
+
+.border-gray-light {
+    border-color: var(--color-border-secondary)!important
 }
 
 .flex-justify-center {
@@ -350,4 +800,8 @@
 
 .wb-break-all {
     word-break: break-all!important
+}
+
+.list-style-none {
+    list-style: none!important
 }
