@@ -10,11 +10,8 @@ pin: true
 # Configuration examples for DNSdist PowerDNS
 
 This post aims to share different configurations for [DNSdist](https://dnsdist.org/).
-Each examples can be tested with the following docker [guide](https://github.com/dmachard/lua-dnsdist-config-examples#run-config-from-docker).
-
-## Default configuration
-
-The first one is the [default](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/default_config.lua) configuration is provided by PowerDNS.
+Each examples can be tested with the following [docker guide](https://github.com/dmachard/lua-dnsdist-config-examples#run-config-from-docker).
+Before to start take a look to the [default](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/default_config.lua) one provided by PowerDNS.
 
 ## Administration
 
