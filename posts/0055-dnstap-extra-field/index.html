@@ -10,15 +10,8 @@ The DNStap protocol offers an <a href=https://github.com/dnstap/dnstap.pb/blob/m
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// This field can be used for adding an arbitrary byte-string annotation to
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// the payload. No encoding or interpretation is applied or enforced.
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>optional bytes      extra <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
-</span></span></code></pre></div><p>Let&rsquo;s begin by exploring how to implement this feature in CoreDNS.</p><h2 id=coredns>CoreDNS</h2><p>Support for the extra field was introduced in CoreDNS starting from v1.11.1.
-Below is an example of how to add the upstream IP (either 8.8.8.8 or 9.9.9.9) to the extra field.</p><p>First, create the coredns.conf file. This configuration sets up your CoreDNS instance to:
-- Listen on port 53 for DNS queries.
-- Enable metadata collection.
-- Send dnstapto the remote collector 10.0.0.100 on port 6000 with full logging.
-- Specify the identity as &ldquo;coredns&rdquo; for dnstap data.
-- Include upstream addresses in extra field
-- Cache DNS responses.
-- Forward DNS queries to both 8.8.8.8 and 9.9.9.9 as upstream resolvers.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>.:53 <span style=color:#f92672>{</span>
+</span></span></code></pre></div><p>Let&rsquo;s begin by exploring how to implement this feature in CoreDNS.</p><h2 id=coredns>CoreDNS</h2><p>Support for the extra field was introduced in CoreDNS starting from <a href=https://github.com/coredns/coredns/releases/tag/v1.11.1>v1.11.1</a>.
+Below is an example of how to add the upstream IP (either 8.8.8.8 or 9.9.9.9) to the extra field.</p><p>First, create the coredns.conf file. This configuration sets up your CoreDNS instance to:</p><ul><li>Listen on port 53 for DNS queries.</li><li>Enable metadata collection.</li><li>Send dnstapto the remote collector 10.0.0.100 on port 6000 with full logging.</li><li>Specify the identity as &ldquo;coredns&rdquo; for dnstap data.</li><li>Include upstream addresses in extra field</li><li>Cache DNS responses.</li><li>Forward DNS queries to both 8.8.8.8 and 9.9.9.9 as upstream resolvers.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>.:53 <span style=color:#f92672>{</span>
 </span></span><span style=display:flex><span>	metadata
 </span></span><span style=display:flex><span>        dnstap tcp://10.0.0.100:6000 full <span style=color:#f92672>{</span>
 </span></span><span style=display:flex><span>		identity coredns
@@ -61,7 +54,7 @@ Before getting started, within your working directory, generate certificates and
 </span></span><span style=display:flex><span>openssl req -new -passin file:passphrase.txt -key server.key -out server.csr -subj <span style=color:#e6db74>&#34;/C=FR/O=krkr/OU=Domain Control Validated/CN=*.test.dev&#34;</span>
 </span></span><span style=display:flex><span>openssl rsa -in server.key -passin file:passphrase.txt -out doh.key
 </span></span><span style=display:flex><span>openssl x509 -req -days <span style=color:#ae81ff>36500</span> -in server.csr -signkey doh.key -out doh.crt
-</span></span></code></pre></div><p>Now, create the <code>config_dnsdist.conf</code> file with the following Lua configuration:
+</span></span></code></pre></div><p>Now, create the <code>config_dnsdist.conf</code> file with the following Lua configuration.
 This DNSdist configuration listen on DoH service with backends load balancing (google, cloudflare, quad9)
 The lua functions (alterDnstapQuery, alterDnstapResponse, alterDnstapCachedResponse) are used to customize the extra field in dnstap messages.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lua data-lang=lua><span style=display:flex><span>addDOHLocal(<span style=color:#e6db74>&#34;0.0.0.0:443&#34;</span>, <span style=color:#e6db74>&#34;/etc/dnsdist/doh.crt&#34;</span>, <span style=color:#e6db74>&#34;/etc/dnsdist/doh.key&#34;</span>, <span style=color:#e6db74>&#34;/dns-query&#34;</span>, {keepIncomingHeaders<span style=color:#f92672>=</span><span style=color:#66d9ef>true</span>})
 </span></span><span style=display:flex><span>setACL({<span style=color:#e6db74>&#39;0.0.0.0/0&#39;</span>})
