@@ -24,17 +24,18 @@ Let's begin by exploring how to implement this feature in CoreDNS.
 
 ## CoreDNS
 
-Support for the extra field was introduced in CoreDNS starting from v1.11.1. 
+Support for the extra field was introduced in CoreDNS starting from [v1.11.1](https://github.com/coredns/coredns/releases/tag/v1.11.1).
 Below is an example of how to add the upstream IP (either 8.8.8.8 or 9.9.9.9) to the extra field.
 
 First, create the coredns.conf file. This configuration sets up your CoreDNS instance to:
-    - Listen on port 53 for DNS queries.
-    - Enable metadata collection.
-    - Send dnstapto the remote collector 10.0.0.100 on port 6000 with full logging.
-    - Specify the identity as "coredns" for dnstap data.
-    - Include upstream addresses in extra field
-    - Cache DNS responses.
-    - Forward DNS queries to both 8.8.8.8 and 9.9.9.9 as upstream resolvers.
+
+- Listen on port 53 for DNS queries.
+- Enable metadata collection.
+- Send dnstapto the remote collector 10.0.0.100 on port 6000 with full logging.
+- Specify the identity as "coredns" for dnstap data.
+- Include upstream addresses in extra field
+- Cache DNS responses.
+- Forward DNS queries to both 8.8.8.8 and 9.9.9.9 as upstream resolvers.
 
 ```bash
 .:53 {
@@ -121,7 +122,7 @@ openssl rsa -in server.key -passin file:passphrase.txt -out doh.key
 openssl x509 -req -days 36500 -in server.csr -signkey doh.key -out doh.crt
 ```
 
-Now, create the `config_dnsdist.conf` file with the following Lua configuration:
+Now, create the `config_dnsdist.conf` file with the following Lua configuration.
 This DNSdist configuration listen on DoH service with backends load balancing (google, cloudflare, quad9)
 The lua functions (alterDnstapQuery, alterDnstapResponse, alterDnstapCachedResponse) are used to customize the extra field in dnstap messages.
 
