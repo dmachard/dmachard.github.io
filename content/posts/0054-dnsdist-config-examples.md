@@ -1,41 +1,42 @@
 ---
-title: "Configuration examples for DNSdist PowerDNS"
-summary: "This post aims to share different configurations for DNSdist"
+title: "A set of configurations for DNSdist PowerDNS"
+summary: "This post aims to share several configuration examples for DNSdist"
 date: 2023-09-17T00:00:00+01:00
 draft: false
 tags: ['powerdns', 'dnsdist']
 pin: true
 ---
 
-# Configuration examples for DNSdist PowerDNS
+# A set of configurations for DNSdist PowerDNS
 
-This post aims to share different configurations for [DNSdist](https://dnsdist.org/).
-Each examples can be tested with the following [docker guide](https://github.com/dmachard/lua-dnsdist-config-examples#run-config-from-docker).
-Before to start take a look to the [default](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/default_config.lua) one provided by PowerDNS.
+This post aims to provide you with a diverse set of configuration examples that you can use to enhance
+your [DNSdist](https://dnsdist.org/) software.
+Each example can be tested using the following [docker guide](https://github.com/dmachard/lua-dnsdist-config-examples#run-config-from-docker).
+Before you begin, consider taking a look at the [default](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/default_config.lua) configuration provided by PowerDNS.
 
 ## Administration
 
-- [How to enable web admin and console interfaces](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/admin_config.lua)
+- [Enabling Web Admin and Console Interfaces](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/admin_config.lua): How to set up web admin and console interfaces for DNSdist.
 
 ## Routing DNS traffic
 
-- [Match Qname with regular expression](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/routing_regex.lua)
-- [Tag your traffic and applied specified rules on it](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/routing_tag_traffic.lua)
+- [Matching qname with regular expressions](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/routing_regex.lua): How to use regular expressions to match Qnames effectively.
+- [Tagging traffic and applying specified rules:](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/routing_tag_traffic.lua): How to tag your DNS traffic and apply custom rules based on those tags.
 
 ## DNS Security
 
-- [Ads/Malwares blocking with external CDB database](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blacklist_cdb.lua)
-- [DNS tunneling blocking](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blocking_dnstunneling.lua)
-- [Blackhole/spoofing domains with external files](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blackhole_domains.lua)
+- [Blocking Ads/Malwares with external CDB database](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blacklist_cdb.lua): Implement ad and malware blocking using an external CDB database.
+- [Blocking DNS tunneling](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blocking_dnstunneling.lua): Prevent DNS tunneling attempts
+- [Blackholing and Spoofing domains with external files](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blackhole_domains.lua):  how to blacklist domains and spoof DNS responses using external files.
 - [Blacklist IP addresses with DNS UPDATE control and dynamic blocking duration](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blacklist_ip_dnsupdate.lua)
 - [Blacklist IP during XX seconds, the list of IPs is managed with DNS notify and TTL for duration](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blacklist_ip_notify.lua)
 - [List of temporarily blocked domains, the list is managed with DNS notify](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_blocklist_domains.lua)
-- [Spoofing DNS responses like TXT, A, AAAA, MX and more...](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_spoofing_qtype.lua)
+- [Spoofing DNS Responses for Various Qtypes](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/security_spoofing_qtype.lua): How to spoof DNS responses for Qtypes like TXT, A, AAAA, MX, and more.
 
 ## Logging DNS traffic
 
-- [Remote DNS logging with DNSTAP protocol](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/logging_dnstap.lua)
-- [Remote DNS logging with Protobuf protocol](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/logging_protobuf.lua)
+- [Remote DNS logging with DNSTAP protocol](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/logging_dnstap.lua): Set up remote DNS logging using the DNSTAP protocol.
+- [Remote DNS logging with Protobuf protocol](https://github.com/dmachard/lua-dnsdist-config-examples/blob/main/logging_protobuf.lua): Configure remote DNS logging using the Protobuf protocol.
 
 ## Miscs
 

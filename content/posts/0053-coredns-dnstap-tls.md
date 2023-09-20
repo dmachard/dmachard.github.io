@@ -1,32 +1,28 @@
 ---
-title: "Secure your DNSTAP streams with TLS on CoreDNS"
-summary: "This post explains how to enable TLS on outgoing dnstap streams with CoreDNS"
+title: "Secure DNSTAP streams with TLS encryption in CoreDNS"
+summary: "In this post, you will see how to enable TLS encryption for outgoing dnstap streams with CoreDNS"
 date: 2023-08-28T00:00:00+01:00
 draft: false
 tags: ['coredns', 'dnstap', 'dns', 'logs', 'security']
 pin: true
 ---
 
-# Secure your DNSTAP streams with TLS on CoreDNS
+# Secure DNSTAP streams with TLS encryption in CoreDNS
 
-This post explains how to enable TLS on outgoing [dnstap](https://dnstap.info/) streams with [CoreDNS](https://coredns.io/). Please refer to [How to enable it on main dns servers](https://dmachard.github.io/posts/0001-dnstap-testing/#coredns) to enable DNStap in basic way.
+In this post, you will see how to enable TLS encryption for outgoing [dnstap](https://dnstap.info/) streams with [CoreDNS](https://coredns.io/). Before proceeding, please refer to [How to enable it on main dns servers](https://dmachard.github.io/posts/0001-dnstap-testing/#coredns) to enable DNStap in basic way.
 
-> TLS is supported since the version [1.11](https://github.com/coredns/coredns/releases/tag/v1.11.0)
+> Note: TLS support in CoreDNS is available starting from version [1.11](https://github.com/coredns/coredns/releases/tag/v1.11.0)
 
 ## Enable Secure DNSTAP with CoreDNS
 
-Create working folder
+Begin by creating a dedicated working folder for your secure DNStap configurations:
 
 ```bash
 mkdir securednstap
 cd securednstap
 ```
 
-Create the following `config_coredns.conf` in your working folder.
-
-- `tls://` to use TLS
-- `192.168.1.200:6000` is the IP/port address of your DNStap collector.
-- `skipverify`: this setting ignore TLS verification, do not use this settings in production.
+Create a file named `config_coredns.conf` in your working folder with the following contents:
 
 ```ini
 .:53 {
@@ -37,13 +33,19 @@ Create the following `config_coredns.conf` in your working folder.
 }
 ```
 
-Start CoreDNS
+Here's what the configuration does:
+
+- `tls://` is used to specify TLS encryption.
+- `192.168.1.200:6000` should be replaced with the IP/port address of your [DNStap collector](https://github.com/dmachard/go-dnscollector).
+- `skipverify` is used to skip TLS verification. **Do not use this setting in a production environment**
+
+Execute CoreDNS with the following command:
 
 ```bash
 sudo docker run -d -p 1053:53/tcp -p 1053:53/udp --name=coredns -v $PWD/config_coredns.conf:/config.conf coredns/coredns:1.11.1 -conf /config.conf
 ```
 
-Verify logs
+Check the CoreDNS logs to verify the configuration:
 
 ```bash
 sudo docker logs coredns
@@ -53,15 +55,14 @@ CoreDNS-1.11.1
 linux/amd64, go1.20.7, ae2bbc2
 ```
 
-> The ERROR is expected at this stage because the remote dnstap collector is not yet started.
+> At this stage, you might encounter an error indicating that there is no connection to the DNStap collector. This is expected because the remote DNStap collector is not yet running.
 
-## Run DNS-collector
+## Running DNS-collector
 
-You can use the [DNS-collector](https://github.com/dmachard/go-dnscollector) to collect your DNS logs with secure DNStap stream.
+To collect DNS logs with a secure DNStap stream, you can use the [DNS-collector](https://github.com/dmachard/go-dnscollector).
+Here's how to set it up:
 
-First keep inside your working directory.
-
-Generate certificate and private key for the server side
+Within your working directory, generate certificates and a private key for the server side:
 
 ```bash
 openssl rand -base64 48 > passphrase.txt
@@ -71,7 +72,8 @@ openssl rsa -in server.key -passin file:passphrase.txt -out dnscollector.key
 openssl x509 -req -days 36500 -in server.csr -signkey dnscollector.key -out dnscollector.crt
 ```
 
-Create the following `config_dnscollector.conf` in ypur working folder.
+Create a file named `config_dnscollector.conf` in your working folder with the following content.
+This configuration sets up the DNS-collector with TLS support and specifies the certificate and key files.
 
 ```yaml
 global:
@@ -98,13 +100,14 @@ multiplexer:
       to: [console]
 ```
 
-Start DNS-collector
+Run the DNS-collector using the following command:
 
 ```bash
 sudo docker run -d -p 6000:6000/tcp --name=dnscollector -v $PWD/:/custom dmachard/go-dnscollector:v0.34.0 -config /custom/config_dnscollector.conf
 ```
 
-Verify logs
+Check the DNS-collector logs to ensure everything is running properly.
+You should see log entries indicating that the DNS-collector is running and listening for secured DNStap connections.
 
 ```bash
 INFO: 2023/08/28 07:57:39.848987 main - version v0.34.0
@@ -127,16 +130,17 @@ INFO: 2023/08/28 07:57:40.774909 [securednstap] processor=dnstap#1 - waiting dns
 INFO: 2023/08/28 07:57:40.778959 [securednstap] collector=dnstap#1 - receiver framestream initialized
 ```
 
-## Testing
+## Testing Secure DNStap
 
-To test your secure DNStap stream, your need to do some DNS resolution on CoreDNS
+To test your secure DNStap stream, perform a DNS resolution using CoreDNS:
 
 ```bash
 dig -p 1053 www.google.com +short +tcp
 172.217.18.196
 ```
 
-Check if your DNStap messages are received in the DNS-collector side.
+Next, check if your DNStap messages are being received by the DNS-collector:
+You should see log entries indicating that the DNS-collector has received and processed the DNS queries and responses from the secure DNStap stream.
 
 ```bash
 sudo docker logs dnscollector
@@ -145,4 +149,3 @@ sudo docker logs dnscollector
 2023-08-28T07:59:24.052002916Z 9116ac214d22 FORWARDER_RESPONSE NOERROR 172.17.0.1 51492 IPv4 TCP 73b www.google.com A 0.000000
 2023-08-28T07:59:24.052069329Z 9116ac214d22 CLIENT_RESPONSE NOERROR 172.17.0.1 51492 IPv4 TCP 73b www.google.com A 0.000000
 ```
-

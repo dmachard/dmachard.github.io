@@ -20,16 +20,16 @@ dnstap can encode any DNS messages with network informations like ip and port. I
 
 This [dnstap](https://dnstap.info/) feature has been tested with success with the following dns servers:
 
-|                        | RQ/RS   | CQ/CR | AQ/AR | FQ/FR | Unix Socket | TCP Stream | TLS support | Extra Field |
-|------------------------|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|
-| [Bind](#isc-bind)               |   x   |   x   |   x   |       |      x      |      x     |             |             |
-| [PowerDNS recursor](#powerdns---pdns-recursor)    |   x   |       |       |       |      x      |      x     |             |             |
-| PowerDNS dnsdist     |       |   x   |       |       |      x      |      x     |             |      x      |
+|                                                        | RQ/RS   | CQ/CR | AQ/AR | FQ/FR | Unix Socket | TCP Stream | TLS support | Extra Field |
+|--------------------------------------------------------|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|
+| [Bind](https://kb.isc.org/docs/aa-01342)               |   x   |   x   |   x   |       |      x      |      x     |             |             |
+| [PowerDNS recursor](https://docs.powerdns.com/recursor/lua-config/protobuf.html)   |   x   |     |    |     |    x      |    x     |       |       |
+| [PowerDNS dnsdist](https://dnsdist.org/reference/dnstap.html)     |       |   x   |       |       |      x      |      x     |             |      x      |
 | [NSD](#nsd)       |       |       |   x   |       |      x      |            |             |             |
-| [Unbound](#unbound)   |   x   |   x   |       |   x   |      x      |      x     |      x      |             |
-| [CoreDNS](#coredns)              |       |   x   |       |   x   |      x      |      x     |      x      |      x      |
-| Knot Resolver |       |   x   |       |       |      x      |            |             |             |
-| Knot DNS      |       |       |   X   |       |      x      |            |             |             |
+| [Unbound](https://nlnetlabs.nl/documentation/unbound/unbound.conf/)   |   x   |   x   |       |   x   |      x      |      x     |      x      |             |
+| [CoreDNS](https://coredns.io/plugins/dnstap/)              |       |   x   |       |   x   |      x      |      x     |      x      |      x      |
+| [Knot Resolver](https://knot-resolver.readthedocs.io/en/stable/modules-dnstap.html) |       |   x   |       |       |      x      |            |             |             |
+| [Knot DNS](https://www.knot-dns.cz/docs/2.6/html/modules.html#dnstap-dnstap-traffic-logging)      |       |       |   X   |       |      x      |            |             |             |
 
 ## ISC bind
 
