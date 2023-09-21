@@ -1,5 +1,5 @@
 ---
-title: "Mainstream DNS Tunneling tools overview"
+title: "Overview of mainstream DNS tunneling tools"
 summary: "This post is an overview of some dns tunnneling tools with installation procedure."
 date: 2023-07-04T00:00:00+01:00
 draft: false
@@ -7,9 +7,9 @@ tags: ['dns', 'security']
 pin: true
 ---
 
-# Mainstream DNS Tunneling tools overview
+# Overview of mainstream DNS tunneling tools
 
-This post is an overview of some dns tunnneling tools with installation procedure.
+This post provides a overview of various DNS tunneling tools with complete with installation procedures.
 
 ## What is DNS tunneling?
 
