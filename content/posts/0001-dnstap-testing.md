@@ -1,5 +1,5 @@
 ---
-title: "Enabling DNStap logging on most common DNS servers"
+title: "Enabling DNStap logging on most popular DNS servers"
 summary: "This post details how to enable the dnstap feature in most popular dns server software."
 date: 2020-05-23T00:00:00+01:00
 draft: false
