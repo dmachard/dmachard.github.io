@@ -1,13 +1,13 @@
 ---
-title: "How to enable and use the DNSTAP protocol on main dns servers"
-summary: "This post details how to enable the dnstap feature in main open source dns servers."
+title: "Enabling DNStaplogging on most common DNS servers"
+summary: "This post details how to enable the dnstap feature in most common dns server software."
 date: 2020-05-23T00:00:00+01:00
 draft: false
-tags: ["dns", 'logs', 'dnstap']
+tags: ["dns", 'dnstap', 'logs']
 pin: true
 ---
 
-# How to enable and use the DNSTAP protocol on main dns servers
+# Enabling DNStaplogging on most common DNS servers
 
 This post details how to enable the dnstap feature in main open source dns servers.
 
