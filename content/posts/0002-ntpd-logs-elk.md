@@ -1,5 +1,5 @@
 ---
-title: "Extracting NTPd statistics for usage indicators"
+title: "Extracting NTPd Statistics for usage indicators"
 summary: "In this post, I will look at ntpd server to extract some ntp statitics."
 date: 2020-06-20T00:00:00+01:00
 draft: false
@@ -7,7 +7,7 @@ pin: true
 tags: ["ntp", 'logs', 'howto']
 ---
 
-# Extracting NTPd statistics for usage indicators
+# Extracting NTPd Statistics for usage indicators
 
 In this blog post, we will look to extract NTP statitics and visualizing these statistics on dashboards.
 
@@ -198,7 +198,7 @@ systemctl start filebeat
 
 Configure logstah `/etc/logstash/conf.d/00-beats.conf`
 
-```json
+```ini
 input {
     beats {
         port => 5044
