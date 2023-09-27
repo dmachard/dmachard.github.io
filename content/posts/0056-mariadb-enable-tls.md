@@ -1,7 +1,7 @@
 ---
 title: "Setting up SSL/TLS encryption with official MariaDB docker image"
 summary: "This post will describe the steps to configure SSL/TLS encryption for a MariaDB container running in Docker."
-date: 2023-09-27T00:00:00+01:00
+date: 2023-09-27T05:00:00+01:00
 draft: false
 tags: ['mariadb', 'security']
 pin: false
