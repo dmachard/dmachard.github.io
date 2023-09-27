@@ -67,7 +67,43 @@ sudo docker logs dnscollector
 You will observe output similar to the following:
 
 ```json
-{"dns.flags.aa":false,"dns.flags.ad":true,"dns.flags.qr":false,"dns.flags.ra":false,"dns.flags.tc":false,"dns.length":55,"dns.malformed-packet":false,"dns.opcode":0,"dns.qname":"www.google.com","dns.qtype":"A","dns.rcode":"NOERROR","dns.resource-records.an":[],"dns.resource-records.ar":[],"dns.resource-records.ns":[],"dnstap.extra":"-","dnstap.identity":"dnsdist","dnstap.latency":"0.000000","dnstap.operation":"CLIENT_QUERY","dnstap.timestamp-rfc3339ns":"2023-09-27T17:03:54.651904447Z","dnstap.version":"dnsdist 1.8.1","edns.dnssec-ok":0,"edns.options.0.code":10,"edns.options.0.data":"-","edns.options.0.name":"COOKIE","edns.rcode":0,"edns.udp-size":1232,"edns.version":0,"network.family":"IPv4","network.ip-defragmented":false,"network.protocol":"UDP","network.query-ip":"172.17.0.1","network.query-port":"49458","network.response-ip":"172.17.0.2","network.response-port":"53","network.tcp-reassembled":false}
+{
+  "dns.flags.aa":false,
+  "dns.flags.ad":true,
+  "dns.flags.qr":false,
+  "dns.flags.ra":false,
+  "dns.flags.tc":false,
+  "dns.length":55,
+  "dns.malformed-packet":false,
+  "dns.opcode":0,
+  "dns.qname":"www.google.com",
+  "dns.qtype":"A",
+  "dns.rcode":"NOERROR",
+  "dns.resource-records.an":[],
+  "dns.resource-records.ar":[],
+  "dns.resource-records.ns":[],
+  "dnstap.extra":"-",
+  "dnstap.identity":"dnsdist",
+  "dnstap.latency":"0.000000",
+  "dnstap.operation":"CLIENT_QUERY",
+  "dnstap.timestamp-rfc3339ns":"2023-09-27T17:03:54.651904447Z",
+  "dnstap.version":"dnsdist 1.8.1",
+  "edns.dnssec-ok":0,
+  "edns.options.0.code":10,
+  "edns.options.0.data":"-",
+  "edns.options.0.name":"COOKIE",
+  "edns.rcode":0,
+  "edns.udp-size":1232,
+  "edns.version":0,
+  "network.family":"IPv4",
+  "network.ip-defragmented":false,
+  "network.protocol":"UDP",
+  "network.query-ip":"172.17.0.1",
+  "network.query-port":"49458",
+  "network.response-ip":"172.17.0.2",
+  "network.response-port":"53",
+  "network.tcp-reassembled":false
+}
 ```
 
 ## Visualizing usage indicators and logs from Loki and Grafana
