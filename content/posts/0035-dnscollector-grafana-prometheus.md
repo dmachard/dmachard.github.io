@@ -1,65 +1,80 @@
 ---
-title: "Collect dnstap stream and get statistics usage with DNS-collector"
-summary: "Example to collect dnstap stream and get statistics usage"
+title: "Insights into your network's DNS activity with DNS-collector"
+summary: "Overview of the DNS-collector tool, an open-source DNS data collector"
 date: 2021-11-10T00:00:00+01:00
 draft: false
-tags: ['dnstap', 'logs', 'prometheus', 'grafana', 'dnscollector']
+tags: ['dnstap', 'logs', 'prometheus', 'dnscollector']
+pin: true
 ---
 
-# Collect dnstap stream and get statistics usage with DNS-collector
+# Insights into your network's DNS activity with DNS-collector
 
-Example to collect dnstap stream and get statistics usage 
+## What is DNS-collector?
 
-## Prequisites
+[DNS-collector](https://github.com/dmachard/go-dnscollector) is an open-source DNS data collector written in Go started sinc august 2021. It acts as a passive high speed ingestor, aggregator and distributor for logs with usage indicators and security analysis.
 
-Install the dnscollector like described in the following [guide](https://dmachard.github.io/posts/0007-dnscollector-install-binary/).
+DNS-collector can collect and aggregate DNS traffic from simultaneously sources like [DNStap](https://dnstap.info/) streams, network interface or log files and relays it to multiple other listeners with some transformations on it (traffic filtering, user privacy, ...).
 
-## Overview
+![ELK dashboard image](/images/0035/overview.png)
 
-With this example the collector waits incoming dnstap messages sent by your dns server, then you can watch statistics and metrics on your Grafana dashboard.
+## How to deploy DNS-collector with Docker
 
-![prometheus dnscollector](/images/0035/use-case-2.png)
+> Before proceeding, please follow the guide [Enabling DNStap logging on most popular DNS servers](https://dmachard.github.io/posts/0001-dnstap-testing/) to ensure that your DNS traffic is sent to the collector.
 
-## Configuration
-
-Download the [config.yml](https://github.com/dmachard/go-dnscollector/blob/main/example-config/use-case-2.yml) file. 
+Create the `config.yml` file
 
 ```yaml
 global:
   trace:
-    verbose: true
+    verbose: false
 
 multiplexer:
   collectors:
-    - name: tap_tls
+    - name: tap
       dnstap:
         listen-ip: 0.0.0.0
         listen-port: 6000
-        tls-support: true
-        cert-file: "/etc/dnscollector/dnscollector.crt"
-        key-file: "/etc/dnscollector/dnscollector.key"
 
   loggers:
-    - name: web_api
-      webserver:
+    - name: console
+      stdout:
+        mode: flatjson
+    - name: prom
+      prometheus:
         listen-ip: 0.0.0.0
-        listen-port: 8080
-        basic-auth-login: admin
-        basic-auth-pwd: changeme
-        tls-support: true
-        cert-file: "/etc/dnscollector/dnscollector.crt"
-        key-file: "/etc/dnscollector/dnscollector.key"
-
+        listen-port: 8081
+ 
   routes:
-    - from: [ tap_tls ]
-      to: [ web_api ]
+    - from: [ tap ]
+      to: [ console, prometheus ]
+
 ```
 
-## Dashboard
+> You can find various [examples](https://github.com/dmachard/go-dnscollector#usage-examples) on the github project.
 
-The dashboard can be found [here](https://github.com/dmachard/grafana-dashboards/tree/main/Go-DnsCollector).
+Pull the image and start the container
 
-Prometheus config
+```bash
+sudo docker run -d dmachard/go-dnscollector -v $(pwd)/config.yml:/etc/dnscollector/config.yml --name dnscollector
+```
+
+Display the logs
+
+```bash
+sudo docker logs dnscollector
+```
+
+You will observe output similar to the following:
+
+```json
+{"dns.flags.aa":false,"dns.flags.ad":true,"dns.flags.qr":false,"dns.flags.ra":false,"dns.flags.tc":false,"dns.length":55,"dns.malformed-packet":false,"dns.opcode":0,"dns.qname":"www.google.com","dns.qtype":"A","dns.rcode":"NOERROR","dns.resource-records.an":[],"dns.resource-records.ar":[],"dns.resource-records.ns":[],"dnstap.extra":"-","dnstap.identity":"dnsdist","dnstap.latency":"0.000000","dnstap.operation":"CLIENT_QUERY","dnstap.timestamp-rfc3339ns":"2023-09-27T17:03:54.651904447Z","dnstap.version":"dnsdist 1.8.1","edns.dnssec-ok":0,"edns.options.0.code":10,"edns.options.0.data":"-","edns.options.0.name":"COOKIE","edns.rcode":0,"edns.udp-size":1232,"edns.version":0,"network.family":"IPv4","network.ip-defragmented":false,"network.protocol":"UDP","network.query-ip":"172.17.0.1","network.query-port":"49458","network.response-ip":"172.17.0.2","network.response-port":"53","network.tcp-reassembled":false}
+```
+
+## Visualizing usage indicators and logs from Loki and Grafana
+
+### Configure prometheus
+
+Configure Prometheus to scrape metrics from DNS-collector:
 
 ```yaml
   - job_name: 'dnscollector'
@@ -71,6 +86,14 @@ Prometheus config
       - targets: [ dnscollector:8080 ]
 ```
 
-A small overview
+### Loki
 
-![dashboard dnscollector](/images/0035/dashboard.png)
+For tracing your logs in [Loki](https://grafana.com/oss/loki/), a [build-in](https://grafana.com/grafana/dashboards/15415) dashboard is available
+
+![loki dashboard image](/images/0035/dashboard_loki.png)
+
+### Grafana
+
+Additionally, a [build-in](https://grafana.com/grafana/dashboards/16630) Grafana dashboard is provided to get usage indicators.
+
+![grafana dashboard image](/images/0035/dashboard_prometheus.png)
