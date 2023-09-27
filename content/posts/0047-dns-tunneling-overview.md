@@ -4,7 +4,7 @@ summary: "This post is an overview of some dns tunnneling tools with installatio
 date: 2023-07-04T00:00:00+01:00
 draft: false
 tags: ['dns', 'security']
-pin: true
+pin: false
 ---
 
 # Overview of mainstream DNS tunneling tools
