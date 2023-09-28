@@ -1,5 +1,5 @@
 ---
-title: "Insights into your network's DNS activity with DNS-collector"
+title: "Insights into your DNS traffic with DNS-collector"
 summary: "Overview of the DNS-collector tool, an open-source DNS data collector"
 date: 2021-11-10T00:00:00+01:00
 draft: false
@@ -7,7 +7,7 @@ tags: ['dnstap', 'logs', 'prometheus', 'dnscollector']
 pin: true
 ---
 
-# Insights into your network's DNS activity with DNS-collector
+# Insights into your DNS traffic with DNS-collector
 
 ## What is DNS-collector?
 
