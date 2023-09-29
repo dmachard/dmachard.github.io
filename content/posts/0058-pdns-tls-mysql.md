@@ -81,7 +81,7 @@ docker-stack-dns-ns-1  | Sep 28 19:10:34 gmysql Connection failed: Unable to con
 
 The subject mismatch should appears
 
-```basg
+```bash
 docker-stack-dns-db-1  | 2023-09-28 19:10:34 6 [Note] X509 subject mismatch: should be '/CN=client.hello.world' but is '/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd/CN=client.hello.world'
 docker-stack-dns-db-1  | 2023-09-28 19:10:34 6 [Warning] Access denied for user 'pdns_user'@'172.16.0.30' (using password: YES)
 ```
