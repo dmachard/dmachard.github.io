@@ -139,7 +139,7 @@ $ tail -f messages-kv.log
 For enhanced security, you can enable mutual TLS authentication (mTLS) and restrict TLS to version 1.3.
 Update your syslog-ng configuration as follows:
 
-```
+```plain
 source s_network_tls {
   syslog(
         transport(tls)
