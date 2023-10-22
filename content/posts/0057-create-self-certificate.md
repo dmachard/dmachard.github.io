@@ -68,13 +68,19 @@ subjectAltName = DNS: server.home.lab, IP: 127.0.0.1
 Generate the private key and CSR (Certificate Signing Request):
 
 ```bash
-openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr --config server.conf -extensions req_ext -extfile server.conf
+openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr --config server.conf
 ```
 
 Generate the certificate for the server:
 
 ```bash
-openssl x509 -req -days 365 -in server.csr -out server.crt -CA ca.crt -CAkey ca.key
+openssl x509 -req -days 365 -in server.csr -out server.crt -CA ca.crt -CAkey ca.key -extensions req_ext -extfile server.conf
+```
+
+Show certificate
+
+```bash
+$ openssl x509 -text -noout -in server.crt
 ```
 
 ## Creating the client's certificate and key
