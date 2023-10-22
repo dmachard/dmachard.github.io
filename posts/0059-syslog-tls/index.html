@@ -13,7 +13,7 @@ For a detailed guide on how to create self-signed certificates using OpenSSL, yo
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>[ v3_ca ]</span>
 </span></span><span style=display:flex><span><span style=color:#a6e22e>basicConstraints</span>         <span style=color:#f92672>=</span> <span style=color:#e6db74>CA:TRUE</span>
-</span></span></code></pre></div><ol start=2><li>Create syslog-ng Configuration</li></ol><p>Now, let&rsquo;s create the syslog-ng.conf configuration file. Below is a sample configuration that sets up syslog-ng to use TLS encryption and listens on port 6514:</p><pre tabindex=0><code>@version: 4.1
+</span></span></code></pre></div><ol start=2><li>Create syslog-ng Configuration</li></ol><p>Now, let&rsquo;s create the syslog-ng.conf configuration file. Below is a sample configuration that sets up syslog-ng to use TLS encryption and listens on port 6514:</p><pre tabindex=0><code class=language-conf data-lang=conf>@version: 4.1
 
 source s_network_tls {
   syslog(
@@ -35,8 +35,7 @@ log {
   source(s_network_tls);
   destination(d_local);
 };
-</code></pre><ol start=3><li>Create Docker Compose</li></ol><p>Next, create a Docker Compose file, <code>docker-compose.yml</code>, to deploy the syslog-ng container:</p><blockquote><p>Docker file is on github <a href=https://github.com/linuxserver/docker-syslog-ng>https://github.com/linuxserver/docker-syslog-ng</a>
-All config are available in the following github <a href=repository>github.com/dmachard/docker-stack-syslog-ng</a></p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
+</code></pre><ol start=3><li>Create Docker Compose</li></ol><p>Next, create a Docker Compose file, <code>docker-compose.yml</code>, to deploy the syslog-ng container:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#f92672>services</span>:
 </span></span><span style=display:flex><span>  <span style=color:#f92672>syslog-ng</span>:
@@ -51,7 +50,7 @@ All config are available in the following github <a href=repository>github.com/d
 </span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>:
 </span></span><span style=display:flex><span>      - <span style=color:#ae81ff>6514</span>:<span style=color:#ae81ff>6514</span><span style=color:#ae81ff>/tcp</span>
 </span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span></code></pre></div><h2 id=deploy-syslog-ng-with-docker-compose><a class=anchor href=#deploy-syslog-ng-with-docker-compose>Deploy syslog-ng with Docker Compose</a></h2><p>Deploy syslog-ng with Docker Compose</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo docker compose up -d
+</span></span></code></pre></div><blockquote><p>Docker file is on github <a href=https://github.com/linuxserver/docker-syslog-ng>https://github.com/linuxserver/docker-syslog-ng</a></p><p>All config are available in the following github <a href=repository>github.com/dmachard/docker-stack-syslog-ng</a></p></blockquote><h2 id=deploy-syslog-ng-with-docker-compose><a class=anchor href=#deploy-syslog-ng-with-docker-compose>Deploy syslog-ng with Docker Compose</a></h2><p>Deploy syslog-ng with Docker Compose</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo docker compose up -d
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>+<span style=color:#f92672>]</span> Running 1/1
 </span></span><span style=display:flex><span> ✔ Container syslogng-compose-syslog-ng-1  Started
 </span></span></code></pre></div><p>You can check the status of your Docker containers with:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo docker compose ls
