@@ -4,53 +4,53 @@
 <span class="badge fw-normal bg-secondary bg-opacity-25 text-opacity-50 rounded-pill text-dark-emphasis">5</span></a></li><li class="nav-item px-md-1"><a class='nav-link text-dark active' href=https://dmachard.github.io//posts/><svg height="16" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M0 1.75A.75.75.0 01.75 1h4.253c1.227.0 2.317.59 3 1.501A3.744 3.744.0 0111.006 1h4.245a.75.75.0 01.75.75v10.5a.75.75.0 01-.75.75h-4.507a2.25 2.25.0 00-1.591.659l-.622.621a.75.75.0 01-1.06.0l-.622-.621A2.25 2.25.0 005.258 13H.75A.75.75.0 010 12.25V1.75zm8.755 3a2.25 2.25.0 012.25-2.25H14.5v9h-3.757c-.71.0-1.4.201-1.992.572l.004-7.322zm-1.504 7.324.004-5.073-.002-2.253A2.25 2.25.0 005.003 2.5H1.5v9h3.757a3.75 3.75.0 011.994.574z"/></svg><span class=m-1>Gists</span>
 <span class="badge fw-normal bg-secondary bg-opacity-25 text-opacity-50 rounded-pill text-dark-emphasis">59</span></a></li><li class="nav-item px-md-1"><a class='nav-link text-dark-emphasis' href=https://dmachard.github.io//tags/><svg viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg><span class=m-1>Tags</span>
 <span class="badge fw-normal bg-secondary bg-opacity-25 text-opacity-50 rounded-pill text-dark-emphasis">38</span></a></li></ul><div class="d-flex flex-column border rounded mt-4 mt-md-0"><div class="border-bottom bg-light markdown-sticky-top"><div class="d-flex flex-row align-items-center"><div class=btn-group role=group><button type=button class=btn data-bs-toggle=dropdown aria-expanded=false><svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16"><path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75.0 000 1.5h8.5a.75.75.0 000-1.5h-8.5zm0 5a.75.75.0 000 1.5h8.5a.75.75.0 000-1.5h-8.5zm0 5a.75.75.0 000 1.5h8.5a.75.75.0 000-1.5h-8.5zM3 8A1 1 0 111 8a1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"/></svg></button><ul class=dropdown-menu id=toc-list><li><h6 class=dropdown-header>Table of Content</h6></li></ul></div><div class="flex-fill text-secondary fs-7"><relative-time datetime="Sun, 22 Oct 2023 00:00:00 +0100"></relative-time></div><div class="pe-2 d-none d-md-block"><a class="badge text-bg-secondary text-dark fw-normal bg-opacity-25 pb-1 link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href=/tags/security>security</a>
-<a class="badge text-bg-secondary text-dark fw-normal bg-opacity-25 pb-1 link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href=/tags/syslog-ng>syslog-ng</a></div></div></div><div class="pt-4 px-2 pb-3"><article class="markdown-body container-lg"><h1 id=enable-tls-encryption-and-mutual-authentication-with-syslog-ng>Enable TLS encryption and mutual authentication with syslog-ng</h1><p>By following this guide, you can enhance the security of your log management system by enabling TLS encryption and mutual authentication with <code>syslog-ng</code>. This ensures that your log data remains confidential and trustworthy, even in a potentially insecure environment.</p><h2 id=prepare-working-directory><a class=anchor href=#prepare-working-directory>Prepare working directory</a></h2><p>Before we begin, make sure you have the following prerequisites in place:</p><ul><li>Docker: You&rsquo;ll need Docker installed on your system to run syslog-ng in a container.</li><li>A working directory: Create a directory for your syslog-ng configuration and logs.</li></ul><blockquote><p>This guide test is based on the docker <a href=linuxserver/syslog-ng>https://hub.docker.com/r/linuxserver/syslog-ng</a> image version 4.1</p></blockquote><p>You can do this with the following commands:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir syslogng_tls
+<a class="badge text-bg-secondary text-dark fw-normal bg-opacity-25 pb-1 link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href=/tags/syslog-ng>syslog-ng</a></div></div></div><div class="pt-4 px-2 pb-3"><article class="markdown-body container-lg"><h1 id=enable-tls-encryption-and-mutual-authentication-with-syslog-ng>Enable TLS encryption and mutual authentication with syslog-ng</h1><p>By following this guide, you can enhance the security of your log management system by enabling TLS encryption and mutual authentication with <code>syslog-ng</code>. This ensures that your log data remains confidential and trustworthy, even in a potentially insecure environment.</p><h2 id=prepare-working-directory><a class=anchor href=#prepare-working-directory>Prepare working directory</a></h2><p>Before we begin, make sure you have the following prerequisites in place:</p><ul><li>Docker: You&rsquo;ll need Docker installed on your system to run syslog-ng in a container.<blockquote><p>This guide test is based on the docker <a href=linuxserver/syslog-ng>https://hub.docker.com/r/linuxserver/syslog-ng</a> image version 4.1</p></blockquote></li><li>A working directory: Create a directory for your syslog-ng configuration and logs.</li></ul><p>You can do this with the following commands:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir syslogng_tls
 </span></span><span style=display:flex><span>mkdir syslogng_tls/config
 </span></span><span style=display:flex><span>mkdir syslogng_tls/log
-</span></span></code></pre></div><h2 id=configuration><a class=anchor href=#configuration>Configuration</a></h2><p>1; Create self-signed certificates</p><p>In this guide, you&rsquo;ll need to create self-signed certificates and place them in the conf folder.
-For a detailed guide on how to create self-signed certificates using OpenSSL, you can refer to this tutorial: [https://dmachard.github.io/posts/0057-create-self-certificate/](Create Self-Signed Certificates with OpenSSL)</p><p>To avoid the error following error in syslog-ng: <code>Invalid certificate found in chain, basicConstraints.ca is unset in non-leaf certificate</code></p><p>Generate your Certificate Authority with</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#66d9ef>[ req ]</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>x509_extensions</span>               <span style=color:#f92672>=</span> <span style=color:#e6db74>v3_ca</span>
+</span></span></code></pre></div><h2 id=configuration><a class=anchor href=#configuration>Configuration</a></h2><ol><li>Create self-signed certificates</li></ol><p>In this guide, you&rsquo;ll need to create self-signed certificates and place them in the conf folder.
+For a detailed guide on how to create self-signed certificates using OpenSSL, you can refer to this tutorial: [https://dmachard.github.io/posts/0057-create-self-certificate/](Create Self-Signed Certificates with OpenSSL)</p><p>To avoid the error following error in syslog-ng: <code>Invalid certificate found in chain, basicConstraints.ca is unset in non-leaf certificate</code></p><p>Generate your Certificate Authority with:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#66d9ef>[ req ]</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>x509_extensions</span>          <span style=color:#f92672>=</span> <span style=color:#e6db74>v3_ca</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>[ v3_ca ]</span>
 </span></span><span style=display:flex><span><span style=color:#a6e22e>basicConstraints</span>         <span style=color:#f92672>=</span> <span style=color:#e6db74>CA:TRUE</span>
-</span></span></code></pre></div><p>2; Create syslog-ng Configuration</p><p>Now, let&rsquo;s create the syslog-ng.conf configuration file. Below is a sample configuration that sets up syslog-ng to use TLS encryption and listens on port 6514:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#a6e22e>@version: 4.1</span>
+</span></span></code></pre></div><ol start=2><li>Create syslog-ng Configuration</li></ol><p>Now, let&rsquo;s create the syslog-ng.conf configuration file. Below is a sample configuration that sets up syslog-ng to use TLS encryption and listens on port 6514:</p><pre tabindex=0><code>@version: 4.1
+
+source s_network_tls {
+  syslog(
+        transport(tls)
+        port(6514)
+        tls (
+           cert-file(&#34;/config/server.crt&#34;)
+           key-file(&#34;/config/server.key&#34;)
+           peer-verify(optional-untrusted)
+        )
+  );
+};
+
+destination d_local {
+  file(&#34;/var/log/messages-kv.log&#34; template(&#34;$ISODATE $HOST $(format-welf --scope all-nv-pairs)\n&#34;) frac-digits(3));
+};
+
+log {
+  source(s_network_tls);
+  destination(d_local);
+};
+</code></pre><ol start=3><li>Create Docker Compose</li></ol><p>Next, create a Docker Compose file, <code>docker-compose.yml</code>, to deploy the syslog-ng container:</p><blockquote><p>Docker file is on github <a href=https://github.com/linuxserver/docker-syslog-ng>https://github.com/linuxserver/docker-syslog-ng</a>
+All config are available in the following github <a href=repository>github.com/dmachard/docker-stack-syslog-ng</a></p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>source s_network_tls {</span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>syslog(</span>
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>transport(tls)</span>
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>port(6514)</span>
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>tls (</span>
-</span></span><span style=display:flex><span>           <span style=color:#a6e22e>cert-file(&#34;/config/server.crt&#34;)</span>
-</span></span><span style=display:flex><span>           <span style=color:#a6e22e>key-file(&#34;/config/server.key&#34;)</span>
-</span></span><span style=display:flex><span>           <span style=color:#a6e22e>peer-verify(optional-untrusted)</span>
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>)</span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>);</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>};</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>destination d_local {</span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>file(&#34;/var/log/messages-kv.log&#34; template(&#34;$ISODATE $HOST $(format-welf --scope all-nv-pairs)\n&#34;) frac-digits(3));</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>};</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>log {</span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>source(s_network_tls);</span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>destination(d_local);</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>};</span>
-</span></span></code></pre></div><p>3; Create Docker Compose</p><p>Next, create a Docker Compose file, <code>docker-compose.yml</code>, to deploy the syslog-ng container:</p><blockquote><p>Docker file is on github <a href=https://github.com/linuxserver/docker-syslog-ng>https://github.com/linuxserver/docker-syslog-ng</a>
-All config are available in the following github <a href=repository>github.com/dmachard/docker-stack-syslog-ng</a></p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>version: <span style=color:#e6db74>&#34;3.8&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>services:
-</span></span><span style=display:flex><span>  syslog-ng:
-</span></span><span style=display:flex><span>    image: lscr.io/linuxserver/syslog-ng:4.1.1
-</span></span><span style=display:flex><span>    environment:
-</span></span><span style=display:flex><span>      - PUID<span style=color:#f92672>=</span><span style=color:#ae81ff>1000</span>
-</span></span><span style=display:flex><span>      - PGID<span style=color:#f92672>=</span><span style=color:#ae81ff>1000</span>
-</span></span><span style=display:flex><span>      - TZ<span style=color:#f92672>=</span>Etc/UTC
-</span></span><span style=display:flex><span>    volumes:
-</span></span><span style=display:flex><span>      - ./config:/config
-</span></span><span style=display:flex><span>      - ./log:/var/log
-</span></span><span style=display:flex><span>    ports:
-</span></span><span style=display:flex><span>      - 6514:6514/tcp
-</span></span><span style=display:flex><span>    restart: unless-stopped
+</span></span><span style=display:flex><span><span style=color:#f92672>services</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>syslog-ng</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>lscr.io/linuxserver/syslog-ng:4.1.1</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>PUID=1000</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>PGID=1000</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>TZ=Etc/UTC</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./config:/config</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./log:/var/log</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>6514</span>:<span style=color:#ae81ff>6514</span><span style=color:#ae81ff>/tcp</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
 </span></span></code></pre></div><h2 id=deploy-syslog-ng-with-docker-compose><a class=anchor href=#deploy-syslog-ng-with-docker-compose>Deploy syslog-ng with Docker Compose</a></h2><p>Deploy syslog-ng with Docker Compose</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo docker compose up -d
 </span></span><span style=display:flex><span><span style=color:#f92672>[</span>+<span style=color:#f92672>]</span> Running 1/1
 </span></span><span style=display:flex><span> ✔ Container syslogng-compose-syslog-ng-1  Started
@@ -61,20 +61,20 @@ All config are available in the following github <a href=repository>github.com/d
 </span></span></code></pre></div><p>You can monitor the incoming logs in the messages-kv.log file.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ tail -f messages-kv.log
 </span></span><span style=display:flex><span>2023-10-17T21:25:15.000+02:00 denis-laptop HOST<span style=color:#f92672>=</span>denis-laptop HOST_FROM<span style=color:#f92672>=</span>denis-laptop MESSAGE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;This is a sample log message over TLS.&#34;</span> MSGID<span style=color:#f92672>=</span>tag PID<span style=color:#f92672>=</span><span style=color:#ae81ff>78175</span> PROGRAM<span style=color:#f92672>=</span>/usr/bin/binary SOURCE<span style=color:#f92672>=</span>s_network_tls
 </span></span></code></pre></div><h2 id=mutual-tls-authentication><a class=anchor href=#mutual-tls-authentication>Mutual TLS authentication</a></h2><p>For enhanced security, you can enable mutual TLS authentication (mTLS) and restrict TLS to version 1.3.
-Update your syslog-ng configuration as follows:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#a6e22e>source s_network_tls {</span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>syslog(</span>
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>transport(tls)</span>
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>port(6514)</span>
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>tls (</span>
-</span></span><span style=display:flex><span>           <span style=color:#a6e22e>cert-file(&#34;/config/server.crt&#34;)</span>
-</span></span><span style=display:flex><span>           <span style=color:#a6e22e>key-file(&#34;/config/server.key&#34;)</span>
-</span></span><span style=display:flex><span>           <span style=color:#a6e22e>ca-file(&#34;/config/ca.crt&#34;)</span>
-</span></span><span style=display:flex><span>           <span style=color:#a6e22e>peer-verify(required-trusted)</span>
-</span></span><span style=display:flex><span>           <span style=color:#a6e22e>ssl-options(no-tlsv12)</span>
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>)</span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>);</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>};</span>
-</span></span></code></pre></div><p>After making this change, restart your syslog-ng container.</p><p>Use nmap command to check the TLS version</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ nmap --script ssl-enum-ciphers -p <span style=color:#ae81ff>6514</span> 127.0.0.1
+Update your syslog-ng configuration as follows:</p><pre tabindex=0><code>source s_network_tls {
+  syslog(
+        transport(tls)
+        port(6514)
+        tls (
+           cert-file(&#34;/config/server.crt&#34;)
+           key-file(&#34;/config/server.key&#34;)
+           ca-file(&#34;/config/ca.crt&#34;)
+           peer-verify(required-trusted)
+           ssl-options(no-tlsv12)
+        )
+  );
+};
+</code></pre><p>After making this change, restart your syslog-ng container.</p><p>Use nmap command to check the TLS version</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ nmap --script ssl-enum-ciphers -p <span style=color:#ae81ff>6514</span> 127.0.0.1
 </span></span><span style=display:flex><span>Starting Nmap 7.93 <span style=color:#f92672>(</span> https://nmap.org <span style=color:#f92672>)</span> at 2023-10-22 16:17 CEST
 </span></span><span style=display:flex><span>Nmap scan report <span style=color:#66d9ef>for</span> localhost <span style=color:#f92672>(</span>127.0.0.1<span style=color:#f92672>)</span>
 </span></span><span style=display:flex><span>Host is up <span style=color:#f92672>(</span>0.00011s latency<span style=color:#f92672>)</span>.
@@ -92,7 +92,7 @@ Update your syslog-ng configuration as follows:</p><div class=highlight><pre tab
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>Nmap <span style=color:#66d9ef>done</span>: <span style=color:#ae81ff>1</span> IP address <span style=color:#f92672>(</span><span style=color:#ae81ff>1</span> host up<span style=color:#f92672>)</span> scanned in 0.25 seconds
 </span></span></code></pre></div><p>To test mutual TLS authentication, try sending a log message without providing the client certificate and key.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ printf <span style=color:#e6db74>&#34;107 &lt;30&gt;1 2023-10-17T21:25:15+02:00 hostname /usr/bin/binary 78175 tag - This is a sample log message over TLS.&#34;</span> | socat - openssl:127.0.0.1:6514,verify<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>
-</span></span></code></pre></div><p>You should receive an error message indicating that the peer did not return a certificate.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ tail -f config/log/current
+</span></span></code></pre></div><p>You should receive an error message <code>peer did not return a certificate</code> indicating that the peer did not return a certificate.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ tail -f config/log/current
 </span></span><span style=display:flex><span>2023-10-22 17:08:42.165093663  <span style=color:#f92672>[</span>2023-10-22T17:08:42.165054<span style=color:#f92672>]</span> Syslog connection accepted; fd<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;13&#39;</span>, client<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;AF_INET(172.21.0.1:46488)&#39;</span>, local<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;AF_INET(0.0.0.0:6514)&#39;</span>
 </span></span><span style=display:flex><span>2023-10-22 17:08:42.170333871  <span style=color:#f92672>[</span>2023-10-22T17:08:42.170290<span style=color:#f92672>]</span> SSL error <span style=color:#66d9ef>while</span> reading stream; tls_error<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;error:0A0000C7:SSL routines::peer did not return a certificate&#39;</span>, location<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;/config/syslog-ng.conf:7:4&#39;</span>
 </span></span><span style=display:flex><span>2023-10-22 17:08:42.170373178  <span style=color:#f92672>[</span>2023-10-22T17:08:42.170322<span style=color:#f92672>]</span> Error reading RFC6587 style framed data; fd<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;13&#39;</span>, error<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Connection reset by peer (104)&#39;</span>
