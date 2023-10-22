@@ -50,7 +50,7 @@ basicConstraints         = CA:TRUE
 
 Now, let's create the syslog-ng.conf configuration file. Below is a sample configuration that sets up syslog-ng to use TLS encryption and listens on port 6514:
 
-```
+```conf
 @version: 4.1
 
 source s_network_tls {
@@ -79,9 +79,6 @@ log {
 
 Next, create a Docker Compose file, `docker-compose.yml`, to deploy the syslog-ng container:
 
-> Docker file is on github https://github.com/linuxserver/docker-syslog-ng
-> All config are available in the following github [github.com/dmachard/docker-stack-syslog-ng](repository)
-
 ```yaml
 version: "3.8"
 
@@ -99,6 +96,10 @@ services:
       - 6514:6514/tcp
     restart: unless-stopped
 ```
+
+> Docker file is on github https://github.com/linuxserver/docker-syslog-ng
+>
+> All config are available in the following github [github.com/dmachard/docker-stack-syslog-ng](repository)
 
 ## Deploy syslog-ng with Docker Compose
 
