@@ -50,7 +50,7 @@ basicConstraints         = CA:TRUE
 
 Now, let's create the syslog-ng.conf configuration file. Below is a sample configuration that sets up syslog-ng to use TLS encryption and listens on port 6514:
 
-```conf
+```plain
 @version: 4.1
 
 source s_network_tls {
