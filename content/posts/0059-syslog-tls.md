@@ -16,9 +16,8 @@ By following this guide, you can enhance the security of your log management sys
 Before we begin, make sure you have the following prerequisites in place:
 
 - Docker: You'll need Docker installed on your system to run syslog-ng in a container.
+    > This guide test is based on the docker [https://hub.docker.com/r/linuxserver/syslog-ng](linuxserver/syslog-ng) image version 4.1
 - A working directory: Create a directory for your syslog-ng configuration and logs.
-
-> This guide test is based on the docker [https://hub.docker.com/r/linuxserver/syslog-ng](linuxserver/syslog-ng) image version 4.1
 
 You can do this with the following commands:
 
@@ -30,28 +29,28 @@ mkdir syslogng_tls/log
 
 ## Configuration
 
-1; Create self-signed certificates
+1. Create self-signed certificates
 
 In this guide, you'll need to create self-signed certificates and place them in the conf folder.
 For a detailed guide on how to create self-signed certificates using OpenSSL, you can refer to this tutorial: [https://dmachard.github.io/posts/0057-create-self-certificate/](Create Self-Signed Certificates with OpenSSL)
 
 To avoid the error following error in syslog-ng: `Invalid certificate found in chain, basicConstraints.ca is unset in non-leaf certificate`
 
-Generate your Certificate Authority with 
+Generate your Certificate Authority with:
 
 ```ini
 [ req ]
-x509_extensions               = v3_ca
+x509_extensions          = v3_ca
 
 [ v3_ca ]
 basicConstraints         = CA:TRUE
 ```
 
-2; Create syslog-ng Configuration
+2. Create syslog-ng Configuration
 
 Now, let's create the syslog-ng.conf configuration file. Below is a sample configuration that sets up syslog-ng to use TLS encryption and listens on port 6514:
 
-```ini
+```
 @version: 4.1
 
 source s_network_tls {
@@ -76,14 +75,14 @@ log {
 };
 ```
 
-3; Create Docker Compose
+3. Create Docker Compose
 
 Next, create a Docker Compose file, `docker-compose.yml`, to deploy the syslog-ng container:
 
 > Docker file is on github https://github.com/linuxserver/docker-syslog-ng
 > All config are available in the following github [github.com/dmachard/docker-stack-syslog-ng](repository)
 
-```bash
+```yaml
 version: "3.8"
 
 services:
@@ -139,7 +138,7 @@ $ tail -f messages-kv.log
 For enhanced security, you can enable mutual TLS authentication (mTLS) and restrict TLS to version 1.3.
 Update your syslog-ng configuration as follows:
 
-```ini
+```
 source s_network_tls {
   syslog(
         transport(tls)
@@ -185,7 +184,7 @@ To test mutual TLS authentication, try sending a log message without providing t
 $ printf "107 <30>1 2023-10-17T21:25:15+02:00 hostname /usr/bin/binary 78175 tag - This is a sample log message over TLS." | socat - openssl:127.0.0.1:6514,verify=0
 ```
 
-You should receive an error message indicating that the peer did not return a certificate.
+You should receive an error message `peer did not return a certificate` indicating that the peer did not return a certificate.
 
 ```bash
 $ tail -f config/log/current
