@@ -135,7 +135,7 @@ $ tail -f messages-kv.log
 
 ## Mutual TLS authentication
 
-For enhanced security, you can enable mutual TLS authentication (mTLS) and restrict TLS to version 1.3.
+For enhanced security, you can enable mutual TLS authentication [mTLS](https://en.wikipedia.org/wiki/Mutual_authentication) and restrict TLS to version 1.3.
 Update your syslog-ng configuration as follows:
 
 ```plain
@@ -156,7 +156,7 @@ source s_network_tls {
 
 After making this change, restart your syslog-ng container.
 
-Use nmap command to check the TLS version
+Use `nmap` command to check the TLS version
 
 ```bash
 $ nmap --script ssl-enum-ciphers -p 6514 127.0.0.1
