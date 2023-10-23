@@ -15,26 +15,25 @@ By following this guide, you can enhance the security of your log management sys
 
 Before we begin, make sure you have the following prerequisites in place:
 
-- Docker: You'll need Docker installed on your system to run syslog-ng in a container.
+- You'll need Docker installed on your system to run syslog-ng in a container.
     > This guide test is based on the docker [https://hub.docker.com/r/linuxserver/syslog-ng](linuxserver/syslog-ng) image version 4.1
-- A working directory: Create a directory for your syslog-ng configuration and logs.
 
-You can do this with the following commands:
+- Create a directory for your syslog-ng configuration and logs. You can do this with the following commands:
 
-```bash
-mkdir syslogng_tls
-mkdir syslogng_tls/config
-mkdir syslogng_tls/log
-```
+    > ```bash
+    > mkdir syslogng_tls
+    > mkdir syslogng_tls/config
+    > mkdir syslogng_tls/log
+    > ```
 
 ## Configuration
 
 1. Create self-signed certificates
 
 In this guide, you'll need to create self-signed certificates and place them in the conf folder.
-For a detailed guide on how to create self-signed certificates using OpenSSL, you can refer to this tutorial: [https://dmachard.github.io/posts/0057-create-self-certificate/](Create Self-Signed Certificates with OpenSSL)
+For a detailed guide on how to create self-signed certificates using OpenSSL, you can refer to this [tutorial](https://dmachard.github.io/posts/0057-create-self-certificate/).
 
-To avoid the error following error in syslog-ng: `Invalid certificate found in chain, basicConstraints.ca is unset in non-leaf certificate`
+> To avoid the error following error in syslog-ng: `Invalid certificate found in chain, basicConstraints.ca is unset in non-leaf certificate`
 
 Generate your Certificate Authority with:
 
@@ -46,9 +45,9 @@ x509_extensions          = v3_ca
 basicConstraints         = CA:TRUE
 ```
 
-2. Create syslog-ng Configuration
+2. Create syslog-ng configuration
 
-Now, let's create the syslog-ng.conf configuration file. Below is a sample configuration that sets up syslog-ng to use TLS encryption and listens on port 6514:
+Now, let's create the `syslog-ng.conf` configuration file. Below is a sample configuration that sets up syslog-ng to use TLS encryption and listens on port 6514:
 
 ```plain
 @version: 4.1
