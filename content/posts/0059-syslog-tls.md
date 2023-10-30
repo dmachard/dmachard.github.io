@@ -52,6 +52,10 @@ Now, let's create the `syslog-ng.conf` configuration file. Below is a sample con
 ```plain
 @version: 4.1
 
+options {
+  keep_hostname(yes);
+};
+
 source s_network_tls {
   syslog(
         transport(tls)
