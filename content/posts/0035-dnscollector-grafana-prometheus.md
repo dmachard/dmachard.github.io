@@ -55,7 +55,7 @@ multiplexer:
 Pull the image and start the container
 
 ```bash
-sudo docker run -d dmachard/go-dnscollector -v $(pwd)/config.yml:/etc/dnscollector/config.yml --name dnscollector
+sudo docker run -d -v $(pwd)/config.yml:/etc/dnscollector/config.yml --name dnscollector -p 6000:6000/tcp dmachard/go-dnscollector:latest
 ```
 
 Display the logs
