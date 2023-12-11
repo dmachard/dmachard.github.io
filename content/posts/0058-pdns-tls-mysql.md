@@ -45,6 +45,7 @@ gmysql-group=pdns
 Finnaly add the `/etc/my.cnf` file and provides the certificate and private key of the client.
 
 ```ini
+[pdns]
 ssl-cert = /etc/powerdns/client.crt
 ssl-key = /etc/powerdns/client.key
 ssl_ca = /etc/powerdns/ca.crt
