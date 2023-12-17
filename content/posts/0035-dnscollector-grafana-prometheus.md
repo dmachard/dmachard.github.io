@@ -9,9 +9,9 @@ pin: true
 
 # Insights into your DNS traffic with DNS-collector
 
-![DNS-collector](https://raw.githubusercontent.com/dmachard/go-dnscollector/main/docs/dns-collector_logo.png)
-
 ## What is DNS-collector?
+
+![DNS-collector](https://raw.githubusercontent.com/dmachard/go-dnscollector/main/docs/dns-collector_logo.png)
 
 [DNS-collector](https://github.com/dmachard/go-dnscollector) is an open-source DNS data collector written in Go started sinc august 2021. It acts as a passive high speed ingestor, aggregator and distributor for logs with usage indicators and security analysis.
 
