@@ -9,7 +9,7 @@ pin: true
 
 # Insights into your DNS traffic with DNS-collector
 
-![DNS-collector](https://github.com/dmachard/go-dnscollector/blob/main/docs/dns-collector_logo.png?raw=true)
+![DNS-collector](https://raw.githubusercontent.com/dmachard/go-dnscollector/main/docs/dns-collector_logo.png)
 
 ## What is DNS-collector?
 
