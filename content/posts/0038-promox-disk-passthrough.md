@@ -46,6 +46,30 @@ qm set 100 -scsi3 /dev/disk/by-id/ata-WDC_WD30EFRX-68xxx_WD-WCC1Txxxx
 qm unlink 100 --idlist scsi2
 ```
 
+## Smart
+
+```bash
+$ smartctl --health --info /dev/disk/by-id/ata-ST950042xxxxxxxxxx
+smartctl 7.3 2022-02-28 r5338 [x86_64-linux-6.5.11-7-pve] (local build)
+Copyright (C) 2002-22, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF INFORMATION SECTION ===
+Model Family:     Seagate Momentus 7200.4
+Device Model:     xxxxxxxxx
+Serial Number:    xxxxxx
+LU WWN Device Id: 5 000c50 01xxxxxx
+Firmware Version: 0004SDM1
+User Capacity:    500,107,862,016 bytes [500 GB]
+Sector Size:      512 bytes logical/physical
+Rotation Rate:    7200 rpm
+Device is:        In smartctl database 7.3/5319
+ATA Version is:   ATA8-ACS T13/1699-D revision 4
+SATA Version is:  SATA 2.6, 3.0 Gb/s
+Local Time is:    Mon Jan  1 18:12:41 2024 CET
+SMART support is: Available - device has SMART capability.
+SMART support is: Enabled
+```
+
 ## Setup on Windows
 
 Download the latest stable Windows VirtIO drivers from https://github.com/virtio-win/virtio-win-pkg-scripts
