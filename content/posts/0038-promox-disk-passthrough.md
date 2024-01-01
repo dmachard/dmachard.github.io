@@ -16,11 +16,19 @@ Identify all disks installed on the Promox server.
 
 ```bash
 $ ls /dev/disk/by-id/ | grep ata
-ata-ST3000VN000-1HJxxx_W6Axxxx
-ata-ST3000VN000-1HJxxx_W6Axxx
-ata-WDC_WD30EFRX-68xxx_WD-WCC1Txxxx
-ata-WDC_WD30EFRX-68xxx_WD-WCC1Txxxx
-ata-WDC_WD40EFRX-68xxx_WD-WCC7Kxxx
+ata-TOSHIBA_MK1237GSX_775BT2QFT
+```
+
+Display size
+
+```bash
+$ lshw -class disk -class storage
+*-disk
+    description: SCSI Disk
+    product: ASM235CM
+    vendor: ASMT
+    version: 0
+    size: 111GiB (120GB)
 ```
 
 ## Attach disks
@@ -28,8 +36,8 @@ ata-WDC_WD40EFRX-68xxx_WD-WCC7Kxxx
 Get the ID of the VM and attach the disk to them.
 
 ```bash
-qm set 100 -virtio2 /dev/disk/by-id/ata-ST3000VN000-1HJxxx_W6Axxxx
-qm set 100 -virtio3 /dev/disk/by-id/ata-WDC_WD30EFRX-68xxx_WD-WCC1Txxxx
+qm set 100 -scsi2 /dev/disk/by-id/ata-ST3000VN000-1HJxxx_W6Axxxx
+qm set 100 -scsi3 /dev/disk/by-id/ata-WDC_WD30EFRX-68xxx_WD-WCC1Txxxx
 ```
 
 ## Setup on Windows
