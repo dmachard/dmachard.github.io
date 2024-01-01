@@ -40,6 +40,12 @@ qm set 100 -scsi2 /dev/disk/by-id/ata-ST3000VN000-1HJxxx_W6Axxxx
 qm set 100 -scsi3 /dev/disk/by-id/ata-WDC_WD30EFRX-68xxx_WD-WCC1Txxxx
 ```
 
+## Remove disk
+
+```bash
+qm unlink 100 --idlist scsi2
+```
+
 ## Setup on Windows
 
 Download the latest stable Windows VirtIO drivers from https://github.com/virtio-win/virtio-win-pkg-scripts
