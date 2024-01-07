@@ -5,6 +5,11 @@ theme = "gists"
 pygmentsCodeFences = true
 paginate = 5
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [params]
   author = "Denis Machard"
   resume = "My technical gists"
