@@ -1,5 +1,5 @@
 ---
-title: "My Linux cheat sheet"
+title: "My inux cheat sheet"
 summary: "My Linux cheat sheet"
 date: 2024-01-07T00:00:00+01:00
 draft: false
@@ -27,3 +27,11 @@ pin: false
                                         $ ssh-keygen<br/>
                                         $ ssh-copy-id username@remote_host
                                         ``` |
+
+{{< bootstrap-table "table table-dark table-striped table-bordered" >}}
+| Animal  | Sounds |
+|---------|--------|
+| Cat     | Meow   |
+| Dog     | Woof   |
+| Cricket | Chirp  |
+{{< /bootstrap-table >}}
