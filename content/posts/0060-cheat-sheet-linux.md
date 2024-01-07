@@ -28,10 +28,20 @@ pin: false
                                         $ ssh-copy-id username@remote_host
                                         ``` |
 
-{{< bootstrap-table "table table-dark table-striped table-bordered" >}}
+{{< bootstrap-table "table table-striped table-bordered" >}}
 | Animal  | Sounds |
 |---------|--------|
 | Cat     | Meow   |
-| Dog     | Woof   |
+| Dog     | ```yaml
+            $ sudo vim /etc/netplan/01-cfg-ens19.yaml<br/>
+            network:<br/>
+                ethernets:<br/>
+                ens19:<br/>
+                    addresses:<br/>
+                    - 172.16.0.1/12<br/>
+                version: 2<br/>
+            sudo chmod 600 /etc/netplan/*<br/>
+            sudo netplan apply
+            ```   |
 | Cricket | Chirp  |
 {{< /bootstrap-table >}}
