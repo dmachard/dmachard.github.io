@@ -24,7 +24,7 @@ pin: false
 
 | Cheat sheet | Commands  |
 | ------ | --------- |
-| Generating a new SSH public and private key pair on your local computer is the first step | <pre>ssh-keygen -b 4096</pre> |
+| Generating a new SSH public and private key | <pre>ssh-keygen -b 4096</pre> |
 | Copy the public key to remote server | <pre>ssh-copy-id username@remote_host</pre> |
 | Disabling Root Login in SSHD | <pre>sudo nano /etc/ssh/sshd_config<br>PermitRootLogin no<br>sudo service sshd restart</pre> |
 | Disabling Password Authentication on SSHD | <pre>sudo nano /etc/ssh/sshd_config<br>PasswordAuthentication no<br>sudo service sshd restart</pre> |
