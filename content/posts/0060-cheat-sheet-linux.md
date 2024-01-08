@@ -9,13 +9,18 @@ pin: false
 
 # Cheat sheets for Linux, Git, Sshd, GPG and more
 
-## Ubuntu
+## Linux
 
 | Cheat sheet | Commands  |
 | ------ | --------- |
 | update hostname                     | <pre>sudo hostnamectl set-hostname [new_name]</pre> |
 | show version ubuntu                 | <pre>lsb_release -a</pre> |
-| add static ip with netplan          | <pre>sudo vim /etc/netplan/01-cfg-ens19.yaml<br/>network:<br/>    ethernets:<br/>    ens19:<br/>        addresses:<br/>        - 172.16.0.1/12<br/>    version: 2<br/>sudo chmod 600 /etc/netplan/*<br/>sudo netplan apply</pre> |
+| add static ip with `Netplan`         | <pre>sudo vim /etc/netplan/01-cfg-ens19.yaml<br/>network:<br/>    ethernets:<br/>    ens19:<br/>        addresses:<br/>        - 172.16.0.1/12<br/>    version: 2<br/>sudo chmod 600 /etc/netplan/*<br/>sudo netplan apply</pre> |
+| lists network interfaces with `NetworkManager` | <pre>nmcli connection show<br>NAME          UUID                                  TYPE      DEVICE<br> WiFi5      79361210-59bd-4a91-a4af-c78634446295  wifi      wlp2s0<br></pre> |
+| rename Interface with `NetworkManager` | <pre>nmcli connection modify "Wired connection 1" connection.interface-name "ens19"</pre> |
+| add static IP with `NetworkManager` | <pre>nmcli con mod <NET_UUID> ipv4.address 192.168.1.2/24<br >nmcli con mod <NET_UUID> ipv4.gateway 192.168.1.1<br >nmcli con mod <NET_UUID> ipv4.method manual<br >nmcli con mod <NET_UUID> ipv4.dns 8.8.8.8<br >
+nmcli con mod <NET_UUID> autoconnect yes<br >nmcli con down <NET_UUID><br >nmcli con up <NET_UUID><br ></pre> |
+| lists network interfaces with `NetworkManager` | <pre></pre> |
 | display file permission and ownership | <pre>ls -alrt<br>-rwxrwxr--. 1 ansible automation 4 Nov 13 10:57 helloworld.txt<br><br>r = read = 4<br>w = write = 2<br>x = execute = 1<br>[ user = u ] [ group = g ] [ others = o ]<br>The user *ansible* has 4+2+1=7 (full access)<br>The group *automation* has 4+2+1=7 (full access)<br>All others have 4  (read-only)</pre> |
 | change permission file or directory | <pre>chmod 644 myfile</pre> |
 | change user and group appartenance | <pre>chown -R user:group /mydirectory/</pre> |
