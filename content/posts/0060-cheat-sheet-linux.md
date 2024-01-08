@@ -1,13 +1,13 @@
 ---
-title: "My linux cheat sheet"
-summary: "This cheat sheet lists some Linux commands"
+title: "Cheat sheets for Linux, Git, GPG, VIM, and more"
+summary: "This page lists some commands for Linux, Git, Ssh, GPG, etc..."
 date: 2024-01-07T00:00:00+01:00
 draft: false
 tags: ['cheat-sheet']
 pin: false
 ---
 
-# My linux cheat sheet
+# Cheat sheets for Linux, Git, Sshd, GPG and more
 
 ## Ubuntu
 
