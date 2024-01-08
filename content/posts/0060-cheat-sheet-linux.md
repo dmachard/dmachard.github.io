@@ -24,10 +24,10 @@ pin: false
 
 | Cheat sheet | Commands  |
 | ------ | --------- |
-| Generating a new SSH public and private key | <pre>ssh-keygen -b 4096</pre> |
-| Copy the public key to remote server | <pre>ssh-copy-id username@remote_host</pre> |
-| Disabling Root Login in SSHD | <pre>sudo nano /etc/ssh/sshd_config<br>PermitRootLogin no<br>sudo service sshd restart</pre> |
-| Disabling Password Authentication on SSHD | <pre>sudo nano /etc/ssh/sshd_config<br>PasswordAuthentication no<br>sudo service sshd restart</pre> |
+| generating a new SSH public and private key | <pre>ssh-keygen -b 4096</pre> |
+| copy the public key to remote server | <pre>ssh-copy-id username@remote_host</pre> |
+| disabling Root Login in SSHD | <pre>sudo nano /etc/ssh/sshd_config<br>PermitRootLogin no<br>sudo service sshd restart</pre> |
+| disabling Password Authentication on SSHD | <pre>sudo nano /etc/ssh/sshd_config<br>PasswordAuthentication no<br>sudo service sshd restart</pre> |
 
 ## Git
 
@@ -39,6 +39,6 @@ pin: false
 
 | Cheat sheet | Commands  |
 | ------ | --------- |
-| List GPG keys | <pre>gpg --list-secret-keys --keyid-format=long<br>sec   rsa4096/<KEY_ID> 2021-06-09 [SC]</pre> |
-| Update an existing key | <pre>gpg --edit-key <KEY_ID></pre> |
+| list GPG keys | <pre>gpg --list-secret-keys --keyid-format=long<br>sec   rsa4096/<KEY_ID> 2021-06-09 [SC]</pre> |
+| update an existing key | <pre>gpg --edit-key <KEY_ID></pre> |
 | export GPG key | <pre>gpg --armor --export <KEY_ID>-----BEGIN PGP PUBLIC KEY BLOCK-----<br>mQINBGDBBhIBEADD/m4EK+XFiW20rE8fhLgom+zI/eExjaTUbLrLPj2q6SxxX2rg<br>....<br>mQINBGDBBhIBEADD/m4EK+XFiW20rE8fhLgom+zI/eExjaTUbLrLPj2q6SxxX2rg<br>-----END PGP PUBLIC KEY BLOCK-----</pre> |
