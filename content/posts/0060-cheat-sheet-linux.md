@@ -33,7 +33,7 @@ pin: false
 
 | Cheat sheet | Commands  |
 | ------ | --------- |
-| config client | |<pre>git config --global user.name <USERNAME><br>git config --global user.email <EMAIL></pre> |
+| config client | <pre>git config --global user.name <USERNAME><br>git config --global user.email <EMAIL></pre> |
 | use your GPG key | <pre>git config --global commit.gpgsign true<br>git config --global user.signingkey <KEY_ID></pre> |
 
 ## GPG
@@ -48,5 +48,4 @@ pin: false
 
 | Cheat sheet | Commands  |
 | ------ | --------- |
-| Delete specific lines | |<pre>:g/<PATTERN>/d</pre> |
-| | |<pre></pre> |
+| Delete specific lines | <pre>:g/<PATTERN>/d</pre> |
