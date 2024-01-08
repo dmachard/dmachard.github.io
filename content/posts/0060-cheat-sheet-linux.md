@@ -33,7 +33,8 @@ pin: false
 
 | Cheat sheet | Commands  |
 | ------ | --------- |
-| use your GPG key | <pre>git config --global user.signingkey <KEY_ID></pre> |
+| config client | |<pre>git config --global user.name <USERNAME><br>git config --global user.email <EMAIL></pre> |
+| use your GPG key | <pre>git config --global commit.gpgsign true<br>git config --global user.signingkey <KEY_ID></pre> |
 
 ## GPG
 
@@ -42,3 +43,10 @@ pin: false
 | list GPG keys | <pre>gpg --list-secret-keys --keyid-format=long<br>sec   rsa4096/<KEY_ID> 2021-06-09 [SC]</pre> |
 | update an existing key | <pre>gpg --edit-key <KEY_ID></pre> |
 | export GPG key | <pre>gpg --armor --export <KEY_ID>-----BEGIN PGP PUBLIC KEY BLOCK-----<br>mQINBGDBBhIBEADD/m4EK+XFiW20rE8fhLgom+zI/eExjaTUbLrLPj2q6SxxX2rg<br>...<br>mQINBGDBBhIBEADD/m4EK+XFiW20rE8fhLgom+zI/eExjaTUbLrLPj2q6SxxX2rg<br>-----END PGP PUBLIC KEY BLOCK-----</pre> |
+
+## VIM
+
+| Cheat sheet | Commands  |
+| ------ | --------- |
+| Delete specific lines | |<pre>:g/<PATTERN>/d</pre> |
+| | |<pre></pre> |
