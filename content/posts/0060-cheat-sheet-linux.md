@@ -38,6 +38,7 @@ nmcli con mod <NET_UUID> autoconnect yes<br >nmcli con down <NET_UUID><br >nmcli
 
 | Cheat sheet | Commands  |
 | ------ | --------- |
+| install git | <pre>sudo apt install git</pre> |
 | config client | <pre>git config --global user.name <USER_NAME><br>git config --global user.email <USER_EMAIL></pre> |
 | use your GPG key | <pre>git config --global commit.gpgsign true<br>git config --global user.signingkey <KEY_ID></pre> |
 
@@ -46,7 +47,9 @@ nmcli con mod <NET_UUID> autoconnect yes<br >nmcli con down <NET_UUID><br >nmcli
 | Cheat sheet | Commands  |
 | ------ | --------- |
 | list GPG keys | <pre>gpg --list-secret-keys --keyid-format=long<br>sec   rsa4096/<KEY_ID> 2021-06-09 [SC]</pre> |
+| generate a key | <pre>gpg --full-generate-key</pre> |
 | update an existing key | <pre>gpg --edit-key <KEY_ID></pre> |
+| import key | <pre>gpg --import "gpg_private.key"</pre> |
 | export GPG key | <pre>gpg --armor --export <KEY_ID>-----BEGIN PGP PUBLIC KEY BLOCK-----<br>mQINBGDBBhIBEADD/m4EK+XFiW20rE8fhLgom+zI/eExjaTUbLrLPj2q6SxxX2rg<br>...<br>mQINBGDBBhIBEADD/m4EK+XFiW20rE8fhLgom+zI/eExjaTUbLrLPj2q6SxxX2rg<br>-----END PGP PUBLIC KEY BLOCK-----</pre> |
 
 ## VIM
