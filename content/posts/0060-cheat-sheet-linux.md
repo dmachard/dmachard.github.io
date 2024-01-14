@@ -73,7 +73,7 @@ pin: false
 
 | Cheat sheet | Commands  |
 | ------ | --------- |
-| Install sqlite db | <pre>sudo apt install sqlite3<br>wget https://raw.githubusercontent.com/PowerDNS/pdns/master/modules/gsqlite3backend/schema.sqlite3.sql<br>sqlite3 pdns.db<br>.read schema.sqlite3.sql<br>.quit<br></pre> |
+| Install sqlite db | <pre>sudo apt install sqlite3<br>wget [github_url]/PowerDNS/pdns/master/modules/gsqlite3backend/schema.sqlite3.sql<br>sqlite3 pdns.db<br>.read schema.sqlite3.sql<br>.quit<br></pre> |
 | list all zones |  <pre>sudo docker compose exec pdns pdnsutil list-all-zones</pre> |
 | Create zone |  <pre>sudo docker compose exec pdns pdnsutil create-zone home.</pre> |
 | add records |  <pre>sudo docker compose exec pdns pdnsutil add-record home. ns1 A 3600 172.16.0.253<br>New rrset:<br>ns1.home. 3600 IN A 172.16.0.253</pre> |
