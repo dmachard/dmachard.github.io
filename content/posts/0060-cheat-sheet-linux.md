@@ -7,12 +7,14 @@ tags: ['cheat-sheet']
 pin: false
 ---
 
-# Cheat sheets for Linux, Git, Sshd, GPG and more
+# Cheat sheets
 
 ## Linux
 
 | Cheat sheet | Commands  |
 | ------ | --------- |
+| list timezone | <pre>timedatectl list-timezones</pre> |
+| set new timezone | <pre>sudo timedatectl set-timezone Europe/Paris</pre> |
 | update hostname                     | <pre>sudo hostnamectl set-hostname [new_name]</pre> |
 | show version ubuntu                 | <pre>lsb_release -a</pre> |
 | add static ip with Netplan         | <pre>sudo vim /etc/netplan/01-cfg-ens19.yaml<br/>network:<br/>    ethernets:<br/>    ens19:<br/>        addresses:<br/>        - 172.16.0.1/12<br/>    version: 2<br/>sudo chmod 600 /etc/netplan/*<br/>sudo netplan apply</pre> |
@@ -22,6 +24,11 @@ pin: false
 | display file permission and ownership | <pre>ls -alrt<br>-rwxrwxr--. 1 ansible automation 4 Nov 13 10:57 helloworld.txt<br><br>r = read = 4<br>w = write = 2<br>x = execute = 1<br>[ user = u ] [ group = g ] [ others = o ]<br>The user *ansible* has 4+2+1=7 (full access)<br>The group *automation* has 4+2+1=7 (full access)<br>All others have 4  (read-only)</pre> |
 | change permission file or directory | <pre>chmod 644 myfile</pre> |
 | change user and group appartenance | <pre>chown -R user:group /mydirectory/</pre> |
+| Extend physical drive partition | <pre># check free space<br>sudo fdisk -l<br># Extend physical drive partition<br>sudo growpart /dev/sda 3 <br># See  phisical drive<br>sudo pvdisplay<br># Instruct LVM that disk size has changed<br>sudo pvresize /dev/sda3</pre> |
+| resize logical volume | <pre># View starting LV<br>sudo lvdisplay<br># Resize LV<br>sudo lvextend  -l +100%FREE /dev/ubuntu-vg/ubuntu-lv<br>df -h<br>#Resize Filesystem<br>sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv</pre> |
+|  Create partition for New Disk  | <pre>fdisk /dev/sdc</pre> |
+| format the disk with mkfs command | <pre>mkfs.ext4 /dev/xvdc1</pre> |
+| share file with windows | <pre>sudo apt-get install samba<br>sudo smbpasswd -a denis<br>sudo vim /etc/samba/smb.conf<br>[data]<br>   path = [folder_to_share]<br>   valid users = [user]<br>   read only = no<br>   # guest ok = yes # no auth<br>sudo systemctl restart smbd</pre> |
 
 ## SSH
 
@@ -50,8 +57,39 @@ pin: false
 | import key | <pre>gpg --import "gpg_private.key"</pre> |
 | export GPG key | <pre>gpg --armor --export <KEY_ID>-----BEGIN PGP PUBLIC KEY BLOCK-----<br>mQINBGDBBhIBEADD/m4EK+XFiW20rE8fhLgom+zI/eExjaTUbLrLPj2q6SxxX2rg<br>...<br>mQINBGDBBhIBEADD/m4EK+XFiW20rE8fhLgom+zI/eExjaTUbLrLPj2q6SxxX2rg<br>-----END PGP PUBLIC KEY BLOCK-----</pre> |
 
-## VIM
+## Vim
 
 | Cheat sheet | Commands  |
 | ------ | --------- |
 | Delete specific lines | <pre>:g/<REGEX_PATTERN>/d</pre> |
+
+## Docker
+
+| Cheat sheet | Commands  |
+| ------ | --------- |
+| Install docker | https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository |
+
+## PowerDNS / pdns-auth
+
+| Cheat sheet | Commands  |
+| ------ | --------- |
+| Install sqlite db |
+<pre>
+sudo apt install sqlite3
+wget https://raw.githubusercontent.com/PowerDNS/pdns/master/modules/gsqlite3backend/schema.sqlite3.sql
+sqlite3 pdns.db
+.read schema.sqlite3.sql
+.quit
+</pre> |
+| list all zones |  <pre>sudo docker compose exec pdns pdnsutil list-all-zones
+</pre> |
+| Create zone |  <pre>sudo docker compose exec pdns pdnsutil create-zone home.
+</pre> |
+| add records |  <pre>sudo docker compose exec pdns pdnsutil add-record home. ns1 A 3600 172.16.0.253
+New rrset:
+ns1.home. 3600 IN A 172.16.0.253</pre> |
+| Update record |  <pre>
+$ sudo docker compose exec pdns_internal192 pdnsutil replace-rrset home. test A 3600 192.168.1.253
+Current records for test.home IN A will be replaced
+New rrset:
+test.home. 3600 IN A 192.168.1.253</pre> |
