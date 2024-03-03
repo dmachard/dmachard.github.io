@@ -110,7 +110,7 @@ pdnsutil delete-zone home.local
 ```
 
 - Delete a resource record
-    
+
 ```bash
 pdnsutil delete-rrset home.local ea A
 ```
@@ -136,7 +136,7 @@ pdns_control purge test1.home.local
 
 ## DNS-UPDATE (RFC2136)
 
-###  Activation 
+### Activation
 
 - Generate the tsig key for the domain to securize
 
@@ -170,7 +170,7 @@ pdnsutil list-tsig-keys
 
 ### Testing DNS UPDATE
 
-- Create the file nsupdate.txt with the following content
+- Create the file dnsupdate.txt with the following content
 
 ```bash
 server <pdns_ip_address> <pdns_port>
@@ -189,7 +189,7 @@ nsupdate -v dnsupdate.txt
 
 ## GSLB feature
 
-- Update the configuration to activate LUA 
+- Update the configuration to activate LUA
 
 ```bash
 enable-lua-records=yes

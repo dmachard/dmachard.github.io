@@ -77,4 +77,4 @@ pin: false
 | list all zones |  <pre>sudo docker compose exec pdns pdnsutil list-all-zones</pre> |
 | Create zone |  <pre>sudo docker compose exec pdns pdnsutil create-zone home.</pre> |
 | add records |  <pre>pdnsutil add-record home. ns1 A 3600 172.16.0.253<br>New rrset:<br>ns1.home. 3600 IN A 172.16.0.253</pre> |
-| Update record |  <pre>dnsutil replace-rrset home. test A 3600 192.168.1.253<br>Current records for test.home IN A will be replaced<br>New rrset:<br>test.home. 3600 IN A 192.168.1.253</pre> |
+| Update record |  <pre>pdnsutil replace-rrset home. test A 3600 192.168.1.253<br>Current records for test.home IN A will be replaced<br>New rrset:<br>test.home. 3600 IN A 192.168.1.253</pre> |
