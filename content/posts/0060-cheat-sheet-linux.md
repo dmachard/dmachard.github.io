@@ -30,6 +30,16 @@ pin: false
 | format the disk with mkfs command | <pre>mkfs.ext4 /dev/xvdc1</pre> |
 | share file with windows | <pre>sudo apt-get install samba<br>sudo smbpasswd -a denis<br>sudo vim /etc/samba/smb.conf<br>[data]<br>   path = [folder_to_share]<br>   valid users = [user]<br>   read only = no<br>   # guest ok = yes # no auth<br>sudo systemctl restart smbd</pre> |
 
+## Ubuntu desktop
+
+| Cheat sheet | Commands  |
+| ------ | --------- |
+| install basic tools| <pre>sudo apt install vim net-tools htop vlc</pre> |
+| enable ssh server| <pre>sudo apt install openssh-server -y<br >Edit /etc/ssh/sshd_config<br>PasswordAuthentication yes<br>sudo systemctl restart ssh</pre> |
+| create USB bootable| <pre>https://etcher.balena.io/#download-etcher</pre> |
+| install XRDP | <pre>sudo apt-get install xrdp<br>sudo systemctl enable xrdp<br>setxkbmap fr</pre> |
+| quick fix for XRDP and Ubuntu 23.10 |<pre>DesktopVer="$XDG_CURRENT_DESKTOP"<br>SessionVer="$GNOME_SHELL_SESSION_MODE"<br>ConfDir="$XDG_DATA_DIRS"<br>sudo sed -i "4 a #Improved Look n Feel Method\ncat <<EOF > ~/.xsessionrc\nexport GNOME_SHELL_SESSION_MODE=$SessionVer\nexport XDG_CURRENT_DESKTOP=$DesktopVer\nexport XDG_DATA_DIRS=$ConfDir\nEOF\n" /etc/xrdp/startwm.sh</pre> |
+
 ## SSH
 
 | Cheat sheet | Commands  |
