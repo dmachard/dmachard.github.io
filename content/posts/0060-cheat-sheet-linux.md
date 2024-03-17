@@ -16,7 +16,6 @@ pin: false
 | list timezone | <pre>timedatectl list-timezones</pre> |
 | set new timezone | <pre>sudo timedatectl set-timezone Europe/Paris</pre> |
 | update hostname                     | <pre>sudo hostnamectl set-hostname [new_name]</pre> |
-| show version ubuntu                 | <pre>lsb_release -a</pre> |
 | add static ip with Netplan         | <pre>sudo vim /etc/netplan/01-cfg-ens19.yaml<br/>network:<br/>    ethernets:<br/>    ens19:<br/>        addresses:<br/>        - 172.16.0.1/12<br/>    version: 2<br/>sudo chmod 600 /etc/netplan/*<br/>sudo netplan apply</pre> |
 | lists network interfaces with NetworkManager | <pre>nmcli connection show<br>NAME          UUID                                  TYPE      DEVICE<br> WiFi5      79361210-59bd-4a91-a4af-c78634446295  wifi      wlp2s0<br></pre> |
 | rename Interface with NetworkManager | <pre>nmcli connection modify "Wired connection 1" connection.interface-name "ens19"</pre> |
@@ -35,11 +34,12 @@ pin: false
 
 | Cheat sheet | Commands  |
 | ------ | --------- |
+| show version ubuntu                 | <pre>lsb_release -a</pre> |
 | install basic tools| <pre>sudo apt install vim net-tools htop vlc</pre> |
 | enable ssh server| <pre>sudo apt install openssh-server -y<br >Edit /etc/ssh/sshd_config<br>PasswordAuthentication yes<br>sudo systemctl restart ssh</pre> |
 | create USB bootable| <pre>https://etcher.balena.io/#download-etcher</pre> |
 | install XRDP | <pre>sudo apt-get install xrdp<br>sudo systemctl enable xrdp<br>sudo adduser xrdp ssl-cert<br>add setxkbmap fr to $HOME/.profile</pre> |
-| quick fix for XRDP and Ubuntu 23.10 |<pre>DesktopVer="$XDG_CURRENT_DESKTOP"<br>SessionVer="$GNOME_SHELL_SESSION_MODE"<br>ConfDir="$XDG_DATA_DIRS"<br>sudo sed -i "4 a #Improved Look n Feel Method\ncat <<EOF > ~/.xsessionrc\nexport GNOME_SHELL_SESSION_MODE=$SessionVer\nexport XDG_CURRENT_DESKTOP=$DesktopVer\nexport XDG_DATA_DIRS=$ConfDir\nEOF\n" /etc/xrdp/startwm.sh</pre> |
+| quick fix for XRDP and Ubuntu 23.10 |<pre>DesktopVer="$XDG_CURRENT_DESKTOP"<br>SessionVer="$GNOME_SHELL_SESSION_MODE"<br>ConfDir="$XDG_DATA_DIRS"<br>sudo sed -i "4 a #Improved Look n Feel Method\ncat <<EOF > ~/.xsessionrc\<br>nexport GNOME_SHELL_SESSION_MODE=$SessionVer\nexport XDG_CURRENT_DESKTOP=$DesktopVer\n<br>export XDG_DATA_DIRS=$ConfDir\nEOF\n" /etc/xrdp/startwm.sh</pre> |
 | disable automatic login | <pre>sudo vim /etc/gdm3/custom.conf<br>AutomaticLoginEnable=false</pre> |
 
 ## SSH
