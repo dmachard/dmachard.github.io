@@ -28,7 +28,7 @@ pin: false
 |  Create partition for New Disk  | <pre>fdisk /dev/sdc</pre> |
 | format the disk with mkfs command | <pre>mkfs.ext4 /dev/xvdc1</pre> |
 | share file with windows | <pre>sudo apt-get install samba<br>sudo smbpasswd -a denis<br>sudo vim /etc/samba/smb.conf<br>[data]<br>   path = [folder_to_share]<br>   valid users = [user]<br>   read only = no<br>   # guest ok = yes # no auth<br>sudo systemctl restart smbd</pre> |
-| add permanent virtual interface | <pre>$ cd /etc/systemd/network/<br>$ sudo touch vbr0.netdev vbr0.network<br>$ sudo vim vbr0.netdev<br>[NetDev]<br>Name=vbr0<br>Kind=dummy<br>$ vim vbr0.network<br> [Match]<br>Name=vbr0<br>[Network]<br>Address=172.16.0.249<br>Mask=255.240.0.0<br>Broadcast=172.31.255.255<br>$ sudo systemctl restart systemd-networkd<br>sudo systemctl enable systemd-networkd</pre> |
+| add permanent virtual interface | <pre>$ cd /etc/systemd/network/<br>$ sudo touch vbr0.netdev vbr0.network<br><br>$ sudo vim vbr0.netdev<br>[NetDev]<br>Name=vbr0<br>Kind=dummy<br><br>$ vim vbr0.network<br> [Match]<br>Name=vbr0<br>[Network]<br>Address=172.16.0.249<br>Mask=255.240.0.0<br>Broadcast=172.31.255.255<br><br>$ sudo systemctl restart systemd-networkd<br>$ sudo systemctl enable systemd-networkd</pre> |
 
 ## Ubuntu desktop
 
