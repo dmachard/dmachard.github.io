@@ -28,7 +28,7 @@ pin: false
 | resize logical volume | <pre># View starting LV<br>sudo lvdisplay<br># Resize LV<br>sudo lvextend  -l +100%FREE /dev/ubuntu-vg/ubuntu-lv<br>df -h<br>#Resize Filesystem<br>sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv</pre> |
 |  Create partition for New Disk  | <pre>fdisk /dev/sdc<br>Command (m for help): n and enter<br>Command (m for help): w</pre> |
 | format the disk with mkfs command | <pre>mkfs.ext4 /dev/xvdc1</pre> |
-| share file with windows | <pre>sudo apt-get install samba<br>sudo smbpasswd -a denis<br>sudo vim /etc/samba/smb.conf<br>[data]<br>   path = [folder_to_share]<br>   valid users = [user]<br>   read only = no<br>   # guest ok = yes # no auth<br>sudo systemctl restart smbd</pre> |
+| share file with windows | <pre>sudo apt-get install samba<br>sudo smbpasswd -a denis<br>sudo vim /etc/samba/smb.conf<br>[data]<br>   path = [folder_to_share]<br>   valid users = [user]<br>   read only = no<br>   # guest ok = yes # no auth<br>sudo systemctl restart smbd<br>sudo systemctl enable smbd</pre> |
 | add permanent dummy virtual interface | <pre>$ cd /etc/systemd/network/<br>$ sudo touch vbr0.netdev vbr0.network<br><br>$ sudo vim vbr0.netdev<br>[NetDev]<br>Name=vbr0<br>Kind=dummy<br><br>$ vim vbr0.network<br> [Match]<br>Name=vbr0<br>[Network]<br>Address=172.16.0.249<br>Mask=255.240.0.0<br>Broadcast=172.31.255.255<br><br>$ sudo systemctl restart systemd-networkd<br>$ sudo systemctl enable systemd-networkd</pre> |
 
 ## Ubuntu desktop
@@ -36,7 +36,7 @@ pin: false
 | Cheat sheet | Commands  |
 | ------ | --------- |
 | show version ubuntu                 | <pre>lsb_release -a</pre> |
-| install basic tools| <pre>sudo apt install vim net-tools htop vlc</pre> |
+| install basic tools| <pre>sudo apt install vim net-tools htop vlc<br>sudo snap install jdownloader2</pre> |
 | enable ssh server| <pre>sudo apt install openssh-server -y<br >Edit /etc/ssh/sshd_config<br>PasswordAuthentication yes<br>sudo systemctl restart ssh</pre> |
 | create USB bootable| <pre>https://etcher.balena.io/#download-etcher</pre> |
 | install XRDP | <pre>sudo apt-get install xrdp<br>sudo systemctl enable xrdp<br>sudo adduser xrdp ssl-cert<br>add setxkbmap fr to $HOME/.profile</pre> |
