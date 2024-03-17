@@ -28,7 +28,7 @@ pin: false
 |  Create partition for New Disk  | <pre>fdisk /dev/sdc</pre> |
 | format the disk with mkfs command | <pre>mkfs.ext4 /dev/xvdc1</pre> |
 | share file with windows | <pre>sudo apt-get install samba<br>sudo smbpasswd -a denis<br>sudo vim /etc/samba/smb.conf<br>[data]<br>   path = [folder_to_share]<br>   valid users = [user]<br>   read only = no<br>   # guest ok = yes # no auth<br>sudo systemctl restart smbd</pre> |
-| add permanent virtual interface | <pre>$ cd /etc/systemd/network/<br>$ sudo touch vbr0.netdev vbr0.network<br><br>$ sudo vim vbr0.netdev<br>[NetDev]<br>Name=vbr0<br>Kind=dummy<br><br>$ vim vbr0.network<br> [Match]<br>Name=vbr0<br>[Network]<br>Address=172.16.0.249<br>Mask=255.240.0.0<br>Broadcast=172.31.255.255<br><br>$ sudo systemctl restart systemd-networkd<br>$ sudo systemctl enable systemd-networkd</pre> |
+| add permanent dummy virtual interface | <pre>$ cd /etc/systemd/network/<br>$ sudo touch vbr0.netdev vbr0.network<br><br>$ sudo vim vbr0.netdev<br>[NetDev]<br>Name=vbr0<br>Kind=dummy<br><br>$ vim vbr0.network<br> [Match]<br>Name=vbr0<br>[Network]<br>Address=172.16.0.249<br>Mask=255.240.0.0<br>Broadcast=172.31.255.255<br><br>$ sudo systemctl restart systemd-networkd<br>$ sudo systemctl enable systemd-networkd</pre> |
 
 ## Ubuntu desktop
 
@@ -39,7 +39,7 @@ pin: false
 | enable ssh server| <pre>sudo apt install openssh-server -y<br >Edit /etc/ssh/sshd_config<br>PasswordAuthentication yes<br>sudo systemctl restart ssh</pre> |
 | create USB bootable| <pre>https://etcher.balena.io/#download-etcher</pre> |
 | install XRDP | <pre>sudo apt-get install xrdp<br>sudo systemctl enable xrdp<br>sudo adduser xrdp ssl-cert<br>add setxkbmap fr to $HOME/.profile</pre> |
-| quick fix for XRDP and Ubuntu 23.10 |<pre>DesktopVer="$XDG_CURRENT_DESKTOP"<br>SessionVer="$GNOME_SHELL_SESSION_MODE"<br>ConfDir="$XDG_DATA_DIRS"<br>sudo sed -i "4 a #Improved Look n Feel Method\ncat <<EOF > ~/.xsessionrc\<br>nexport GNOME_SHELL_SESSION_MODE=$SessionVer\nexport XDG_CURRENT_DESKTOP=$DesktopVer\n<br>export XDG_DATA_DIRS=$ConfDir\nEOF\n" /etc/xrdp/startwm.sh</pre> |
+| quick fix for XRDP and Ubuntu 23.10 |<pre>DesktopVer="$XDG_CURRENT_DESKTOP"<br>SessionVer="$GNOME_SHELL_SESSION_MODE"<br>ConfDir="$XDG_DATA_DIRS"<br>sudo sed -i "4 a #Improved Look n Feel Method\ncat <<EOF > ~/.xsessionrc\n<br>export GNOME_SHELL_SESSION_MODE=$SessionVer\nexport XDG_CURRENT_DESKTOP=$DesktopVer\n<br>export XDG_DATA_DIRS=$ConfDir\nEOF\n" /etc/xrdp/startwm.sh</pre> |
 | disable automatic login | <pre>sudo vim /etc/gdm3/custom.conf<br>AutomaticLoginEnable=false</pre> |
 
 ## SSH
