@@ -23,9 +23,10 @@ pin: false
 | display file permission and ownership | <pre>ls -alrt<br>-rwxrwxr--. 1 ansible automation 4 Nov 13 10:57 helloworld.txt<br><br>r = read = 4<br>w = write = 2<br>x = execute = 1<br>[ user = u ] [ group = g ] [ others = o ]<br>The user *ansible* has 4+2+1=7 (full access)<br>The group *automation* has 4+2+1=7 (full access)<br>All others have 4  (read-only)</pre> |
 | change permission file or directory | <pre>chmod 644 myfile</pre> |
 | change user and group appartenance | <pre>chown -R user:group /mydirectory/</pre> |
+| list nvme disk | <pre>$ sudo fdisk -l /dev/nvme*</pre> |
 | Extend physical drive partition | <pre># check free space<br>sudo fdisk -l<br># Extend physical drive partition<br>sudo growpart /dev/sda 3 <br># See  phisical drive<br>sudo pvdisplay<br># Instruct LVM that disk size has changed<br>sudo pvresize /dev/sda3</pre> |
 | resize logical volume | <pre># View starting LV<br>sudo lvdisplay<br># Resize LV<br>sudo lvextend  -l +100%FREE /dev/ubuntu-vg/ubuntu-lv<br>df -h<br>#Resize Filesystem<br>sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv</pre> |
-|  Create partition for New Disk  | <pre>fdisk /dev/sdc</pre> |
+|  Create partition for New Disk  | <pre>fdisk /dev/sdc<br>Command (m for help): n and enter<br>Command (m for help): w</pre> |
 | format the disk with mkfs command | <pre>mkfs.ext4 /dev/xvdc1</pre> |
 | share file with windows | <pre>sudo apt-get install samba<br>sudo smbpasswd -a denis<br>sudo vim /etc/samba/smb.conf<br>[data]<br>   path = [folder_to_share]<br>   valid users = [user]<br>   read only = no<br>   # guest ok = yes # no auth<br>sudo systemctl restart smbd</pre> |
 | add permanent dummy virtual interface | <pre>$ cd /etc/systemd/network/<br>$ sudo touch vbr0.netdev vbr0.network<br><br>$ sudo vim vbr0.netdev<br>[NetDev]<br>Name=vbr0<br>Kind=dummy<br><br>$ vim vbr0.network<br> [Match]<br>Name=vbr0<br>[Network]<br>Address=172.16.0.249<br>Mask=255.240.0.0<br>Broadcast=172.31.255.255<br><br>$ sudo systemctl restart systemd-networkd<br>$ sudo systemctl enable systemd-networkd</pre> |
