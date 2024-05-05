@@ -39,10 +39,16 @@ pin: false
 | install basic tools| <pre>sudo apt install vim net-tools htop vlc<br>sudo snap install jdownloader2</pre> |
 | enable ssh server| <pre>sudo apt install openssh-server -y<br >Edit /etc/ssh/sshd_config<br>PasswordAuthentication yes<br>sudo systemctl restart ssh</pre> |
 | create USB bootable| <pre>https://etcher.balena.io/#download-etcher</pre> |
+
+## XRDP
+
+| Cheat sheet | Commands  |
+| ------ | --------- |
 | install XRDP | <pre>sudo apt-get install xrdp<br>sudo systemctl enable xrdp<br>sudo adduser xrdp ssl-cert<br>add setxkbmap fr to $HOME/.profile</pre> |
 | quick fix for XRDP and Ubuntu 23.10 |<pre>DesktopVer="$XDG_CURRENT_DESKTOP"<br>SessionVer="$GNOME_SHELL_SESSION_MODE"<br>ConfDir="$XDG_DATA_DIRS"<br>sudo sed -i "4 a #Improved Look n Feel Method\ncat <<EOF > ~/.xsessionrc\n<br>export GNOME_SHELL_SESSION_MODE=$SessionVer\nexport XDG_CURRENT_DESKTOP=$DesktopVer\n<br>export XDG_DATA_DIRS=$ConfDir\nEOF\n" /etc/xrdp/startwm.sh</pre> |
 | disable automatic login | <pre>sudo vim /etc/gdm3/custom.conf<br>AutomaticLoginEnable=false</pre> |
 | disable systemd-resolved | <pre>sudo systemctl disable systemd-resolved.service<br>sudo systemctl stop systemd-resolved<br><br>$ sudo vim /etc/NetworkManager/NetworkManager.conf<br>dns=default<br><br>$ sudo rm /etc/resolv.conf<br>$ sudo systemctl restart NetworkManager.service<br></pre> |
+| kill user session from command line | <pre>sudo pkill -9 -u denis</pre> |
 
 ## SSH
 
