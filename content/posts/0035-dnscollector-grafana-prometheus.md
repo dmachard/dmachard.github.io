@@ -30,26 +30,23 @@ global:
   trace:
     verbose: false
 
-multiplexer:
-  collectors:
-    - name: tap
-      dnstap:
-        listen-ip: 0.0.0.0
-        listen-port: 6000
+pipelines:
+  - name: tap
+    dnstap:
+      listen-ip: 0.0.0.0
+      listen-port: 6000
+    routing-policy:
+      forward: [ console, prometheus ]
+      dropped: [ ]
 
-  loggers:
-    - name: console
-      stdout:
-        mode: flatjson
-    - name: prom
-      prometheus:
-        listen-ip: 0.0.0.0
-        listen-port: 8081
- 
-  routes:
-    - from: [ tap ]
-      to: [ console, prometheus ]
-
+  - name: console
+    stdout:
+      mode: flatjson
+    
+  - name: prom
+    prometheus:
+      listen-ip: 0.0.0.0
+      listen-port: 8081
 ```
 
 > You can find various [examples](https://github.com/dmachard/go-dnscollector#usage-examples) on the github project.
@@ -86,7 +83,7 @@ You will observe output similar to the following:
   "dns.resource-records.ns":[],
   "dnstap.extra":"-",
   "dnstap.identity":"dnsdist",
-  "dnstap.latency":"0.000000",
+  "dnstap.latency":0.000000,
   "dnstap.operation":"CLIENT_QUERY",
   "dnstap.timestamp-rfc3339ns":"2023-09-27T17:03:54.651904447Z",
   "dnstap.version":"dnsdist 1.8.1",
@@ -135,3 +132,65 @@ For tracing your logs in [Loki](https://grafana.com/oss/loki/), a [build-in](htt
 Additionally, a [build-in](https://grafana.com/grafana/dashboards/16630) Grafana dashboard is provided to get usage indicators.
 
 ![grafana dashboard image](/images/0035/dashboard_prometheus.png)
+
+## How to log slow DNS responses and DNS errors
+
+This advanced example enable to log slow DNS responses and DNS errors
+
+Create the `config.yml` file
+
+```yaml
+global:
+  trace:
+    verbose: true
+
+pipelines:
+  # Listen on tcp/6000 for incoming DNSTap protobuf messages from dns servers
+  - name: dnsdist_in
+    dnstap:
+      listen-ip: 0.0.0.0
+      listen-port: 6000
+    transforms:
+      normalize:
+        qname-lowercase: true
+        qname-replace-nonprintable: true
+      latency:
+        measure-latency: true
+    routing-policy:
+      forward: [ filter-slow, filter-errors ]
+      dropped: [ ]
+
+  # keep only slow responses
+  - name: filter-slow
+    dnsmessage:
+      matching:
+        include:
+          dnstap.operation: "CLIENT_RESPONSE"
+          dnstap.latency:
+            greater-than: 0.2
+    routing-policy:
+      forward: [ outputfile-slowresponses ]
+
+  # keep only DNS errors responses (discard NOERROR and NXDOMAINS)
+  - name: filter-errors
+    dnsmessage:
+      matching:
+        include:
+          dnstap.operation: "CLIENT_RESPONSE"
+        exclude:
+          dns.rcode:
+            - NOERROR
+            - NXDOMAIN
+    routing-policy:
+      forward: [ outputfile-dnserrors ]
+
+  - name: outputfile-slowresponses
+    logfile:
+      file-path:  "/tmp/dnstap-slow.log"
+      mode: flat-json
+
+  - name: outputfile-dnserrors
+    logfile:
+      file-path:  "/tmp/dnstap-errors.log"
+      mode: flat-json
+```
