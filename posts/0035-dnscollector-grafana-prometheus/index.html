@@ -10,25 +10,23 @@
 </span></span><span style=display:flex><span>  <span style=color:#f92672>trace</span>:
 </span></span><span style=display:flex><span>    <span style=color:#f92672>verbose</span>: <span style=color:#66d9ef>false</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>multiplexer</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>collectors</span>:
-</span></span><span style=display:flex><span>    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>tap</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>dnstap</span>:
-</span></span><span style=display:flex><span>        <span style=color:#f92672>listen-ip</span>: <span style=color:#ae81ff>0.0.0.0</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>listen-port</span>: <span style=color:#ae81ff>6000</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>pipelines</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>tap</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>listen-ip</span>: <span style=color:#ae81ff>0.0.0.0</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>listen-port</span>: <span style=color:#ae81ff>6000</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>routing-policy</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>forward</span>: [ <span style=color:#ae81ff>console, prometheus ]</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>dropped</span>: [ ]
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>loggers</span>:
-</span></span><span style=display:flex><span>    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>console</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>stdout</span>:
-</span></span><span style=display:flex><span>        <span style=color:#f92672>mode</span>: <span style=color:#ae81ff>flatjson</span>
-</span></span><span style=display:flex><span>    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>prom</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>prometheus</span>:
-</span></span><span style=display:flex><span>        <span style=color:#f92672>listen-ip</span>: <span style=color:#ae81ff>0.0.0.0</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>listen-port</span>: <span style=color:#ae81ff>8081</span>
-</span></span><span style=display:flex><span> 
-</span></span><span style=display:flex><span>  <span style=color:#f92672>routes</span>:
-</span></span><span style=display:flex><span>    - <span style=color:#f92672>from</span>: [ <span style=color:#ae81ff>tap ]</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>to</span>: [ <span style=color:#ae81ff>console, prometheus ]</span>
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>console</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>stdout</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>mode</span>: <span style=color:#ae81ff>flatjson</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>prom</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>prometheus</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>listen-ip</span>: <span style=color:#ae81ff>0.0.0.0</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>listen-port</span>: <span style=color:#ae81ff>8081</span>
 </span></span></code></pre></div><blockquote><p>You can find various <a href=https://github.com/dmachard/go-dnscollector#usage-examples>examples</a> on the github project.</p></blockquote><p>Pull the image and start the container</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo docker run -d -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>/config.yml:/etc/dnscollector/config.yml --name dnscollector -p 6000:6000/tcp dmachard/go-dnscollector:latest
 </span></span></code></pre></div><p>Display the logs</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo docker logs dnscollector
 </span></span></code></pre></div><p>You will observe output similar to the following:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
@@ -48,7 +46,7 @@
 </span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dns.resource-records.ns&#34;</span>:[],
 </span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dnstap.extra&#34;</span>:<span style=color:#e6db74>&#34;-&#34;</span>,
 </span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dnstap.identity&#34;</span>:<span style=color:#e6db74>&#34;dnsdist&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dnstap.latency&#34;</span>:<span style=color:#e6db74>&#34;0.000000&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dnstap.latency&#34;</span>:<span style=color:#ae81ff>0.000000</span>,
 </span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dnstap.operation&#34;</span>:<span style=color:#e6db74>&#34;CLIENT_QUERY&#34;</span>,
 </span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dnstap.timestamp-rfc3339ns&#34;</span>:<span style=color:#e6db74>&#34;2023-09-27T17:03:54.651904447Z&#34;</span>,
 </span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dnstap.version&#34;</span>:<span style=color:#e6db74>&#34;dnsdist 1.8.1&#34;</span>,
@@ -75,7 +73,60 @@
 </span></span><span style=display:flex><span>      <span style=color:#f92672>password</span>: <span style=color:#e6db74>&#39;changeme&#39;</span>
 </span></span><span style=display:flex><span>    <span style=color:#f92672>static_configs</span>:
 </span></span><span style=display:flex><span>      - <span style=color:#f92672>targets</span>: [ <span style=color:#ae81ff>dnscollector:8080 ]</span>
-</span></span></code></pre></div><h3 id=loki><a class=anchor href=#loki>Loki</a></h3><p>For tracing your logs in <a href=https://grafana.com/oss/loki/>Loki</a>, a <a href=https://grafana.com/grafana/dashboards/15415>build-in</a> dashboard is available</p><p><img src=/images/0035/dashboard_loki.png alt="loki dashboard image"></p><h3 id=grafana><a class=anchor href=#grafana>Grafana</a></h3><p>Additionally, a <a href=https://grafana.com/grafana/dashboards/16630>build-in</a> Grafana dashboard is provided to get usage indicators.</p><p><img src=/images/0035/dashboard_prometheus.png alt="grafana dashboard image"></p></article></div></div></div></div></div></main><div class=container-xl><div class="pt-6 text-secondary border-top"><span>propulsed by
+</span></span></code></pre></div><h3 id=loki><a class=anchor href=#loki>Loki</a></h3><p>For tracing your logs in <a href=https://grafana.com/oss/loki/>Loki</a>, a <a href=https://grafana.com/grafana/dashboards/15415>build-in</a> dashboard is available</p><p><img src=/images/0035/dashboard_loki.png alt="loki dashboard image"></p><h3 id=grafana><a class=anchor href=#grafana>Grafana</a></h3><p>Additionally, a <a href=https://grafana.com/grafana/dashboards/16630>build-in</a> Grafana dashboard is provided to get usage indicators.</p><p><img src=/images/0035/dashboard_prometheus.png alt="grafana dashboard image"></p><h2 id=how-to-log-slow-dns-responses-and-dns-errors><a class=anchor href=#how-to-log-slow-dns-responses-and-dns-errors>How to log slow DNS responses and DNS errors</a></h2><p>This advanced example enable to log slow DNS responses and DNS errors</p><p>Create the <code>config.yml</code> file</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>global</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>trace</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>verbose</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>pipelines</span>:
+</span></span><span style=display:flex><span>  <span style=color:#75715e># Listen on tcp/6000 for incoming DNSTap protobuf messages from dns servers</span>
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>dnsdist_in</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnstap</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>listen-ip</span>: <span style=color:#ae81ff>0.0.0.0</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>listen-port</span>: <span style=color:#ae81ff>6000</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>transforms</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>normalize</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>qname-lowercase</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>qname-replace-nonprintable</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>latency</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>measure-latency</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>routing-policy</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>forward</span>: [ <span style=color:#ae81ff>filter-slow, filter-errors ]</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>dropped</span>: [ ]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e># keep only slow responses</span>
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>filter-slow</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnsmessage</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>matching</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>include</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>dnstap.operation</span>: <span style=color:#e6db74>&#34;CLIENT_RESPONSE&#34;</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>dnstap.latency</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>greater-than</span>: <span style=color:#ae81ff>0.2</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>routing-policy</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>forward</span>: [ <span style=color:#ae81ff>outputfile-slowresponses ]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e># keep only DNS errors responses (discard NOERROR and NXDOMAINS)</span>
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>filter-errors</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>dnsmessage</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>matching</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>include</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>dnstap.operation</span>: <span style=color:#e6db74>&#34;CLIENT_RESPONSE&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>exclude</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>dns.rcode</span>:
+</span></span><span style=display:flex><span>            - <span style=color:#ae81ff>NOERROR</span>
+</span></span><span style=display:flex><span>            - <span style=color:#ae81ff>NXDOMAIN</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>routing-policy</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>forward</span>: [ <span style=color:#ae81ff>outputfile-dnserrors ]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>outputfile-slowresponses</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>logfile</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>file-path</span>:  <span style=color:#e6db74>&#34;/tmp/dnstap-slow.log&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>mode</span>: <span style=color:#ae81ff>flat-json</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>outputfile-dnserrors</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>logfile</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>file-path</span>:  <span style=color:#e6db74>&#34;/tmp/dnstap-errors.log&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>mode</span>: <span style=color:#ae81ff>flat-json</span>
+</span></span></code></pre></div></article></div></div></div></div></div></main><div class=container-xl><div class="pt-6 text-secondary border-top"><span>propulsed by
 <a class="link-primary link-underline link-underline-opacity-0 link-underline-opacity-100-hover link-offset-2-hover" href=https://gohugo.io/>hugo</a>
 and
 <a class="link-primary link-underline link-underline-opacity-0 link-underline-opacity-100-hover link-offset-2-hover" href=https://github.com/dmachard/hugo-theme-gists>hugo-theme-gists</a></span></div></div></body><script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js integrity=sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL crossorigin=anonymous></script>
