@@ -58,22 +58,23 @@ vim config.yml
 trace:
   verbose: true
 
-collectors:
-  dnstap:
-    enable: true
-    listen-ip: 0.0.0.0
-    listen-port: 6000
-    tls-support: true
-    cert-file: "/etc/dnscollector/dnscollector.crt"
-    key-file: "/etc/dnscollector/dnscollector.key"
+pipelines:
+  - name: tap
+    dnstap:
+      listen-ip: 0.0.0.0
+      listen-port: 6000
+      tls-support: true
+      cert-file: "/etc/dnscollector/dnscollector.crt"
+      key-file: "/etc/dnscollector/dnscollector.key"
+    routing-policy:
+      forward: [ log ]
 
-loggers:
-  logfile:
-    enable: true
-    file-path:  "/var/run/dnscollector/dnstap.log"
-    max-size: 100
-    max-files: 10
-    mode: text
+  - name: log
+    logfile:
+      file-path:  "/var/run/dnscollector/dnstap.log"
+      max-size: 100
+      max-files: 10
+      mode: text
 ```
 
 ## Start
