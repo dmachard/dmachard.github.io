@@ -26,7 +26,7 @@ mkdir /var/run/dnscollector/
 Export the following variable to get the version you want to download
 
 ```bash
-export DNSCOLLECTOR_VERSION=v0.10.0
+export DNSCOLLECTOR_VERSION=v1.0.0
 ```
 
 Download the binary
