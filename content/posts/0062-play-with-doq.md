@@ -3,7 +3,7 @@ title: "Play with DNS over QUIC and DoH3"
 summary: "Some notes to test DoQ"
 date: 2024-10-09T00:00:00+01:00
 draft: false
-tags: ['dns', 'doq', 'quic']
+tags: ['dns', 'doq', 'quic', 'dnsdist', 'powerdns']
 pin: false
 ---
 
