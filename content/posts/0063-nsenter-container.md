@@ -7,7 +7,7 @@ tags: ['container', 'networking']
 pin: false
 ---
 
-This post show how to to execute network commands (like ip a, ping, etc.) within the container's network namespace without installing any tools.
+This post shows how to execute network commands (like ip a, ping, etc.) within a container's network namespace without installing any additional tools.
 
 1. Get the Process ID (PID) of the Container. Use the docker inspect command to retrieve the PID of the container. This will output the PID of the container's main process
 
