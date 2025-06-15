@@ -1,7 +1,7 @@
 ---
 title: "Automatic Gamepad VM Passthrough: Solving the USB ID Problem"
 summary: "Automatic gamepad passthrough to libvirt VMs using udev rules on Ubuntu"
-date: 2025-15-06T00:00:00+01:00
+date: 2025-06-15T00:00:00+01:00
 draft: false
 tags: ['passthrough', 'gamepad', 'game', 'vm', 'qemu']
 pin: false
