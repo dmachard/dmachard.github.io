@@ -13,8 +13,8 @@ paginate = 5
 [params]
   author = "Denis Machard"
   resume = "My technical gists"
-  email = "d.machard@gmail.com"
-  description = "Infrastructure architect by profession but always consider himself as a developer and an open source enthusiast."
+  email = ""
+  description = "Infrastructure background, developer mindset. I build things for pleasure."
   github = "dmachard"
   mastodon = "https://fosstodon.org/@dmachard"
   keywords = "blog, technical"
