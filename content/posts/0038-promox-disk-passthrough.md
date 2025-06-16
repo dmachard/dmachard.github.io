@@ -3,7 +3,7 @@ title: "Passthrough Physical Disk to Virtual Machine on Proxmox"
 summary: "How to attach physical disk to Virtual Machine on Promox"
 date: 2021-11-14T00:00:00+01:00
 draft: false
-tags: ['proxmox', 'howto']
+tags: ['proxmox', 'howto', 'passthrough']
 ---
 
 # Passthrough Physical Disk to Virtual Machine on Proxmox
