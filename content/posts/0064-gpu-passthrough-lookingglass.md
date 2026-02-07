@@ -82,7 +82,7 @@ Toutes les instructions détaillées, scripts et fichiers de configuration sont 
 
 ## Résultat
 
-Cette architecture offre une très bonne flexibilité : gaming sur TV avec manettes pour des sessions familiales, ou utilisation depuis le bureau via Looking Glass pour des jeux nécessitant clavier et souris, sans jamais perdre l'accès à l'environnement Linux natif.
+Cette architecture offre une très bonne flexibilité : gaming sur TV, ou utilisation depuis le bureau via Looking Glass pour des jeux nécessitant clavier et souris, sans jamais perdre l'accès à l'environnement Linux natif.
 
 Les performances sont au rendez-vous grâce au passthrough GPU qui élimine la couche d'émulation graphique. Looking Glass délivre une latence imperceptible pour un usage bureautique ou gaming.
 
