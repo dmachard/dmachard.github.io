@@ -4,7 +4,7 @@ summary: "PowerDNS X-Mas gift"
 date: 2026-02-11T00:00:00+01:00
 draft: false
 tags: ['powerdns', 'dns', 'opensource']
-pin: false
+pin: true
 ---
 
 ![25 years powerdns contributions](/images/0066/25years_powerdns_contribs.jpg)
