@@ -17,7 +17,7 @@ Tout avait commencé quelques semaines plus tôt par un email:
 
 # DNS Collector et PowerDNS
 
-[DNS Collector](https://github.com/dmachard/DNS-collector) est un outil open-source que j'ai développé pour collecter, agréger et analyser du trafic DNS. Il supporte nativement le format dnstap mais aussi le format protobuf des produit PowerDNS.: voir la [documentation du collector PowerDNS](https://github.com/dmachard/DNS-collector/blob/main/docs/collectors/collector_powerdns.md).
+[DNS Collector](https://github.com/dmachard/DNS-collector) est un outil open-source que j'ai développé pour collecter, agréger et analyser du trafic DNS. Il supporte nativement le format dnstap mais aussi le format protobuf des produits PowerDNS.: voir la [documentation du collector PowerDNS](https://github.com/dmachard/DNS-collector/blob/main/docs/collectors/collector_powerdns.md).
 
 # 25 ans de PowerDNS
 
