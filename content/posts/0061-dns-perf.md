@@ -1,5 +1,5 @@
 ---
-title: "DNS Performance Testing Tools "
+title: "DNS Performance Testing Tools"
 summary: "DNS tools for testing performance purpose"
 date: 2024-09-12T00:00:00+01:00
 draft: false
@@ -7,7 +7,7 @@ tags: ['dns', 'tools', 'flamethrower', 'dnsperf']
 pin: false
 ---
 
-# DNS performance
+# DNS Performance Testing Tools
 
 This setup helps you benchmark DNS performance under different load scenarios, ensuring optimal server configuration and responsiveness.
 

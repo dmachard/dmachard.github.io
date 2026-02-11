@@ -7,6 +7,8 @@ tags: ['dns', 'doq', 'quic', 'dnsdist', 'powerdns']
 pin: false
 ---
 
+# Play with DNS over QUIC and DoH3
+
 ## Enable DoQ/DoH3 on dnsdist
 
 This guide shows how to configure dnsdist to support DNS over QUIC (DoQ) and DNS over HTTP/3 (DoH3). 

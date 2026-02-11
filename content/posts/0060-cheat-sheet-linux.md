@@ -7,7 +7,7 @@ tags: ['cheat-sheet']
 pin: false
 ---
 
-# Cheat sheets
+# Cheat sheets for Linux, Git, GPG, VIM, and more
 
 ## Linux
 
