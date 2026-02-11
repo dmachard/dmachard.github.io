@@ -7,6 +7,8 @@ tags: ['powerdns', 'dns', 'opensource']
 pin: true
 ---
 
+# Un p'tit cadeau inattendu de PowerDNS
+
 ![25 years powerdns contributions](/images/0066/25years_powerdns_contribs.jpg)
 
 Fin 2025, j'ai reçu un colis surprise dans ma boîte aux lettres. Dedans : un kit pour préparer des Espresso Martini, accompagné d'une carte de l'équipe PowerDNS.
