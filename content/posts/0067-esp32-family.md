@@ -7,16 +7,16 @@ tags: ['esp', 'iot']
 pin: false
 ---
 
-# Vue d'ensemble des microcontrolleurs ESP32
+# Le monde des microcontrolleurs ESP32
 
-Ma préférence pour des projets IoT
+## Ma préférence pour des projets IoT
 
-### ESP32-C3 : 
-- **Avantages** : Prix , processeur RISC-V, BLE, WiFi
+**ESP32-C3**:
+- **Avantages** : Prix, processeur RISC-V, BLE, WiFi
 - **Limitations** : Moins de GPIO (11), moins de RAM (400 KB)
 
-### ESP32-C6 : plus de connectivité
-- **Avantages** : WiFi 6, Zigbee, Thread/Matter
+**ESP32-C6**
+- **Avantages** : processeur RISC-V, WiFi 6, Zigbee, Thread/Matter
 
 
 ## Comparaison ESP32
