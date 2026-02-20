@@ -9,19 +9,16 @@ pin: false
 
 ## Comparaison ESP32
 
-| Caractéristique | ESP32 (V1) | ESP32-S2 | ESP32-S3 | ESP32-C3 | ESP32-C6 | ESP32-H2 | ESP32-P4 |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Usage cible** | Standard / Polyvalent | USB / Low Power | IA / Performance | IoT Éco / Simple | Wi-Fi 6 / Matter | Zigbee / Thread | Écrans / Haute Perf |
-| **CPU Architecture** | Dual Xtensa LX6 | Single Xtensa LX7 | **Dual** Xtensa LX7 | Single RISC-V | Single RISC-V | Single RISC-V | **Dual** RISC-V |
-| **Fréquence Max** | 240 MHz | 240 MHz | 240 MHz | 160 MHz | 160 MHz | 96 MHz | **400 MHz** |
-| **RAM (SRAM)** | 520 KB | 320 KB | 512 KB | 400 KB | 512 KB | 320 KB | **768 KB** |
-| **PSRAM Support** | Oui (SPI) | Oui (SPI/QPI) | Oui (Octal/Quad) | ❌ | ❌ | ❌ | ✅ (Hte Vitesse) |
-| **Wi-Fi** | 802.11 b/g/n | 802.11 b/g/n | 802.11 b/g/n | 802.11 b/g/n | **Wi-Fi 6** (2.4GHz) | ❌ | ❌ |
-| **Bluetooth** | Classic + BLE 4.2 | ❌ | BLE 5.0 + Mesh | BLE 5.0 + Mesh | BLE 5.3 | BLE 5.3 | BLE 5.3 |
-| **802.15.4** | ❌ | ❌ | ❌ | ❌ | ✅ (Zigbee/Thread) | ✅ (Zigbee/Thread) | ❌ |
-| **USB Natif** | ❌ | ✅ USB OTG | ✅ **USB OTG** | ✅ USB Serial/JTAG | ✅ USB Serial/JTAG | ✅ USB Serial/JTAG | ✅ **USB 2.0 HS** |
-| **Accél. IA** | ❌ | ❌ | ✅ (Vectoriel) | ❌ | ❌ | ❌ | ✅ (Puissant) |
-| **GPIO (SoC)** | 34 | 43 | 45 | 22 | 30 | 19 | **50+** |
-| **Sortie Vidéo** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ (MIPI-DSI/LCD) |
-| **DAC** | 2 × 8 bits | 2 × 8 bits | ❌ | ❌ | ❌ | ❌ | ❌ |
-| **Datasheet** | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-h2_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-p4_datasheet_en.pdf) |
+| Caractéristique | ESP32 (V1) | ESP32-S2 | ESP32-S3 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-H2 | ESP32-P4 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Année** | 2016 | 2019 | 2021 | 2021 | 2024 | 2023 | 2023 | 2024 |
+| **Prix (DevKit)** | **~4 - 6 €** | **~4 - 5 €** | **~6 - 9 €** | **~3 - 5 €** | **~6 - 8 €** | **~5 - 7 €** | **~5 - 7 €** | **~15 - 20 €** |
+| **Bluetooth Classic** | ✅ (4.2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Bluetooth LE** | ✅ (4.2) | ❌ | ✅ (5.0) | ✅ (5.0) | ✅ (5.4) | ✅ (5.3) | ✅ (5.3) | ✅ (5.3)* |
+| **Wi-Fi** | 802.11 b/g/n | 802.11 b/g/n | 802.11 b/g/n | 802.11 b/g/n | **Dual-Band 6** | **Wi-Fi 6** | ❌ | ❌ |
+| **DAC (Audio Ana.)** | ✅ (2x 8-bit) | ✅ (2x 8-bit) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Deep Sleep (μA)** | ~10 μA | ~20 μA | ~7 μA | ~5 μA | ~5 μA | ~7 μA | ~7 μA | ~8 μA |
+| **Sécurité Mat.** | AES, RSA, SHA | AES, RSA, ECC | AES, RSA, ECC | AES, RSA, ECC | AES, ECC, DS | AES, ECC, DS | AES, ECC, DS | AES, ECDSA, TEE |
+| **RAM (SRAM)** | 520 KB | 320 KB | 512 KB | 400 KB | 400 KB | 512 KB | 320 KB | **768 KB** |
+| **USB Natif** | ❌ | ✅ USB OTG | ✅ **USB OTG** | ✅ Serial/JTAG | ✅ Serial/JTAG | ✅ Serial/JTAG | ✅ Serial/JTAG | ✅ **USB 2.0 HS** |
+| **Datasheet** | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-c5_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-h2_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-p4_datasheet_en.pdf) |
