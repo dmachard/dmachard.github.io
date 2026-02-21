@@ -29,7 +29,7 @@ pin: false
 | **Bluetooth Classic** | ✅ (4.2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | **Bluetooth LE** | ✅ (4.2) | ❌ | ✅ (5.0) | ✅ (5.0) | ✅ (5.4) | ✅ (5.3) | ✅ (5.3) | ✅ (5.3) |
 | **Zigbee** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ |
-| **Wi-Fi 2.4Ghz** | 802.11 b/g/n | 802.11 b/g/n | 802.11 b/g/n | 802.11 b/g/n | 802.11ax (Dual-Band¹) | 802.11ax (Wi-Fi 6²) | ❌ | ❌ |
+| **Wi-Fi 2.4Ghz** | ✅ 802.11 b/g/n | ✅ 802.11 b/g/n | ✅ 802.11 b/g/n | ✅ 802.11 b/g/n | ✅ 802.11ax (Wi-Fi 6) | ✅ 802.11ax (Wi-Fi 6) | ❌ | ❌ |
 | **WiFi 5 GHz** | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
 | **Thread / Matter** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ |
 | **DAC (Audio Ana.)** | ✅ (2x 8-bit) | ✅ (2x 8-bit) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
@@ -44,9 +44,6 @@ pin: false
 | **Consommation Active (mA)** | ~85 | ~80 | ~100 | ~45 | ~50 | ~40 | ~20 | ~200 |
 | **USB Natif** | ❌ | ✅ USB OTG | ✅ USB OTG | ✅ Serial/JTAG | ✅ Serial/JTAG | ✅ Serial/JTAG | ✅ Serial/JTAG | ✅ USB 2.0 HS |
 | **Datasheet** | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-c5_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-h2_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-p4_datasheet_en.pdf) |
-
-**¹ Dual-Band** : WiFi 6 sur deux bandes de fréquence (2.4 GHz + 5 GHz)  
-**² Wi-Fi 6** : WiFi 6 (802.11ax) sur bande unique standard
 
 ## Définitions
 
@@ -74,15 +71,20 @@ Les ESP32 intègrent des fonctionnalités de **sécurité matérielle** comme l'
 ### ADC
 L'**ADC** (Analog-to-Digital Converter) convertit les signaux analogiques en valeurs numériques. Chaque ESP32 dispose de plusieurs canaux ADC pour mesurer des tensions analogiques provenant de capteurs. Par exemple, l'ESP32 V1 a 12 canaux ADC, tandis que les ESP32-C en ont 6.
 
+### UART/SPI/I2C
+Protocoles de communication série pour interfacer des périphériques externes :
+
+- **UART** (Universal Asynchronous Receiver/Transmitter) : Communication série asynchrone point-à-point. Chaque ESP32 dispose de 2-5 ports UART.
+
+- **SPI** (Serial Peripheral Interface) : Communication synchrone pour les périphériques à haut débit (écrans, capteurs rapides). Chaque ESP32 dispose de 2-4 ports SPI.
+
+- **I2C** (Inter-Integrated Circuit) : Communication synchrone pour les capteurs et modules simples. Chaque ESP32 dispose de 1-2 ports I2C.
+
 ### USB 2.0 HS
 **USB 2.0 High-Speed** est la version haute vitesse du standard USB 2.0, capable de communiquer à 480 Mbps. Seul l'ESP32-P4 dispose de cette interface native, offrant une bande passante considérablement plus élevée pour les transferts de données.
-
-### Thread / Matter
-**Thread** est un protocole réseau maillé (mesh) basé sur 802.15.4, tandis que **Matter** est un standard IoT unifié pour la domotique. Contrairement à Zigbee (qui est aussi 802.15.4 mais avec un écosystème différent), Thread/Matter est orienté vers la maison intelligente moderne et offre une meilleure interopérabilité entre appareils. Les ESP32-C6 et H2 supportent nativement Thread et Matter.
 
 ### NVS (Non-Volatile Storage)
 **NVS** est un système de stockage persistant qui garde les données même après extinction. Il est utilisé pour sauvegarder les configurations, les paramètres WiFi, les clés de chiffrement, etc. Contrairement à la SRAM qui se vide, NVS permet de conserver des données critiques. C'est une partition de la mémoire Flash, généralement dimensionnée à 20-64 KB selon les besoins de l'application.
 
-### Dual-Band 6 vs Wi-Fi 6
-- **Dual-Band 6** : WiFi 6 (802.11ax) sur **deux bandes de fréquence** (2.4 GHz et 5 GHz). Offre plus de flexibilité et de débit.
-- **Wi-Fi 6** : WiFi 6 standard, généralement sur une seule bande (2.4 GHz). Le C6 supporte WiFi 6 sur les deux bandes mais la notation "Wi-Fi 6" est simplifiée.
+### Thread / Matter
+**Thread** est un protocole réseau maillé (mesh) basé sur 802.15.4, tandis que **Matter** est un standard IoT unifié pour la domotique. Contrairement à Zigbee (qui est aussi 802.15.4 mais avec un écosystème différent), Thread/Matter est orienté vers la maison intelligente moderne et offre une meilleure interopérabilité entre appareils. Les ESP32-C6 et H2 supportent nativement Thread et Matter.
