@@ -1,5 +1,5 @@
 ---
-title: "Le monde des microcontrolleurs ESP32"
+title: "Le monde des microcontrôleurs ESP32"
 summary: "Vue d’ensemble comparative de la famille ESP32 avec leurs principales différences techniques pour les projets IoT."
 date: 2026-02-20T00:00:00+01:00
 draft: false
@@ -7,7 +7,7 @@ tags: ['esp', 'iot']
 pin: false
 ---
 
-# Le monde des microcontrolleurs ESP32
+# Le monde des microcontrôleurs ESP32
 
 ## Ma préférence en 2026 pour des projets IoT
 
