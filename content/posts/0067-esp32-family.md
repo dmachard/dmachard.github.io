@@ -25,21 +25,24 @@ pin: false
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Processeur** | Xtensa Dual-Core 32-bit @ 240 MHz | Xtensa Single-Core 32-bit @ 240 MHz | Xtensa Dual-Core 32-bit @ 240 MHz | RISC-V Single-Core 32-bit @ 160 MHz | RISC-V Dual-Core 32-bit @ 300 MHz | RISC-V Dual-Core 32-bit @ 160 MHz | RISC-V Single-Core 32-bit @ 96 MHz | Xtensa Dual-Core 32-bit @ 360 MHz |
 | **Année** | 2016 | 2019 | 2021 | 2021 | 2024 | 2023 | 2023 | 2024 |
-| **Prix (DevKit)** | **~4 - 6 €** | **~4 - 5 €** | **~6 - 9 €** | **~3 - 5 €** | **~6 - 8 €** | **~5 - 7 €** | **~5 - 7 €** | **~15 - 20 €** |
+| **Prix (DevKit)** | ~4 - 6 € | ~4 - 5 € | ~6 - 9 € | ~3 - 5 € | ~6 - 8 € | ~5 - 7 € | ~5 - 7 € | ~15 - 20 € |
 | **Bluetooth Classic** | ✅ (4.2) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| **Bluetooth LE** | ✅ (4.2) | ❌ | ✅ (5.0) | ✅ (5.0) | ✅ (5.4) | ✅ (5.3) | ✅ (5.3) | ✅ (5.3)* |
+| **Bluetooth LE** | ✅ (4.2) | ❌ | ✅ (5.0) | ✅ (5.0) | ✅ (5.4) | ✅ (5.3) | ✅ (5.3) | ✅ (5.3) |
 | **Zigbee** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ |
-| **Wi-Fi** | 802.11 b/g/n | 802.11 b/g/n | 802.11 b/g/n | 802.11 b/g/n | 802.11ax (Dual-Band¹) | 802.11ax (Wi-Fi 6²) | ❌ | ❌ |
+| **Wi-Fi 2.4Ghz** | 802.11 b/g/n | 802.11 b/g/n | 802.11 b/g/n | 802.11 b/g/n | 802.11ax (Dual-Band¹) | 802.11ax (Wi-Fi 6²) | ❌ | ❌ |
+| **WiFi 5 GHz** | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| **Thread / Matter** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ |
 | **DAC (Audio Ana.)** | ✅ (2x 8-bit) | ✅ (2x 8-bit) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | **Deep Sleep (μA)** | ~10 μA | ~20 μA | ~7 μA | ~5 μA | ~5 μA | ~7 μA | ~7 μA | ~8 μA |
 | **Sécurité Mat.** | AES, RSA, SHA | AES, RSA, ECC | AES, RSA, ECC | AES, RSA, ECC | AES, ECC, DS | AES, ECC, DS | AES, ECC, DS | AES, ECDSA, TEE |
-| **RAM (SRAM)** | 520 KB | 320 KB | 512 KB | 400 KB | 400 KB | 512 KB | 320 KB | **768 KB** |
-| **Flash** | 4/8/16 MB | 4/8/16 MB | 8/16 MB | 4 MB | 4/8 MB | 4/8 MB | 4 MB | **16 MB** |
-| **GPIO** | **34** | **43** | **45** | **11** | **30** | **30** | **14** | **54** |
+| **RAM (SRAM)** | 520 KB | 320 KB | 512 KB | 400 KB | 400 KB | 512 KB | 320 KB | 768 KB |
+| **PSRAM Support** | ✅ (4/8 MB) | ✅ (4/8 MB) | ✅ (8 MB) | ❌ | ✅ (8 MB) | ❌ | ❌ | ✅ (32 MB) |
+| **Flash** | 4/8/16 MB | 4/8/16 MB | 8/16 MB | 4 MB | 4/8 MB | 4/8 MB | 4 MB | 16 MB |
+| **GPIO** | 34 | 43 | 45 | 11 | 30 | 30 | 14 | 54 |
 | **ADC** | 12 ch. | 20 ch. | 20 ch. | 6 ch. | 6 ch. | 6 ch. | 6 ch. | Variable |
-| **Consommation Active (mA)** | ~85 | ~80 | ~100 | ~45 | ~50 | ~40 | ~20 | **~200** |
-| **Thread / Matter** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ |
-| **USB Natif** | ❌ | ✅ USB OTG | ✅ **USB OTG** | ✅ Serial/JTAG | ✅ Serial/JTAG | ✅ Serial/JTAG | ✅ Serial/JTAG | ✅ **USB 2.0 HS** |
+| **UART/SPI/I2C** | 3/4/2 | 3/4/2 | 3/4/2 | 2/3/2 | 3/3/2 | 2/3/2 | 2/2/1 | 5/4/2 |
+| **Consommation Active (mA)** | ~85 | ~80 | ~100 | ~45 | ~50 | ~40 | ~20 | ~200 |
+| **USB Natif** | ❌ | ✅ USB OTG | ✅ USB OTG | ✅ Serial/JTAG | ✅ Serial/JTAG | ✅ Serial/JTAG | ✅ Serial/JTAG | ✅ USB 2.0 HS |
 | **Datasheet** | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-c5_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-h2_datasheet_en.pdf) | [Lien](https://www.espressif.com/sites/default/files/documentation/esp32-p4_datasheet_en.pdf) |
 
 **¹ Dual-Band** : WiFi 6 sur deux bandes de fréquence (2.4 GHz + 5 GHz)  
@@ -57,10 +60,13 @@ La mémoire **Flash** est une mémoire non-volatile qui conserve les données m�
 **Joint Test Action Group** est un protocole de programmation et de débogage utilisé pour charger le firmware et accéder à des informations de débogage pendant le développement. Sur les ESP32 C, H et P, il est intégré via le port Serial/JTAG.
 
 ### RISC-V
-**RISC-V** (Reduced Instruction Set Computer - Five) est une architecture de processeur open-source basée sur le principe RISC. Contrairement à l'architecture Xtensa propriétaire, RISC-V offre une meilleure standardisation et une plus grande flexibilité.
+**RISC-V** (Reduced Instruction Set Computer - Five) est une architecture de processeur open-source basée sur le principe RISC. 
 
 ### RAM (SRAM)
 **SRAM** (Static Random-Access Memory) est la mémoire vive utilisée pour stocker les variables, les structures de données et l'exécution du code en cours. Contrairement à la Flash, elle est volatile (perd ses données lors de l'extinction). Les ESP32 ont généralement 320 KB à 768 KB de SRAM.
+
+### PSRAM (Pseudo-Static RAM)
+**PSRAM** est une RAM externe optionnelle qui complète la SRAM interne limitée. Elle offre jusqu'à 32 MB de stockage supplémentaire pour les données et les applications gourmandes. Utile pour les projets nécessitant beaucoup de mémoire (traitement d'images, buffering audio, etc.). Le ESP32-C3 et H2 ne supportent pas PSRAM, tandis que le P4 peut en supporter jusqu'à 32 MB.
 
 ### Sécurité Matérielle
 Les ESP32 intègrent des fonctionnalités de **sécurité matérielle** comme l'accélération cryptographique (AES, RSA, ECC), le hachage (SHA) et les éléments de sécurité (DS - Digital Signature, TEE - Trusted Execution Environment).
