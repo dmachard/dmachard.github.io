@@ -88,3 +88,22 @@ Protocoles de communication série pour interfacer des périphériques externes 
 
 ### Thread / Matter
 **Thread** est un protocole réseau maillé (mesh) basé sur 802.15.4, tandis que **Matter** est un standard IoT unifié pour la domotique. Contrairement à Zigbee (qui est aussi 802.15.4 mais avec un écosystème différent), Thread/Matter est orienté vers la maison intelligente moderne et offre une meilleure interopérabilité entre appareils. Les ESP32-C6 et H2 supportent nativement Thread et Matter.
+
+## Où acheter les DevKit
+
+| Modèle | AliExpress | Amazon | Adafruit | SeeedStudio |
+|--------|-----------|--------|----------|-------------|
+| ESP32 (V1) | [Lien](https://www.aliexpress.com/w/wholesale-esp32-devkit.html) | [Lien](https://www.amazon.com/s?k=ESP32+devkit) | [Lien](https://www.adafruit.com/product/3405) | [Lien](https://www.seeedstudio.com/catalogsearch/result/?q=ESP32) |
+| ESP32-S2 | [Lien](https://www.aliexpress.com/w/wholesale-esp32-s2.html) | [Lien](https://www.amazon.com/s?k=ESP32-S2) | [Lien](https://www.adafruit.com/product/5303) | [Lien](https://www.seeedstudio.com/catalogsearch/result/?q=ESP32-S2) |
+| ESP32-S3 | [Lien](https://www.aliexpress.com/w/wholesale-esp32-s3.html) | [Lien](https://www.amazon.com/s?k=ESP32-S3) | [Lien](https://www.adafruit.com/product/5691) | [Lien](https://www.seeedstudio.com/catalogsearch/result/?q=ESP32-S3) |
+| ESP32-C3 | [Lien](https://www.aliexpress.com/w/wholesale-esp32-c3.html) | [Lien](https://www.amazon.com/s?k=ESP32-C3) | [Lien](https://www.adafruit.com/product/5405) | [Lien](https://www.seeedstudio.com/catalogsearch/result/?q=ESP32-C3) |
+| ESP32-C5 | [Lien](https://www.aliexpress.com/w/wholesale-esp32-c5.html) | [Lien](https://www.amazon.com/s?k=ESP32-C5) | ❌ | [Lien](https://www.seeedstudio.com/catalogsearch/result/?q=ESP32-C5) |
+| ESP32-C6 | [Lien](https://www.aliexpress.com/w/wholesale-esp32-c6.html) | [Lien](https://www.amazon.com/s?k=ESP32-C6) | ❌ | [Lien](https://www.seeedstudio.com/catalogsearch/result/?q=ESP32-C6) |
+| ESP32-H2 | [Lien](https://www.aliexpress.com/w/wholesale-esp32-h2.html) | [Lien](https://www.amazon.com/s?k=ESP32-H2) | ❌ | [Lien](https://www.seeedstudio.com/catalogsearch/result/?q=ESP32-H2) |
+| ESP32-P4 | [Lien](https://www.aliexpress.com/w/wholesale-esp32-p4.html) | [Lien](https://www.amazon.com/s?k=ESP32-P4) | ❌ | [Lien](https://www.seeedstudio.com/catalogsearch/result/?q=ESP32-P4) |
+
+**Recommandations :**
+- **AliExpress** : Prix très bas, livraison lente (2-4 semaines)
+- **Amazon** : Livraison rapide (1-3 jours), prix standard
+- **Adafruit** : Modèles populaires, tutoriels inclus, prix premium
+- **SeeedStudio** : Bonne sélection, support technique, prix compétitifs
