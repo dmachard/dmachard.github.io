@@ -11,12 +11,14 @@ pin: false
 
 This guide documents the steps to set up the development environment for Android Auto.
 
+> https://developer.android.com/training/cars/testing/dhu
+
 ## Prerequisites
 
 Java JDK and Android SDK components (Android Studio)
 
 ```bash
-./android_sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=android_sdk "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+./sdkmanager --sdk_root=android_sdk "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 ```
 
 ### Prepare the Phone
@@ -34,6 +36,8 @@ Install DHU (Desktop Head Unit)
 ```bash
 ./sdkmanager --sdk_root=android_sdk "extras;google;auto"
 ```
+
+![dhu](/images/0068/android-auto-dhu.png)
 
 ### Run the Simulator
 
