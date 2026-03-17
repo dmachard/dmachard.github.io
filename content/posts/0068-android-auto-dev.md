@@ -1,6 +1,6 @@
 ---
-title: "xxxx"
-summary: "xxxxx"
+title: "Android Auto Development Guide"
+summary: "Steps to set up the development environment for Android Auto on Ubuntu"
 date: 2026-03-17T00:00:00+01:00
 draft: false
 tags: ['android', 'auto']
