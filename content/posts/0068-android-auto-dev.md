@@ -7,7 +7,7 @@ tags: ['android', 'auto']
 pin: false
 ---
 
-# Android Auto Development & Debugging Guide
+# Android Auto Development Guide
 
 This guide documents the steps to set up the development environment for Android Auto.
 
@@ -31,7 +31,7 @@ Java JDK and Android SDK components (Android Studio)
 
 To simulate Android Auto on your computer without a car:
 
-Install DHU (Desktop Head Unit)
+### Install DHU (Desktop Head Unit)
 
 ```bash
 ./sdkmanager --sdk_root=android_sdk "extras;google;auto"
