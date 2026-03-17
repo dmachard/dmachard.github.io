@@ -37,8 +37,6 @@ To simulate Android Auto on your computer without a car:
 ./sdkmanager --sdk_root=android_sdk "extras;google;auto"
 ```
 
-![dhu](/images/0068/android-auto-dhu.png)
-
 ### Run the Simulator
 
 1.  Forward the port:
@@ -50,6 +48,8 @@ To simulate Android Auto on your computer without a car:
     ```bash
     ./desktop-head-unit
     ```
+
+![dhu](/images/0068/android-auto-dhu.png)
 
 ### Logs
 
