@@ -1,5 +1,5 @@
 ---
-title: "Bluetooth LE scanner et sniffing - partie 1"
+title: "Bluetooth LE scanner et sniffing"
 summary: "Bluetooth LE scanner et sniffing sur ubuntu"
 date: 2026-03-25T00:00:00+01:00
 draft: false
@@ -7,7 +7,7 @@ tags: ['nRF52840', 'ble', 'ubuntu']
 pin: false
 ---
 
-# Bluetooth LE scanner et sniffing - partie 1
+# Bluetooth LE scanner et sniffing
 
 ![dongle](/images/0069/dongle.jpg)
 
@@ -57,6 +57,15 @@ Stack BLE:
         - write
         - notify
         - indicate
+
+## mise à jour du firmware du dongle
+
+Le firwarme est disponible https://github.com/makerdiary/nrf52840-mdk-usb-dongle/tree/main/firmware/ble_connectivity
+
+1. Prendre le fichier uf2
+2. Brancher le dongle en appuyant sur le bouton, la led doit devenir verte.
+3. Drag&drop le firmware dans le mass volume UF2BOOT, la led va devenir rouge
+4. Rebrancher le dongle
 
 ## Scan
 
