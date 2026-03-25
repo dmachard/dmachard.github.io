@@ -17,11 +17,12 @@ pin: false
 
 ## Prérequis
 
-- nRF52840 MDK USB Dongle  
-  https://makerdiary.com/products/nrf52840-mdk-usb-dongle
+-   nRF52840 MDK USB Dongle  
+    https://makerdiary.com/products/nrf52840-mdk-usb-dongle
+    ![dongle](/images/0069/dongle.png)
 
-- nRF Connect (desktop)  
-  https://github.com/NordicPlayground/pc-nrfconnect-ble-standalone/releases/
+-   nRF Connect (desktop)  
+    https://github.com/NordicPlayground/pc-nrfconnect-ble-standalone/releases/
 
 Lancer :
 
@@ -41,9 +42,22 @@ Caractéristiques techniques clés
 - Puissance max : 20 dBm
 
 BLE est structuré en plusieurs parties : https://academy.nordicsemi.com/wp-content/uploads/2023/04/MicrosoftTeams-image-29.png
-- GAP → découverte / connexion des devices
-- GATT → organisation des données
-- ATT → accès aux données (read/write)
+- GAP (Generic Access Profile) gère la visibilité et la connexion
+    * scan (découverte des devices)
+    * advertising
+    * connexion / déconnexion
+    * rôles (central / peripheral)
+
+- GATT (Generic Attribute Profile) définit la structure des données
+    * services
+    * caractéristiques
+
+- ATT (Attribute Protocol): le protocole bas niveau pour accéder aux données
+    Opérations :
+        - read
+        - write
+        - notify
+        - indicate
 
 ## Scan
 
