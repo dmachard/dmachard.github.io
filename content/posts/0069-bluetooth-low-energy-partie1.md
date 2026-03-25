@@ -9,6 +9,8 @@ pin: false
 
 # Bluetooth LE scanner et sniffing - partie 1
 
+![dongle](/images/0069/dongle.jpg)
+
 ## Objectif 
 
 - scanner les devices BLE depuis un laptop
@@ -18,7 +20,7 @@ pin: false
 ## Prérequis
 
 -   nRF52840 MDK USB Dongle - https://makerdiary.com/products/nrf52840-mdk-usb-dongle
-    ![dongle](/images/0069/dongle.jpg)
+
 
 -   nRF Connect (desktop) - https://github.com/NordicPlayground/pc-nrfconnect-ble-standalone/releases/
     Lancer :
