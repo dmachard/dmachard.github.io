@@ -17,42 +17,39 @@ pin: false
 
 ## Prérequis
 
--   nRF52840 MDK USB Dongle  
-    https://makerdiary.com/products/nrf52840-mdk-usb-dongle
+-   nRF52840 MDK USB Dongle - https://makerdiary.com/products/nrf52840-mdk-usb-dongle
     ![dongle](/images/0069/dongle.jpg)
 
--   nRF Connect (desktop)  
-    https://github.com/NordicPlayground/pc-nrfconnect-ble-standalone/releases/
+-   nRF Connect (desktop) - https://github.com/NordicPlayground/pc-nrfconnect-ble-standalone/releases/
+    Lancer :
 
-Lancer :
-
-```bash
-./nrfconnect-bluetooth-low-energy-4.0.4-x86_64.AppImage --no-sandbox
-```
+    ```bash
+    ./nrfconnect-bluetooth-low-energy-4.0.4-x86_64.AppImage --no-sandbox
+    ```
 
 ## Bluetooth Low Energy (BLE) ?
 
 Contrairement au Bluetooth classique (audio, streaming…), BLE est pensé pour objets connectés, capteurs, etc...
 
-Caractéristiques techniques clés
+Caractéristiques techniques
 - Bande : ~2.4 GHz
 - 40 canaux radio
 - Débit max : ~1.4 Mbps
 - Portée : jusqu’à ~1 km (selon config)
 - Puissance max : 20 dBm
 
-BLE est structuré en plusieurs parties : https://academy.nordicsemi.com/wp-content/uploads/2023/04/MicrosoftTeams-image-29.png
-- GAP (Generic Access Profile) gère la visibilité et la connexion
+Stack BLE:
+- **GAP** (Generic Access Profile) gère la visibilité et la connexion
     * scan (découverte des devices)
     * advertising
     * connexion / déconnexion
     * rôles (central / peripheral)
 
-- GATT (Generic Attribute Profile) définit la structure des données
+- **GATT** (Generic Attribute Profile) définit la structure des données
     * services
     * caractéristiques
 
-- ATT (Attribute Protocol): le protocole bas niveau pour accéder aux données
+- **ATT** (Attribute Protocol): le protocole bas niveau pour accéder aux données
     Opérations :
         - read
         - write
