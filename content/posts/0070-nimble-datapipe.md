@@ -1,91 +1,101 @@
 ---
-title: "NimBLE-DataPipe : Transport de données BLE pour ESP32"
-summary: "Présentation de NimBLE-DataPipe, une bibliothèque légère pour échanger facilement des données JSON et binaires en BLE sans se soucier de la MTU ou de la fragmentation."
+title: "NimBLE-DataPipe: Seamless BLE Data Transfer for ESP32"
+summary: "How to easily stream JSON and binary payloads over BLE with automatic fragmentation, MTU negotiation, and zero setup."
 date: 2026-05-25T00:00:00+02:00
 draft: false
 tags: ['esp32', 'ble', 'iot', 'arduino']
 pin: false
 ---
 
-# NimBLE-DataPipe : Transport de données BLE pour ESP32
+# NimBLE-DataPipe: Seamless BLE Data Transfer for ESP32
 
-**NimBLE-DataPipe** est une couche de transport BLE légère pour l'ESP32. Elle permet de faire transiter des données au format **JSON** et **Binaire** sur une unique caractéristique BLE, en gérant automatiquement les limites de MTU et la fragmentation.
+**NimBLE-DataPipe** is a lightweight transport layer designed to eliminate this hassle. It lets you "pipe" both **JSON** and **Binary** payloads over a single BLE characteristic with zero configuration required.
 
-Le code source est disponible sur [GitHub](https://github.com/dmachard/NimBLE-DataPipe).
+The repository is hosted on [GitHub](https://github.com/dmachard/NimBLE-DataPipe).
 
-## Pourquoi DataPipe ?
+---
 
-- **Fragmentation automatique** : Les données sont découpées et réassemblées de manière transparente.
-- **Support Bi-modal** : Prise en charge native des objets `ArduinoJson` et des buffers bruts (`uint8_t`).
-- **Zéro-configuration** : Détection automatique de la meilleure MTU pour la connexion.
+## Key Benefits
+
+*   **Transparent Fragmentation**: Send payloads up to 64KB without worrying about packet limits. DataPipe handles split-and-reassemble operations behind the scenes.
+*   **Bi-modal Messaging**: Exchange structured `ArduinoJson` objects or raw binary buffers on the same channel.
+*   **Automatic MTU Tuning**: DataPipe queries and uses the optimal MTU size dynamically based on the active connection.
+*   **Indication-based Reliability**: Uses BLE Indications (GATT-level acknowledgments) to guarantee packet delivery.
+
+---
+
+## How It Works: The 3-Byte Protocol Header
+
+Every message payload sent through the pipe is prepended with a minimal 3-byte header to identify the type and structure:
+
+`[TYPE (1 byte)][LENGTH (2 bytes LE)]`
+
+| Type | Mode | Description |
+|------|------|-------------|
+| `0x00` | **JSON** | Structured JSON document (fully compatible with ArduinoJson) |
+| `0x01-0xFF` | **Binary** | Custom application modes defined by the user |
+
+---
 
 ## Installation
 
-### PlatformIO
-```ini
-lib_deps =
-    h2zero/NimBLE-Arduino
-    bblanchon/ArduinoJson
-    NimBLE-DataPipe
-```
+Please refer to the [github repo](https://github.com/dmachard/NimBLE-DataPipe) for detailed installation instructions.
 
-## Entête du Protocole (3 octets)
-Chaque message est précédé d'un en-tête technique de 3 octets :
-`[TYPE (1 octet)][LONGUEUR (2 octets LE)]`
+---
 
-| Type | Nom | Description |
-|------|------|-------------|
-| `0x00`      | **JSON**   | Document structuré (compatible ArduinoJson) |
-| `0x01-0xFF` | **Binary** | Modes applicatifs personnalisés |
+## Quick Start: ESP32 Implementation (C++)
 
-## Démarrage rapide : Côté ESP32 (C++)
-
-Cet exemple montre comment construire une interface de configuration complète.
+Here is how to set up a complete bidirectional communication interface to save Wi-Fi configurations or fetch system information:
 
 ```cpp
 #include <NimBLE_DataPipe.h>
 
+// Instantiate with Device Name, Service UUID, and Characteristic UUID
 NimBLE_DataPipe bleDataPipe("ESP32-Config-Demo", "SERVICE-UUID", "CHAR-UUID");
 
 void setup() {
   Serial.begin(115200);
 
+  // Set up the JSON callback handler
   bleDataPipe.setOnJson([](const JsonDocument &doc) {
     String cmd = doc["cmd"] | "";
 
     if (cmd == "wifi_save") {
       String ssid = doc["ssid"] | "";
       String pass = doc["pass"] | "";
-      Serial.printf("Sauvegarde WiFi : %s\n", ssid.c_str());
+      Serial.printf("Saving Wi-Fi credentials for: %s\n", ssid.c_str());
       
-      JsonDocument res;
-      res["status"] = "ok";
-      bleDataPipe.sendJson(res);
+      JsonDocument response;
+      response["status"] = "ok";
+      bleDataPipe.sendJson(response);
     } 
     else if (cmd == "get_info") {
-      JsonDocument res;
-      res["type"] = "device_info";
-      res["version"] = "1.0.2";
-      res["free_heap"] = ESP.getFreeHeap();
-      bleDataPipe.sendJson(res);
+      JsonDocument response;
+      response["type"] = "device_info";
+      response["version"] = "1.0.2";
+      response["free_heap"] = ESP.getFreeHeap();
+      bleDataPipe.sendJson(response);
     }
   });
 
+  // Start the BLE advertising and GATT service
   bleDataPipe.begin();
 }
 ```
 
-## Démarrage rapide : Côté Web (JavaScript)
+---
 
-Utilisation de l'[API Web Bluetooth](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API) pour communiquer avec DataPipe depuis un navigateur.
+## Quick Start: Web Bluetooth Client (JavaScript)
+
+To interact with the ESP32 from a web browser, we use the standard Web Bluetooth API. Below is a helper class structure to handle connection, chunk reassembly, and message sending:
 
 ```javascript
-const SERVICE_UUID = "votre-service-uuid";
-const CHAR_UUID    = "votre-char-uuid";
+const SERVICE_UUID = "your-service-uuid";
+const CHAR_UUID    = "your-char-uuid";
 
 let device, characteristic;
 
-// --- Connexion ---
+// Connect to the device
 async function connect() {
   device = await navigator.bluetooth.requestDevice({
     filters: [{ services: [SERVICE_UUID] }]
@@ -94,13 +104,13 @@ async function connect() {
   const service = await server.getPrimaryService(SERVICE_UUID);
   characteristic = await service.getCharacteristic(CHAR_UUID);
 
-  // Écoute des indications de l'ESP32
+  // Start listening for GATT indications
   await characteristic.startNotifications();
   characteristic.addEventListener("characteristicvaluechanged", onReceive);
-  console.log("Connecté");
+  console.log("Connected to ESP32");
 }
 
-// --- Réception (réassemblage des fragments) ---
+// Reassemble incoming chunks
 let rxBuffer = new Uint8Array(0);
 let expectedLen = 0;
 let expectedType = 0;
@@ -109,13 +119,13 @@ let headerReceived = false;
 function onReceive(event) {
   const chunk = new Uint8Array(event.target.value.buffer);
 
-  // Ajout du fragment au buffer
+  // Concatenate new chunks
   const tmp = new Uint8Array(rxBuffer.length + chunk.length);
   tmp.set(rxBuffer);
   tmp.set(chunk, rxBuffer.length);
   rxBuffer = tmp;
 
-  // Lecture de l'en-tête dès qu'on a 3 octets
+  // Process header
   if (!headerReceived && rxBuffer.length >= 3) {
     expectedType = rxBuffer[0];
     expectedLen = rxBuffer[1] | (rxBuffer[2] << 8);
@@ -123,30 +133,30 @@ function onReceive(event) {
     headerReceived = true;
   }
 
-  // Message complet ?
+  // Check if the complete payload has arrived
   if (headerReceived && rxBuffer.length >= expectedLen) {
     const payload = rxBuffer.slice(0, expectedLen);
 
     if (expectedType === 0x00) {
       const json = JSON.parse(new TextDecoder().decode(payload));
-      console.log("JSON reçu :", json);
+      console.log("Received JSON:", json);
     } else {
-      console.log(`Binaire reçu : type=${expectedType}, ${payload.length} octets`);
+      console.log(`Received Binary (type=${expectedType}):`, payload);
     }
 
-    // Reset pour le prochain message
+    // Reset buffer for the next incoming transmission
     rxBuffer = new Uint8Array(0);
     headerReceived = false;
   }
 }
 
-// --- Envoi de JSON ---
+// Send JSON payloads
 async function sendJson(obj) {
   const text = JSON.stringify(obj);
   const payload = new TextEncoder().encode(text);
   const len = payload.length;
 
-  // En-tête : [TYPE=0x00][LEN_LO][LEN_HI] + payload
+  // Build the frame: [TYPE][LEN_LO][LEN_HI] + payload
   const buffer = new Uint8Array(3 + len);
   buffer[0] = 0x00;
   buffer[1] = len & 0xFF;
@@ -155,83 +165,4 @@ async function sendJson(obj) {
 
   await characteristic.writeValueWithResponse(buffer);
 }
-
-// --- Utilisation ---
-await connect();
-await sendJson({ cmd: "get_info" });
-```
-
-
-## Utilisation avancée : Configuration orientée classe
-
-Pour des projets plus importants, il est conseillé d'encapsuler `NimBLE-DataPipe` dans une classe de gestion de configuration. Cela permet de garder un `main.cpp` propre et de centraliser la logique du protocole JSON.
-
-### `BleConfig.h`
-```cpp
-#include <NimBLE_DataPipe.h>
-#include <ArduinoJson.h>
-
-class BleConfig {
-public:
-  BleConfig() : _pipe("MyDevice", "SERVICE_UUID", "CHAR_UUID") {}
-
-  void begin() {
-    _pipe.setOnJson([this](const JsonDocument &doc) {
-      handleCommand(doc);
-    });
-    _pipe.begin();
-  }
-
-private:
-  NimBLE_DataPipe _pipe;
-
-  void handleCommand(const JsonDocument &doc) {
-    String cmd = doc["cmd"] | "";
-    
-    if (cmd == "set_wifi") {
-      // Logique pour sauvegarder le WiFi...
-      JsonDocument res;
-      res["status"] = "saved";
-      _pipe.sendJson(res);
-    }
-  }
-};
-```
-
-### `main.cpp`
-```cpp
-#include "BleConfig.h"
-
-BleConfig bleConfig;
-
-void setup() {
-  bleConfig.begin();
-}
-
-void loop() {
-  // Logique principale
-}
-```
-
-## Mode Binaire
-
-```cpp
-bleDataPipe.setOnBinary([](uint8_t type, const uint8_t *data, size_t len) {
-  if (type == 0x01) { 
-     // Gérer votre mode binaire personnalisé
-  }
-});
-
-// Envoi de données binaires brutes
-uint8_t myBuffer[128] = { ... };
-bleDataPipe.sendBinary(0x01, myBuffer, 128);
-```
-
-## Logs / Verbosité
-
-Par défaut, la bibliothèque affiche ses messages d'état sur `Serial`. Il est possible de désactiver toutes les sorties en définissant `DATAPIPE_SILENT` **avant** d'importer la bibliothèque :
-
-```cpp
-#define DATAPIPE_SILENT
-#include <NimBLE_DataPipe.h>
 ```
